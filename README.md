@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="../FotF-GDD/assets/FotF.png" alt="Fortress of the Fallen" />
-</p>
+![Fortress of the Fallen](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/FotF.png)
 
 # Overview
 
@@ -91,9 +89,7 @@
 
 ## Core Game Loop
 
-<p align="center">
-  <img src="../FotF-GDD/assets/GameLoop.png" alt="Core Game Loop" />
-</p>
+![Core Game Loop](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/GameLoop.png)
 
 - **Prepare Phase (6 days)**
     - Manage food and resources
