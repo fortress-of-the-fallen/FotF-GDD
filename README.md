@@ -118,6 +118,79 @@
     - Return to Prepare Phase for the next stage
 ---
 
-## 🚧 Development Notes
+## Player Power Progression
 
+Player strength grows through:
+
+### 1. **Unit Development**
+- Units gain XP from battles and level up.
+- At certain levels, units unlock:
+  - New skills
+  - Passive buffs
+  - Evolution into stronger classes (if conditions are met)
+
+### 2. **Hero Growth**
+- Heroes have unique upgrade paths, including:
+  - Active & passive skill unlocks
+  - Equipment slots for gear
+  - Title upgrades based on achievements
+- Hero development is persistent across stages (unless they die)
+
+### 3. **Base Progression**
+- New buildings, tower types, and upgrades are unlocked as stages progress.
+- Base upgrades improve:
+  - Resource generation
+  - Training speed
+  - Unit cap and deployment slots
+
+---
+
+## Reward Curve
+
+Each stage rewards the player with:
+- Gold and materials (based on performance)
+- Battle loot (equipment, crafting items)
+- Unique rewards from bosses (artifacts, blueprints)
+- Achievement progress (tied to hero growth or world progress)
+
+The deeper the stage, the rarer and more powerful the rewards.
+
+---
+
+## Permadeath Integration
+
+- Regular units and heroes who fall in battle are **lost permanently**.
+- Players must plan for contingencies, manage risk, and rotate troops.
+- Death has narrative and mechanical consequences (especially for heroes).
+
+---
+
+## 🏆 Victory Conditions
+
+### Story Mode:
+- Survive until the final stage (depends on difficulty)
+- Defeat the final boss
+- Keep the main character alive
+
+## Optional Meta-Progression (for future updates)
+
+> Can be implemented after launch to enhance replayability:
+
+- **Ascension System**: Reset progress for permanent bonuses
+- **Meta Talents**: Persistent skill trees that unlock across runs
+- **Relic System**: Discover relics with unique global modifiers
+- **Faction Paths**: Let players choose philosophies that shape unit types, tech trees, and storylines
+
+---
+
+## Summary Flow
+
+1. Start at Stage 0 (Tutorial)  
+2. Progress through 6-day Prep → 1-day Combat → Upgrade Phase  
+3. Every 5 stages, encounter a Boss Fight  
+4. Between fights: unlock new features, recruit stronger heroes, manage permadeath  
+5. Final objective: survive to Stage 50, complete all story arcs  
+6. Unlock Eternity Mode for late-game challenge
+
+---
 > _will be updated…_
