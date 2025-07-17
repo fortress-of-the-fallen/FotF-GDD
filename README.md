@@ -1,192 +1,97 @@
 ![Fortress of the Fallen](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/FotF.png)
 
-# Overview
-
-- **Genre**: Tower Defense, Based Stage, RPG, Resource Management  
-- **Platform**: PC, Mobile  
-- **Art Style**: Pixel, Fantasy  
-
----
-
-## Gameplay
-
-### Stage
-
-- **Stage 0**: Tutorial  
-- **Total Stages**: 20–35–50 for:
-  - **Easy**: 20
-  - **Hard**: 35
-  - **Asian**: 50  
-- **Stage Time**:
-  - **6 Days Preparation**
-  - **1 Day Battle**
-- **Boss**: Every 5 stages
-
----
-
-### Game Modes
-
-- **Story Mode**:
-  - 3 difficulties: Easy, Hard, Asian  
-- **Eternity Mode**:
-  - Online play
-
----
-
-## Game Mechanics
-    will be updated...
-### Resource Management
-
-- **Food**:
-  - Maintain soldier power
-  - Gained via farming/import
-
-- **Other Resources**:
-  - Ores, wood, items…
-  - From battles, rewards, dungeons
-
-- **Soldiers**:
-  - Train, manage, deploy in groups
-
-- **Heroes**:
-  - Recruited via gacha/events
-  - Directly controlled
-  - Equip special gear
-
-- **Permanent Death**:
-  - Characters don’t revive
-  - If the main character dies → Game Over
-
----
-
-### Character Development
-
-- Achievements, research, training unlock power & skills  
-- Stats & skills increase via level or conditions  
-- Main character dies → Game ends  
-
----
-
-### Defense Strategy
-
-- **Formation**:
-  - Position units for defense
-- **Towers**:
-  - Build anti-enemy towers wisely
-
----
-
-### Crafting & Equipment
-
-- **Collect Items**: from battles & quests  
-- **Craft**:
-  - New equipment, weapon/armor upgrades  
-- **Trade**:
-  - Buy/sell with merchants
-  - Import (with delivery time)
+## Overview
+**Fortress of the Fallen** là một game chiến thuật kết hợp phòng thủ tháp và nhập vai (Tower Defense – RPG – Resource Management). Trò chơi xoay quanh ba tuyến truyện chính của ba Tam Hoàng Tử, mỗi người đại diện cho một phong cách chơi và triết lý cai trị khác nhau.
 
 ---
 
 ## Core Game Loop
+![Fortress of the Fallen](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/FotF.png)
 
-![Core Game Loop](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/GameLoop.png)
+## Game Modes
 
-- **Prepare Phase (6 days)**
-    - Manage food and resources
-    - Train soldiers / Recruit heroes (via gacha or events)
-    - Set up formations and positions
-    - Build and upgrade defense towers
-    - Craft or enhance weapons and armor
-    - Trade with merchants or place import orders
-- **Combat Phase (1 days)**
-    - Deploy troops and heroes to defend the base
-    - Use manual or semi-automatic tactics (if applicable)
-    - Face waves of enemies or bosses (every 5 stages)
-    - Permanent death applies: fallen characters are lost
-    - End with a victory/defeat/troop survival report
-- **Progression Phase**
-    - Claim rewards: materials, gold, equipment
-    - Level up characters and increase stats
-    - Unlock new skills, techs, or structures
-    - Heal surviving units
-    - Craft items from gathered loot
-    - Handle losses: adjust strategy for the next stage
-    - Return to Prepare Phase for the next stage
----
+### 1. **The Conqueror's Path** - *Chiến tranh và xâm lược*
+- **Lối chơi**: Mở rộng lãnh thổ, càn quét quân địch, phát triển quân đội.
+- **Tài nguyên chính**: Lính đánh thuê, vàng, lãnh thổ.
+- **Mục tiêu**: Chinh phục các vùng đất bị lãng quên và đánh bại các pháo đài địch.
 
-## Player Power Progression
+### 2. **The Tyrant’s Fortress** - *Phòng thủ*
+- **Lối chơi**: Phòng thủ tháp, tối ưu hóa công trình, quản lý NPC/đơn vị.
+- **Tài nguyên chính**: Tinh thể ma thuật, nguyên vật liệu xây dựng, thời gian.
+- **Mục tiêu**: Xây dựng pháo đài bất khả xâm phạm chống lại các đợt tấn công.
 
-Player strength grows through:
-
-### 1. **Unit Development**
-- Units gain XP from battles and level up.
-- At certain levels, units unlock:
-  - New skills
-  - Passive buffs
-  - Evolution into stronger classes (if conditions are met)
-
-### 2. **Hero Growth**
-- Heroes have unique upgrade paths, including:
-  - Active & passive skill unlocks
-  - Equipment slots for gear
-  - Title upgrades based on achievements
-- Hero development is persistent across stages (unless they die)
-
-### 3. **Base Progression**
-- New buildings, tower types, and upgrades are unlocked as stages progress.
-- Base upgrades improve:
-  - Resource generation
-  - Training speed
-  - Unit cap and deployment slots
+### 3. **The Schemer’s Dominion** - *Quản trị, mưu lược, ám sát*
+- **Lối chơi**: Chính trị, thuyết phục, cạm bẫy, kiểm soát thông tin.
+- **Tài nguyên chính**: Thông tin, uy tín, niềm tin, ám sát.
+- **Mục tiêu**: Điều khiển thế giới từ trong bóng tối thông qua mạng lưới gián điệp.
 
 ---
 
-## Reward Curve
+## 👤 Character System
+![Character System](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/stats-system.png)
 
-Each stage rewards the player with:
-- Gold and materials (based on performance)
-- Battle loot (equipment, crafting items)
-- Unique rewards from bosses (artifacts, blueprints)
-- Achievement progress (tied to hero growth or world progress)
+### A. Base Attributes (Chỉ số cơ bản)
 
-The deeper the stage, the rarer and more powerful the rewards.
+| Attribute | Mô tả |
+|----------|-------|
+| STR (Strength)     | Sức mạnh cơ bắp, sát thương vật lý |
+| DEX (Dexterity)    | Nhanh nhẹn, chính xác, tốc độ đánh |
+| CON (Constitution) | Thể lực, máu, kháng sát thương |
+| INT (Intelligence) | Trí tuệ, phép thuật, kháng phép |
+| WIS (Wisdom)       | Niềm tin, khả năng sử dụng kỹ năng đặc biệt |
+| CHA (Charisma)     | Mở khóa các kỹ năng đặc biệt |
+
+### B. Derived Stats (Chỉ số phụ thuộc)
+
+| **Stat**        | **Phụ thuộc vào**         | **Ý nghĩa**                            |
+|----------------|---------------------------|----------------------------------------|
+| HP             | CON, STR                  | Máu tối đa                              |
+| MP             | WIS, INT                  | Mana tối đa                             |
+| PATK / DATK    | STR, DEX, CON             | Tấn công / phòng thủ vật lý              |
+| MATK / MDEF    | INT, WIS                  | Tấn công phép / kháng phép             |
+| SPD            | DEX                       | Tốc độ hành động / đánh                |
+| CRIT           | DEX                       | Tỷ lệ chí mạng                          |
+| ACC            | DEX, INT                  | Độ chính xác khi tấn công              |
+| EVA            | DEX, CON                  | Né tránh đòn đánh                      |
+
+### C. Special Traits (Thuộc tính đặc biệt)
+
+| Trait       | Mô tả |
+|-------------|-------|
+| Karma       | Đạo đức nhân vật (tốt, ác, trung lập) ảnh hưởng đến kỹ năng, mối quan hệ |
+| Affinity    | Mối liên kết với phe phái / nguyên tố / NPC |
+| Luck        | Tác động đến tỷ lệ rơi đồ, chí mạng, sự kiện ngẫu nhiên |
+| Resistance  | Khả năng chống lại hiệu ứng bất lợi (poison, stun, curse...) |
+
+---
+
+## Race & Stat Cap System (Chủng tộc và giới hạn chỉ số)
+
+Mỗi **chủng tộc** sẽ có:
+- **Giới hạn chỉ số khác nhau**
+- **Kháng / yếu với các nguyên tố**
+- **Thế mạnh riêng biệt** trong lối chơi
+
+### Ví dụ
+
+| Race        | STR | DEX | CON | INT | WIS | CHA | Ghi chú |
+|-------------|-----|-----|-----|-----|-----|-----|--------|
+| Human       | 8   | 8   | 8   | 8   | 8   | 8   | Cân bằng |
+| Elf         | 6   | 10  | 6   | 10  | 10  | 8   | Giỏi phép, tốc độ cao |
+| Orc         | 12  | 6   | 10  | 4   | 4   | 4   | Cận chiến mạnh, kháng vật lý |
+| Undead      | 6   | 6   | 12  | 8   | 6   | 4   | Không hồi máu, miễn độc |
+| Dragonkin   | 10  | 10  | 10  | 10  | 10  | 6   | Rất mạnh nhưng tăng cấp chậm |
+
+> Giới hạn có thể được tăng qua tiến hóa, tăng cấp, hoặc vật phẩm huyền thoại.
 
 ---
 
-## Permadeath Integration
+## Resource Management System
 
-- Regular units and heroes who fall in battle are **lost permanently**.
-- Players must plan for contingencies, manage risk, and rotate troops.
-- Death has narrative and mechanical consequences (especially for heroes).
-
----
-
-## 🏆 Victory Conditions
-
-### Story Mode:
-- Survive until the final stage (depends on difficulty)
-- Defeat the final boss
-- Keep the main character alive
-
-## Optional Meta-Progression (for future updates)
-
-> Can be implemented after launch to enhance replayability:
-
-- **Ascension System**: Reset progress for permanent bonuses
-- **Meta Talents**: Persistent skill trees that unlock across runs
-- **Relic System**: Discover relics with unique global modifiers
-- **Faction Paths**: Let players choose philosophies that shape unit types, tech trees, and storylines
+### Tài nguyên chính:
+- **Gold**: Dùng để nâng cấp công trình, thuê lính, mua trang bị.
+- **Mana Crystals**: Dùng để thi triển phép, nâng cấp công nghệ ma thuật.
+- **Soul Shards**: Đơn vị hiếm, dùng để triệu hồi anh hùng, kỹ năng tối thượng.
+- **Influence**: Chỉ số ảnh hưởng chính trị / uy tín nhân vật trong faction.
 
 ---
-
-## Summary Flow
-
-1. Start at Stage 0 (Tutorial)  
-2. Progress through 6-day Prep → 1-day Combat → Upgrade Phase  
-3. Every 5 stages, encounter a Boss Fight  
-4. Between fights: unlock new features, recruit stronger heroes, manage permadeath  
-5. Final objective: survive to Stage 50, complete all story arcs  
-6. Unlock Eternity Mode for late-game challenge
-
----
-> _will be updated…_
