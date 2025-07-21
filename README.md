@@ -1,7 +1,7 @@
 ![Fortress of the Fallen](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/FotF.png)
 
 ## Overview
-**Fortress of the Fallen** là một game chiến thuật kết hợp phòng thủ tháp và nhập vai (Tower Defense – RPG – Resource Management). Trò chơi xoay quanh ba tuyến truyện chính của ba Tam Hoàng Tử, mỗi người đại diện cho một phong cách chơi và triết lý cai trị khác nhau.
+**Fortress of the Fallen** là một game chiến thuật kết hợp phòng thủ tháp và nhập vai (Tower Defense – RPG – Resource Management). Người chơi vào vai **Tam hoàng tử cuối cùng còn sống sót**, phải tử thủ trong pháo đài cuối cùng chống lại thế lực Hỗn Mang. Mỗi chế độ là một chương truyện riêng biệt, với gameplay thủ thành thời gian thực.
 
 ---
 
@@ -10,25 +10,30 @@
 
 ## Game Modes
 
-### 1. **The Conqueror's Path** - *Chiến tranh và xâm lược*
-- **Lối chơi**: Mở rộng lãnh thổ, càn quét quân địch, phát triển quân đội.
-- **Tài nguyên chính**: Lính đánh thuê, vàng, lãnh thổ.
-- **Mục tiêu**: Chinh phục các vùng đất bị lãng quên và đánh bại các pháo đài địch.
-
-### 2. **The Tyrant’s Fortress** - *Phòng thủ*
-- **Lối chơi**: Phòng thủ tháp, tối ưu hóa công trình, quản lý NPC/đơn vị.
-- **Tài nguyên chính**: Tinh thể ma thuật, nguyên vật liệu xây dựng, thời gian.
-- **Mục tiêu**: Xây dựng pháo đài bất khả xâm phạm chống lại các đợt tấn công.
-
-### 3. **The Schemer’s Dominion** - *Quản trị, mưu lược, ám sát*
-- **Lối chơi**: Chính trị, thuyết phục, cạm bẫy, kiểm soát thông tin.
-- **Tài nguyên chính**: Thông tin, uy tín, niềm tin, ám sát.
-- **Mục tiêu**: Điều khiển thế giới từ trong bóng tối thông qua mạng lưới gián điệp.
+| Chế độ        | Đặc điểm |
+|---------------|----------|
+| **Chế độ 1**  | Dễ. Wave cố định. Luyện tập và làm quen. |
+| **Chế độ 2**  | Khó hơn. Wave ngẫu nhiên, nhiều stage hơn. |
+| **Chế độ 3**  | Cực khó. Wave ngẫu nhiên, quái có chỉ số cao hơn và có nhiều biến số hơn. |
 
 ---
 
+## Game Play
+- **Thủ thành thời gian thực**: Bố trí đơn vị thủ thành theo vị trí chiến thuật, xây dựng hàng thủ và kiểm soát tài nguyên.
+- **Điều khiển bán tự động**: Người chơi chỉ điều khiển nhân vật chính, các đơn vị còn lại do AI điều khiển theo sơ đồ chiến thuật.
+- **Đơn vị chết mất vĩnh viễn**, trừ nhân vật chính. Nếu nhân vật chính chết: thua trận.
+- **Chi tiết:**
+    - Người chơi chọn sơ đồ chiến thuật trước trận.
+    - Các đơn vị có thể **hành động theo vai trò (đỡ đòn, dồn sát thương, hồi máu, phá kỹ năng...)**.
+    - Hệ thống **Affinity**, **Karma** ảnh hưởng đến kỹ năng học được và nhánh class mở khóa.
+
 ## 👤 Character System
 ![Character System](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/stats-system.png)
+
+- Level tối đa: **100**
+- Hệ thống **chỉ số cơ bản và đặc biệt quyết định class**, không tăng cấp theo level.
+- Trang bị có thể **tăng chỉ số để mở class mới** hoặc **kích hoạt kỹ năng độc quyền**.
+- Các nhân vật **triệu hồi** cũng có class, skill riêng và tiến hóa riêng.
 
 ### A. Base Attributes (Chỉ số cơ bản)
 
@@ -95,3 +100,6 @@ Mỗi **chủng tộc** sẽ có:
 - **Influence**: Chỉ số ảnh hưởng chính trị / uy tín nhân vật trong faction.
 
 ---
+
+## Class System:
+[`class-system.md`](./class-system.md): Chi tiết về hệ thống class, chỉ số unlock, trait ảnh hưởng, kết hợp với chủng tộc.
