@@ -139,3 +139,30 @@ Mỗi **chủng tộc** sẽ có:
 
 ## Class System:
 [`class-system.md`](./class-system.md): Chi tiết về hệ thống class, chỉ số unlock, trait ảnh hưởng, kết hợp với chủng tộc.
+
+## NPC System (AI & Personality)
+- Tuyển dụng NPC:
+
+    - Người chơi gacha NPC để vận hành công trình (quán ăn, nông trại, lò rèn...).
+
+    - NPC có chỉ số riêng + class riêng, không khác gì một nhân vật “mini-hero”.
+
+- Tính cách (Personality):
+
+    - Mỗi NPC sinh ra kèm tính cách AI độc lập (ví dụ: nghiêm túc, lười biếng, tham lam, hiền lành, trung thành...).
+
+    - Tính cách ảnh hưởng đến hành vi làm việc (tăng năng suất, giảm chi phí, hoặc gây rắc rối).
+
+- Quan hệ với người chơi:
+
+    - Người chơi có thể tăng thiện cảm bằng cách cho quà, trò chuyện, hoàn thành nhiệm vụ cá nhân.
+
+    - Khi thiện cảm cao, NPC sẽ mở thêm tính năng hoặc buff đặc biệt.
+
+    - Khi thiện cảm thấp, NPC có thể bỏ việc, phản bội, hoặc tạo event bất ngờ.
+
+- AI Behavior:
+
+    - NPC hoạt động bán tự động theo vai trò (Blacksmith tự rèn đồ, Farmer tự gieo trồng, Healer tự hỗ trợ).
+
+    - Có thể ra lệnh sơ đồ chiến thuật (AI Pattern), nhưng vẫn giữ sự ngẫu nhiên để tạo cảm giác “sống thật”.
