@@ -6,7 +6,7 @@
 ---
 
 ## Core Game Loop
-![Fortress of the Fallen](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/FotF.png)
+![Fortress of the Fallen](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/GameLoop.png)
 
 ## Game Modes
 
