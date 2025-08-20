@@ -1,33 +1,69 @@
 ![Fortress of the Fallen](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/FotF.png)
 
 ## Overview
-**Fortress of the Fallen** là một game chiến thuật kết hợp phòng thủ tháp và nhập vai (Tower Defense – RPG – Resource Management). Người chơi vào vai **Tam hoàng tử cuối cùng còn sống sót**, phải tử thủ trong pháo đài cuối cùng chống lại thế lực Hỗn Mang. Mỗi chế độ là một chương truyện riêng biệt, với gameplay thủ thành thời gian thực.
+**Fortress of the Fallen** là một game **Online Action RPG** kết hợp yếu tố **Xây dựng** – **Nhập vai** – **Gacha**. Người chơi sẽ tồn tại trong một thế giới nổi trên không gian, nơi các hòn đảo vệ tinh bay xung quanh một Tinh Hà Trung Tâm.
 
+Người chơi bắt đầu chỉ với một hòn đảo trống rỗng – như ngôi nhà riêng. Qua thời gian, họ sẽ:
+
+- Xây dựng & quản lý đảo (quán ăn, nông trại, lò rèn, thư viện…).
+
+- Tuyển dụng nhân vật thông qua cơ chế gacha tuyển dụng, yêu cầu tài nguyên để trả lương / duy trì.
+
+- Thám hiểm Tinh Hà Trung Tâm: Leo 100 tầng tháp trên trời hoặc khám phá 18 tầng ngục dưới lòng đất.
+
+- Sinh tử vĩnh hằng: Khi chết, số phận sẽ dựa vào Charisma để quyết định bị đẩy xuống tầng ngục nào. Muốn hồi sinh, người chơi phải vượt qua thử thách trong ngục.
 ---
 
 ## Core Game Loop
-![Fortress of the Fallen](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/GameLoop.png)
+- Xây dựng đảo cá nhân → Thu thập & tiêu hao tài nguyên để phát triển.
+
+- Tuyển dụng đồng minh (qua gacha) → NPC / Anh hùng giúp vận hành module trên đảo.
+
+- Leo tháp / Xuống ngục → Chiến đấu, loot tài nguyên, mở khóa kỹ năng & trang bị.
+
+- Quản lý sinh tồn → Nếu chết, dựa vào Charisma để xác định tầng ngục bị đẩy xuống.
+
+- Vượt thử thách ngục → Thành công = hồi sinh. Thất bại = giảm chỉ số.
 
 ## Game Modes
 
 | Chế độ        | Đặc điểm |
 |---------------|----------|
-| **Chế độ 1**  | Dễ. Wave cố định. Luyện tập và làm quen. |
-| **Chế độ 2**  | Khó hơn. Wave ngẫu nhiên, nhiều stage hơn. |
-| **Chế độ 3**  | Cực khó. Wave ngẫu nhiên, quái có chỉ số cao hơn và có nhiều biến số hơn. |
+| **Khám phá Tháp**  | Leo 100 tầng, mỗi tầng tăng độ khó, mở khóa boss và kho báu. |
+| **Vượt ngục**  | Hình phạt khi để nhân vật chết. Vượt qua sẽ được hồi sinh. |
+| **Xây dựng Đảo**  | Cá nhân hóa đảo vệ tinh của mình: công trình, NPC, phong cảnh. |
+|**PVP Arena** | Đấu trường, người chơi có thể giao đấu ở khu vực này.|
 
 ---
 
 ## Game Play
-- **Thủ thành thời gian thực**: Bố trí đơn vị thủ thành theo vị trí chiến thuật, xây dựng hàng thủ và kiểm soát tài nguyên.
-- **Điều khiển bán tự động**: Người chơi chỉ điều khiển nhân vật chính, các đơn vị còn lại do AI điều khiển theo sơ đồ chiến thuật.
-- **Đơn vị chết mất vĩnh viễn**, trừ nhân vật chính. Nếu nhân vật chính chết: thua trận.
-- **Chi tiết:**
-    - Người chơi chọn sơ đồ chiến thuật trước trận.
-    - Các đơn vị có thể **hành động theo vai trò (đỡ đòn, dồn sát thương, hồi máu, phá kỹ năng...)**.
-    - Hệ thống **Affinity**, **Karma** ảnh hưởng đến kỹ năng học được và nhánh class mở khóa.
+- Action RPG Online: Chiến đấu hack-n-slash, tổ đội 1–4 người hoặc chơi solo.
 
-## 👤 Character System
+- Đảo cá nhân hóa:
+
+    - Khởi đầu: đảo trống chỉ có bạn.
+
+    - Muốn vận hành nông trại, quán ăn, lò rèn, thư viện, học viện… → cần NPC.
+
+    - NPC được tuyển qua gacha (Hero Recruit System).
+
+- Hệ thống tử vong độc đáo:
+
+    - Người chơi chết không "respawn ngay".
+
+    - Dựa vào Charisma → xác định tầng ngục bị đẩy xuống.
+
+    - Muốn hồi sinh → phải vượt qua thử thách trong ngục.
+
+- Gacha System:
+
+    - Tuyển NPC (vận hành đảo).
+
+    - Tuyển Hero (đồng minh chiến đấu).
+
+    - Tỷ lệ hiếm phụ thuộc vào Luck và Influence.
+
+## Character System
 ![Character System](https://github.com/fortress-of-the-fallen/FotF-GDD/blob/main/assets/stats-system.png)
 
 - Level tối đa: **100**

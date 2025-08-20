@@ -97,4 +97,5 @@
 
 - Một nhân vật có thể giữ nhiều class đã mở khóa, và **chuyển đổi giữa các class đã mở khi không trong trận**.
 - Việc chọn đúng chỉ số và trait phù hợp giúp bạn **phát triển nhân vật theo hướng mong muốn**, tạo nên đội hình đa dạng.
+- NPC có class riêng → ảnh hưởng đến cách họ vận hành công trình (Ví dụ: Blacksmith = Warrior class, Librarian = Mage class, Farmer = Druid…).
 
