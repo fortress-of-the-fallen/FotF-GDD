@@ -11,7 +11,7 @@ Người chơi bắt đầu chỉ với một hòn đảo trống rỗng – nh�
 
 - Thám hiểm Tinh Hà Trung Tâm: Leo 100 tầng tháp trên trời hoặc khám phá 18 tầng ngục dưới lòng đất.
 
-- Sinh tử vĩnh hằng: Khi chết, số phận sẽ dựa vào Charisma để quyết định bị đẩy xuống tầng ngục nào. Muốn hồi sinh, người chơi phải vượt qua thử thách trong ngục.
+- Sinh tử vĩnh hằng: Khi chết, số phận sẽ dựa vào Karma để quyết định bị đẩy xuống tầng ngục nào. Muốn hồi sinh, người chơi phải vượt qua thử thách trong ngục.
 ---
 
 ## Core Game Loop
@@ -21,7 +21,7 @@ Người chơi bắt đầu chỉ với một hòn đảo trống rỗng – nh�
 
 - Leo tháp / Xuống ngục → Chiến đấu, loot tài nguyên, mở khóa kỹ năng & trang bị.
 
-- Quản lý sinh tồn → Nếu chết, dựa vào Charisma để xác định tầng ngục bị đẩy xuống.
+- Quản lý sinh tồn → Nếu chết, dựa vào Karma để xác định tầng ngục bị đẩy xuống.
 
 - Vượt thử thách ngục → Thành công = hồi sinh. Thất bại = giảm chỉ số.
 
@@ -51,7 +51,7 @@ Người chơi bắt đầu chỉ với một hòn đảo trống rỗng – nh�
 
     - Người chơi chết không "respawn ngay".
 
-    - Dựa vào Charisma → xác định tầng ngục bị đẩy xuống.
+    - Dựa vào Karma → xác định tầng ngục bị đẩy xuống.
 
     - Muốn hồi sinh → phải vượt qua thử thách trong ngục.
 
@@ -166,3 +166,6 @@ Mỗi **chủng tộc** sẽ có:
     - NPC hoạt động bán tự động theo vai trò (Blacksmith tự rèn đồ, Farmer tự gieo trồng, Healer tự hỗ trợ).
 
     - Có thể ra lệnh sơ đồ chiến thuật (AI Pattern), nhưng vẫn giữ sự ngẫu nhiên để tạo cảm giác “sống thật”.
+
+## ERD
+[`Link`](https://fortress-of-the-fallen.github.io/.github/erd/)
