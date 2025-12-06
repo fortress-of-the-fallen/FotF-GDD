@@ -1,0 +1,139 @@
+\documentclass[12pt,a4paper]{article}
+
+% ================== GÓI TIẾNG VIỆT & CƠ BẢN ==================
+\usepackage[utf8]{vntex}
+\usepackage[english,vietnamese]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{blindtext}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{longtable}
+% ================== GÓI BỔ TRỢ ==================
+\usepackage{a4wide,amssymb,epsfig,latexsym,multicol,array,hhline,fancyhdr}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{lastpage}
+\usepackage[lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{enumerate}
+\usepackage{alltt}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{lipsum}
+\usepackage{pdflscape}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{subcaption}
+\usepackage{sectsty}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{indentfirst}
+\usetikzlibrary{arrows,snakes,backgrounds,calc}
+\usepackage{colortbl}
+\usepackage{makecell}
+\usepackage{listings}
+\usepackage[style=apa,backend=biber,sorting=none]{biblatex}
+
+% ================== TÀI LIỆU THAM KHẢO ==================
+\addbibresource{newrefs.bib}  % đổi nếu bạn dùng tên file khác
+
+% ================== HYPERREF (ẨN VIỀN LINK) ==================
+\usepackage{hyperref}
+\hypersetup{
+    hidelinks,
+    colorlinks=false
+}
+
+% ================== LỀ TRANG ==================
+\geometry{
+    a4paper,
+    left=20mm,
+    right=20mm,
+    top=20mm,
+    bottom=25mm
+}
+
+% ================== DÒNG CÁCH ==================
+\onehalfspacing
+
+% ================== HEADER / FOOTER ==================
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{}    % xóa header mặc định
+\fancyfoot{}    % xóa footer mặc định
+
+\fancyfoot[L]{\scriptsize \ttfamily Khoa Khoa Học và Kỹ Thuật Máy Tính}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/\pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{0pt}    % không vẽ line ở header
+\renewcommand{\footrulewidth}{0.3pt}  % vẽ line ở footer
+
+% Đổi tên mục lục sang tiếng Việt
+\renewcommand{\contentsname}{Mục lục}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% ===================== TRANG BÌA =====================
+\input{Content/titlepage} % trong titlepage.tex nên có \thispagestyle{empty}
+
+% ===================== PROTESTATION =====================
+\input{Content/protestation}
+
+% ===================== ACKNOWLEDGEMENTS =====================
+\input{Content/acknowledgements}
+
+% ===================== ABSTRACT =====================
+\input{Content/abstract}
+
+% ===================== DANH MỤC THUẬT NGỮ =====================
+\newpage
+\input{Content/glossary}
+
+% ===================== TOC, LOF, LOT =====================
+\newpage
+\setcounter{page}{0} % nếu không muốn Page 0 thì xóa dòng này
+
+\begin{singlespace}
+\tableofcontents
+\end{singlespace}
+\newpage
+
+\begin{singlespace}
+\listoffigures
+\end{singlespace}
+\newpage
+
+\begin{singlespace}
+\listoftables
+\end{singlespace}
+\newpage
+
+% ===================== NỘI DUNG CHÍNH =====================
+
+\input{Content/introduction}
+\input{Content/background}
+\input{Content/technology}
+\input{Content/relatedworks}
+\input{Content/requirements}
+\input{Content/analysis}
+\input{Content/design}
+\input{Content/implementation}
+\input{Content/evaluation}
+\input{Content/conclusion}
+
+% ===================== TÀI LIỆU THAM KHẢO =====================
+\newpage
+\addcontentsline{toc}{section}{Tài liệu tham khảo}
+\printbibliography
+
+% ===================== PHỤ LỤC =====================
+\newpage
+\input{Content/appendices}
+
+\end{document}

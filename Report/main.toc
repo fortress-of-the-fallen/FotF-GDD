@@ -1,0 +1,10 @@
+\babel@toc {vietnamese}{}\relax 
+\contentsline {section}{Danh mục thuật ngữ}{1}{section*.2}%
+\contentsline {section}{\numberline {1}Giới thiệu}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Động lực}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Mục tiêu}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Phạm vi}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Ý nghĩa của đề tài}{4}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Ý nghĩa thực tiễn}{4}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Ý nghĩa khoa học và học thuật}{4}{subsubsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.5}Cấu trúc báo cáo}{5}{subsection.1.5}%
