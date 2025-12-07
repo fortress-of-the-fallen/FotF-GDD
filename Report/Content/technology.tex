@@ -1,0 +1,243 @@
+\section{Công nghệ sử dụng}
+
+Chương này trình bày các công nghệ và nền tảng phần mềm được xem xét, định hướng sử dụng để hiện thực hoá một trò chơi Action RPG trực tuyến hiện đại. Thay vì chỉ liệt kê tên công nghệ, nội dung chương tập trung vào việc phân tích vai trò, ưu điểm, hạn chế và lý do các công nghệ này phù hợp với bối cảnh một game nhiều người chơi thời gian thực.
+
+Về mặt tổng thể, một hệ thống game online có thể được chia thành các lớp chính:
+\begin{itemize}
+    \item Lớp \textbf{client/game engine}: hiển thị đồ họa, nhận input và xử lý trải nghiệm người chơi.
+    \item Lớp \textbf{backend}: xử lý logic game phía server, xác thực, quản lý người chơi, phiên chơi và đồng bộ trạng thái.
+    \item Lớp \textbf{dữ liệu}: lưu trữ lâu dài tiến trình người chơi, cấu hình game và các dữ liệu phụ trợ.
+    \item Lớp \textbf{hạ tầng \& công cụ}: phục vụ phát triển, kiểm thử, triển khai và giám sát hệ thống.
+\end{itemize}
+
+Các mục sau trình bày chi tiết từng thành phần.
+
+% ===============================================================
+\subsection{Kiến trúc tổng quát nhiều lớp}
+
+Một trò chơi Action RPG online thường được triển khai theo kiến trúc nhiều lớp (multi-tier):
+
+\begin{itemize}
+    \item \textbf{Lớp trình bày (Presentation Layer)}: game client chạy trên máy người chơi (PC, console hoặc mobile), được xây dựng bằng game engine (ví dụ: Unity). Lớp này chịu trách nhiệm kết xuất hình ảnh, xử lý input, UI/UX.
+    \item \textbf{Lớp dịch vụ ứng dụng (Application/Backend Layer)}: tập hợp các dịch vụ server xử lý logic game, API, đồng bộ trạng thái, hệ thống match-making, quản lý phiên chơi.
+    \item \textbf{Lớp dữ liệu (Data Layer)}: bao gồm các cơ sở dữ liệu quan hệ hoặc NoSQL, cache, hệ thống lưu trữ file cấu hình, log, v.v.
+\end{itemize}
+
+Việc tách bạch rõ các lớp giúp:
+\begin{itemize}
+    \item dễ \textbf{mở rộng} (scale) từng lớp độc lập,
+    \item dễ \textbf{thay thế công nghệ} ở một lớp mà không ảnh hưởng toàn hệ thống,
+    \item tăng \textbf{tính bảo trì} và \textbf{khả năng tái sử dụng} các thành phần.
+\end{itemize}
+
+% ===============================================================
+\subsection{Công nghệ phía client (Game Engine)}
+
+\subsubsection{Game engine cho Action RPG}
+
+Để phát triển nhanh một trò chơi Action RPG có đồ họa 2D/3D, các game engine phổ biến như Unity hoặc Unreal Engine thường được sử dụng. Một số lý do chính:
+
+\begin{itemize}
+    \item Cung cấp sẵn hệ thống \textbf{rendering}, animation, vật lý cơ bản, quản lý scene.
+    \item Có \textbf{asset pipeline} tương đối hoàn chỉnh (nhập mô hình 3D, texture, animation).
+    \item Hỗ trợ tốt việc xây dựng \textbf{UI in-game}, hệ thống input đa nền tảng.
+    \item Có \textbf{cộng đồng lớn}, thư viện tài liệu, ví dụ và asset sẵn có.
+\end{itemize}
+
+Trong bối cảnh một dự án đồ án chuyên ngành, việc sử dụng một game engine thương mại (thay vì tự viết engine từ đầu) giúp tiết kiệm thời gian, giảm rủi ro kỹ thuật, và cho phép tập trung vào thiết kế gameplay, networking và kiến trúc hệ thống.
+
+\subsubsection{Ngôn ngữ lập trình phía client}
+
+Tuỳ game engine, ngôn ngữ lập trình chủ đạo có thể là:
+\begin{itemize}
+    \item \textbf{C\#}: thường dùng với Unity, cú pháp hiện đại, thư viện phong phú, hỗ trợ tốt lập trình hướng đối tượng.
+    \item \textbf{C++/Blueprint}: phổ biến trong Unreal Engine, hiệu năng cao, nhưng yêu cầu quản lý bộ nhớ và kinh nghiệm nhiều hơn.
+\end{itemize}
+
+Một số điểm kỹ thuật cần lưu ý khi lập trình phía client:
+\begin{itemize}
+    \item Tách biệt \textbf{logic gameplay cục bộ} (UI, hiệu ứng) với \textbf{logic được server quyết định} (combat, trạng thái chính thức).
+    \item Hạn chế lưu \textbf{dữ liệu nhạy cảm} phía client (ví dụ: chỉ số thật để tính sát thương) để giảm nguy cơ gian lận.
+    \item Thiết kế kiến trúc code theo hướng \textbf{component-based} hoặc \textbf{entity--component--system (ECS)} để dễ mở rộng.
+\end{itemize}
+
+% ===============================================================
+\subsection{Công nghệ phía server (Backend)}
+
+Backend là nơi xử lý logic game phía server, đảm nhiệm vai trò “nguồn chân lý” (source of truth) cho trạng thái thế giới game. Một backend cho game online thường bao gồm:
+
+\begin{itemize}
+    \item Dịch vụ xác thực, quản lý người dùng (authentication, account).
+    \item Dịch vụ quản lý phiên chơi (session, room, instance).
+    \item Dịch vụ xử lý logic game (combat, nhiệm vụ, tính điểm).
+    \item Dịch vụ quản lý dữ liệu (đọc/ghi tiến trình người chơi).
+\end{itemize}
+
+\subsubsection{Nền tảng backend phổ biến}
+
+Một số lựa chọn công nghệ backend thường gặp:
+
+\begin{itemize}
+    \item \textbf{Node.js / TypeScript} với các framework như NestJS:
+    \begin{itemize}
+        \item Hỗ trợ tốt lập trình bất đồng bộ, phù hợp với hệ thống có nhiều kết nối WebSocket.
+        \item Hệ sinh thái thư viện phong phú (WebSocket, REST, ORM, JWT, v.v.).
+        \item TypeScript giúp mã nguồn dễ bảo trì, giảm lỗi kiểu dữ liệu.
+    \end{itemize}
+    \item \textbf{.NET / C\#}:
+    \begin{itemize}
+        \item Hiệu năng tốt, tích hợp tốt với môi trường Windows và dịch vụ Microsoft.
+        \item Phù hợp khi client cũng sử dụng C\# (ví dụ: Unity), giúp tái sử dụng mô hình dữ liệu và một số logic phụ trợ.
+    \end{itemize}
+    \item \textbf{Ngôn ngữ khác} như Java, Go, Rust:
+    \begin{itemize}
+        \item Phù hợp cho các hệ thống backend có yêu cầu hiệu năng hoặc độ trễ cực thấp.
+        \item Tuy nhiên, thời gian học và xây dựng hạ tầng có thể cao hơn đối với nhóm sinh viên.
+    \end{itemize}
+\end{itemize}
+
+Trong bối cảnh đồ án, các nền tảng có cộng đồng lớn, tài liệu tốt và hỗ trợ nhanh cho WebSocket (như Node.js/NestJS hoặc .NET) thường là lựa chọn hợp lý.
+
+\subsubsection{Mô hình dịch vụ và tổ chức logic backend}
+
+Về kiến trúc, backend có thể triển khai theo:
+\begin{itemize}
+    \item \textbf{Monolithic}: tất cả logic và API nằm trong một ứng dụng duy nhất.
+    \item \textbf{Microservices}: chia thành nhiều dịch vụ nhỏ (user service, world service, combat service, v.v.).
+\end{itemize}
+
+Đối với một dự án quy mô đồ án:
+\begin{itemize}
+    \item Mô hình monolithic \textbf{dễ triển khai}, dễ debug và phù hợp với nhóm nhỏ.
+    \item Tuy nhiên trong thiết kế, vẫn có thể định hướng kiến trúc theo hướng \textbf{module hoá}, sẵn sàng tách thành microservices nếu mở rộng trong tương lai.
+\end{itemize}
+
+% ===============================================================
+\subsection{Công nghệ networking và giao tiếp thời gian thực}
+
+\subsubsection{Giao tiếp client--server}
+
+Game online sử dụng kết hợp:
+\begin{itemize}
+    \item \textbf{HTTP/REST}:
+    \begin{itemize}
+        \item Phù hợp cho các tác vụ không yêu cầu real-time cao như: đăng ký, đăng nhập, cấu hình tài khoản, tải dữ liệu tĩnh.
+    \end{itemize}
+    \item \textbf{WebSocket}:
+    \begin{itemize}
+        \item Dùng cho truyền thông hai chiều thời gian thực: cập nhật vị trí, trạng thái chiến đấu, sự kiện trong thế giới game.
+        \item Giúp tránh overhead của việc liên tục tạo kết nối HTTP mới.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Quản lý kết nối và phiên chơi}
+
+Một backend real-time cần:
+\begin{itemize}
+    \item Quản lý \textbf{phiên kết nối WebSocket} cho từng người chơi.
+    \item Ánh xạ giữa người chơi và \textbf{phòng/instance} trong game (ví dụ: phòng dungeon, map riêng, khu vực chung).
+    \item Xử lý ngắt kết nối, timeout, reconnect.
+\end{itemize}
+
+Khi số lượng người chơi tăng, cần xem xét:
+\begin{itemize}
+    \item Cân bằng tải kết nối giữa nhiều server.
+    \item Sử dụng \textbf{message broker} hoặc \textbf{pub/sub} để đồng bộ sự kiện (ví dụ: Redis pub/sub, Kafka).
+\end{itemize}
+
+% ===============================================================
+\subsection{Công nghệ lưu trữ và cơ sở dữ liệu}
+
+\subsubsection{Cơ sở dữ liệu NoSQL (ví dụ: MongoDB)}
+
+Các trò chơi online thường lựa chọn NoSQL, đặc biệt là mô hình document như MongoDB, vì:
+
+\begin{itemize}
+    \item Dữ liệu game có cấu trúc linh hoạt (nhân vật, vật phẩm, trạng thái nhiệm vụ, cấu hình NPC).
+    \item Dễ thay đổi schema khi game được mở rộng.
+    \item Hỗ trợ tốt cho các truy vấn theo document và các trường lồng nhau.
+\end{itemize}
+
+Các nhóm dữ liệu phù hợp với NoSQL:
+\begin{itemize}
+    \item Hồ sơ người chơi (tài khoản, danh sách nhân vật).
+    \item Trạng thái nhân vật (level, stat, trang bị).
+    \item Trạng thái thế giới (dữ liệu map riêng, đảo, dungeon).
+    \item Cấu hình game (danh sách skill, class, hệ thống chỉ số).
+\end{itemize}
+
+\subsubsection{Cơ sở dữ liệu quan hệ / SQLite}
+
+Cơ sở dữ liệu quan hệ hoặc các hệ như SQLite có thể được sử dụng cho:
+\begin{itemize}
+    \item Công cụ nội bộ (internal tools).
+    \item Lưu bảng tham chiếu tĩnh (danh mục class, chỉ số mặc định, bảng quy đổi).
+    \item Prototyping nhanh các tính năng.
+\end{itemize}
+
+Ưu điểm:
+\begin{itemize}
+    \item Mô hình dữ liệu chặt chẽ, dễ đảm bảo ràng buộc.
+    \item Câu lệnh truy vấn SQL quen thuộc, dễ phân tích.
+\end{itemize}
+
+\subsubsection{Hệ thống cache (ví dụ: Redis)}
+
+Redis thường được dùng làm:
+\begin{itemize}
+    \item \textbf{Cache} cho dữ liệu truy cập thường xuyên (profile người chơi đang online, cấu hình skill).
+    \item \textbf{Session store}: lưu token, trạng thái đăng nhập.
+    \item \textbf{Pub/Sub} để truyền sự kiện giữa nhiều tiến trình hoặc nhiều instance server (phục vụ scale-out).
+\end{itemize}
+
+Việc kết hợp NoSQL + cache giúp:
+\begin{itemize}
+    \item giảm tải cho cơ sở dữ liệu chính,
+    \item tăng tốc độ phản hồi trong các thao tác real-time.
+\end{itemize}
+
+% ===============================================================
+\subsection{Công cụ hỗ trợ phát triển và vận hành}
+
+Ngoài các công nghệ chính dùng cho client, backend và dữ liệu, việc phát triển một trò chơi online hiện đại cần thêm các công cụ hỗ trợ.
+
+\subsubsection{Quản lý mã nguồn và làm việc nhóm}
+
+\begin{itemize}
+    \item \textbf{Git}: hệ thống quản lý phiên bản phân tán, cho phép nhiều thành viên cùng làm việc trên một codebase.
+    \item \textbf{Git hosting} (GitHub, GitLab, Bitbucket): cung cấp giao diện web, issue tracking, pull request, CI/CD.
+\end{itemize}
+
+Các thực hành tốt:
+\begin{itemize}
+    \item Chia nhánh theo tính năng (feature branch).
+    \item Review code trước khi merge.
+    \item Ghi log commit rõ ràng, nhất quán.
+\end{itemize}
+
+\subsubsection{Công cụ thiết kế và tài liệu}
+
+\begin{itemize}
+    \item \textbf{Công cụ vẽ UML/BPMN}: dùng mô tả use case, luồng xử lý, kiến trúc.
+    \item \textbf{Công cụ thiết kế giao diện} (Figma, v.v.): dùng để phác thảo UI before implement.
+    \item \textbf{Công cụ quản lý tài liệu} (Markdown, LaTeX): dùng viết GDD, tài liệu thiết kế hệ thống, báo cáo.
+\end{itemize}
+
+\subsubsection{Công cụ kiểm thử và giám sát}
+
+Ở mức độ đồ án, kiểm thử và giám sát có thể ở mức đơn giản:
+\begin{itemize}
+    \item Log server (file log, console).
+    \item Một số script kiểm thử unit và integration cơ bản.
+\end{itemize}
+
+Trong các hệ thống lớn hơn, có thể sử dụng:
+\begin{itemize}
+    \item Hệ thống giám sát (Prometheus, Grafana).
+    \item Tracking lỗi (Sentry, v.v.).
+\end{itemize}
+
+% ===============================================================
+\subsection{Tổng kết}
+
+Chương này đã trình bày các lớp công nghệ chính liên quan đến việc xây dựng một trò chơi Action RPG trực tuyến: game engine phía client, backend xử lý logic, cơ sở dữ liệu và cache cho lưu trữ, cùng các công cụ hỗ trợ phát triển. Việc hiểu rõ vai trò và đặc điểm của từng công nghệ giúp hình thành một kiến trúc tổng thể hợp lý, là nền tảng cho các quyết định thiết kế chi tiết ở các chương tiếp theo, đặc biệt là phân tích yêu cầu và thiết kế hệ thống.
