@@ -1,0 +1,228 @@
+\section{Hiện thực hệ thống}
+
+\subsection{Mục tiêu hiện thực}
+
+Mục tiêu của chương này là mô tả quá trình hiện thực các thành phần của hệ thống
+Fortress of the Fallen trong giai đoạn 1, dựa trên thiết kế đã trình bày ở Chương 7.
+Nội dung tập trung vào cách tổ chức các thành phần client và server, cơ chế tích hợp
+giữa chúng, cũng như phạm vi hiện thực cụ thể của prototype.
+
+Việc hiện thực trong giai đoạn 1 không nhằm tạo ra một sản phẩm game hoàn chỉnh,
+mà đóng vai trò kiểm chứng các quyết định kiến trúc, công nghệ và luồng vận hành
+của hệ thống.
+
+%------------------------------------------------
+
+\subsection{Môi trường và công cụ triển khai}
+
+\subsubsection{Môi trường phát triển}
+
+Hệ thống được hiện thực và kiểm thử trong môi trường phát triển cục bộ, bao gồm:
+
+\begin{itemize}
+    \item Máy tính cá nhân chạy hệ điều hành Windows.
+    \item Unity Editor cho phía client.
+    \item Node.js runtime cho phía backend.
+    \item MongoDB chạy dưới dạng local service hoặc container.
+\end{itemize}
+
+Hệ thống không yêu cầu triển khai trên môi trường production trong giai đoạn này.
+
+\subsubsection{Công cụ hỗ trợ}
+
+Các công cụ chính được sử dụng trong quá trình hiện thực gồm:
+\begin{itemize}
+    \item Unity Editor: xây dựng client, scene và logic gameplay.
+    \item NestJS CLI: tạo cấu trúc backend và các module dịch vụ.
+    \item Git và GitHub: quản lý mã nguồn và phối hợp làm việc nhóm.
+    \item Công cụ log và debug mặc định của Unity và Node.js.
+\end{itemize}
+
+%------------------------------------------------
+
+\subsection{Hiện thực phía client}
+
+\subsubsection{Cấu trúc project Unity}
+
+Project Unity được tổ chức theo hướng tách biệt rõ các nhóm chức năng:
+
+\begin{itemize}
+    \item \textbf{Scenes:} các scene chính như Login, CharacterSelect và TestMap.
+    \item \textbf{Scripts:} logic điều khiển nhân vật, xử lý input, quản lý kết nối mạng.
+    \item \textbf{UI:} các thành phần giao diện như form đăng nhập và HUD cơ bản.
+    \item \textbf{Network:} lớp giao tiếp HTTP và WebSocket với backend.
+\end{itemize}
+
+Cách tổ chức này giúp giảm phụ thuộc giữa gameplay, UI và networking.
+
+%------------------------------------------------
+
+\subsubsection{Hiện thực luồng đăng ký và đăng nhập}
+
+Luồng đăng ký và đăng nhập được hiện thực theo mô hình client--server chuẩn:
+
+\begin{itemize}
+    \item Client hiển thị form đăng ký/đăng nhập và thu thập dữ liệu người dùng.
+    \item Dữ liệu được gửi đến backend thông qua HTTP request.
+    \item Client nhận phản hồi thành công hoặc lỗi và cập nhật giao diện tương ứng.
+\end{itemize}
+
+Token phiên nhận được sau khi đăng nhập được lưu tạm thời trên client để sử dụng
+cho các request tiếp theo và cho quá trình thiết lập kết nối real-time.
+
+%------------------------------------------------
+
+\subsubsection{Hiện thực quản lý nhân vật}
+
+Sau khi đăng nhập thành công, client thực hiện:
+
+\begin{itemize}
+    \item Gửi request tải hồ sơ người chơi và danh sách nhân vật.
+    \item Hiển thị danh sách nhân vật hoặc giao diện tạo nhân vật mới.
+    \item Lưu characterId được chọn để sử dụng trong phiên chơi.
+\end{itemize}
+
+Trong giai đoạn 1, dữ liệu nhân vật được sử dụng ở mức tối thiểu, chủ yếu phục vụ
+việc xác định danh tính và vị trí khởi tạo trong phiên chơi thử nghiệm.
+
+%------------------------------------------------
+
+\subsubsection{Hiện thực điều khiển và hiển thị}
+
+Client hiện thực cơ chế điều khiển nhân vật cơ bản:
+
+\begin{itemize}
+    \item Thu thập input di chuyển từ bàn phím.
+    \item Gửi input dưới dạng ý định đến server thông qua WebSocket.
+    \item Nhận snapshot trạng thái từ server và cập nhật vị trí nhân vật.
+\end{itemize}
+
+Ở giai đoạn 1, client ưu tiên hiển thị trực tiếp trạng thái do server gửi về, chưa
+triển khai cơ chế dự đoán hay hiệu chỉnh phức tạp.
+
+%------------------------------------------------
+
+\subsection{Hiện thực phía server}
+
+\subsubsection{Cấu trúc project backend}
+
+Backend được hiện thực bằng NestJS và tổ chức theo kiến trúc module hoá:
+
+\begin{itemize}
+    \item \textbf{Auth Module:} xử lý đăng ký, đăng nhập và xác thực token.
+    \item \textbf{User Module:} quản lý thông tin người dùng.
+    \item \textbf{Character Module:} quản lý dữ liệu nhân vật.
+    \item \textbf{Session/Room Module:} quản lý phiên chơi và room logic.
+    \item \textbf{WebSocket Gateway:} xử lý giao tiếp real-time.
+\end{itemize}
+
+Cấu trúc này cho phép mở rộng thêm các module gameplay trong các giai đoạn tiếp theo.
+
+%------------------------------------------------
+
+\subsubsection{Hiện thực xác thực và quản lý phiên}
+
+Backend hiện thực cơ chế xác thực theo các bước:
+
+\begin{itemize}
+    \item Nhận request đăng nhập từ client.
+    \item Xác thực thông tin và tạo token phiên.
+    \item Kiểm tra token cho các request HTTP và kết nối WebSocket.
+\end{itemize}
+
+Phiên real-time được quản lý bằng cách ánh xạ giữa token, userId, characterId
+và socket tương ứng.
+
+%------------------------------------------------
+
+\subsubsection{Hiện thực WebSocket và đồng bộ trạng thái}
+
+Gateway WebSocket chịu trách nhiệm:
+
+\begin{itemize}
+    \item Thiết lập kết nối real-time sau khi client xác thực.
+    \item Nhận input di chuyển từ client.
+    \item Cập nhật trạng thái nhân vật trong vòng lặp tick đơn giản.
+    \item Phát snapshot trạng thái định kỳ về client.
+\end{itemize}
+
+Trong giai đoạn 1, vòng lặp tick được hiện thực ở mức cơ bản nhằm kiểm chứng
+luồng dữ liệu và tính ổn định của kết nối.
+
+%------------------------------------------------
+
+\subsubsection{Xử lý mất kết nối}
+
+Khi client mất kết nối WebSocket:
+
+\begin{itemize}
+    \item Server nhận sự kiện disconnect.
+    \item Giải phóng session runtime liên quan.
+    \item Cập nhật trạng thái nhân vật về offline (ở mức logic).
+\end{itemize}
+
+Cơ chế reconnect chỉ được xem xét ở mức định hướng và chưa hiện thực đầy đủ
+trong giai đoạn này.
+
+%------------------------------------------------
+
+\subsection{Hiện thực lưu trữ dữ liệu}
+
+\subsubsection{Lưu trữ dữ liệu bền vững}
+
+MongoDB được sử dụng để lưu trữ:
+
+\begin{itemize}
+    \item Thông tin tài khoản người dùng.
+    \item Thông tin nhân vật và thuộc tính cơ bản.
+\end{itemize}
+
+Dữ liệu được thiết kế linh hoạt nhằm sẵn sàng mở rộng cho các hệ thống gameplay
+phức tạp hơn trong tương lai.
+
+\subsubsection{Dữ liệu runtime}
+
+Các dữ liệu runtime như session và trạng thái room được lưu trong bộ nhớ server.
+Redis có thể được tích hợp trong các giai đoạn sau nếu cần mở rộng hoặc chia tải.
+
+%------------------------------------------------
+
+\subsection{Tích hợp client--server}
+
+Quá trình tích hợp được thực hiện theo các bước:
+
+\begin{enumerate}
+    \item Client thực hiện đăng nhập và nhận token.
+    \item Client thiết lập kết nối WebSocket và xác thực.
+    \item Client tham gia phiên chơi thử nghiệm.
+    \item Client và server trao đổi input và snapshot trạng thái.
+\end{enumerate}
+
+Việc tích hợp được kiểm thử với một số lượng nhỏ client đồng thời để đảm bảo
+luồng hoạt động ổn định.
+
+%------------------------------------------------
+
+\subsection{Phạm vi hiện thực và giới hạn}
+
+Trong giai đoạn 1, hệ thống chỉ hiện thực các chức năng nền tảng:
+
+\begin{itemize}
+    \item Đăng ký và đăng nhập.
+    \item Quản lý nhân vật tối thiểu.
+    \item Kết nối real-time và đồng bộ di chuyển.
+\end{itemize}
+
+Các hệ thống nâng cao như NPC, combat, gacha, dungeon và PvP chỉ được đề cập
+ở mức thiết kế và không thuộc phạm vi hiện thực của chương này.
+
+%------------------------------------------------
+
+\subsection{Tổng kết chương}
+
+Chương 8 đã trình bày quá trình hiện thực hệ thống Fortress of the Fallen trong
+giai đoạn 1, bao gồm hiện thực client, backend, cơ chế lưu trữ dữ liệu và tích hợp
+client--server.
+
+Các kết quả hiện thực này là cơ sở cho Chương 9, nơi hệ thống sẽ được đánh giá
+và kiểm thử dựa trên các tiêu chí đã xác định.

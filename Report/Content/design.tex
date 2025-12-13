@@ -1,0 +1,243 @@
+\section{Thiết kế hệ thống}
+
+\subsection{Mục tiêu thiết kế}
+
+Mục tiêu của chương này là chuyển hoá các kết quả phân tích hệ thống ở Chương 6 thành
+các quyết định thiết kế cụ thể ở mức kiến trúc và mô-đun, làm cơ sở cho việc hiện thực
+hệ thống trong Chương 8.
+
+Thiết kế hệ thống trong giai đoạn 1 hướng đến các mục tiêu chính sau:
+\begin{itemize}
+    \item Xây dựng kiến trúc client--server rõ ràng, tuân theo mô hình server authoritative.
+    \item Tổ chức hệ thống theo hướng module hoá để thuận tiện cho mở rộng.
+    \item Đảm bảo hỗ trợ đầy đủ các yêu cầu chức năng và phi chức năng đã xác định.
+    \item Giữ mức độ phức tạp phù hợp với phạm vi một đồ án chuyên ngành.
+\end{itemize}
+
+Thiết kế không nhằm tối ưu hoá cho môi trường production hay tải lớn, mà tập trung
+vào tính đúng đắn, rõ ràng và khả năng phát triển trong các giai đoạn tiếp theo.
+
+%------------------------------------------------
+
+\subsection{Kiến trúc tổng thể hệ thống}
+
+\subsubsection{Mô hình kiến trúc client--server}
+
+Hệ thống Fortress of the Fallen trong giai đoạn 1 được thiết kế theo mô hình
+client--server nhiều lớp, bao gồm các thành phần chính sau:
+
+\begin{itemize}
+    \item \textbf{Game Client (Unity):}
+    \begin{itemize}
+        \item Hiển thị đồ hoạ và giao diện người dùng.
+        \item Thu thập input từ người chơi.
+        \item Gửi request HTTP và message WebSocket đến server.
+        \item Hiển thị trạng thái nhận được từ server.
+    \end{itemize}
+
+    \item \textbf{Backend Server (NestJS/Node.js):}
+    \begin{itemize}
+        \item Xử lý xác thực và quản lý người dùng.
+        \item Quản lý phiên chơi và kết nối real-time.
+        \item Xử lý logic gameplay tối thiểu (đồng bộ di chuyển).
+        \item Đóng vai trò nguồn chân lý cho trạng thái hệ thống.
+    \end{itemize}
+
+    \item \textbf{Data Layer (MongoDB, Redis):}
+    \begin{itemize}
+        \item MongoDB lưu trữ dữ liệu bền vững (User, Character).
+        \item Redis (tuỳ mức hiện thực) hỗ trợ session hoặc cache dữ liệu truy cập thường xuyên.
+    \end{itemize}
+\end{itemize}
+
+Nguyên tắc thiết kế cốt lõi của hệ thống là \textbf{server authoritative}:
+mọi trạng thái có ảnh hưởng đến tính nhất quán và công bằng đều do server xác nhận.
+
+%------------------------------------------------
+
+\subsubsection{Phân tách theo lớp chức năng}
+
+Ở mức logic, hệ thống được phân chia thành các lớp chức năng:
+
+\begin{itemize}
+    \item \textbf{Presentation Layer:} Game client Unity.
+    \item \textbf{Application Layer:} Các module backend xử lý nghiệp vụ.
+    \item \textbf{Real-time Layer:} Gateway WebSocket và logic phiên chơi.
+    \item \textbf{Data Layer:} MongoDB và Redis.
+\end{itemize}
+
+Cách phân tách này giúp giảm phụ thuộc giữa các thành phần, đồng thời tạo điều kiện
+mở rộng hệ thống trong các giai đoạn sau (NPC, dungeon, PvP).
+
+%------------------------------------------------
+
+\subsection{Thiết kế các mô-đun backend}
+
+Backend được tổ chức theo kiến trúc module hoá của NestJS. Trong giai đoạn 1,
+các mô-đun chính bao gồm:
+
+\subsubsection{Auth Module}
+
+\textbf{Chức năng:}
+\begin{itemize}
+    \item Đăng ký tài khoản.
+    \item Đăng nhập và cấp token phiên.
+    \item Xác thực token cho các request tiếp theo.
+\end{itemize}
+
+\textbf{Thiết kế:}
+\begin{itemize}
+    \item Sử dụng HTTP/REST cho đăng ký và đăng nhập.
+    \item Token (ví dụ JWT) được gửi kèm trong header hoặc handshake WebSocket.
+    \item Mật khẩu chỉ được lưu dưới dạng hash.
+\end{itemize}
+
+\subsubsection{User và Character Module}
+
+\textbf{User Module} chịu trách nhiệm quản lý thông tin tài khoản người chơi và
+liên kết với danh sách nhân vật.
+
+\textbf{Character Module} đảm nhiệm:
+\begin{itemize}
+    \item Tạo nhân vật tối thiểu.
+    \item Lưu trữ các thuộc tính nền như level, vị trí khởi tạo và chỉ số cơ bản.
+    \item Cung cấp dữ liệu cho phiên chơi real-time.
+\end{itemize}
+
+Thiết kế hai module này hướng đến khả năng mở rộng cho các hệ thống class, skill
+và progression trong các giai đoạn tiếp theo.
+
+%------------------------------------------------
+
+\subsubsection{Session và Room Module}
+
+Module Session quản lý trạng thái phiên chơi real-time, bao gồm ánh xạ giữa
+user, character và socket.
+
+Module Room dùng để nhóm các người chơi vào các instance logic nhằm phục vụ
+kiểm thử đồng bộ trạng thái trong giai đoạn 1.
+
+Các session chủ yếu tồn tại trong bộ nhớ runtime và không yêu cầu lưu bền vững.
+
+%------------------------------------------------
+
+\subsubsection{Real-time Gateway}
+
+Gateway WebSocket đảm nhiệm:
+\begin{itemize}
+    \item Nhận input di chuyển từ client.
+    \item Phát snapshot trạng thái về client.
+    \item Xử lý kết nối và ngắt kết nối.
+\end{itemize}
+
+Input từ client được xem là \emph{ý định}, không phải trạng thái cuối cùng;
+server kiểm tra ràng buộc trước khi cập nhật trạng thái authoritative.
+
+%------------------------------------------------
+
+\subsection{Thiết kế giao tiếp client--server}
+
+\subsubsection{Giao tiếp HTTP}
+
+HTTP được sử dụng cho các chức năng không yêu cầu real-time:
+\begin{itemize}
+    \item Đăng ký, đăng nhập.
+    \item Tải hồ sơ người chơi.
+    \item Tạo và chọn nhân vật.
+\end{itemize}
+
+Cách tiếp cận này giúp đơn giản hoá thiết kế và thuận tiện cho kiểm thử.
+
+\subsubsection{Giao tiếp WebSocket}
+
+WebSocket được sử dụng cho:
+\begin{itemize}
+    \item Thiết lập phiên chơi.
+    \item Gửi input di chuyển.
+    \item Nhận cập nhật trạng thái.
+\end{itemize}
+
+Mỗi message WebSocket được thiết kế theo dạng message-based, gồm loại sự kiện
+và payload dữ liệu.
+
+%------------------------------------------------
+
+\subsection{Thiết kế dữ liệu ở mức logic}
+
+\subsubsection{Đối tượng User}
+
+Đối tượng User bao gồm các thuộc tính logic chính:
+\begin{itemize}
+    \item userId
+    \item username/email
+    \item passwordHash
+    \item metadata cơ bản
+\end{itemize}
+
+User đóng vai trò định danh và liên kết các dữ liệu khác.
+
+\subsubsection{Đối tượng Character}
+
+Đối tượng Character bao gồm:
+\begin{itemize}
+    \item characterId
+    \item ownerUserId
+    \item level
+    \item baseStats
+    \item position (spawn)
+\end{itemize}
+
+Thiết kế này sẵn sàng mở rộng cho class, skill và equipment.
+
+\subsubsection{Đối tượng Session (Runtime)}
+
+Session tồn tại trong runtime server, bao gồm:
+\begin{itemize}
+    \item socketId
+    \item userId
+    \item characterId
+    \item roomId
+    \item trạng thái kết nối
+\end{itemize}
+
+Session không bắt buộc lưu vào DB trong giai đoạn 1.
+
+%------------------------------------------------
+
+\subsection{Thiết kế luồng xử lý real-time}
+
+Luồng xử lý di chuyển được thiết kế như sau:
+\begin{enumerate}
+    \item Client gửi input di chuyển theo nhịp.
+    \item Server nhận input và đưa vào vòng lặp tick.
+    \item Server kiểm tra ràng buộc (tốc độ, spam).
+    \item Server cập nhật trạng thái authoritative.
+    \item Server gửi snapshot về client.
+\end{enumerate}
+
+Ở giai đoạn 1, cơ chế snapshot được triển khai ở mức đơn giản, chưa yêu cầu
+prediction và reconciliation hoàn chỉnh.
+
+%------------------------------------------------
+
+\subsection{Các quyết định thiết kế và giới hạn}
+
+Một số quyết định thiết kế quan trọng trong giai đoạn 1:
+\begin{itemize}
+    \item Chỉ hiện thực đồng bộ di chuyển cơ bản.
+    \item Một user duy trì tối đa một session active.
+    \item Chưa tối ưu cho quy mô người chơi lớn.
+    \item Ưu tiên tính rõ ràng và ổn định hơn tối ưu hiệu năng.
+\end{itemize}
+
+Các giới hạn này giúp đảm bảo đồ án phù hợp với nguồn lực và mục tiêu học thuật.
+
+%------------------------------------------------
+
+\subsection{Tổng kết chương}
+
+Chương này đã trình bày thiết kế hệ thống Fortress of the Fallen ở mức kiến trúc
+và mô-đun cho giai đoạn 1, bao gồm kiến trúc tổng thể, thiết kế backend, giao tiếp
+client--server, dữ liệu logic và luồng xử lý real-time.
+
+Các nội dung trên là cơ sở trực tiếp cho Chương 8 -- Hiện thực hệ thống.

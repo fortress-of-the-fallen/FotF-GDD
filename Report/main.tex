@@ -81,7 +81,7 @@
 
 % Đổi tên mục lục sang tiếng Việt
 \renewcommand{\contentsname}{Mục lục}
-
+\setcounter{table}{0}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
@@ -103,7 +103,6 @@
 
 % ===================== TOC, LOF, LOT =====================
 \newpage
-\setcounter{page}{0} % nếu không muốn Page 0 thì xóa dòng này
 
 \begin{singlespace}
 \tableofcontents
@@ -119,7 +118,10 @@
 \listoftables
 \end{singlespace}
 \newpage
-
+% reset trước nội dung chính
+\setcounter{table}{0}
+\setcounter{figure}{0} % nếu muốn hình cũng bắt đầu từ 1
+\setcounter{section}{0} % nếu muốn chương/section bắt đầu từ 1
 % ===================== NỘI DUNG CHÍNH =====================
 
 \input{Content/introduction}

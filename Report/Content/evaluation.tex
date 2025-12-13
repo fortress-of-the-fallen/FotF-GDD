@@ -1,0 +1,187 @@
+\section{Đánh giá hệ thống}
+
+\subsection{Mục tiêu đánh giá}
+
+Mục tiêu của chương này là đánh giá mức độ đáp ứng của hệ thống Fortress of the Fallen
+so với các mục tiêu và yêu cầu đã xác định ở Chương 5, đồng thời kiểm chứng tính đúng đắn
+của các quyết định thiết kế và hiện thực trong giai đoạn 1.
+
+Việc đánh giá tập trung vào:
+\begin{itemize}
+    \item Mức độ hoàn thành các yêu cầu chức năng cốt lõi.
+    \item Khả năng vận hành ổn định của hệ thống prototype.
+    \item Mức độ phù hợp giữa thiết kế và hiện thực.
+    \item Các hạn chế còn tồn tại trong phạm vi đồ án.
+\end{itemize}
+
+Hệ thống không được đánh giá theo tiêu chí sản phẩm thương mại hay quy mô lớn,
+mà theo góc độ một prototype học thuật.
+
+%------------------------------------------------
+
+\subsection{Phương pháp đánh giá}
+
+Hệ thống được đánh giá dựa trên các phương pháp sau:
+
+\begin{itemize}
+    \item \textbf{Đối chiếu yêu cầu:} so sánh chức năng hiện thực với yêu cầu chức năng
+    và phi chức năng đã nêu ở Chương 5.
+    \item \textbf{Kiểm thử theo use case:} kiểm chứng các ca sử dụng đã phân tích ở Chương 6.
+    \item \textbf{Quan sát vận hành:} theo dõi hành vi hệ thống khi chạy prototype với
+    một số client đồng thời.
+    \item \textbf{Phân tích định tính:} đánh giá mức độ rõ ràng, nhất quán và khả năng mở rộng.
+\end{itemize}
+
+Các phép đo định lượng chi tiết (benchmark hiệu năng, stress test) không được
+đặt trọng tâm trong giai đoạn này.
+
+%------------------------------------------------
+
+\subsection{Đánh giá yêu cầu chức năng}
+
+\subsubsection{Đăng ký và đăng nhập}
+
+Hệ thống đã hiện thực thành công các chức năng:
+\begin{itemize}
+    \item Đăng ký tài khoản mới.
+    \item Đăng nhập bằng thông tin hợp lệ.
+    \item Từ chối đăng nhập với thông tin không hợp lệ.
+\end{itemize}
+
+Quá trình xác thực hoạt động đúng luồng phân tích, token được cấp và sử dụng
+cho các bước tiếp theo. Điều này đáp ứng đầy đủ các yêu cầu chức năng UC01 và UC02.
+
+%------------------------------------------------
+
+\subsubsection{Quản lý nhân vật}
+
+Chức năng quản lý nhân vật ở mức tối thiểu được hiện thực gồm:
+\begin{itemize}
+    \item Tải hồ sơ người chơi sau đăng nhập.
+    \item Tạo nhân vật cơ bản khi chưa có dữ liệu.
+    \item Chọn nhân vật để tham gia phiên chơi.
+\end{itemize}
+
+Các chức năng này đáp ứng các use case UC04, UC05 và UC06, đồng thời tạo nền tảng
+cho việc mở rộng hệ thống progression trong các giai đoạn tiếp theo.
+
+%------------------------------------------------
+
+\subsubsection{Kết nối real-time và phiên chơi}
+
+Hệ thống đã thiết lập được kết nối WebSocket ổn định giữa client và server:
+\begin{itemize}
+    \item Client xác thực kết nối real-time bằng token hợp lệ.
+    \item Server quản lý phiên chơi và ánh xạ user--character--socket.
+    \item Người chơi được gán vào phiên chơi thử nghiệm.
+\end{itemize}
+
+Các chức năng này đáp ứng UC07 và UC08 trong phạm vi giai đoạn 1.
+
+%------------------------------------------------
+
+\subsubsection{Đồng bộ trạng thái di chuyển}
+
+Cơ chế đồng bộ di chuyển được kiểm chứng thông qua:
+\begin{itemize}
+    \item Client gửi input di chuyển theo nhịp.
+    \item Server xử lý input và cập nhật trạng thái authoritative.
+    \item Client nhận snapshot và hiển thị vị trí nhân vật.
+\end{itemize}
+
+Hệ thống hoạt động ổn định với số lượng nhỏ client đồng thời, đáp ứng UC09 và UC10.
+Việc chưa triển khai prediction và reconciliation nâng cao được xem là phù hợp
+với phạm vi prototype.
+
+%------------------------------------------------
+
+\subsubsection{Xử lý mất kết nối}
+
+Khi client mất kết nối:
+\begin{itemize}
+    \item Server nhận sự kiện disconnect.
+    \item Session runtime được giải phóng.
+    \item Client hiển thị trạng thái mất kết nối.
+\end{itemize}
+
+Chức năng này đáp ứng UC11 ở mức cơ bản, đảm bảo hệ thống không rơi vào trạng thái
+không nhất quán khi có lỗi mạng.
+
+%------------------------------------------------
+
+\subsection{Đánh giá yêu cầu phi chức năng}
+
+\subsubsection{Hiệu năng}
+
+Trong môi trường thử nghiệm cục bộ:
+\begin{itemize}
+    \item Độ trễ truyền dữ liệu ở mức chấp nhận được cho prototype.
+    \item Hệ thống xử lý ổn định với 2--3 client đồng thời.
+\end{itemize}
+
+Hệ thống chưa được kiểm thử ở tải lớn, điều này phù hợp với phạm vi giai đoạn 1.
+
+%------------------------------------------------
+
+\subsubsection{Tính ổn định}
+
+Trong quá trình kiểm thử:
+\begin{itemize}
+    \item Backend không bị crash khi client ngắt kết nối đột ngột.
+    \item Các session được giải phóng đúng cách.
+\end{itemize}
+
+Điều này cho thấy thiết kế quản lý phiên và xử lý lỗi cơ bản hoạt động đúng.
+
+%------------------------------------------------
+
+\subsubsection{Bảo mật ở mức cơ bản}
+
+Các biện pháp bảo mật tối thiểu đã được áp dụng:
+\begin{itemize}
+    \item Mật khẩu được mã hoá trước khi lưu trữ.
+    \item Client không được phép tự quyết định trạng thái gameplay.
+    \item Token được kiểm tra trước khi truy cập các chức năng quan trọng.
+\end{itemize}
+
+Các cơ chế bảo mật nâng cao chưa được triển khai trong giai đoạn này.
+
+%------------------------------------------------
+
+\subsection{Đánh giá mức độ phù hợp giữa thiết kế và hiện thực}
+
+Kết quả hiện thực cho thấy:
+\begin{itemize}
+    \item Các mô-đun backend được tổ chức đúng theo thiết kế ở Chương 7.
+    \item Luồng client--server vận hành đúng theo phân tích use case.
+    \item Không phát sinh sự lệch hướng lớn giữa thiết kế và triển khai.
+\end{itemize}
+
+Điều này chứng minh thiết kế hệ thống ban đầu có tính khả thi và phù hợp
+với điều kiện hiện thực của đồ án.
+
+%------------------------------------------------
+
+\subsection{Hạn chế và tồn tại}
+
+Bên cạnh các kết quả đạt được, hệ thống vẫn còn một số hạn chế:
+
+\begin{itemize}
+    \item Chưa hỗ trợ các hệ thống gameplay nâng cao (combat, NPC, gacha).
+    \item Chưa tối ưu cho số lượng người chơi lớn.
+    \item Chưa triển khai đầy đủ các kỹ thuật networking nâng cao.
+\end{itemize}
+
+Các hạn chế này xuất phát từ việc chủ động giới hạn phạm vi để đảm bảo
+tính khả thi và chất lượng học thuật của đồ án.
+
+%------------------------------------------------
+
+\subsection{Tổng kết chương}
+
+Chương 9 đã đánh giá hệ thống Fortress of the Fallen trong giai đoạn 1 dựa trên
+các yêu cầu và use case đã phân tích. Kết quả cho thấy hệ thống prototype đáp ứng
+được các mục tiêu nền tảng về kiến trúc, kết nối real-time và quản lý phiên chơi.
+
+Những kết quả và hạn chế được ghi nhận là cơ sở cho phần kết luận và định hướng
+phát triển trong Chương 10.
