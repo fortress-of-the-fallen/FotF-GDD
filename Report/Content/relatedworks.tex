@@ -1,0 +1,200 @@
+\section{Các công trình liên quan}
+\label{sec:relatedworks}
+
+Chương này tổng hợp và phân tích các công trình đã tham khảo trong quá trình hình thành ý tưởng và định hướng thiết kế cho đề tài \textit{Fortress of the Fallen}. Các nguồn tham khảo được chia làm hai nhóm: (i) tác phẩm/phim/game làm nguồn cảm hứng thiết kế nội dung và hệ thống gameplay; (ii) tài liệu kỹ thuật định hướng kiến trúc hệ thống multiplayer và công nghệ triển khai.
+
+Mục tiêu của chương là làm rõ mối liên hệ \textbf{Nguồn tham khảo $\rightarrow$ Bài học rút ra $\rightarrow$ Cách áp dụng vào đề tài}, từ đó tránh tình trạng liệt kê cảm hứng một cách chung chung.
+
+% ===============================================================
+\subsection{Khung phân tích và tiêu chí lựa chọn nguồn tham khảo}
+\label{subsec:rw-method}
+
+Nhóm lựa chọn các nguồn tham khảo dựa trên các tiêu chí:
+\begin{itemize}
+    \item Có cơ chế \textbf{tiến trình} (progression) và \textbf{động lực dài hạn} rõ ràng, phù hợp với Action RPG online.
+    \item Có ít nhất một hệ thống đặc trưng có thể trừu tượng hoá thành mô-đun thiết kế (ví dụ: leo tháp, gacha, căn cứ/đảo cá nhân, tổ đội, raid/boss).
+    \item Có đủ thông tin để phân tích theo các lớp: \textbf{vòng lặp chơi (loop)}, \textbf{hệ thống phần thưởng}, \textbf{mức độ rủi ro}, \textbf{tương tác người chơi}, \textbf{tổ chức nội dung}.
+\end{itemize}
+
+Ngoài ra, nhóm sử dụng thêm các tài liệu nền tảng về game design và kiến trúc multiplayer để đối chiếu và hợp thức hoá các quyết định thiết kế ở góc độ kỹ thuật và học thuật \cite{schell-art,adams-game-design,gaffer-networking,unity-manual,nest-docs,mongodb-docs,redis-docs}.
+
+% ===============================================================
+\subsection{Nhóm nguồn cảm hứng về cấu trúc tiến trình: Leo tháp, boss và checkpoint}
+
+\subsubsection{Sword Art Online (Season 1): trục nội dung leo tầng và boss tầng}
+\label{subsec:rw-sao}
+
+\textit{Sword Art Online} mùa 1 mô tả thế giới game với cấu trúc \textbf{leo tầng tuyến tính}, trong đó mỗi tầng có hệ sinh thái, nhiệm vụ và đặc biệt là \textbf{boss tầng} đóng vai trò ``cổng kiểm soát tiến trình'' \cite{sao-aincrad}.  
+Từ góc độ thiết kế hệ thống, SAO gợi ý ba điểm quan trọng:
+
+\begin{itemize}
+    \item \textbf{Phân lớp nội dung (content stratification):} nội dung được chia tầng giúp kiểm soát độ khó theo tiến trình, dễ thiết kế nhịp tăng trưởng sức mạnh.
+    \item \textbf{Boss là mốc kiểm chứng build:} boss tầng buộc người chơi tối ưu hoá trang bị/kỹ năng, từ đó tạo động lực chuẩn bị và tương tác tổ đội.
+    \item \textbf{Checkpoint rõ ràng:} mỗi lần qua tầng là một ``thành tựu'' (achievement milestone), phù hợp để gắn thưởng và mở khoá.
+\end{itemize}
+
+\textbf{Áp dụng vào đề tài:}  
+Đề tài kế thừa ý tưởng \textbf{Tháp trung tâm 100 tầng} như trục nội dung dài hạn. Tuy nhiên, thay vì tuyến tính tuyệt đối, hệ thống được định hướng thiết kế theo dạng:
+\begin{itemize}
+    \item \textbf{Tầng chuẩn (main floors):} đi theo tiến trình chính.
+    \item \textbf{Tầng thử thách (challenge/optional):} tăng độ khó, thưởng cao hơn.
+    \item \textbf{Cơ chế checkpoint:} lưu tiến độ theo mốc để giảm ``cảm giác mất trắng'', phù hợp trải nghiệm game hiện đại.
+\end{itemize}
+
+Trong giai đoạn 1, nội dung leo tháp được coi là \textbf{tính năng nâng cao} (không hiện thực), nhưng được đưa vào thiết kế tổng quan để định hướng kiến trúc dữ liệu và mô-đun hoá từ sớm.
+
+% ===============================================================
+\subsection{Nhóm nguồn cảm hứng về thế giới sống: NPC, vận hành thế giới và vai trò tổ chức}
+
+\subsubsection{Overlord: NPC có vai trò, trật tự và vận hành thế giới}
+\label{subsec:rw-overlord}
+
+\textit{Overlord} nhấn mạnh cảm giác ``thế giới vận hành độc lập'', trong đó NPC không chỉ là đối tượng đứng yên mà là thành phần có \textbf{vai trò, nhiệm vụ và quan hệ} \cite{overlord-novel}.  
+Các bài học thiết kế rút ra:
+
+\begin{itemize}
+    \item \textbf{NPC như tác nhân hệ thống (system agents):} NPC có thể tham gia vận hành tài nguyên, phòng thủ, sản xuất, hoặc mở tuyến nhiệm vụ.
+    \item \textbf{Tầng tổ chức tạo chiều sâu:} khi NPC gắn với chức trách, người chơi có động lực xây dựng đội hình/nhân sự thay vì chỉ tăng chỉ số.
+    \item \textbf{Tính bền vững của tiến trình:} thế giới không ``reset'' theo phiên chơi; tiến trình có tính tích luỹ.
+\end{itemize}
+
+\textbf{Áp dụng vào đề tài:}  
+Đề tài định hướng NPC như tài nguyên dài hạn phục vụ phát triển căn cứ/đảo cá nhân (mô hình ``nhân sự vận hành''). Tuy nhiên, theo phạm vi giai đoạn 1, phần NPC và đảo cá nhân được xếp vào \textbf{tính năng nâng cao} và chỉ dừng ở mức thiết kế/định hướng dữ liệu.
+
+% ===============================================================
+\subsection{Nhóm nguồn cảm hứng về cơ chế tuyển dụng/thu thập: Gacha và meta-progression}
+
+\subsubsection{Pick Me Up! Infinite Gacha: gacha như hệ thống meta và động lực dài hạn}
+\label{subsec:rw-pickmeup}
+
+\textit{Pick Me Up! Infinite Gacha} cung cấp khung tham khảo cho cơ chế \textbf{tuyển dụng qua gacha} và xây dựng meta-progression dựa trên bộ sưu tập (collection) \cite{pickmeup-webtoon}.  
+Các điểm đáng chú ý:
+
+\begin{itemize}
+    \item \textbf{Độ hiếm (rarity) và vai trò:} mỗi thực thể có độ hiếm và chức năng khác nhau, từ đó tạo động lực tối ưu đội hình.
+    \item \textbf{Gacha tạo vòng lặp meta:} chơi để kiếm tài nguyên $\rightarrow$ quay gacha $\rightarrow$ tối ưu $\rightarrow$ chơi nội dung khó hơn.
+    \item \textbf{Giảm ``dead-end'':} luôn có khả năng cải thiện thông qua hệ thống thu thập và nâng cấp.
+\end{itemize}
+
+\textbf{Áp dụng vào đề tài:}  
+Đề tài sử dụng gacha như một ý tưởng cho hệ thống NPC/nhân sự (nâng cao). Về thiết kế, gacha không được dùng để ép buộc trả phí trong đồ án, mà đóng vai trò \textbf{cơ chế tạo biến thiên tiến trình} và \textbf{động lực sưu tầm}.
+
+% ===============================================================
+\subsection{Nhóm nguồn cảm hứng về trải nghiệm Action RPG: nhịp combat, phản hồi và điều khiển}
+
+\subsubsection{Arcane Odyssey: cảm giác điều khiển và tương tác thời gian thực trong online RPG}
+\label{subsec:rw-arcaneodyssey}
+
+\textit{Arcane Odyssey} là tham chiếu về cách tổ chức trải nghiệm chiến đấu và di chuyển trong môi trường online \cite{arcane-odyssey}.  
+Các bài học rút ra:
+
+\begin{itemize}
+    \item \textbf{Phản hồi tức thời (immediate feedback):} người chơi cần thấy rõ kết quả của thao tác (đòn đánh, né, hiệu ứng).
+    \item \textbf{Nhấn mạnh kỹ năng người chơi:} kết quả phụ thuộc vào thao tác và vị trí (positioning) thay vì chỉ chỉ số.
+    \item \textbf{Tối giản rào cản thao tác:} UI và input không được cản trở core loop.
+\end{itemize}
+
+\textbf{Áp dụng vào đề tài:}  
+Đề tài định hướng combat của \textit{Fortress of the Fallen} theo hướng hack-and-slash: nhịp nhanh, có né tránh, có hit timing. Trong giai đoạn 1, hệ thống combat chưa hiện thực đầy đủ, nhưng các yêu cầu về \textbf{real-time sync} và \textbf{độ trễ thấp} được đưa vào phần phi chức năng và kiến trúc networking.
+
+\subsubsection{Soul Knight Prequel: vòng lặp ngắn, build đơn giản và tái chơi}
+\label{subsec:rw-soulknight}
+
+\textit{Soul Knight Prequel} là tham chiếu về tổ chức vòng lặp chơi ngắn nhưng lặp lại nhiều lần \cite{soulknight-prequel}.  
+Điểm rút ra:
+
+\begin{itemize}
+    \item \textbf{Session ngắn:} phù hợp người chơi phổ thông, dễ quay lại.
+    \item \textbf{Reward rõ ràng theo phiên:} kết thúc phiên có thưởng để duy trì động lực.
+    \item \textbf{Build dễ hiểu:} cho phép người chơi thử nghiệm mà không bị quá tải.
+\end{itemize}
+
+\textbf{Áp dụng vào đề tài:}  
+Đề tài định hướng nội dung dungeon/thử thách theo dạng phiên (instance-based), dễ đóng gói thành mô-đun server về sau.
+
+% ===============================================================
+\subsection{Nhóm nguồn cảm hứng về căn cứ/đảo cá nhân: phát triển dài hạn và quản trị tài nguyên}
+
+\subsubsection{Clash of Clans: căn cứ cá nhân và tiến trình phát triển theo tài nguyên}
+\label{subsec:rw-coc}
+
+\textit{Clash of Clans} là tham chiếu nổi bật cho cơ chế căn cứ cá nhân: người chơi đầu tư tài nguyên để nâng cấp công trình theo thời gian, tạo meta-progression bền vững \cite{clashofclans}.  
+Các bài học quan trọng:
+
+\begin{itemize}
+    \item \textbf{Đảo/căn cứ như ``nhà'' của người chơi:} tạo gắn bó và mục tiêu dài hạn.
+    \item \textbf{Quản trị tài nguyên:} nguồn (sources) và nơi tiêu (sinks) được thiết kế cân bằng để duy trì nhịp chơi.
+    \item \textbf{Tăng trưởng theo thời gian:} cơ chế thời gian giúp tạo động lực quay lại (return loop).
+\end{itemize}
+
+\textbf{Áp dụng vào đề tài:}  
+Đề tài đề xuất \textbf{đảo vệ tinh cá nhân} như hệ thống nâng cao để mở rộng meta-progression (kết hợp NPC vận hành). Tuy nhiên, ở giai đoạn 1, đảo cá nhân và NPC được xác định là \textbf{tính năng nâng cao}, chỉ đưa vào phạm vi thiết kế định hướng chứ không hiện thực.
+
+% ===============================================================
+\subsection{Tổng hợp: Bảng đối chiếu nguồn tham khảo và phần áp dụng}
+\label{subsec:rw-mapping}
+
+Bảng \ref{tab:rw-mapping} tóm tắt mối liên hệ giữa nguồn tham khảo và cách áp dụng vào đề tài nhằm đảm bảo tính minh bạch trong lập luận thiết kế.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{|p{3.2cm}|p{5.1cm}|p{5.4cm}|}
+\hline
+\textbf{Nguồn tham khảo} & \textbf{Yếu tố rút ra} & \textbf{Áp dụng vào đề tài} \\
+\hline
+SAO S1 \cite{sao-aincrad} &
+Leo tầng tuyến tính, boss tầng, checkpoint tiến trình &
+Định hướng tháp 100 tầng (nâng cao), phân lớp nội dung và checkpoint \\
+\hline
+Overlord \cite{overlord-novel} &
+NPC có vai trò, thế giới vận hành, tầng tổ chức &
+Định hướng NPC vận hành hệ thống (nâng cao), thiết kế dữ liệu NPC/role \\
+\hline
+Pick Me Up! \cite{pickmeup-webtoon} &
+Gacha tuyển dụng, rarity, meta-progression &
+Định hướng gacha NPC (nâng cao), vòng lặp sưu tầm và tối ưu \\
+\hline
+Arcane Odyssey \cite{arcane-odyssey} &
+Cảm giác điều khiển, phản hồi combat, real-time online &
+Định hướng combat hack-and-slash và yêu cầu real-time sync (phi chức năng) \\
+\hline
+Soul Knight Prequel \cite{soulknight-prequel} &
+Vòng lặp ngắn, reward rõ, build dễ hiểu &
+Định hướng dungeon/instance theo phiên (nâng cao) \\
+\hline
+Clash of Clans \cite{clashofclans} &
+Căn cứ cá nhân, quản trị tài nguyên, tiến trình theo thời gian &
+Định hướng đảo cá nhân và hệ thống công trình/tài nguyên (nâng cao) \\
+\hline
+\end{tabular}
+\caption{Đối chiếu nguồn tham khảo và hướng áp dụng vào đề tài}
+\label{tab:rw-mapping}
+\end{table}
+
+% ===============================================================
+\subsection{Tham khảo kỹ thuật và liên hệ với kiến trúc hệ thống}
+\label{subsec:rw-technical}
+
+Bên cạnh nguồn cảm hứng nội dung, đề tài cần nền tảng kỹ thuật để hiện thực hoá game online thời gian thực.
+Do đó, nhóm tham khảo các tài liệu về:
+\begin{itemize}
+    \item \textbf{Game design và cách lập luận thiết kế hệ thống gameplay} \cite{schell-art,adams-game-design}.
+    \item \textbf{Networking multiplayer} (server authoritative, prediction, interpolation) \cite{gaffer-networking}.
+    \item \textbf{Công nghệ triển khai} ở mức đồ án: Unity cho client \cite{unity-manual}, NestJS cho backend \cite{nest-docs}, MongoDB \cite{mongodb-docs}, Redis \cite{redis-docs}.
+\end{itemize}
+
+Các tài liệu này được dùng để: (i) chuẩn hoá thuật ngữ và lập luận trong báo cáo; (ii) làm cơ sở cho các quyết định kiến trúc ở Chương 7; (iii) đảm bảo phần hiện thực giai đoạn 1 bám theo các thực hành phổ biến thay vì triển khai tuỳ hứng.
+
+% ===============================================================
+\subsection{Kết luận chương}
+\label{subsec:rw-summary}
+
+Chương này đã phân tích các công trình liên quan theo hướng ``tham khảo có kiểm soát'':
+\begin{itemize}
+    \item Các nguồn như SAO, Overlord, Pick Me Up, Arcane Odyssey, Soul Knight Prequel và Clash of Clans cung cấp khung ý tưởng cho hệ thống leo tháp, NPC, gacha và đảo cá nhân \cite{sao-aincrad,overlord-novel,pickmeup-webtoon,arcane-odyssey,soulknight-prequel,clashofclans}.
+    \item Các tài liệu kỹ thuật cung cấp nền tảng để hiện thực kiến trúc multiplayer và lựa chọn công nghệ phù hợp phạm vi đồ án \cite{schell-art,adams-game-design,gaffer-networking,unity-manual,nest-docs,mongodb-docs,redis-docs}.
+\end{itemize}
+
+Các kết quả tổng hợp là cơ sở để xác định yêu cầu (Chương 5) và thiết kế hệ thống (Chương 7) theo hướng nhất quán, có thể mở rộng.

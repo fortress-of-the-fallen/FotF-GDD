@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  7 DEC 2025 13:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  13 DEC 2025 16:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1229,10 +1229,7 @@ Package biblatex Info: ... file 'blx-dm.def' found.
 File: blx-dm.def 2025/07/10 v3.21 biblatex datamodel (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
-Package biblatex Info: ... file 'apa.dbx' found.
- (c:/texlive/texmf-dist/tex/latex/biblatex-apa/apa.dbx
-File: apa.dbx 2025/08/27 v9.20 APA biblatex style data model
-)
+Package biblatex Info: ... file 'numeric.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@afterword=\count451
@@ -1271,48 +1268,38 @@ Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@savedshortauthor=\count484
 \c@shorteditor=\count485
 \c@savedshorteditor=\count486
-\c@narrator=\count487
-\c@savednarrator=\count488
-\c@execproducer=\count489
-\c@savedexecproducer=\count490
-\c@execdirector=\count491
-\c@savedexecdirector=\count492
-\c@with=\count493
-\c@savedwith=\count494
-\c@labelname=\count495
-\c@savedlabelname=\count496
-\c@institution=\count497
-\c@savedinstitution=\count498
-\c@lista=\count499
-\c@savedlista=\count500
-\c@listb=\count501
-\c@savedlistb=\count502
-\c@listc=\count503
-\c@savedlistc=\count504
-\c@listd=\count505
-\c@savedlistd=\count506
-\c@liste=\count507
-\c@savedliste=\count508
-\c@listf=\count509
-\c@savedlistf=\count510
-\c@location=\count511
-\c@savedlocation=\count512
-\c@organization=\count513
-\c@savedorganization=\count514
-\c@origlocation=\count515
-\c@savedoriglocation=\count516
-\c@origpublisher=\count517
-\c@savedorigpublisher=\count518
-\c@publisher=\count519
-\c@savedpublisher=\count520
-\c@language=\count521
-\c@savedlanguage=\count522
-\c@origlanguage=\count523
-\c@savedoriglanguage=\count524
-\c@citation=\count525
-\c@savedcitation=\count526
-\c@pageref=\count527
-\c@savedpageref=\count528
+\c@labelname=\count487
+\c@savedlabelname=\count488
+\c@institution=\count489
+\c@savedinstitution=\count490
+\c@lista=\count491
+\c@savedlista=\count492
+\c@listb=\count493
+\c@savedlistb=\count494
+\c@listc=\count495
+\c@savedlistc=\count496
+\c@listd=\count497
+\c@savedlistd=\count498
+\c@liste=\count499
+\c@savedliste=\count500
+\c@listf=\count501
+\c@savedlistf=\count502
+\c@location=\count503
+\c@savedlocation=\count504
+\c@organization=\count505
+\c@savedorganization=\count506
+\c@origlocation=\count507
+\c@savedoriglocation=\count508
+\c@origpublisher=\count509
+\c@savedorigpublisher=\count510
+\c@publisher=\count511
+\c@savedpublisher=\count512
+\c@language=\count513
+\c@savedlanguage=\count514
+\c@origlanguage=\count515
+\c@savedoriglanguage=\count516
+\c@pageref=\count517
+\c@savedpageref=\count518
 \shorthandwidth=\skip179
 \shortjournalwidth=\skip180
 \shortserieswidth=\skip181
@@ -1336,57 +1323,46 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
  (c:/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2025/07/10 v3.21 biblatex compatibility (PK/MW)
-\c@textcitecount=\count529
-\c@textcitetotal=\count530
-\c@textcitemaxnames=\count531
-\c@biburlbigbreakpenalty=\count532
-\c@biburlbreakpenalty=\count533
-\c@biburlnumpenalty=\count534
-\c@biburlucpenalty=\count535
-\c@biburllcpenalty=\count536
+\c@textcitecount=\count519
+\c@textcitetotal=\count520
+\c@textcitemaxnames=\count521
+\c@biburlbigbreakpenalty=\count522
+\c@biburlbreakpenalty=\count523
+\c@biburlnumpenalty=\count524
+\c@biburlucpenalty=\count525
+\c@biburllcpenalty=\count526
 \biburlbigskip=\muskip19
 \biburlnumskip=\muskip20
 \biburlucskip=\muskip21
 \biburllcskip=\muskip22
-\c@smartand=\count537
+\c@smartand=\count527
 )
-Package biblatex Info: Trying to load bibliography style 'apa'...
-Package biblatex Info: ... file 'apa.bbx' found.
- (c:/texlive/texmf-dist/tex/latex/biblatex-apa/apa.bbx
-File: apa.bbx 2025/08/27 v9.20 APA biblatex references style
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+ (c:/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
  (c:/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count538
-\c@bbx:relatedtotal=\count539
-)
-Package biblatex Info: Delimiter 'nameyeardelim' in context 'bib' already defined, overwriting.
-Package biblatex Info: Delimiter 'nameyeardelim' in context 'biblist' already defined, overwriting.
-Package biblatex Info: Delimiter 'nonameyeardelim' in context 'bib' already defined, overwriting.
-Package biblatex Info: Delimiter 'nonameyeardelim' in context 'biblist' already defined, overwriting.
-)
-Package biblatex Info: Trying to load citation style 'apa'...
-Package biblatex Info: ... file 'apa.cbx' found.
- (c:/texlive/texmf-dist/tex/latex/biblatex-apa/apa.cbx
-File: apa.cbx 2025/08/27 v9.20 APA biblatex citation style
-Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined, overwriting.
-Package biblatex Info: Delimiter 'andothersdelim' in context '' already defined, overwriting.
-Package biblatex Info: Redefining '\fullcite'.
-Package biblatex Info: Redefining '\citeauthor'.
-Package biblatex Info: Redefining '\citeyear'.
+\c@bbx:relatedcount=\count528
+\c@bbx:relatedtotal=\count529
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+ (c:/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+File: numeric.cbx 2025/07/10 v3.21 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
-Package biblatex Info: Redefining '\cites'.
 Package biblatex Info: Redefining '\parencite'.
-Package biblatex Info: Redefining '\parencites'.
 Package biblatex Info: Redefining '\footcite'.
-Package biblatex Info: Redefining '\footcites'.
 Package biblatex Info: Redefining '\footcitetext'.
-Package biblatex Info: Redefining '\footcitetexts'.
 Package biblatex Info: Redefining '\smartcite'.
-Package biblatex Info: Redefining '\smartcites'.
+Package biblatex Info: Redefining '\supercite'.
 Package biblatex Info: Redefining '\textcite'.
 Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
 )
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
@@ -1414,13 +1390,13 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (c:/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count540
+\c@section@level=\count530
 ) (c:/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
 \@linkdim=\dimen343
-\Hy@linkcounter=\count541
-\Hy@pagecounter=\count542
+\Hy@linkcounter=\count531
+\Hy@pagecounter=\count532
  (c:/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -1428,7 +1404,7 @@ Now handling font encoding PD1 ...
 ) (c:/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count543
+\Hy@SavedSpaceFactor=\count533
  (c:/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -1441,7 +1417,7 @@ Package hyperref Info: Plain pages OFF on input line 4210.
 Package hyperref Info: Backreferencing OFF on input line 4215.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4462.
-\c@Hy@tempcnt=\count544
+\c@Hy@tempcnt=\count534
 LaTeX Info: Redefining \url on input line 4801.
 \XeTeXLinkMargin=\dimen344
  (c:/texlive/texmf-dist/tex/generic/bitset/bitset.sty
@@ -1449,7 +1425,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (c:/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count545
+\Fld@menulength=\count535
 \Field@Width=\dimen345
 \Fld@charsize=\dimen346
 Package hyperref Info: Hyper figures OFF on input line 6078.
@@ -1459,16 +1435,16 @@ Package hyperref Info: backreferencing OFF on input line 6093.
 Package hyperref Info: Link coloring OFF on input line 6098.
 Package hyperref Info: Link coloring with OCG OFF on input line 6103.
 Package hyperref Info: PDF/A mode OFF on input line 6108.
-\Hy@abspage=\count546
-\c@Item=\count547
-\c@Hfootnote=\count548
+\Hy@abspage=\count536
+\c@Item=\count537
+\c@Hfootnote=\count538
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (c:/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
-\HyAnn@Count=\count549
-\Fld@listcount=\count550
-\c@bookmark@seq@number=\count551
+\HyAnn@Count=\count539
+\Fld@listcount=\count540
+\c@bookmark@seq@number=\count541
  (c:/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
  (c:/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -1478,52 +1454,52 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip193
 )
-Package hyperref Info: Option `colorlinks' set `false' on input line 50.
+Package hyperref Info: Option `colorlinks' set `false' on input line 56.
 
 
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count552
-\@quotereset=\count553
+\@quotelevel=\count542
+\@quotereset=\count543
 (./main.aux
 Package babel Info: 'vietnamese' activates 'vietnamese' shorthands.
 (babel)             Reported on input line 11.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for T5/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for T5/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
  (c:/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count554
+\scratchcounter=\count544
 \scratchdimen=\dimen347
 \scratchbox=\box143
-\nofMPsegments=\count555
-\nofMParguments=\count556
+\nofMPsegments=\count545
+\nofMParguments=\count546
 \everyMPshowfont=\toks54
-\MPscratchCnt=\count557
+\MPscratchCnt=\count547
 \MPscratchDim=\dimen348
-\MPnumerator=\count558
-\makeMPintoPDFobject=\count559
+\MPnumerator=\count548
+\makeMPintoPDFobject=\count549
 \everyMPtoPDFconversion=\toks55
 ) (c:/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1570,39 +1546,18 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count560
-
-Package biblatex Warning: File 'vietnamese-apa.lbx' not found!
-(biblatex)                Ignoring mapping 'vietnamese' -> 'vietnamese-apa'.
-
+\c@lstlisting=\count550
 Package biblatex Info: Trying to load language 'vietnamese'...
 Package biblatex Info: ... file 'vietnamese.lbx' not found.
 
 Package biblatex Warning: Language 'vietnamese' not supported.
-(biblatex)                Using dummy definitions on input line 80.
+(biblatex)                Using dummy definitions on input line 86.
 
-Package biblatex Info: Trying to load language 'english' -> 'english-apa'...
-Package biblatex Info: ... file 'english-apa.lbx' found.
-(c:/texlive/texmf-dist/tex/latex/biblatex-apa/english-apa.lbx
-File: english-apa.lbx 2025/08/27 v9.20 APA biblatex localisation
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
- (c:/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+(c:/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
 )
-Package biblatex Info: Trying to load language 'american' -> 'american-apa'...
-Package biblatex Info: ... file 'american-apa.lbx' found.
- (c:/texlive/texmf-dist/tex/latex/biblatex-apa/american-apa.lbx
-File: american-apa.lbx 2025/08/27 v9.20 APA biblatex localisation
-Package biblatex Info: Trying to load language 'american'...
-Package biblatex Info: ... file 'american.lbx' found.
- (c:/texlive/texmf-dist/tex/latex/biblatex/lbx/american.lbx
-File: american.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
-Package biblatex Info: Trying to load language 'english'...
-Package biblatex Info: ... file 'english.lbx' found.
- (c:/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
-File: english.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
-))))
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
@@ -1611,15 +1566,15 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 80.
-Package biblatex Info: Reference segment=0 on input line 80.
-Package hyperref Info: Link coloring OFF on input line 80.
+Package biblatex Info: Reference section=0 on input line 86.
+Package biblatex Info: Reference segment=0 on input line 86.
+Package hyperref Info: Link coloring OFF on input line 86.
  (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
  (./Content/titlepage.tex
-<Images/hcmut.png, id=175, 514.3215pt x 491.9178pt>
+<Images/hcmut.png, id=408, 514.3215pt x 491.9178pt>
 File: Images/hcmut.png Graphic file (type png)
 <use Images/hcmut.png>
 Package pdftex.def Info: Images/hcmut.png  used on input line 24.
@@ -1712,48 +1667,382 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
                    \relax 
 l.110 \end{longtable}
                       [1]
-./Content/glossary.tex:110: ignored error: Infinite glue shrinkage found in box being split [2]) [3] (./main.toc)
-\tf@toc=\write6
-\openout6 = `main.toc'.
-
- [0] (./main.lof)
-\tf@lof=\write7
-\openout7 = `main.lof'.
-
-
+./Content/glossary.tex:110: ignored error: Infinite glue shrinkage found in box being split [2]) [3] (./main.toc [0]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.110 \newpage
-               [1] (./main.lot)
-\tf@lot=\write8
-\openout8 = `main.lot'.
+l.98 ... ná»‘i real-time}{34}{subsubsection.6.5.6}
+                                                  % [1])
+\tf@toc=\write6
+\openout6 = `main.toc'.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.115 \newpage
-               [2] (./Content/introduction.tex
+l.111 \newpage
+               [2] (./main.lof)
+\tf@lof=\write7
+\openout7 = `main.lof'.
+
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.29     \item X
-                Ã¢y dá»±ng cÃ¡c chá»©c nÄƒng cÆ¡ báº£n trÃªn client: [3{c:/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Overfull \hbox (3.03012pt too wide) in paragraph at lines 45--46
-[]\T5/cmr/m/n/12 C¡c nëi dung n¥ng cao nh÷ h» thèng leo th¡p 100 t¦ng, 18 t¦ng ngöc, h» thèng class^^Urace^^Uskill
+l.116 \newpage
+               [3] (./main.lot)
+\tf@lot=\write8
+\openout8 = `main.lot'.
+
+ [4] (./Content/introduction.tex [5{c:/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Overfull \hbox (1.11159pt too wide) in paragraph at lines 46--47
+[]\T5/cmr/m/n/12 ^^^i·u khiºn di chuyºn nh¥n vªt trong mët mæi tr÷íng thû nghi»m ^^_ìn gi£n (prototype)
  []
 
-[4]) (./Content/background.tex [5] [6] [7] [8] [9]) (./Content/technology.tex [10] [11]
-Overfull \hbox (5.787pt too wide) in paragraph at lines 61--62
-[]\T5/cmr/m/n/12 Thi¸t k¸ ki¸n tróc code theo h÷îng \T5/cmr/bx/n/12 component-based \T5/cmr/m/n/12 ho°c \T5/cmr/bx/n/12 entity--component--system
+[6] [7]) (./Content/background.tex [8]
+Overfull \hbox (5.60995pt too wide) in paragraph at lines 34--36
+ []\T5/cmr/bx/n/12 Mæ h¼nh client--server[] \T5/cmr/m/n/12 H¦u h¸t game online hi»n ^^_¤i sû döng mæ h¼nh \T5/cmr/bx/n/12 server authoritative\T5/cmr/m/n/12 ,
  []
 
-[12] [13] [14] [15]) (./Content/relatedworks.tex) (./Content/requirements.tex) (./Content/analysis.tex) (./Content/design.tex) (./Content/implementation.tex) (./Content/evaluation.tex) (./Content/conclusion.tex) [16]
+[9]
+<Images/CoreLoop.png, id=662, 422.57875pt x 261.97874pt>
+File: Images/CoreLoop.png Graphic file (type png)
+<use Images/CoreLoop.png>
+Package pdftex.def Info: Images/CoreLoop.png  used on input line 83.
+(pdftex.def)             Requested size: 386.95897pt x 239.90407pt.
+ [10 <./Images/CoreLoop.png>] [11] [12]) (./Content/technology.tex [13] [14] [15]
+Overfull \hbox (1.22498pt too wide) in paragraph at lines 83--84
+[]\T5/cmr/m/n/12 NestJS cung c§p \T5/cmr/bx/n/12 ki¸n tróc mæ-^^_un rã r ng\T5/cmr/m/n/12 , düa tr¶n decorator v  dependency injection,
+ []
 
-LaTeX Warning: Empty bibliography on input line 133.
+[16] [17]) (./Content/relatedworks.tex [18] [19] [20]
+Overfull \hbox (6.291pt too wide) in paragraph at lines 83--83
+[]\T5/cmr/bx/n/14.4 Nhâm nguçn c£m hùng v· tr£i nghi»m Action RPG: nhàp combat,
+ []
 
-(./Content/appendices.tex) 
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
+[]|\T5/cmr/bx/n/12 Nguçn tham
+ []
+
+
+Underfull \hbox (badness 1097) in paragraph at lines 149--150
+[]|\T5/cmr/m/n/12 ^^^ành h÷îng th¡p 100 t¦ng
+ []
+
+
+Underfull \hbox (badness 7796) in paragraph at lines 159--159
+[]|\T5/cmr/m/n/12 Arcane Odyssey
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--163
+[]|\T5/cmr/m/n/12 Soul Knight
+ []
+
+
+Underfull \hbox (badness 7064) in paragraph at lines 167--167
+[]|\T5/cmr/m/n/12 Clash of Clans
+ []
+
+[22] [23]) (./Content/requirements.tex [24] [25] [26] [27]) (./Content/analysis.tex
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
+[]|\T5/cmr/m/n/12 Game Client
+ []
+
+[28] [29] [30] [31] [32] [33] [34] [35]
+Overfull \hbox (10.4726pt too wide) in paragraph at lines 409--410
+[]\T5/cmr/m/n/12 Client nëi suy (interpolation) ^^_º hiºn thà m÷ñt; n¸u sai l»ch lîn th¼ hi»u ch¿nh (reconciliation)
+ []
+
+[36] [37]
+Overfull \hbox (21.42262pt too wide) in paragraph at lines 489--490
+[]\T5/cmr/bx/n/12 Session (runtime)\T5/cmr/m/n/12 : tr¤ng th¡i phi¶n k¸t nèi real-time (socketId, roomId, userId, characterId);
+ []
+
+
+Underfull \hbox (badness 2478) in paragraph at lines 505--506
+[]|\T5/cmr/m/n/12 Cªp nhªt tr¤ng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--506
+\T5/cmr/m/n/12 th¡i/metadata
+ []
+
+
+Overfull \hbox (7.81047pt too wide) in paragraph at lines 509--509
+[]|\T5/cmr/m/n/12 UC04/UC06/UC08
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 510--511
+[]|\T5/cmr/m/n/12 Cªp nhªt và
+ []
+
+
+Underfull \hbox (badness 2277) in paragraph at lines 514--514
+[]|\T5/cmr/m/n/12 Trong tick real-
+ []
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 515--516
+\T5/cmr/m/n/12 nhªt tr¤ng th¡i,
+ []
+
+[38]) (./Content/design.tex) (./Content/implementation.tex) (./Content/evaluation.tex) (./Content/conclusion.tex) [39]
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Bibliography string 'in' untranslated
+(biblatex)                at entry 'moriarty-networked' on input line 139.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibordinal.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibordinal.
+
+
+Package biblatex Warning: Bibliography string 'edition' untranslated
+(biblatex)                at entry 'gregory-engine' on input line 139.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibordinal.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibordinal.
+
+
+Package biblatex Warning: Bibliography string 'edition' untranslated
+(biblatex)                at entry 'adams-game-design' on input line 139.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibordinal.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibordinal.
+
+
+Package biblatex Warning: Bibliography string 'edition' untranslated
+(biblatex)                at entry 'schell-art' on input line 139.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Bibliography string 'and' untranslated
+(biblatex)                at entry 'nest-docs' on input line 139.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibordinal.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibordinal.
+
+
+Package biblatex Warning: Bibliography string 'edition' untranslated
+(biblatex)                at entry 'mongodb-guide' on input line 139.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Overfull \hbox (5.77144pt too wide) in paragraph at lines 140--140
+[]\T5/cmr/m/n/12 GitHub. \T5/cmr/m/it/12 GitHub Projects Documentation\T5/cmr/m/n/12 . []$\T5/cmtt/m/n/12 https : / / docs . github . com / issues / planning -[]
+ []
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Overfull \hbox (0.98729pt too wide) in paragraph at lines 140--140
+[]\T5/cmr/m/n/12 Thomas Allweyer. \T5/cmr/m/it/12 BPMN 2.0: Introduction to the Standard for Business Process Modeling\T5/cmr/m/n/12 .
+ []
+
+
+Package biblatex Warning: Bibliography string 'andothers' untranslated
+(biblatex)                at entry 'latex-companion' on input line 139.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibordinal.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibordinal.
+
+
+Package biblatex Warning: Bibliography string 'edition' untranslated
+(biblatex)                at entry 'latex-companion' on input line 139.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Overfull \hbox (8.8942pt too wide) in paragraph at lines 140--140
+[]\T5/cmr/m/n/12 MongoDB. \T5/cmr/m/it/12 MongoDB Manual (Documentation)\T5/cmr/m/n/12 . T i li»u tham kh£o cì sð dú li»u MongoDB.
+ []
+
+[40]
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+[41] (./Content/appendices.tex) 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
@@ -1766,24 +2055,24 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B50C5734EB57B888C3669AC7229A4D53;9448.
+(rerunfilecheck)             Checksum: C32B2C657890A41F1494656C112A916C;25494.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 40065 strings out of 467538
- 758325 string characters out of 5426329
- 1804626 words of memory out of 5000000
- 68150 multiletter control sequences out of 15000+600000
- 652419 words of font info for 94 fonts, out of 8000000 for 9000
+ 39893 strings out of 467538
+ 754841 string characters out of 5426329
+ 1691822 words of memory out of 5000000
+ 67817 multiletter control sequences out of 15000+600000
+ 652865 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 104i,11n,116p,1223b,5054s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnbx12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnti12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vntt12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vntt8.pfb>
-Output written on main.pdf (21 pages, 221794 bytes).
+ 104i,12n,116p,1223b,1630s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnbx12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr8.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnti12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnti8.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vntt12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vntt8.pfb>
+Output written on main.pdf (46 pages, 318975 bytes).
 PDF statistics:
- 405 PDF objects out of 1000 (max. 8388607)
- 362 compressed objects within 4 object streams
- 79 named destinations out of 1000 (max. 500000)
- 354 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1102 PDF objects out of 1200 (max. 8388607)
+ 1021 compressed objects within 11 object streams
+ 254 named destinations out of 1000 (max. 500000)
+ 823 words of extra memory for PDF output out of 10000 (max. 10000000)
 

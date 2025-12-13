@@ -1,0 +1,558 @@
+\section{Phân tích hệ thống}
+\label{sec:analysis}
+
+Chương này trình bày phân tích hệ thống cho đề tài \textit{Fortress of the Fallen} trong phạm vi giai đoạn 1. Mục tiêu của chương là chuyển hoá các yêu cầu đã nêu ở Chương 5 thành mô tả vận hành ở mức logic: hệ thống gồm những tác nhân nào, các chức năng chính được thể hiện qua các ca sử dụng (use case) nào, luồng xử lý nghiệp vụ diễn ra ra sao, dữ liệu nào được tạo/đọc/cập nhật, và các ràng buộc vận hành quan trọng. Nội dung chương là cơ sở trực tiếp để triển khai thiết kế kiến trúc, thiết kế API và thiết kế dữ liệu ở Chương 7.
+
+% ===============================================================
+\subsection{Tổng quan hệ thống}
+\label{subsec:analysis_overview}
+
+Trong giai đoạn 1, hệ thống tập trung vào việc xây dựng bộ khung nền tảng cho game online nhiều người chơi theo mô hình \textbf{client--server}. Các thành phần chính gồm:
+
+\begin{itemize}
+    \item \textbf{Game Client (Unity)}: hiển thị, xử lý input, giao diện đăng nhập và luồng vào game; gửi yêu cầu (HTTP) và trao đổi sự kiện thời gian thực (WebSocket).
+    \item \textbf{Backend (NestJS/Node.js)}: cung cấp API xác thực, quản lý phiên, xử lý logic thời gian thực tối thiểu phục vụ prototype (ví dụ: đồng bộ vị trí/di chuyển mức cơ bản).
+    \item \textbf{Cơ sở dữ liệu (MongoDB)}: lưu trữ dữ liệu bền vững như tài khoản, hồ sơ người chơi, thông tin nhân vật.
+    \item \textbf{Cache/Session (Redis)}: lưu session, token hoặc dữ liệu truy cập thường xuyên (tuỳ mức hiện thực giai đoạn 1).
+\end{itemize}
+
+Nguyên tắc vận hành cốt lõi của hệ thống là \textbf{server authoritative}: server quyết định trạng thái chính thức (đặc biệt với các dữ liệu có thể ảnh hưởng đến công bằng và tính nhất quán), còn client ưu tiên trải nghiệm hiển thị và phản hồi điều khiển.
+
+% ===============================================================
+\subsection{Tác nhân của hệ thống (Actors)}
+\label{subsec:analysis_actors}
+
+Các tác nhân tham gia tương tác với hệ thống được xác định như sau:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{10pt}
+\begin{tabular}{|p{3.2cm}|p{11cm}|}
+\hline
+\textbf{Tác nhân} & \textbf{Mô tả} \\
+\hline
+Người chơi & Sử dụng game client; thực hiện đăng ký/đăng nhập; điều khiển nhân vật; tham gia phiên chơi. \\
+\hline
+Game Client (Unity) & Đại diện cho người chơi để gửi/nhận dữ liệu; xử lý UI; gửi request HTTP và sự kiện WebSocket. \\
+\hline
+Backend (NestJS) & Xử lý xác thực, cấp token, quản lý phiên và kênh real-time; xác nhận dữ liệu nhân vật; phát trạng thái cho client. \\
+\hline
+MongoDB & Lưu trữ dữ liệu bền vững: User, Character và các metadata liên quan. \\
+\hline
+Redis (tuỳ chọn) & Lưu session, token blacklist/whitelist, cache dữ liệu nóng; hỗ trợ pub/sub nếu mở rộng nhiều instance. \\
+\hline
+\end{tabular}
+\caption{Các tác nhân của hệ thống}
+\label{tab:actors}
+\end{table}
+
+% ===============================================================
+\subsection{Phạm vi chức năng phân tích trong giai đoạn 1}
+\label{subsec:analysis_scope}
+
+Theo định hướng giai đoạn 1, hệ thống phân tích tập trung vào các nhóm chức năng nền tảng sau:
+
+\begin{itemize}
+    \item \textbf{Nhóm xác thực \& tài khoản}: đăng ký, đăng nhập, đăng xuất, quản lý token.
+    \item \textbf{Nhóm nhân vật}: tải dữ liệu nhân vật sau đăng nhập; chọn nhân vật (nếu có nhiều slot); khởi tạo nhân vật tối thiểu.
+    \item \textbf{Nhóm phiên chơi \& kết nối real-time}: thiết lập kết nối WebSocket; tham gia ``phiên chơi'' thử nghiệm; đồng bộ trạng thái cơ bản (ví dụ: di chuyển).
+    \item \textbf{Nhóm vận hành tối thiểu}: xử lý mất kết nối, timeout, giới hạn request, log và theo dõi lỗi cơ bản.
+\end{itemize}
+
+Các tính năng nâng cao như đảo cá nhân, NPC, gacha, leo tháp/ngục, PvP, AI nâng cao \textbf{không thuộc phạm vi hiện thực của giai đoạn 1} và vì vậy chỉ xuất hiện như mục định hướng ở các chương sau, không đưa vào use case bắt buộc của giai đoạn này.
+
+% ===============================================================
+\subsection{Danh sách Use Case}
+\label{subsec:analysis_usecase_list}
+
+Danh sách ca sử dụng (use case) trong giai đoạn 1 được đề xuất như Bảng~\ref{tab:usecase_list}. Các use case được nhóm theo cụm chức năng để thuận tiện cho triển khai và kiểm thử.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{|p{2.2cm}|p{4.5cm}|p{8.2cm}|}
+\hline
+\textbf{Mã} & \textbf{Tên Use Case} & \textbf{Mô tả ngắn} \\
+\hline
+UC01 & Đăng ký tài khoản & Người chơi tạo tài khoản mới; hệ thống kiểm tra hợp lệ và lưu vào DB. \\
+\hline
+UC02 & Đăng nhập & Người chơi đăng nhập; hệ thống xác thực và cấp token phiên. \\
+\hline
+UC03 & Đăng xuất & Người chơi đăng xuất; hệ thống huỷ/đánh dấu token (tuỳ chính sách). \\
+\hline
+UC04 & Tải hồ sơ người chơi & Client lấy thông tin tối thiểu của user (id, tên hiển thị, danh sách nhân vật). \\
+\hline
+UC05 & Tạo nhân vật (tối thiểu) & Nếu chưa có nhân vật, client tạo mới với dữ liệu cơ bản. \\
+\hline
+UC06 & Chọn nhân vật & Người chơi chọn nhân vật để vào phiên chơi thử nghiệm. \\
+\hline
+UC07 & Thiết lập kết nối real-time & Client mở WebSocket sau đăng nhập; xác thực kênh bằng token. \\
+\hline
+UC08 & Tham gia phiên chơi thử nghiệm & Server gán player vào một ``room/instance'' đơn giản để test. \\
+\hline
+UC09 & Gửi input di chuyển & Client gửi input/ý định di chuyển theo nhịp; server xác nhận và cập nhật trạng thái. \\
+\hline
+UC10 & Nhận cập nhật trạng thái & Client nhận snapshot/packet trạng thái để hiển thị vị trí và chuyển động. \\
+\hline
+UC11 & Xử lý mất kết nối & Khi WebSocket rớt, server giải phóng phiên; client hiển thị trạng thái và cho phép kết nối lại. \\
+\hline
+\end{tabular}
+\caption{Danh sách use case giai đoạn 1}
+\label{tab:usecase_list}
+\end{table}
+
+% ===============================================================
+\subsection{Đặc tả Use Case chi tiết}
+\label{subsec:analysis_usecase_specs}
+
+Phần này đặc tả chi tiết các use case trọng yếu để làm cơ sở cho thiết kế API, thiết kế mô-đun và kiểm thử. Mỗi use case gồm: mục tiêu, tác nhân, tiền điều kiện, hậu điều kiện, luồng chính và luồng thay thế/ngoại lệ.
+
+% -----------------------------
+\subsubsection{UC01 -- Đăng ký tài khoản}
+\label{subsubsec:uc01_register}
+
+\textbf{Mục tiêu:} Cho phép người chơi tạo tài khoản mới trong hệ thống.
+
+\textbf{Tác nhân chính:} Người chơi (thông qua Game Client)
+
+\textbf{Tiền điều kiện:}
+\begin{itemize}
+    \item Người chơi chưa đăng nhập.
+    \item Client có thể kết nối đến API backend (HTTP).
+\end{itemize}
+
+\textbf{Hậu điều kiện:}
+\begin{itemize}
+    \item Tài khoản mới được lưu trong MongoDB.
+    \item Người chơi có thể thực hiện UC02 (Đăng nhập).
+\end{itemize}
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Người chơi mở màn hình đăng ký và nhập thông tin (ví dụ: email/username, mật khẩu).
+    \item Client gửi request đăng ký đến backend.
+    \item Backend kiểm tra hợp lệ (định dạng, độ dài, chính sách mật khẩu).
+    \item Backend kiểm tra trùng lặp tài khoản (email/username) trong DB.
+    \item Nếu hợp lệ, backend băm mật khẩu và lưu user mới vào DB.
+    \item Backend trả về kết quả thành công cho client.
+    \item Client hiển thị thông báo đăng ký thành công và chuyển sang màn hình đăng nhập.
+\end{enumerate}
+
+\textbf{Luồng thay thế/ngoại lệ:}
+\begin{itemize}
+    \item \textbf{E01-1:} Thông tin không hợp lệ (mật khẩu quá ngắn, email sai định dạng) $\rightarrow$ backend trả lỗi; client hiển thị lỗi theo trường.
+    \item \textbf{E01-2:} Tài khoản đã tồn tại $\rightarrow$ backend trả lỗi trùng; client gợi ý đăng nhập.
+    \item \textbf{E01-3:} Lỗi DB (mất kết nối, timeout) $\rightarrow$ backend trả lỗi hệ thống; client hiển thị và cho phép thử lại.
+\end{itemize}
+
+% -----------------------------
+\subsubsection{UC02 -- Đăng nhập}
+\label{subsubsec:uc02_login}
+
+\textbf{Mục tiêu:} Xác thực người chơi và cấp token phiên để truy cập các chức năng sau.
+
+\textbf{Tác nhân chính:} Người chơi (thông qua Game Client)
+
+\textbf{Tiền điều kiện:}
+\begin{itemize}
+    \item Người chơi đã có tài khoản (UC01).
+    \item Client có thể gọi API backend.
+\end{itemize}
+
+\textbf{Hậu điều kiện:}
+\begin{itemize}
+    \item Client nhận được token (ví dụ: JWT) và lưu tạm (memory/secure storage).
+    \item Người chơi có thể thực hiện UC04, UC07.
+\end{itemize}
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Người chơi nhập thông tin đăng nhập.
+    \item Client gửi request đăng nhập tới backend.
+    \item Backend tìm user theo username/email.
+    \item Backend so sánh mật khẩu (verify hash).
+    \item Nếu đúng, backend tạo token phiên (kèm hạn dùng) và trả về cho client.
+    \item Client lưu token và chuyển sang màn hình tải dữ liệu người chơi (UC04).
+\end{enumerate}
+
+\textbf{Luồng thay thế/ngoại lệ:}
+\begin{itemize}
+    \item \textbf{E02-1:} Sai tài khoản hoặc mật khẩu $\rightarrow$ trả lỗi xác thực; client hiển thị thông báo chung.
+    \item \textbf{E02-2:} Tài khoản bị khoá (nếu có chính sách) $\rightarrow$ trả lỗi trạng thái; client hiển thị thông tin.
+    \item \textbf{E02-3:} Backend quá tải/timeout $\rightarrow$ client cho phép thử lại.
+\end{itemize}
+
+% -----------------------------
+\subsubsection{UC04 -- Tải hồ sơ người chơi}
+\label{subsubsec:uc04_profile}
+
+\textbf{Mục tiêu:} Client lấy dữ liệu tối thiểu của user và danh sách nhân vật để quyết định tạo/chọn nhân vật.
+
+\textbf{Tác nhân chính:} Game Client
+
+\textbf{Tiền điều kiện:}
+\begin{itemize}
+    \item Client đã có token hợp lệ (UC02).
+\end{itemize}
+
+\textbf{Hậu điều kiện:}
+\begin{itemize}
+    \item Client có dữ liệu profile và danh sách character.
+    \item Nếu chưa có nhân vật: chuyển UC05. Nếu có: chuyển UC06.
+\end{itemize}
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Client gửi request lấy profile kèm token.
+    \item Backend xác thực token.
+    \item Backend truy vấn DB lấy dữ liệu user và danh sách character liên quan.
+    \item Backend trả dữ liệu về client.
+    \item Client hiển thị màn hình chọn nhân vật (UC06) hoặc tạo nhân vật (UC05).
+\end{enumerate}
+
+\textbf{Luồng thay thế/ngoại lệ:}
+\begin{itemize}
+    \item \textbf{E04-1:} Token hết hạn/không hợp lệ $\rightarrow$ backend trả lỗi; client đưa về màn hình đăng nhập.
+    \item \textbf{E04-2:} Không tìm thấy user $\rightarrow$ lỗi hệ thống; client báo lỗi và yêu cầu đăng nhập lại.
+\end{itemize}
+
+% -----------------------------
+\subsubsection{UC05 -- Tạo nhân vật (tối thiểu)}
+\label{subsubsec:uc05_create_character}
+
+\textbf{Mục tiêu:} Cho phép người chơi khởi tạo nhân vật cơ bản để vào phiên chơi prototype.
+
+\textbf{Tác nhân chính:} Người chơi (thông qua Game Client)
+
+\textbf{Tiền điều kiện:}
+\begin{itemize}
+    \item Đã đăng nhập và có token hợp lệ.
+    \item Người chơi chưa có nhân vật hoặc còn slot trống.
+\end{itemize}
+
+\textbf{Hậu điều kiện:}
+\begin{itemize}
+    \item Nhân vật mới được tạo và lưu DB.
+    \item Client có thể chọn nhân vật để vào game (UC06).
+\end{itemize}
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Người chơi nhập thông tin nhân vật tối thiểu (tên nhân vật, lựa chọn ngoại hình cơ bản nếu có).
+    \item Client gửi request tạo nhân vật kèm token.
+    \item Backend xác thực token, kiểm tra ràng buộc (tên trống, độ dài, ký tự).
+    \item Backend tạo document character với các thuộc tính nền (level=1, vị trí khởi tạo, chỉ số mặc định).
+    \item Backend lưu vào DB và liên kết với user.
+    \item Backend trả kết quả thành công và dữ liệu nhân vật.
+    \item Client chuyển sang màn hình chọn nhân vật hoặc tự chọn nhân vật vừa tạo (UC06).
+\end{enumerate}
+
+\textbf{Luồng thay thế/ngoại lệ:}
+\begin{itemize}
+    \item \textbf{E05-1:} Tên nhân vật không hợp lệ/trùng $\rightarrow$ báo lỗi và yêu cầu nhập lại.
+    \item \textbf{E05-2:} Hết slot nhân vật $\rightarrow$ báo lỗi giới hạn.
+\end{itemize}
+
+% -----------------------------
+\subsubsection{UC06 -- Chọn nhân vật}
+\label{subsubsec:uc06_select_character}
+
+\textbf{Mục tiêu:} Người chơi chọn một nhân vật để bắt đầu vào phiên chơi.
+
+\textbf{Tác nhân chính:} Người chơi
+
+\textbf{Tiền điều kiện:}
+\begin{itemize}
+    \item Đã có danh sách nhân vật (UC04).
+\end{itemize}
+
+\textbf{Hậu điều kiện:}
+\begin{itemize}
+    \item Client xác định characterId đang hoạt động.
+    \item Chuẩn bị kết nối real-time và tham gia phiên chơi (UC07, UC08).
+\end{itemize}
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Client hiển thị danh sách nhân vật.
+    \item Người chơi chọn một nhân vật.
+    \item Client lưu characterId được chọn và chuyển sang bước kết nối real-time (UC07).
+\end{enumerate}
+
+% -----------------------------
+\subsubsection{UC07 -- Thiết lập kết nối real-time}
+\label{subsubsec:uc07_ws_connect}
+
+\textbf{Mục tiêu:} Thiết lập kênh WebSocket để trao đổi dữ liệu thời gian thực.
+
+\textbf{Tác nhân chính:} Game Client
+
+\textbf{Tiền điều kiện:}
+\begin{itemize}
+    \item Client có token hợp lệ và đã chọn characterId.
+\end{itemize}
+
+\textbf{Hậu điều kiện:}
+\begin{itemize}
+    \item WebSocket được thiết lập thành công.
+    \item Server gán socket với userId/characterId và tạo session runtime.
+\end{itemize}
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Client mở kết nối WebSocket đến backend.
+    \item Client gửi message ``authenticate'' kèm token và characterId (hoặc kèm qua query/headers tuỳ thiết kế).
+    \item Server xác thực token, kiểm tra quyền sở hữu characterId.
+    \item Nếu hợp lệ, server gán socket vào session và trả ``auth\_ok''.
+    \item Client chuyển sang use case tham gia phiên chơi (UC08).
+\end{enumerate}
+
+\textbf{Luồng thay thế/ngoại lệ:}
+\begin{itemize}
+    \item \textbf{E07-1:} Token không hợp lệ/hết hạn $\rightarrow$ server từ chối, client quay lại đăng nhập.
+    \item \textbf{E07-2:} CharacterId không thuộc user $\rightarrow$ server từ chối, client tải lại profile.
+    \item \textbf{E07-3:} Mất kết nối khi bắt tay $\rightarrow$ client retry theo số lần giới hạn.
+\end{itemize}
+
+% -----------------------------
+\subsubsection{UC08 -- Tham gia phiên chơi thử nghiệm}
+\label{subsubsec:uc08_join_session}
+
+\textbf{Mục tiêu:} Đưa người chơi vào một phiên chơi (room/instance) đơn giản để kiểm thử đồng bộ.
+
+\textbf{Tác nhân chính:} Game Client
+
+\textbf{Tiền điều kiện:}
+\begin{itemize}
+    \item WebSocket đã xác thực (UC07).
+\end{itemize}
+
+\textbf{Hậu điều kiện:}
+\begin{itemize}
+    \item Người chơi được gán vào một room.
+    \item Client nhận trạng thái khởi tạo (spawn position, snapshot ban đầu).
+\end{itemize}
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Client gửi message ``join\_session'' (kèm thông tin map/test scene nếu cần).
+    \item Server tạo hoặc chọn một room thử nghiệm.
+    \item Server load dữ liệu nhân vật tối thiểu (vị trí, hướng, tốc độ) và tạo entity runtime.
+    \item Server trả message ``join\_ok'' kèm snapshot ban đầu.
+    \item Client tạo nhân vật trong scene và bắt đầu vòng lặp gửi input di chuyển (UC09).
+\end{enumerate}
+
+\textbf{Luồng thay thế/ngoại lệ:}
+\begin{itemize}
+    \item \textbf{E08-1:} Room đầy (nếu có giới hạn) $\rightarrow$ server chuyển room khác.
+    \item \textbf{E08-2:} Lỗi load dữ liệu nhân vật $\rightarrow$ server trả lỗi; client hiển thị và thử lại.
+\end{itemize}
+
+% -----------------------------
+\subsubsection{UC09 -- Gửi input di chuyển}
+\label{subsubsec:uc09_move_input}
+
+\textbf{Mục tiêu:} Cho phép client gửi ý định di chuyển để server cập nhật vị trí nhân vật theo thời gian thực.
+
+\textbf{Tác nhân chính:} Game Client
+
+\textbf{Tiền điều kiện:}
+\begin{itemize}
+    \item Người chơi đã tham gia phiên chơi (UC08).
+\end{itemize}
+
+\textbf{Hậu điều kiện:}
+\begin{itemize}
+    \item Server nhận input và cập nhật trạng thái nhân vật.
+    \item Client và các client khác (nếu có) nhận được cập nhật để hiển thị.
+\end{itemize}
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Ở mỗi nhịp (tick client) hoặc khi input thay đổi, client gửi message ``move\_input'' (hướng, tốc độ mong muốn, timestamp/seq).
+    \item Server nhận input và áp dụng vào vòng lặp tick của server.
+    \item Server kiểm tra ràng buộc (tốc độ tối đa, phạm vi hợp lệ, chống spam cơ bản).
+    \item Server cập nhật vị trí nhân vật trên trạng thái authoritative.
+    \item Server phát ``state\_update'' định kỳ về cho client (UC10).
+\end{enumerate}
+
+\textbf{Luồng thay thế/ngoại lệ:}
+\begin{itemize}
+    \item \textbf{E09-1:} Input gửi quá nhanh (flood) $\rightarrow$ server throttle hoặc bỏ qua.
+    \item \textbf{E09-2:} Dữ liệu sai định dạng $\rightarrow$ server cảnh báo và có thể đóng kết nối nếu lặp lại.
+\end{itemize}
+
+% -----------------------------
+\subsubsection{UC10 -- Nhận cập nhật trạng thái}
+\label{subsubsec:uc10_state_update}
+
+\textbf{Mục tiêu:} Client nhận snapshot/cập nhật trạng thái từ server để hiển thị chuyển động và vị trí nhất quán.
+
+\textbf{Tác nhân chính:} Game Client
+
+\textbf{Tiền điều kiện:}
+\begin{itemize}
+    \item Đã kết nối và ở trong phiên (UC08).
+\end{itemize}
+
+\textbf{Hậu điều kiện:}
+\begin{itemize}
+    \item Client cập nhật vị trí/animation theo snapshot.
+\end{itemize}
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Server định kỳ gửi message ``state\_update'' (vị trí, vận tốc, hướng, timestamp).
+    \item Client nhận dữ liệu và lưu vào buffer snapshot.
+    \item Client nội suy (interpolation) để hiển thị mượt; nếu sai lệch lớn thì hiệu chỉnh (reconciliation) theo chính sách.
+\end{enumerate}
+
+\textbf{Ghi chú:} Ở giai đoạn 1, có thể áp dụng cơ chế đơn giản: cập nhật thẳng vị trí theo server để giảm độ phức tạp; các kỹ thuật nội suy/dự đoán có thể nâng cấp ở giai đoạn sau.
+
+% -----------------------------
+\subsubsection{UC11 -- Xử lý mất kết nối}
+\label{subsubsec:uc11_disconnect}
+
+\textbf{Mục tiêu:} Đảm bảo hệ thống xử lý an toàn khi client mất kết nối hoặc thoát game.
+
+\textbf{Tác nhân chính:} Game Client / Backend
+
+\textbf{Tiền điều kiện:}
+\begin{itemize}
+    \item Người chơi đang có session real-time.
+\end{itemize}
+
+\textbf{Hậu điều kiện:}
+\begin{itemize}
+    \item Server giải phóng session runtime và tài nguyên room.
+    \item Client hiển thị trạng thái mất kết nối và cho phép kết nối lại.
+\end{itemize}
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Kết nối WebSocket bị ngắt (do mạng hoặc người chơi thoát).
+    \item Server nhận sự kiện disconnect.
+    \item Server xoá mapping socket--user, cập nhật trạng thái ``offline'' runtime.
+    \item (Tuỳ chính sách) Server lưu vị trí/tiến trình tối thiểu vào DB nếu cần.
+    \item Client hiển thị thông báo mất kết nối và chuyển về màn hình đăng nhập hoặc nút ``Reconnect''.
+\end{enumerate}
+
+\textbf{Luồng thay thế/ngoại lệ:}
+\begin{itemize}
+    \item \textbf{E11-1:} Reconnect trong thời gian ngắn $\rightarrow$ server cho phép nối lại session nếu còn hợp lệ (tuỳ phạm vi).
+\end{itemize}
+
+% ===============================================================
+\subsection{Phân tích luồng nghiệp vụ tổng quát}
+\label{subsec:analysis_business_flows}
+
+Phần này mô tả các luồng nghiệp vụ tổng quát ở mức hệ thống, nhằm thể hiện sự liên kết giữa các use case.
+
+% -----------------------------
+\subsubsection{Luồng A: Từ mở game đến vào phiên chơi}
+\label{subsubsec:flow_a}
+
+\begin{enumerate}
+    \item Người chơi mở game client.
+    \item Nếu chưa có tài khoản: thực hiện UC01 (Đăng ký).
+    \item Thực hiện UC02 (Đăng nhập) để nhận token.
+    \item Thực hiện UC04 (Tải hồ sơ người chơi).
+    \item Nếu chưa có nhân vật: UC05 (Tạo nhân vật).
+    \item UC06 (Chọn nhân vật).
+    \item UC07 (Thiết lập WebSocket và xác thực).
+    \item UC08 (Tham gia phiên chơi thử nghiệm).
+    \item Trong phiên: lặp UC09 (Gửi input di chuyển) và UC10 (Nhận cập nhật trạng thái).
+\end{enumerate}
+
+% -----------------------------
+\subsubsection{Luồng B: Mất kết nối khi đang chơi}
+\label{subsubsec:flow_b}
+
+\begin{enumerate}
+    \item Người chơi đang trong phiên chơi.
+    \item Mạng mất hoặc client đóng bất thường.
+    \item Server kích hoạt UC11 (Xử lý mất kết nối).
+    \item Client hiển thị lỗi và cung cấp lựa chọn: thoát về đăng nhập hoặc thử reconnect.
+\end{enumerate}
+
+% ===============================================================
+\subsection{Phân tích dữ liệu ở mức logic}
+\label{subsec:analysis_data_logic}
+
+Ở mức logic (chưa đi vào thiết kế schema chi tiết), hệ thống giai đoạn 1 cần các nhóm dữ liệu chính:
+
+\begin{itemize}
+    \item \textbf{User}: định danh người chơi, thông tin đăng nhập (hash), trạng thái tài khoản.
+    \item \textbf{Character}: thông tin nhân vật, thuộc tính nền (level, chỉ số cơ bản), trạng thái xuất hiện trong phiên (vị trí khởi tạo).
+    \item \textbf{Session (runtime)}: trạng thái phiên kết nối real-time (socketId, roomId, userId, characterId); thường lưu ở bộ nhớ server và/hoặc Redis.
+\end{itemize}
+
+\subsubsection{CRUD ở mức logic}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{|p{3.2cm}|p{3.2cm}|p{3.2cm}|p{3.2cm}|}
+\hline
+\textbf{Đối tượng} & \textbf{Create} & \textbf{Read} & \textbf{Update} \\
+\hline
+User &
+UC01 (Đăng ký) &
+UC02/UC04 (xác thực, tải profile) &
+Cập nhật trạng thái/metadata (tuỳ phạm vi) \\
+\hline
+Character &
+UC05 (Tạo nhân vật) &
+UC04/UC06/UC08 (tải để chọn/join) &
+Cập nhật vị trí/tiến trình tối thiểu (tuỳ phạm vi) \\
+\hline
+Session (runtime) &
+UC07/UC08 (tạo session) &
+Trong tick real-time &
+UC09/UC11 (cập nhật trạng thái, giải phóng) \\
+\hline
+\end{tabular}
+\caption{Phân tích CRUD mức logic cho giai đoạn 1}
+\label{tab:crud_logic}
+\end{table}
+
+% ===============================================================
+\subsection{Ràng buộc và giả định hệ thống}
+\label{subsec:analysis_constraints}
+
+Các ràng buộc và giả định dưới đây được đặt ra để phù hợp nguồn lực và phạm vi giai đoạn 1:
+
+\begin{itemize}
+    \item \textbf{Authoritative server}: server xác nhận trạng thái; client không quyết định dữ liệu quan trọng.
+    \item \textbf{Prototype real-time}: đồng bộ di chuyển ở mức cơ bản; các cơ chế tối ưu mạng nâng cao (prediction/reconciliation hoàn chỉnh) có thể giản lược.
+    \item \textbf{Một người chơi -- một kết nối}: mỗi user chỉ duy trì một session WebSocket hoạt động tại một thời điểm (giả định), giúp đơn giản hoá quản lý phiên.
+    \item \textbf{Giới hạn tải}: chưa tối ưu cho số lượng người chơi lớn; mục tiêu là đúng luồng và ổn định ở quy mô thử nghiệm.
+    \item \textbf{Bảo mật tối thiểu}: áp dụng xác thực token, validate input; các cơ chế chống gian lận nâng cao sẽ xem xét ở giai đoạn sau.
+\end{itemize}
+
+% ===============================================================
+\subsection{Tiêu chí kiểm thử suy ra từ phân tích}
+\label{subsec:analysis_test_criteria}
+
+Từ các use case đã phân tích, một số tiêu chí kiểm thử chức năng tối thiểu cho giai đoạn 1 gồm:
+
+\begin{itemize}
+    \item UC01: Đăng ký thành công, đăng ký trùng, dữ liệu không hợp lệ.
+    \item UC02: Đăng nhập đúng/sai, token trả về và lưu đúng.
+    \item UC04: Tải profile với token hợp lệ; từ chối khi token hết hạn.
+    \item UC05: Tạo nhân vật thành công; xử lý tên không hợp lệ.
+    \item UC07--UC08: WebSocket auth ok; join session thành công; join fail khi token sai.
+    \item UC09--UC10: Di chuyển gửi/nhận ổn định; trạng thái cập nhật theo nhịp.
+    \item UC11: Mất kết nối được xử lý; server giải phóng session; client hiển thị phù hợp.
+\end{itemize}
+
+Các tiêu chí này sẽ được cụ thể hoá ở Chương 9 (Đánh giá/kiểm thử) dưới dạng test case hoặc checklist.
+
+% ===============================================================
+\subsection{Tổng kết chương}
+\label{subsec:analysis_summary}
+
+Chương 6 đã phân tích hệ thống ở mức logic cho giai đoạn 1: xác định tác nhân, danh sách và đặc tả use case, luồng nghiệp vụ tổng quát, dữ liệu logic và các ràng buộc vận hành. Các kết quả phân tích là nền tảng để triển khai Chương 7 (Thiết kế hệ thống), trong đó các nội dung như kiến trúc mô-đun, thiết kế API, thiết kế room/session, thiết kế dữ liệu MongoDB/Redis và các sơ đồ (nếu có) sẽ được trình bày chi tiết.

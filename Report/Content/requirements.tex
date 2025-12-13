@@ -1,0 +1,162 @@
+\section{Phân tích yêu cầu}
+
+Chương này trình bày quá trình phân tích yêu cầu cho hệ thống trò chơi Action RPG trực tuyến \textit{Fortress of the Fallen}. Mục tiêu của chương là xác định rõ phạm vi hiện thực, các yêu cầu chức năng và phi chức năng của hệ thống trong giai đoạn 1, làm cơ sở cho các bước phân tích hệ thống, thiết kế và hiện thực ở các chương tiếp theo.
+
+\subsection{Mục tiêu của hệ thống}
+
+Mục tiêu của hệ thống trong giai đoạn 1 là xây dựng nền tảng kỹ thuật cho một trò chơi Action RPG trực tuyến nhiều người chơi, đóng vai trò như một prototype học thuật nhằm kiểm chứng các quyết định về kiến trúc và công nghệ.
+
+Cụ thể, hệ thống hướng đến các mục tiêu sau:
+\begin{itemize}
+    \item Xây dựng mô hình client--server cho game online thời gian thực.
+    \item Cho phép nhiều người chơi kết nối và tương tác đồng thời trong cùng một môi trường thử nghiệm.
+    \item Đồng bộ trạng thái nhân vật giữa client và server một cách nhất quán.
+    \item Thiết kế kiến trúc backend và mô hình dữ liệu có khả năng mở rộng cho các giai đoạn phát triển tiếp theo.
+    \item Đảm bảo phạm vi hiện thực phù hợp với quy mô một đồ án chuyên ngành.
+\end{itemize}
+
+Hệ thống ở giai đoạn này không đặt mục tiêu trở thành một sản phẩm game hoàn chỉnh, mà tập trung vào tính đúng đắn và hợp lý về mặt kỹ thuật.
+
+\subsection{Đối tượng sử dụng hệ thống}
+
+Hệ thống phục vụ hai nhóm đối tượng chính: người chơi và quản trị hệ thống.
+
+\subsubsection{Người chơi}
+
+Người chơi là đối tượng trực tiếp tương tác với hệ thống thông qua game client. Trong giai đoạn 1, người chơi có thể:
+\begin{itemize}
+    \item Đăng ký và đăng nhập tài khoản.
+    \item Kết nối đến server game.
+    \item Tải dữ liệu nhân vật từ server.
+    \item Điều khiển nhân vật di chuyển trong môi trường thử nghiệm.
+    \item Nhận các cập nhật trạng thái theo thời gian thực từ server.
+\end{itemize}
+
+Các chức năng này chủ yếu nhằm kiểm chứng cơ chế kết nối và đồng bộ trạng thái, chưa tập trung vào nội dung gameplay phức tạp.
+
+\subsubsection{Quản trị hệ thống}
+
+Quản trị hệ thống là đối tượng ở mức kỹ thuật, bao gồm nhóm phát triển. Vai trò chính bao gồm:
+\begin{itemize}
+    \item Quản lý cấu hình và vận hành server.
+    \item Theo dõi trạng thái kết nối và log hệ thống.
+    \item Kiểm thử và đánh giá các chức năng nền tảng.
+\end{itemize}
+
+Trong giai đoạn 1, hệ thống không yêu cầu giao diện quản trị riêng biệt.
+
+\subsection{Phạm vi hiện thực trong giai đoạn 1}
+
+\subsubsection{Các chức năng thuộc phạm vi hiện thực}
+
+Trong giai đoạn 1, hệ thống tập trung hiện thực các chức năng nền tảng sau:
+\begin{itemize}
+    \item Kiến trúc client--server cho game online.
+    \item Hệ thống xác thực người dùng (đăng ký, đăng nhập).
+    \item Kết nối real-time giữa client và server thông qua WebSocket.
+    \item Quản lý phiên kết nối của người chơi.
+    \item Tải và lưu trữ dữ liệu nhân vật cơ bản.
+    \item Đồng bộ vị trí và trạng thái di chuyển của nhân vật trong môi trường thử nghiệm.
+\end{itemize}
+
+\subsubsection{Các chức năng không thuộc phạm vi hiện thực}
+
+Các hệ thống sau chỉ được đề cập ở mức định hướng hoặc thiết kế, không được hiện thực trong giai đoạn 1:
+\begin{itemize}
+    \item Hệ thống xây dựng và quản lý đảo cá nhân.
+    \item Hệ thống NPC, AI NPC và cơ chế gacha.
+    \item Hệ thống leo tháp nhiều tầng và các ngục phức tạp.
+    \item Hệ thống class--race--skill hoàn chỉnh.
+    \item Chế độ PvP Arena.
+    \item Hệ thống cân bằng game ở quy mô lớn và tối ưu hiệu năng nâng cao.
+\end{itemize}
+
+Việc giới hạn phạm vi giúp đảm bảo đồ án tập trung vào các mục tiêu học thuật cốt lõi.
+
+\subsection{Yêu cầu chức năng}
+
+\subsubsection{Yêu cầu chức năng phía người chơi}
+
+Hệ thống phải đáp ứng các yêu cầu chức năng sau đối với người chơi:
+\begin{itemize}
+    \item Đăng ký tài khoản mới.
+    \item Đăng nhập bằng tài khoản hợp lệ.
+    \item Nhận phản hồi xác thực từ server.
+    \item Tải thông tin nhân vật sau khi đăng nhập thành công.
+    \item Tham gia môi trường game thử nghiệm.
+    \item Điều khiển nhân vật di chuyển trong môi trường game.
+    \item Nhận cập nhật trạng thái từ server theo thời gian thực.
+\end{itemize}
+
+\subsubsection{Yêu cầu chức năng phía hệ thống}
+
+Hệ thống backend phải đảm bảo:
+\begin{itemize}
+    \item Xác thực người dùng và quản lý phiên đăng nhập.
+    \item Quản lý kết nối WebSocket cho từng người chơi.
+    \item Nhận và xử lý input từ client.
+    \item Cập nhật trạng thái nhân vật dựa trên input nhận được.
+    \item Gửi snapshot trạng thái thế giới về cho client.
+    \item Lưu trữ và truy xuất dữ liệu một cách nhất quán.
+\end{itemize}
+
+Server đóng vai trò server authoritative, là nguồn chân lý duy nhất cho trạng thái hệ thống.
+
+\subsection{Yêu cầu phi chức năng}
+
+\subsubsection{Hiệu năng}
+
+\begin{itemize}
+    \item Hệ thống phải đảm bảo độ trễ chấp nhận được trong môi trường thử nghiệm.
+    \item Có khả năng xử lý nhiều kết nối đồng thời ở quy mô phù hợp với đồ án.
+    \item Đảm bảo trải nghiệm real-time không bị gián đoạn nghiêm trọng.
+\end{itemize}
+
+\subsubsection{Bảo mật}
+
+\begin{itemize}
+    \item Mật khẩu người dùng phải được mã hoá khi lưu trữ.
+    \item Client không được phép tự quyết định kết quả gameplay.
+    \item Các dữ liệu nhạy cảm phải được xử lý phía server.
+\end{itemize}
+
+\subsubsection{Khả năng mở rộng và bảo trì}
+
+\begin{itemize}
+    \item Kiến trúc backend phải được tổ chức theo hướng module hoá.
+    \item Dễ dàng mở rộng thêm các hệ thống gameplay trong tương lai.
+    \item Mã nguồn rõ ràng, dễ bảo trì.
+\end{itemize}
+
+\subsubsection{Tính ổn định}
+
+\begin{itemize}
+    \item Hệ thống phải xử lý được trường hợp ngắt kết nối đột ngột.
+    \item Không gây crash server khi một client gặp lỗi.
+    \item Có cơ chế log để phục vụ kiểm thử và phân tích lỗi.
+\end{itemize}
+
+\subsection{Yêu cầu dữ liệu}
+
+Hệ thống cần quản lý các nhóm dữ liệu chính sau:
+\begin{itemize}
+    \item Thông tin tài khoản người dùng.
+    \item Thông tin nhân vật và trạng thái cơ bản.
+    \item Trạng thái phiên kết nối.
+    \item Dữ liệu log phục vụ kiểm thử.
+\end{itemize}
+
+Các dữ liệu này phải được lưu trữ nhất quán và sẵn sàng mở rộng trong các giai đoạn tiếp theo.
+
+\subsection{Các ràng buộc và giả định}
+
+\begin{itemize}
+    \item Đề tài được thực hiện trong khuôn khổ đồ án chuyên ngành.
+    \item Thời gian và nguồn lực thực hiện có hạn.
+    \item Hệ thống không yêu cầu triển khai ở môi trường production.
+    \item Một số quyết định thiết kế được đưa ra dựa trên tính khả thi học thuật.
+\end{itemize}
+
+\subsection{Tổng kết chương}
+
+Chương này đã xác định rõ các yêu cầu chức năng và phi chức năng của hệ thống trong giai đoạn 1, đồng thời làm rõ phạm vi và các ràng buộc của đồ án. Những nội dung này là cơ sở trực tiếp cho việc phân tích hệ thống ở Chương 6 và thiết kế hệ thống ở Chương 7.

@@ -2,68 +2,88 @@
 
 \subsection{Động lực}
 
-Trong bối cảnh ngành công nghiệp game phát triển mạnh mẽ, các trò chơi nhập vai trực tuyến nhiều người chơi (Multiplayer Online RPG) ngày càng trở nên phổ biến. Người chơi không chỉ kỳ vọng vào đồ họa đẹp mắt, nội dung hấp dẫn mà còn yêu cầu trải nghiệm trực tuyến ổn định, mượt mà, có khả năng hỗ trợ nhiều người chơi tương tác với nhau trong thời gian thực.
+Trong bối cảnh ngành công nghiệp game phát triển mạnh mẽ, các trò chơi nhập vai trực tuyến nhiều người chơi (Multiplayer Online RPG) ngày càng trở nên phổ biến, với doanh thu và lượng người chơi tăng trưởng đều hằng năm\cite{newzoo-report}. Người chơi không chỉ kỳ vọng vào đồ hoạ đẹp mắt và nội dung phong phú, mà còn đòi hỏi một trải nghiệm trực tuyến ổn định, mượt mà, cho phép nhiều người chơi tương tác với nhau trong thời gian thực.
 
-Để đáp ứng các yêu cầu này, hệ thống phía server cần có khả năng xử lý lượng lớn kết nối đồng thời, đồng bộ trạng thái nhân vật, quản lý tài nguyên và dữ liệu trò chơi một cách hiệu quả, đồng thời vẫn đảm bảo độ trễ thấp. Việc nghiên cứu, thiết kế và hiện thực một hệ thống game online hoàn chỉnh đòi hỏi sinh viên phải kết hợp nhiều mảng kiến thức: lập trình game, mạng máy tính, kiến trúc client–server, cơ sở dữ liệu, cũng như thiết kế cơ chế gameplay.
+Để đáp ứng các kỳ vọng này, hệ thống phía server phải có khả năng:
+\begin{itemize}
+    \item Xử lý lượng lớn kết nối đồng thời.
+    \item Đồng bộ trạng thái nhân vật và thế giới trò chơi.
+    \item Quản lý tài nguyên và dữ liệu một cách hiệu quả.
+    \item Đồng thời duy trì độ trễ thấp để không ảnh hưởng đến cảm nhận điều khiển\cite{moriarty-networked}.
+\end{itemize}
 
-Đề tài ``Fortress of the Fallen'' được lựa chọn với mục tiêu vừa thỏa mãn niềm yêu thích đối với thể loại Action RPG Online, vừa là cơ hội để nhóm sinh viên rèn luyện kỹ năng phân tích, thiết kế và xây dựng một hệ thống phần mềm phức tạp với nhiều thành phần tương tác.
+Việc nghiên cứu, thiết kế và hiện thực một hệ thống game online hoàn chỉnh đòi hỏi sự kết hợp của nhiều mảng kiến thức: lập trình game, mạng máy tính, kiến trúc client--server, cơ sở dữ liệu, đồng bộ trạng thái thời gian thực, cũng như thiết kế cơ chế gameplay và hệ thống game\cite{gregory-engine,adams-game-design}.
+
+Đề tài \textit{``Fortress of the Fallen''} được lựa chọn với mục tiêu vừa thoả mãn niềm yêu thích đối với thể loại Action RPG trực tuyến, vừa tạo cơ hội để nhóm sinh viên rèn luyện kỹ năng phân tích, thiết kế và xây dựng một hệ thống phần mềm phức tạp với nhiều thành phần tương tác chặt chẽ.
 
 \subsection{Mục tiêu}
 
-Mục tiêu tổng quát của đề tài là thiết kế và phát triển hệ thống nền tảng cho game online nhập vai hành động nhiều người chơi ``Fortress of the Fallen''. Cụ thể, trong giai đoạn 1, đề tài hướng đến các mục tiêu sau:
+Mục tiêu tổng quát của đề tài là thiết kế và phát triển nền tảng kỹ thuật cho một trò chơi nhập vai hành động nhiều người chơi trực tuyến \textit{``Fortress of the Fallen''}. Trong giai đoạn 1, đề tài tập trung vào các mục tiêu cụ thể sau:
 
 \begin{itemize}
-    \item Nghiên cứu và tổng hợp ý tưởng thiết kế game từ các tác phẩm tham khảo (tiểu thuyết và game), từ đó định hình bối cảnh, cơ chế chơi và hệ thống tính năng cốt lõi của trò chơi.
-    \item Xác định phạm vi, tính khả thi kỹ thuật và mức độ phù hợp của đề tài trong khuôn khổ đồ án chuyên ngành.
-    \item Thiết kế mô hình kiến trúc hệ thống, bao gồm các thành phần: client, server backend, cơ sở dữ liệu và cơ chế giao tiếp mạng.
-    \item Hiện thực bộ khung ban đầu (source base) cho hệ thống, sử dụng Unity cho client và NestJS kết hợp .NET cho backend, làm nền tảng để phát triển tiếp ở các giai đoạn sau.
+    \item Nghiên cứu và tổng hợp ý tưởng thiết kế game từ các tác phẩm tham khảo (tiểu thuyết, trò chơi cùng thể loại), từ đó định hình bối cảnh, cơ chế chơi và các hệ thống tính năng cốt lõi\cite{schell-art,adams-game-design}.
+    \item Xác định phạm vi và tính khả thi kỹ thuật của đề tài trong khuôn khổ đồ án chuyên ngành, đảm bảo cân đối giữa mức độ phức tạp và nguồn lực thực hiện.
+    \item Thiết kế mô hình kiến trúc hệ thống tổng thể, bao gồm các thành phần: client, server backend, cơ sở dữ liệu và cơ chế giao tiếp mạng\cite{gregory-engine,moriarty-networked}.
+    \item Hiện thực một bộ khung ban đầu (source base) cho hệ thống, sử dụng Unity cho client và NestJS cho backend, làm nền tảng để phát triển và mở rộng trong các giai đoạn tiếp theo\cite{unity-manual,nest-docs}.
 \end{itemize}
 
 \subsection{Phạm vi}
 
-Trong phạm vi giai đoạn 1 của đồ án chuyên ngành, đề tài tập trung vào việc xây dựng \textit{prototype nền tảng} hơn là hoàn thiện toàn bộ nội dung game. Cụ thể, phạm vi thực hiện bao gồm:
+Trong phạm vi giai đoạn 1, đề tài tập trung vào việc xây dựng \textit{prototype nền tảng} thay vì hoàn thiện toàn bộ nội dung game. Cụ thể, phạm vi thực hiện bao gồm:
 
 \begin{itemize}
-    \item Thiết kế kiến trúc tổng thể cho hệ thống game online nhiều người chơi.
-    \item Thiết kế và xây dựng mô hình dữ liệu cơ bản phục vụ cho quản lý tài khoản, nhân vật, đảo cá nhân và NPC.
-    \item Xây dựng các chức năng cơ bản trên client:
+    \item Thiết kế kiến trúc tổng thể cho hệ thống game online nhiều người chơi theo mô hình client--server\cite{moriarty-networked}.
+    \item Thiết kế và xây dựng mô hình dữ liệu cơ bản phục vụ cho:
+    \begin{itemize}
+        \item Quản lý tài khoản và người dùng.
+        \item Quản lý thông tin nhân vật và các thuộc tính cốt lõi liên quan đến đăng nhập, đăng xuất và lựa chọn nhân vật.
+    \end{itemize}
+    \item Xây dựng các chức năng cơ bản phía client:
     \begin{itemize}
         \item Giao diện đăng ký, đăng nhập.
-        \item Kết nối đến server, xác thực người dùng.
-        \item Vào đảo cá nhân và hiển thị nhân vật chính.
-        \item Điều khiển di chuyển nhân vật trên đảo.
+        \item Kết nối đến server và thực hiện xác thực người dùng.
+        \item Tải và hiển thị nhân vật sau khi đăng nhập.
+        \item Điều khiển di chuyển nhân vật trong một môi trường thử nghiệm đơn giản (prototype) trên client.
     \end{itemize}
-    \item Xây dựng các chức năng nền tảng trên server:
+    \item Xây dựng các chức năng nền tảng phía server:
     \begin{itemize}
         \item Dịch vụ xác thực (authentication) và quản lý người dùng.
-        \item Quản lý phiên làm việc và kết nối real-time.
-        \item Cơ chế gacha NPC cơ bản và lưu trữ NPC vào cơ sở dữ liệu.
-        \item Cài đặt AI đơn giản cho NPC (ví dụ: làm việc định kỳ để tạo tài nguyên).
+        \item Quản lý phiên làm việc và kết nối real-time cho người chơi.
+        \item Thiết kế hạ tầng dữ liệu cơ bản, sẵn sàng để mở rộng cho các tính năng nâng cao trong giai đoạn sau.
     \end{itemize}
 \end{itemize}
 
-Các nội dung nâng cao như hệ thống leo tháp 100 tầng, 18 tầng ngục, hệ thống class–race–skill hoàn chỉnh, PvP Arena, cân bằng game và tối ưu hiệu năng nâng cao sẽ được xem xét ở các giai đoạn tiếp theo và nằm ngoài phạm vi hiện tại.
+Các nội dung nâng cao như:
+\begin{itemize}
+    \item Hệ thống xây dựng đảo cá nhân.
+    \item Hệ thống NPC và cơ chế gacha NPC.
+    \item Hệ thống leo tháp 100 tầng và 18 tầng ngục.
+    \item Hệ thống class--race--skill hoàn chỉnh.
+    \item Chế độ PvP Arena.
+    \item Cân bằng game ở quy mô lớn và tối ưu hiệu năng nâng cao.
+\end{itemize}
+sẽ được xem xét ở các giai đoạn tiếp theo và \textbf{không thuộc phạm vi hiện thực hoá ở giai đoạn 1}.
 
 \subsection{Ý nghĩa của đề tài}
 
 \subsubsection{Ý nghĩa thực tiễn}
 
-Về mặt thực tiễn, đề tài giúp:
+Về mặt thực tiễn, đề tài mang lại các ý nghĩa sau:
 
 \begin{itemize}
-    \item Cung cấp một ví dụ cụ thể về quá trình xây dựng hệ thống game online nhiều người chơi từ bước ý tưởng đến kiến trúc và hiện thực.
-    \item Minh họa cách kết hợp các công nghệ phổ biến trong phát triển game và backend như Unity, NestJS, .NET, MongoDB, Redis, \dots
-    \item Làm nền tảng để mở rộng thành một sản phẩm game hoàn chỉnh hoặc một bộ khung tham khảo cho các đồ án, dự án nghiên cứu khác liên quan đến game online.
+    \item Cung cấp một ví dụ cụ thể về quá trình xây dựng hệ thống game online nhiều người chơi từ bước hình thành ý tưởng, phân tích, thiết kế cho đến hiện thực hoá bộ khung kỹ thuật.
+    \item Minh hoạ cách kết hợp các công nghệ phổ biến trong phát triển game và backend như Unity, NestJS, MongoDB, Redis trong một kiến trúc thống nhất\cite{unity-manual,nest-docs,mongodb-guide,redis-in-action}.
+    \item Đặt nền tảng để phát triển tiếp thành một sản phẩm game hoàn chỉnh hoặc một bộ khung tham khảo cho các đồ án và dự án nghiên cứu khác liên quan đến game online.
 \end{itemize}
 
 \subsubsection{Ý nghĩa khoa học và học thuật}
 
-Về mặt học thuật, đề tài mang lại các giá trị sau:
+Về mặt học thuật, đề tài góp phần:
 
 \begin{itemize}
-    \item Ứng dụng kiến thức đã học về cấu trúc dữ liệu và giải thuật, lập trình hướng đối tượng, cơ sở dữ liệu, mạng máy tính và kiến trúc phần mềm vào một bài toán thực tế.
-    \item Tạo điều kiện cho sinh viên tiếp cận mô hình kiến trúc phân tán, xử lý kết nối đồng thời và bài toán đồng bộ trạng thái trong môi trường real-time.
-    \item Góp phần xây dựng tài liệu tham khảo nội bộ về quy trình phân tích, thiết kế và hiện thực một hệ thống game online nhiều người chơi trong khuôn khổ chương trình Khoa học Máy tính.
+    \item Tạo môi trường thực tế để sinh viên vận dụng tổng hợp các kiến thức đã học: cấu trúc dữ liệu và giải thuật, lập trình hướng đối tượng, cơ sở dữ liệu, mạng máy tính, kiến trúc phần mềm, phát triển ứng dụng phân tán.
+    \item Giúp sinh viên tiếp cận các bài toán đặc thù của game online như xử lý kết nối đồng thời, đồng bộ trạng thái thời gian thực, quản lý phiên chơi và mô hình hoá thế giới ảo\cite{moriarty-networked,gregory-engine}.
+    \item Đóng góp thêm tài liệu tham khảo nội bộ về quy trình phân tích, thiết kế và hiện thực một hệ thống game online nhiều người chơi trong khuôn khổ chương trình Khoa học Máy tính.
 \end{itemize}
 
 \subsection{Cấu trúc báo cáo}
@@ -71,13 +91,13 @@ Về mặt học thuật, đề tài mang lại các giá trị sau:
 Phần còn lại của báo cáo được tổ chức như sau:
 
 \begin{itemize}
-    \item \textbf{Chương 2 – Kiến thức nền tảng:} Trình bày các khái niệm, định nghĩa và kiến thức liên quan đến game Action RPG, hệ thống multiplayer, kiến trúc client–server và các cơ chế gameplay liên quan.
-    \item \textbf{Chương 3 – Công nghệ sử dụng:} Giới thiệu các công nghệ chính được sử dụng trong đề tài như Unity, NestJS, .NET, MongoDB, Redis, cùng lý do lựa chọn.
-    \item \textbf{Chương 4 – Các công trình liên quan:} Phân tích các tác phẩm và trò chơi tham khảo, các nghiên cứu về game networking và kiến trúc server real-time, từ đó rút ra bài học áp dụng cho đề tài.
-    \item \textbf{Chương 5 – Phân tích yêu cầu:} Xác định người dùng hệ thống, yêu cầu chức năng, phi chức năng và yêu cầu dữ liệu cho giai đoạn 1.
-    \item \textbf{Chương 6 – Phân tích hệ thống:} Mô tả quy trình nghiệp vụ, đặc tả use case và luồng dữ liệu logic trong hệ thống.
-    \item \textbf{Chương 7 – Thiết kế hệ thống:} Trình bày kiến trúc tổng thể, thiết kế cơ sở dữ liệu, thiết kế API và các mô-đun chính của hệ thống.
-    \item \textbf{Chương 8 – Hiện thực hệ thống:} Mô tả quá trình cài đặt các thành phần client và server, cơ chế giao tiếp và tích hợp.
-    \item \textbf{Chương 9 – Đánh giá hệ thống:} Đánh giá mức độ hoàn thành so với mục tiêu, kiểm thử các chức năng chính và thảo luận các hạn chế.
-    \item \textbf{Chương 10 – Kết luận:} Tổng kết kết quả đạt được, nêu các hạn chế và định hướng phát triển trong các giai đoạn tiếp theo.
+    \item \textbf{Chương 2 -- Kiến thức nền tảng:} Trình bày các khái niệm, định nghĩa và kiến thức liên quan đến game Action RPG, hệ thống multiplayer, kiến trúc client--server và các khái niệm cơ bản trong thiết kế game\cite{adams-game-design,schell-art}.
+    \item \textbf{Chương 3 -- Công nghệ sử dụng:} Giới thiệu các công nghệ chính được sử dụng trong đề tài như Unity, NestJS, MongoDB, Redis, GitHub, GitHub Projects, cùng phân tích lý do lựa chọn\cite{unity-manual,nest-docs,mongodb-guide,redis-in-action,github-docs,github-projects}.
+    \item \textbf{Chương 4 -- Các công trình liên quan:} Phân tích các tác phẩm và trò chơi tham khảo, cũng như các nghiên cứu về game networking và kiến trúc server real-time, từ đó rút ra những bài học áp dụng cho đề tài\cite{moriarty-networked,adams-game-design}.
+    \item \textbf{Chương 5 -- Phân tích yêu cầu:} Xác định đối tượng người dùng hệ thống, yêu cầu chức năng, phi chức năng và yêu cầu dữ liệu cho giai đoạn 1.
+    \item \textbf{Chương 6 -- Phân tích hệ thống:} Mô tả quy trình nghiệp vụ, đặc tả use case và luồng dữ liệu logic trong hệ thống.
+    \item \textbf{Chương 7 -- Thiết kế hệ thống:} Trình bày kiến trúc tổng thể, thiết kế cơ sở dữ liệu, thiết kế API và các mô-đun chính của hệ thống.
+    \item \textbf{Chương 8 -- Hiện thực hệ thống:} Mô tả quá trình cài đặt các thành phần client và server, cơ chế giao tiếp và tích hợp.
+    \item \textbf{Chương 9 -- Đánh giá hệ thống:} Đánh giá mức độ hoàn thành so với mục tiêu ban đầu, kiểm thử các chức năng chính và thảo luận các hạn chế.
+    \item \textbf{Chương 10 -- Kết luận:} Tổng kết kết quả đạt được, nêu các hạn chế và định hướng phát triển trong các giai đoạn tiếp theo.
 \end{itemize}

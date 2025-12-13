@@ -1,248 +1,215 @@
 \section{Kiến thức nền tảng}
 
-Chương này trình b trình bày hệ thống các kiến thức cơ sở liên quan đến phát triển trò chơi điện tử thuộc thể loại Action RPG trong môi trường trực tuyến. Nội dung bao gồm: (1) các khái niệm nền tảng về game thời gian thực và hệ thống multiplayer; (2) kiến thức nền tảng về thiết kế game (Game Design), bao gồm core loop, progression, combat, economy và UX. Những kiến thức này đóng vai trò quan trọng làm cơ sở cho phân tích yêu cầu và thiết kế hệ thống ở các chương tiếp theo.
+Chương này trình bày có hệ thống các kiến thức cơ sở liên quan đến phát triển trò chơi điện tử thuộc thể loại Action RPG trong môi trường trực tuyến. Nội dung tập trung vào hai nhóm chính: (1) các khái niệm nền tảng về game thời gian thực và hệ thống multiplayer; (2) kiến thức nền tảng về thiết kế game (Game Design), bao gồm core loop, progression, combat, economy và trải nghiệm người dùng (UX)\cite{adams-game-design,schell-art}. Những kiến thức này làm cơ sở cho việc phân tích yêu cầu và thiết kế hệ thống ở các chương tiếp theo.
 
 % ===============================================================
 \subsection{Kiến thức nền tảng về Action RPG và môi trường real-time}
 
 \subsubsection{Đặc điểm của Action RPG}
 
-Action RPG (Action Role-Playing Game) là thể loại game kết hợp cơ chế nhập vai với chiến đấu thời gian thực. Đặc điểm quan trọng bao gồm:
+Action RPG (Action Role-Playing Game) là thể loại game kết hợp cơ chế nhập vai với chiến đấu thời gian thực. Một số đặc điểm quan trọng\cite{adams-game-design,schell-art}:
 
 \begin{itemize}
-    \item \textbf{Tương tác thời gian thực}: mọi hành động như tấn công, di chuyển, né tránh phải được phản hồi ngay lập tức.
-    \item \textbf{Combat gắn liền với animation}: chuyển động của nhân vật ảnh hưởng trực tiếp đến logic chiến đấu.
-    \item \textbf{Hitbox / Hurtbox}: hệ thống kiểm tra va chạm dựa trên hình học đơn giản như AABB, Sphere, Capsule.
-    \item \textbf{Kỹ năng người chơi và chỉ số nhân vật phối hợp}: hiệu quả chiến đấu phụ thuộc vào cả thao tác người chơi và stat.
+    \item \textbf{Tương tác thời gian thực}: mọi hành động như tấn công, di chuyển, né tránh được xử lý và phản hồi gần như tức thời.
+    \item \textbf{Combat gắn liền với animation}: chuyển động của nhân vật (animation) liên kết trực tiếp với logic chiến đấu (thời điểm gây sát thương, thời gian bất tử, v.v.).
+    \item \textbf{Hitbox / Hurtbox}: hệ thống kiểm tra va chạm dựa trên các hình học đơn giản như AABB, Sphere, Capsule để xác định vùng gây sát thương và vùng nhận sát thương.
+    \item \textbf{Kỹ năng người chơi và chỉ số nhân vật phối hợp}: hiệu quả chiến đấu phụ thuộc đồng thời vào thao tác điều khiển của người chơi và chỉ số (stat) của nhân vật.
 \end{itemize}
 
-Một đòn tấn công chuẩn thường gồm ba giai đoạn:
+Một đòn tấn công điển hình có thể được chia thành ba giai đoạn\cite{adams-game-design}:
 \begin{enumerate}
     \item \textbf{Startup}: nhân vật chuẩn bị ra đòn.
-    \item \textbf{Active}: hitbox có hiệu lực.
-    \item \textbf{Recovery}: quay về trạng thái sẵn sàng cho hành động tiếp theo.
+    \item \textbf{Active}: hitbox có hiệu lực, có thể gây sát thương.
+    \item \textbf{Recovery}: nhân vật quay về trạng thái sẵn sàng cho hành động tiếp theo.
 \end{enumerate}
 
-Những khái niệm này giúp đảm bảo tính logic và cảm giác “mượt” khi chiến đấu.
+Việc hiểu rõ ba giai đoạn này là cơ sở để thiết kế combat có nhịp độ hợp lý, tạo cảm giác mượt và công bằng.
 
-% ===============================================================
 \subsubsection{Hệ thống multiplayer trong Action RPG}
 
-Một Action RPG nhiều người chơi yêu cầu cơ chế đồng bộ trạng thái giữa các người chơi sao cho tất cả đều thấy cùng một diễn biến. Các kiến thức nền trong hệ thống multiplayer bao gồm:
+Một trò chơi Action RPG nhiều người chơi yêu cầu cơ chế đồng bộ trạng thái giữa các người chơi sao cho tất cả đều quan sát được diễn biến nhất quán. Các kiến thức nền tảng chính bao gồm\cite{moriarty-networked,gregory-engine}:
 
 \paragraph{Mô hình client--server}
 
-Hầu hết game online dùng mô hình server authoritative:
+Hầu hết game online hiện đại sử dụng mô hình \textbf{server authoritative}, trong đó:
 \begin{itemize}
-    \item \textbf{Client}: thu input và hiển thị kết quả.
-    \item \textbf{Server}: xử lý toàn bộ logic gameplay và quản lý trạng thái thật.
+    \item \textbf{Client} chịu trách nhiệm thu thập input (phím bấm, chuột, tay cầm) và hiển thị kết quả.
+    \item \textbf{Server} xử lý toàn bộ logic gameplay quan trọng (tính sát thương, kiểm tra va chạm, xác nhận vị trí, trạng thái kỹ năng) và lưu trữ trạng thái chính thức.
 \end{itemize}
 
-Ưu điểm:
+Ưu điểm\cite{moriarty-networked}:
 \begin{itemize}
-    \item đảm bảo tính nhất quán,
-    \item chống gian lận,
-    \item dễ quản lý khi mở rộng.
+    \item Đảm bảo tính nhất quán giữa các người chơi.
+    \item Giảm khả năng gian lận do client không được tự ý quyết định kết quả.
+    \item Thuận lợi cho việc mở rộng và bảo trì hệ thống về lâu dài.
 \end{itemize}
 
 \paragraph{Tick-rate và vòng lặp cập nhật}
 
-Server hoạt động theo “tick”, ví dụ 20 hoặc 30 lần mỗi giây. Mỗi tick:
+Server vận hành theo chu kỳ cập nhật gọi là \textit{tick}. Ví dụ, với tick-rate 20 hoặc 30 lần mỗi giây, ở mỗi tick, server sẽ\cite{moriarty-networked}:
 \begin{verbatim}
-- Nhận input từ người chơi
-- Cập nhật vị trí và trạng thái
+- Nhận và xử lý input từ người chơi
+- Cập nhật vị trí và trạng thái đối tượng trong thế giới
 - Kiểm tra va chạm và xử lý chiến đấu
-- Gửi snapshot cho client
+- Gửi snapshot trạng thái đến client
 \end{verbatim}
 
-Tick-rate càng cao, gameplay càng mượt nhưng tốn tài nguyên.
+Tick-rate càng cao, gameplay càng mượt nhưng chi phí tài nguyên càng lớn; tick-rate thấp hơn sẽ tiết kiệm tài nguyên nhưng ảnh hưởng đến độ mượt và độ chính xác của combat.
 
 \paragraph{Đồng bộ trạng thái}
 
-Hai kỹ thuật phổ biến:
+Để giảm tác động của độ trễ mạng và đảm bảo trải nghiệm mượt mà, thường kết hợp nhiều kỹ thuật\cite{moriarty-networked}:
 
 \begin{itemize}
-    \item \textbf{Snapshot interpolation}: nội suy giữa hai snapshot để chuyển động mượt.
-    \item \textbf{Client-side prediction}: client dự đoán tạm thời để tránh cảm giác điều khiển bị trễ.
+    \item \textbf{Snapshot interpolation}: client nhận các snapshot trạng thái định kỳ từ server và nội suy giữa các snapshot để hiển thị chuyển động mượt.
+    \item \textbf{Client-side prediction}: client tạm thời dự đoán trạng thái tiếp theo dựa trên input của người chơi, thay vì chờ server phản hồi.
+    \item \textbf{Server reconciliation}: server gửi lại trạng thái chính xác, và client điều chỉnh sai lệch giữa trạng thái dự đoán và trạng thái thực tế.
 \end{itemize}
 
-Kết hợp:
-\begin{itemize}
-    \item \textbf{Server reconciliation}: server gửi dữ liệu chính xác, client điều chỉnh sai lệch.
-\end{itemize}
-
-Những kiến thức này giúp giảm ảnh hưởng của độ trễ mạng trong môi trường real-time.
+Các kỹ thuật này là nền tảng cho mọi trò chơi real-time có yếu tố cạnh tranh hoặc yêu cầu điều khiển chính xác.
 
 % ===============================================================
 \subsection{Kiến thức nền tảng về Game Design}
 
-Game Design là lĩnh vực xây dựng cơ chế hoạt động của trò chơi, quy định người chơi làm gì, cách họ tương tác và động lực khiến họ tiếp tục chơi. Một trò chơi hoàn chỉnh bao gồm nhiều lớp thiết kế: core loop, hệ thống phát triển nhân vật, combat, tài nguyên, phần thưởng và trải nghiệm người dùng.
+Game Design là lĩnh vực xây dựng cơ chế hoạt động của trò chơi, quy định người chơi làm gì, vì sao họ muốn làm điều đó và cách trò chơi phản hồi với hành động của họ\cite{adams-game-design,schell-art}. Một trò chơi hoàn chỉnh thường bao gồm nhiều lớp thiết kế: core loop, hệ thống phát triển nhân vật, hệ thống chiến đấu, hệ thống kinh tế trong game, cơ chế phần thưởng và trải nghiệm người dùng.
 
 % ---------------------------------------------------------------
 \subsubsection{Core Loop và Meta Loop}
 
-\paragraph{Core Loop}
+\paragraph{Core Loop} là vòng lặp hành động cốt lõi mà người chơi thực hiện liên tục trong suốt quá trình chơi. Với Action RPG, một dạng core loop điển hình có thể được mô tả như sau\cite{adams-game-design}:
 
-Core loop là vòng lặp hành động cốt lõi mà người chơi thực hiện liên tục trong suốt thời gian chơi. Một ví dụ điển hình cho Action RPG:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/CoreLoop.png}
+    \caption{Sơ đồ ví dụ về Core Loop trong Action RPG}
+    \label{fig:core-loop}
+\end{figure}
 
-\begin{center}
-\textit{Chiến đấu → Nhận phần thưởng → Tăng tiến sức mạnh → Quay lại chiến đấu}
-\end{center}
 
-Một core loop tốt phải:
+Một core loop hiệu quả cần:
 \begin{itemize}
-    \item đơn giản,
-    \item dễ hiểu,
-    \item có nhịp độ nhanh,
-    \item tạo cảm giác “hài lòng” mỗi vòng lặp.
+    \item Đơn giản, dễ hiểu ngay từ những phút chơi đầu tiên.
+    \item Mang lại cảm giác thoả mãn sau mỗi vòng lặp.
+    \item Có nhịp độ đủ nhanh để tránh nhàm chán nhưng không gây quá tải.
 \end{itemize}
 
-\paragraph{Meta Loop}
-
-Meta loop là hệ thống dài hạn thúc đẩy người chơi gắn bó lâu hơn, ví dụ:
+\paragraph{Meta Loop} là các hệ thống dài hạn giữ chân người chơi trong thời gian dài hơn, ví dụ\cite{schell-art}:
 \begin{itemize}
-    \item tăng cấp nhân vật,
-    \item mở khóa kỹ năng mới,
-    \item thu thập trang bị,
-    \item khám phá khu vực mới.
+    \item Tăng cấp nhân vật và mở khoá thuộc tính.
+    \item Mở khoá kỹ năng, class hoặc khu vực mới.
+    \item Thu thập và nâng cấp trang bị.
+    \item Hoàn thành mục tiêu dài hạn (thành tựu, cốt truyện, mô hình hoá sức mạnh nhân vật).
 \end{itemize}
-
-Nếu core loop tạo “niềm vui ngắn hạn”, meta loop tạo “động lực dài hạn”.
 
 % ---------------------------------------------------------------
 \subsubsection{Progression System (Hệ thống phát triển nhân vật)}
 
-Progression giúp định hình hành trình phát triển của nhân vật. Các yếu tố nền tảng:
+Hệ thống progression định hình hành trình phát triển của nhân vật theo thời gian. Các thành phần thường gặp\cite{adams-game-design,schell-art}:
 
 \begin{itemize}
-    \item \textbf{Leveling}: lên cấp để mở khóa chỉ số hoặc kỹ năng.
-    \item \textbf{Stats}: các chỉ số như sức mạnh, nhanh nhẹn, trí lực, máu.
-    \item \textbf{Equipment Progression}: vũ khí, áo giáp, vật phẩm hỗ trợ.
-    \item \textbf{Skill Tree}: hệ thống kỹ năng dạng nhánh cho phép tùy biến phong cách chơi.
-    \item \textbf{Unlocking System}: tiến xa hơn thì mở được khu vực/tính năng mới.
-\end{itemize}
-
-Progression phải được thiết kế có nhịp độ phù hợp để tránh:
-\begin{itemize}
-    \item tăng cấp quá nhanh gây nhàm,
-    \item tăng quá chậm gây nản.
+    \item \textbf{Leveling}: hệ thống lên cấp, giúp nhân vật tăng chỉ số hoặc mở khoá kỹ năng mới.
+    \item \textbf{Stats}: các chỉ số như sức mạnh, nhanh nhẹn, trí lực, thể lực, ảnh hưởng đến khả năng chiến đấu.
+    \item \textbf{Equipment Progression}: tiến trình nâng cấp trang bị, vũ khí, giáp và vật phẩm hỗ trợ.
+    \item \textbf{Skill Tree}: cây kỹ năng dạng nhánh cho phép người chơi xây dựng phong cách chơi riêng.
+    \item \textbf{Unlocking System}: cơ chế mở khoá tính năng, khu vực hoặc nội dung mới dựa trên tiến độ.
 \end{itemize}
 
 % ---------------------------------------------------------------
 \subsubsection{Combat Design (Thiết kế chiến đấu)}
 
-Combat là trung tâm của Action RPG. Các kiến thức nền gồm:
+Chiến đấu là trung tâm của Action RPG. Các khái niệm nền tảng\cite{adams-game-design,schell-art}:
 
-\paragraph{Pacing (nhịp độ)}
+\paragraph{Pacing (nhịp độ chiến đấu)}
 
-Combat có thể nhanh hoặc chậm tùy phong cách. Nhịp độ phải phù hợp:
-
+Nhịp độ chiến đấu có thể:
 \begin{itemize}
-    \item nhanh → nhấn mạnh phản xạ, né tránh,
-    \item chậm → thiên về chiến thuật và quan sát.
+    \item \textbf{Nhanh}: nhấn mạnh phản xạ, né tránh, ra quyết định tức thời.
+    \item \textbf{Chậm}: thiên về quan sát, ra quyết định chiến lược, tính toán khoảng cách và thời điểm.
 \end{itemize}
 
 \paragraph{Frame Data}
 
-Mỗi đòn đánh được chia thành:
+Mỗi hành động chiến đấu có thể được phân tích theo “frame data”:
 \begin{itemize}
-    \item \textbf{Startup}: chuẩn bị ra đòn,
-    \item \textbf{Active}: hitbox có hiệu lực,
-    \item \textbf{Recovery}: cooldown trước khi ra thêm đòn,
-    \item \textbf{Invincibility Frame}: thời gian bất tử khi né.
+    \item \textbf{Startup}: thời gian chuẩn bị trước khi đòn đánh có hiệu lực.
+    \item \textbf{Active}: khoảng thời gian hitbox có thể gây sát thương.
+    \item \textbf{Recovery}: thời gian hồi lại trước khi có thể thực hiện hành động khác.
+    \item \textbf{Invincibility Frames (i-frames)}: khoảng thời gian nhân vật không thể bị trúng đòn (thường xuất hiện trong các động tác lăn hoặc né).
 \end{itemize}
 
 \paragraph{Hit Detection}
 
-Kiểm tra va chạm dựa trên:
+Hit detection là quá trình kiểm tra xem một đòn tấn công có trúng mục tiêu hay không, dựa trên:
 \begin{itemize}
-    \item hitbox của kỹ năng,
-    \item hurtbox của mục tiêu,
-    \item thời điểm animation.
-\end{itemize}
-
-\paragraph{Enemy Pattern}
-
-Quái trong Action RPG thường có:
-\begin{itemize}
-    \item đòn đánh có báo hiệu (telegraph),
-    \item nhiều phase chiến đấu,
-    \item hành vi lặp theo pattern.
+    \item Hình dạng và vị trí hitbox.
+    \item Hình dạng và vị trí hurtbox.
+    \item Thời điểm kích hoạt trong animation.
 \end{itemize}
 
 % ---------------------------------------------------------------
 \subsubsection{World System và Level Design}
 
-Trong game, “level design” quyết định cách người chơi di chuyển và tương tác.
-
-Các yếu tố quan trọng:
+Level design quyết định cách người chơi di chuyển, tương tác và trải nghiệm không gian trò chơi. Một số yếu tố quan trọng\cite{schell-art}:
 
 \begin{itemize}
-    \item bố cục không gian,
-    \item đường di chuyển chính/phụ,
-    \item phân bổ quái, vật phẩm,
-    \item vùng an toàn và điểm checkpoint,
-    \item nhịp độ giữa combat và khám phá.
+    \item Bố cục không gian (layout) rõ ràng, tránh gây lạc hướng.
+    \item Đường di chuyển chính/phụ, nhánh rẽ tạo cảm giác khám phá.
+    \item Phân bố quái, vật phẩm, checkpoint hợp lý.
+    \item Xen kẽ các đoạn chiến đấu, khám phá và nghỉ ngơi để tạo nhịp độ cân bằng.
 \end{itemize}
-
-Nếu level quá rối → người chơi lạc.  
-Nếu quá đơn giản → mất hứng thú.
 
 % ---------------------------------------------------------------
 \subsubsection{Hệ thống kinh tế (Game Economy)}
 
-Game Economy là kiến thức nền quan trọng trong mọi game RPG:
+Hệ thống kinh tế trong game quy định cách tài nguyên được tạo ra và sử dụng\cite{adams-game-design}.
 
 \paragraph{Nguồn tài nguyên (Resource Sources)}
+
+Ví dụ:
 \begin{itemize}
-    \item phần thưởng theo nhiệm vụ,
-    \item quái rơi vật phẩm,
-    \item crafting,
-    \item sự kiện.
+    \item Phần thưởng nhiệm vụ.
+    \item Quái rơi vật phẩm.
+    \item Thu thập và khai thác tài nguyên.
+    \item Hệ thống crafting.
+    \item Sự kiện trong game.
 \end{itemize}
 
 \paragraph{Tiêu thụ tài nguyên (Resource Sinks)}
-\begin{itemize}
-    \item nâng cấp trang bị,
-    \item mua vật phẩm,
-    \item chi phí mở khóa tính năng.
-\end{itemize}
 
-Nếu nguồn thu lớn nhưng tiêu thụ ít → \textbf{lạm phát tài nguyên}.  
-Nếu tiêu thụ nhiều nhưng khó kiếm → \textbf{người chơi bỏ game}.
+Ví dụ:
+\begin{itemize}
+    \item Nâng cấp trang bị.
+    \item Mua vật phẩm tiêu hao.
+    \item Mở khoá tính năng hoặc khu vực mới.
+    \item Chi phí duy trì hoặc sửa chữa trang bị.
+\end{itemize}
 
 % ---------------------------------------------------------------
 \subsubsection{UX/UI Design trong game}
 
-UX tốt giúp giảm tải nhận thức và tăng trải nghiệm. Các nguyên lý nền:
+Trải nghiệm người dùng (UX) và giao diện người dùng (UI) đóng vai trò quan trọng trong việc truyền tải thông tin và hỗ trợ người chơi tương tác với hệ thống\cite{schell-art}.
 
+Các nguyên lý cơ bản:
 \begin{itemize}
-    \item \textbf{Phản hồi rõ ràng (Visual Feedback)}: hiệu ứng khi nhặt vật phẩm, đánh trúng, nhận thưởng.
-    \item \textbf{Giao diện nhất quán}: vị trí nút bấm và layout thống nhất.
-    \item \textbf{Giảm tải thông tin}: chỉ hiển thị những gì người chơi cần.
+    \item \textbf{Phản hồi rõ ràng (Visual Feedback)}: mọi hành động quan trọng (nhặt vật phẩm, nâng cấp, gây sát thương) cần có hiệu ứng hình ảnh và/hoặc âm thanh tương ứng.
+    \item \textbf{Giao diện nhất quán}: vị trí, màu sắc và hành vi của các nút, menu cần được duy trì nhất quán giữa các màn hình.
+    \item \textbf{Giảm tải thông tin}: chỉ hiển thị thông tin cần thiết trong mỗi ngữ cảnh, tránh làm người chơi bị “ngợp” vì quá nhiều chi tiết.
 \end{itemize}
 
 % ---------------------------------------------------------------
 \subsubsection{Balancing Fundamentals (Cân bằng game)}
 
-Balancing là điều chỉnh sao cho:
+Cân bằng (balancing) là quá trình điều chỉnh các thông số trong game sao cho trải nghiệm tổng thể hợp lý\cite{adams-game-design,schell-art}.
 
+Các khái niệm nền tảng:
 \begin{itemize}
-    \item nhân vật không quá mạnh hoặc quá yếu,
-    \item progression hợp lý,
-    \item phần thưởng tương xứng độ khó,
-    \item thời gian hoàn thành nhiệm vụ không quá dài.
-\end{itemize}
-
-Một số khái niệm nền:
-\begin{itemize}
-    \item \textbf{Linear vs Exponential Growth},
-    \item \textbf{Time-to-Kill (TTK)},
-    \item \textbf{Risk–Reward Ratio},
-    \item \textbf{Power Budget}.
+    \item \textbf{Linear vs Exponential Growth}: tốc độ tăng chỉ số tuyến tính hay lũy thừa.
+    \item \textbf{Time-to-Kill (TTK)}: thời gian trung bình để hạ gục một mục tiêu.
+    \item \textbf{Risk--Reward Ratio}: tỉ lệ giữa rủi ro mà người chơi chấp nhận và phần thưởng nhận được.
+    \item \textbf{Power Budget}: giới hạn tổng sức mạnh cho phép trong một hệ hoặc một build nhân vật.
 \end{itemize}
 
 % ===============================================================
 \subsection{Tổng kết chương}
 
-Chương này đã trình bày toàn bộ các nền tảng kỹ thuật và thiết kế liên quan đến Action RPG và game online. Các kiến thức về real-time gameplay, đồng bộ trạng thái, core loop, combat, progression, economy và UX sẽ được sử dụng làm cơ sở để phân tích yêu cầu và thiết kế hệ thống ở những chương tiếp theo.
+Chương này đã trình bày các kiến thức nền tảng về Action RPG, hệ thống multiplayer và các khái niệm cốt lõi trong thiết kế game: core loop, progression, combat, economy và UX. Những kiến thức này sẽ được sử dụng làm cơ sở cho các chương tiếp theo, đặc biệt là trong việc phân tích yêu cầu (Chương~5) và thiết kế hệ thống (Chương~7).
