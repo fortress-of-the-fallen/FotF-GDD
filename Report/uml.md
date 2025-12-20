@@ -16,6 +16,10 @@
 
 <img width="3292" height="4591" alt="image" src="https://github.com/user-attachments/assets/ba22e550-2ebc-4d45-aa80-7c04be370490" />
 
+## Wepond Gacha System
+
+<img width="7689" height="4414" alt="image" src="https://github.com/user-attachments/assets/5d6c470a-cee8-4b9d-af82-243008985bb0" />
+
 ## Progression
 <img width="3286" height="5430" alt="image" src="https://github.com/user-attachments/assets/c6cf7cb6-0f43-4242-b585-13fd4059fc40" />
 
