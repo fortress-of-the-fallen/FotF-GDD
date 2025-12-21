@@ -114,8 +114,8 @@
       \strng{authornamehash}{102d61e785c8cdd4157d4330c857544e}
       \strng{authorfullhash}{102d61e785c8cdd4157d4330c857544e}
       \strng{authorfullhashraw}{102d61e785c8cdd4157d4330c857544e}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{3}
@@ -165,8 +165,8 @@
       \strng{authornamehash}{3f56ad8f8e05fcad24de3fcf878fb50b}
       \strng{authorfullhash}{3f56ad8f8e05fcad24de3fcf878fb50b}
       \strng{authorfullhashraw}{3f56ad8f8e05fcad24de3fcf878fb50b}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://docs.unity3d.com/Manual/index.html}}
@@ -195,8 +195,8 @@
       \strng{authornamehash}{a81c884bf08b96a5e78c5036a0b82a3e}
       \strng{authorfullhash}{a81c884bf08b96a5e78c5036a0b82a3e}
       \strng{authorfullhashraw}{a81c884bf08b96a5e78c5036a0b82a3e}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://docs.nestjs.com}}
@@ -223,8 +223,8 @@
       \strng{authornamehash}{5307ab27e1d22a04e88f8bffc57c547a}
       \strng{authorfullhash}{5307ab27e1d22a04e88f8bffc57c547a}
       \strng{authorfullhashraw}{5307ab27e1d22a04e88f8bffc57c547a}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{2}
@@ -251,61 +251,37 @@
       \strng{authornamehash}{25e8f4d1f22f628a65c7445db52c6bb9}
       \strng{authorfullhash}{25e8f4d1f22f628a65c7445db52c6bb9}
       \strng{authorfullhashraw}{25e8f4d1f22f628a65c7445db52c6bb9}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Ứng dụng Redis cho cache, pub/sub, lưu trữ session}
       \field{title}{Redis in Action}
       \field{year}{2013}
     \endentry
-    \entry{github-docs}{misc}{}{}
+    \entry{gaffer-networking}{misc}{}{}
       \name{author}{1}{}{%
-        {{hash=d3b7c913cd04ebfec0e9ec32cb6fd58c}{%
-           family={GitHub},
-           familyi={G\bibinitperiod}}}%
+        {{hash=115b8af350e59a3a75d1e1601b157185}{%
+           family={Fiedler},
+           familyi={F\bibinitperiod},
+           given={Glenn},
+           giveni={G\bibinitperiod}}}%
       }
-      \strng{namehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{fullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{fullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{bibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{authorbibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{authornamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{authorfullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{authorfullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \field{extraname}{1}
+      \strng{namehash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{fullhash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{fullhashraw}{115b8af350e59a3a75d1e1601b157185}
+      \strng{bibnamehash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{authorbibnamehash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{authornamehash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{authorfullhash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{authorfullhashraw}{115b8af350e59a3a75d1e1601b157185}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://docs.github.com}}
-      \field{note}{Hướng dẫn sử dụng GitHub và Git cơ bản}
-      \field{title}{GitHub Documentation}
-      \field{year}{2023}
-    \endentry
-    \entry{github-projects}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=d3b7c913cd04ebfec0e9ec32cb6fd58c}{%
-           family={GitHub},
-           familyi={G\bibinitperiod}}}%
-      }
-      \strng{namehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{fullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{fullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{bibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{authorbibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{authornamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{authorfullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \strng{authorfullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
-      \field{extraname}{2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://docs.github.com/issues/planning-and-tracking-with-projects}}
-      \field{note}{Hướng dẫn sử dụng GitHub Projects để quản lý tác vụ}
-      \field{title}{GitHub Projects Documentation}
-      \field{year}{2023}
+      \field{note}{Tài liệu tham khảo về server authoritative, prediction, interpolation}
+      \field{title}{Gaffer on Games: Networking for Game Programmers}
+      \field{year}{2010}
     \endentry
     \entry{csharp-lang}{misc}{}{}
       \name{author}{1}{}{%
@@ -351,6 +327,54 @@
       \field{howpublished}{\url{https://nodejs.org/en/docs}}
       \field{note}{Tài liệu chính thức của Node.js}
       \field{title}{Node.js Documentation}
+      \field{year}{2023}
+    \endentry
+    \entry{github-docs}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=d3b7c913cd04ebfec0e9ec32cb6fd58c}{%
+           family={GitHub},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{fullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{fullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{bibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorbibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authornamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorfullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorfullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \field{extraname}{1}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://docs.github.com}}
+      \field{note}{Hướng dẫn sử dụng GitHub và Git cơ bản}
+      \field{title}{GitHub Documentation}
+      \field{year}{2023}
+    \endentry
+    \entry{github-projects}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=d3b7c913cd04ebfec0e9ec32cb6fd58c}{%
+           family={GitHub},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{fullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{fullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{bibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorbibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authornamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorfullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorfullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \field{extraname}{2}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://docs.github.com/issues/planning-and-tracking-with-projects}}
+      \field{note}{Hướng dẫn sử dụng GitHub Projects để quản lý tác vụ}
+      \field{title}{GitHub Projects Documentation}
       \field{year}{2023}
     \endentry
     \entry{uml-bpmn}{book}{}{}
@@ -427,74 +451,6 @@
       \field{note}{Tài liệu tham khảo về soạn thảo tài liệu bằng {\LaTeX}}
       \field{title}{The {\LaTeX} Companion}
       \field{year}{2004}
-    \endentry
-    \entry{gaffer-networking}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=115b8af350e59a3a75d1e1601b157185}{%
-           family={Fiedler},
-           familyi={F\bibinitperiod},
-           given={Glenn},
-           giveni={G\bibinitperiod}}}%
-      }
-      \strng{namehash}{115b8af350e59a3a75d1e1601b157185}
-      \strng{fullhash}{115b8af350e59a3a75d1e1601b157185}
-      \strng{fullhashraw}{115b8af350e59a3a75d1e1601b157185}
-      \strng{bibnamehash}{115b8af350e59a3a75d1e1601b157185}
-      \strng{authorbibnamehash}{115b8af350e59a3a75d1e1601b157185}
-      \strng{authornamehash}{115b8af350e59a3a75d1e1601b157185}
-      \strng{authorfullhash}{115b8af350e59a3a75d1e1601b157185}
-      \strng{authorfullhashraw}{115b8af350e59a3a75d1e1601b157185}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{Tài liệu tham khảo về server authoritative, prediction, interpolation}
-      \field{title}{Gaffer on Games: Networking for Game Programmers}
-      \field{year}{2010}
-    \endentry
-    \entry{mongodb-docs}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=206e3718af092fd1d12f80cae771ccac}{%
-           family={{MongoDB}},
-           familyi={M\bibinitperiod}}}%
-      }
-      \strng{namehash}{206e3718af092fd1d12f80cae771ccac}
-      \strng{fullhash}{206e3718af092fd1d12f80cae771ccac}
-      \strng{fullhashraw}{206e3718af092fd1d12f80cae771ccac}
-      \strng{bibnamehash}{206e3718af092fd1d12f80cae771ccac}
-      \strng{authorbibnamehash}{206e3718af092fd1d12f80cae771ccac}
-      \strng{authornamehash}{206e3718af092fd1d12f80cae771ccac}
-      \strng{authorfullhash}{206e3718af092fd1d12f80cae771ccac}
-      \strng{authorfullhashraw}{206e3718af092fd1d12f80cae771ccac}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{Tài liệu tham khảo cơ sở dữ liệu MongoDB}
-      \field{title}{MongoDB Manual (Documentation)}
-      \field{year}{2025}
-    \endentry
-    \entry{redis-docs}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=e111446745a1825b862f8727ae63bce4}{%
-           family={{Redis}},
-           familyi={R\bibinitperiod}}}%
-      }
-      \strng{namehash}{e111446745a1825b862f8727ae63bce4}
-      \strng{fullhash}{e111446745a1825b862f8727ae63bce4}
-      \strng{fullhashraw}{e111446745a1825b862f8727ae63bce4}
-      \strng{bibnamehash}{e111446745a1825b862f8727ae63bce4}
-      \strng{authorbibnamehash}{e111446745a1825b862f8727ae63bce4}
-      \strng{authornamehash}{e111446745a1825b862f8727ae63bce4}
-      \strng{authorfullhash}{e111446745a1825b862f8727ae63bce4}
-      \strng{authorfullhashraw}{e111446745a1825b862f8727ae63bce4}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{Tài liệu tham khảo cache/pubsub Redis}
-      \field{title}{Redis Documentation}
-      \field{year}{2025}
     \endentry
     \entry{sao-aincrad}{book}{}{}
       \name{author}{1}{}{%

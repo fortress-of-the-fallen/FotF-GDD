@@ -1,228 +1,262 @@
-\section{Hiện thực hệ thống}
+\section{Kế hoạch hiện thực prototype}
+\label{sec:implementation}
 
-\subsection{Mục tiêu hiện thực}
+\subsection{Mục tiêu và phạm vi}
+\label{subsec:impl-goals}
 
-Mục tiêu của chương này là mô tả quá trình hiện thực các thành phần của hệ thống
-Fortress of the Fallen trong giai đoạn 1, dựa trên thiết kế đã trình bày ở Chương 7.
-Nội dung tập trung vào cách tổ chức các thành phần client và server, cơ chế tích hợp
-giữa chúng, cũng như phạm vi hiện thực cụ thể của prototype.
+Chương này mô tả kế hoạch hiện thực một \textbf{prototype} nhằm kiểm chứng các quyết định thiết kế đã trình bày ở Chương~\ref{sec:design}. Prototype được định hướng như một ``bản chạy được'' để xác thực:
+\begin{itemize}
+    \item Luồng \textbf{Identity \& Profile}: đăng ký/đăng nhập, chọn profile/nhân vật, thiết lập phiên.
+    \item Luồng \textbf{real-time}: client gửi input, server xử lý authoritative và trả snapshot/event.
+    \item Các mô-đun meta-progression có dữ liệu bền vững: \textbf{Inventory}, \textbf{Gacha}, \textbf{Personal Island \& NPC}.
+    \item Pipeline \textbf{game configuration} theo hướng data-driven: Google Sheets $\rightarrow$ TSV $\rightarrow$ DB $\rightarrow$ Config Manager.
+\end{itemize}
 
-Việc hiện thực trong giai đoạn 1 không nhằm tạo ra một sản phẩm game hoàn chỉnh,
-mà đóng vai trò kiểm chứng các quyết định kiến trúc, công nghệ và luồng vận hành
-của hệ thống.
+Trong phạm vi prototype, các nội dung (map, quái, AI phức tạp, PvP hoàn chỉnh) không phải trọng tâm; ưu tiên là \textbf{đúng luồng}, \textbf{đúng dữ liệu} và \textbf{đúng ranh giới client--server}.
 
 %------------------------------------------------
 
-\subsection{Môi trường và công cụ triển khai}
+\subsection{Kế hoạch triển khai theo mốc}
+\label{subsec:impl-plan}
 
-\subsubsection{Môi trường phát triển}
+Kế hoạch triển khai được tổ chức theo các mốc tăng dần độ phức tạp: trước tiên dựng khung kết nối và xác thực, sau đó bổ sung hệ thống dữ liệu bền vững và cuối cùng là tích hợp các mô-đun meta.
 
-Hệ thống được hiện thực và kiểm thử trong môi trường phát triển cục bộ, bao gồm:
-
-\begin{itemize}
-    \item Máy tính cá nhân chạy hệ điều hành Windows.
-    \item Unity Editor cho phía client.
-    \item Node.js runtime cho phía backend.
-    \item MongoDB chạy dưới dạng local service hoặc container.
-\end{itemize}
-
-Hệ thống không yêu cầu triển khai trên môi trường production trong giai đoạn này.
-
-\subsubsection{Công cụ hỗ trợ}
-
-Các công cụ chính được sử dụng trong quá trình hiện thực gồm:
-\begin{itemize}
-    \item Unity Editor: xây dựng client, scene và logic gameplay.
-    \item NestJS CLI: tạo cấu trúc backend và các module dịch vụ.
-    \item Git và GitHub: quản lý mã nguồn và phối hợp làm việc nhóm.
-    \item Công cụ log và debug mặc định của Unity và Node.js.
-\end{itemize}
-
-%------------------------------------------------
-
-\subsection{Hiện thực phía client}
-
-\subsubsection{Cấu trúc project Unity}
-
-Project Unity được tổ chức theo hướng tách biệt rõ các nhóm chức năng:
-
-\begin{itemize}
-    \item \textbf{Scenes:} các scene chính như Login, CharacterSelect và TestMap.
-    \item \textbf{Scripts:} logic điều khiển nhân vật, xử lý input, quản lý kết nối mạng.
-    \item \textbf{UI:} các thành phần giao diện như form đăng nhập và HUD cơ bản.
-    \item \textbf{Network:} lớp giao tiếp HTTP và WebSocket với backend.
-\end{itemize}
-
-Cách tổ chức này giúp giảm phụ thuộc giữa gameplay, UI và networking.
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|p{2.3cm}|X|p{4.2cm}|}
+\hline
+\textbf{Mốc} & \textbf{Mục tiêu kỹ thuật} & \textbf{Tính năng kiểm chứng} \\
+\hline
+M1 & Dựng backend, DB, auth và kết nối client & Register/Login, token, chọn profile \\
+\hline
+M2 & Dựng kênh real-time và room/instance runtime cơ bản & Join room, gửi input, nhận snapshot (di chuyển) \\
+\hline
+M3 & Tích hợp dữ liệu bền vững và mô-đun meta tối thiểu & Inventory/currency, gacha NPC, island resources, worker assignment \\
+\hline
+M4 & Hoàn thiện pipeline cấu hình và logging/audit tối thiểu & TSV import, config versioning, business logs \\
+\hline
+\end{tabularx}
+\caption{Kế hoạch hiện thực prototype theo mốc}
+\label{tab:impl-milestones}
+\end{table}
 
 %------------------------------------------------
 
-\subsubsection{Hiện thực luồng đăng ký và đăng nhập}
+\subsection{Hiện thực phía client (Unity)}
+\label{subsec:impl-client}
 
-Luồng đăng ký và đăng nhập được hiện thực theo mô hình client--server chuẩn:
+\subsubsection{Tổ chức project và nguyên tắc phân lớp}
+\label{subsubsec:impl-client-structure}
 
+Client được tổ chức theo hướng tách biệt rõ ràng:
 \begin{itemize}
-    \item Client hiển thị form đăng ký/đăng nhập và thu thập dữ liệu người dùng.
-    \item Dữ liệu được gửi đến backend thông qua HTTP request.
-    \item Client nhận phản hồi thành công hoặc lỗi và cập nhật giao diện tương ứng.
+    \item \textbf{Presentation/UI}: màn hình login, profile/character select, HUD cơ bản, panel inventory/gacha/island.
+    \item \textbf{Gameplay}: điều khiển nhân vật, state machine animation, xử lý tương tác cơ bản.
+    \item \textbf{Networking}: lớp HTTP client (REST) và WebSocket client (real-time), quản lý token, retry và timeout.
+    \item \textbf{Data binding}: model dữ liệu để bind ra UI, tránh UI đọc trực tiếp dữ liệu thô từ network.
 \end{itemize}
 
-Token phiên nhận được sau khi đăng nhập được lưu tạm thời trên client để sử dụng
-cho các request tiếp theo và cho quá trình thiết lập kết nối real-time.
-
-%------------------------------------------------
-
-\subsubsection{Hiện thực quản lý nhân vật}
-
-Sau khi đăng nhập thành công, client thực hiện:
-
+Nguyên tắc chính:
 \begin{itemize}
-    \item Gửi request tải hồ sơ người chơi và danh sách nhân vật.
-    \item Hiển thị danh sách nhân vật hoặc giao diện tạo nhân vật mới.
-    \item Lưu characterId được chọn để sử dụng trong phiên chơi.
+    \item Client không tự ý ``xác nhận'' các thay đổi tiến trình (reward/currency/gacha).
+    \item Client hiển thị trạng thái dựa trên phản hồi server; với realtime, ưu tiên snapshot/event authoritative.
 \end{itemize}
 
-Trong giai đoạn 1, dữ liệu nhân vật được sử dụng ở mức tối thiểu, chủ yếu phục vụ
-việc xác định danh tính và vị trí khởi tạo trong phiên chơi thử nghiệm.
+\subsubsection{Luồng màn hình đề xuất}
+\label{subsubsec:impl-client-flow}
 
-%------------------------------------------------
-
-\subsubsection{Hiện thực điều khiển và hiển thị}
-
-Client hiện thực cơ chế điều khiển nhân vật cơ bản:
-
-\begin{itemize}
-    \item Thu thập input di chuyển từ bàn phím.
-    \item Gửi input dưới dạng ý định đến server thông qua WebSocket.
-    \item Nhận snapshot trạng thái từ server và cập nhật vị trí nhân vật.
-\end{itemize}
-
-Ở giai đoạn 1, client ưu tiên hiển thị trực tiếp trạng thái do server gửi về, chưa
-triển khai cơ chế dự đoán hay hiệu chỉnh phức tạp.
-
-%------------------------------------------------
-
-\subsection{Hiện thực phía server}
-
-\subsubsection{Cấu trúc project backend}
-
-Backend được hiện thực bằng NestJS và tổ chức theo kiến trúc module hoá:
-
-\begin{itemize}
-    \item \textbf{Auth Module:} xử lý đăng ký, đăng nhập và xác thực token.
-    \item \textbf{User Module:} quản lý thông tin người dùng.
-    \item \textbf{Character Module:} quản lý dữ liệu nhân vật.
-    \item \textbf{Session/Room Module:} quản lý phiên chơi và room logic.
-    \item \textbf{WebSocket Gateway:} xử lý giao tiếp real-time.
-\end{itemize}
-
-Cấu trúc này cho phép mở rộng thêm các module gameplay trong các giai đoạn tiếp theo.
-
-%------------------------------------------------
-
-\subsubsection{Hiện thực xác thực và quản lý phiên}
-
-Backend hiện thực cơ chế xác thực theo các bước:
-
-\begin{itemize}
-    \item Nhận request đăng nhập từ client.
-    \item Xác thực thông tin và tạo token phiên.
-    \item Kiểm tra token cho các request HTTP và kết nối WebSocket.
-\end{itemize}
-
-Phiên real-time được quản lý bằng cách ánh xạ giữa token, userId, characterId
-và socket tương ứng.
-
-%------------------------------------------------
-
-\subsubsection{Hiện thực WebSocket và đồng bộ trạng thái}
-
-Gateway WebSocket chịu trách nhiệm:
-
-\begin{itemize}
-    \item Thiết lập kết nối real-time sau khi client xác thực.
-    \item Nhận input di chuyển từ client.
-    \item Cập nhật trạng thái nhân vật trong vòng lặp tick đơn giản.
-    \item Phát snapshot trạng thái định kỳ về client.
-\end{itemize}
-
-Trong giai đoạn 1, vòng lặp tick được hiện thực ở mức cơ bản nhằm kiểm chứng
-luồng dữ liệu và tính ổn định của kết nối.
-
-%------------------------------------------------
-
-\subsubsection{Xử lý mất kết nối}
-
-Khi client mất kết nối WebSocket:
-
-\begin{itemize}
-    \item Server nhận sự kiện disconnect.
-    \item Giải phóng session runtime liên quan.
-    \item Cập nhật trạng thái nhân vật về offline (ở mức logic).
-\end{itemize}
-
-Cơ chế reconnect chỉ được xem xét ở mức định hướng và chưa hiện thực đầy đủ
-trong giai đoạn này.
-
-%------------------------------------------------
-
-\subsection{Hiện thực lưu trữ dữ liệu}
-
-\subsubsection{Lưu trữ dữ liệu bền vững}
-
-MongoDB được sử dụng để lưu trữ:
-
-\begin{itemize}
-    \item Thông tin tài khoản người dùng.
-    \item Thông tin nhân vật và thuộc tính cơ bản.
-\end{itemize}
-
-Dữ liệu được thiết kế linh hoạt nhằm sẵn sàng mở rộng cho các hệ thống gameplay
-phức tạp hơn trong tương lai.
-
-\subsubsection{Dữ liệu runtime}
-
-Các dữ liệu runtime như session và trạng thái room được lưu trong bộ nhớ server.
-Redis có thể được tích hợp trong các giai đoạn sau nếu cần mở rộng hoặc chia tải.
-
-%------------------------------------------------
-
-\subsection{Tích hợp client--server}
-
-Quá trình tích hợp được thực hiện theo các bước:
-
+Luồng điều hướng UI tối thiểu cho prototype:
 \begin{enumerate}
-    \item Client thực hiện đăng nhập và nhận token.
-    \item Client thiết lập kết nối WebSocket và xác thực.
-    \item Client tham gia phiên chơi thử nghiệm.
-    \item Client và server trao đổi input và snapshot trạng thái.
+    \item \textbf{Login/Register}: nhập thông tin, gọi API, lưu token.
+    \item \textbf{Profile Select}: liệt kê profile, tạo/chọn profile.
+    \item \textbf{Character Select/Create}: liệt kê nhân vật theo profile, tạo/chọn nhân vật.
+    \item \textbf{Main Hub (Island)}: load scene, hiển thị HUD, mở các panel inventory/gacha/NPC/island.
+    \item \textbf{Join Instance (tuỳ mốc)}: tham gia room realtime để kiểm chứng đồng bộ di chuyển/combat đơn giản.
 \end{enumerate}
 
-Việc tích hợp được kiểm thử với một số lượng nhỏ client đồng thời để đảm bảo
-luồng hoạt động ổn định.
+\subsubsection{Networking client: REST + WebSocket}
+\label{subsubsec:impl-client-network}
+
+Client duy trì 2 kênh:
+\begin{itemize}
+    \item \textbf{REST}: các thao tác quản lý (auth/profile/character/inventory/island/gacha).
+    \item \textbf{WebSocket}: join room, gửi input, nhận snapshot/event.
+\end{itemize}
+
+Quy ước xử lý lỗi UI:
+\begin{itemize}
+    \item \textbf{401/403}: token hết hạn hoặc sai quyền $\rightarrow$ điều hướng về login.
+    \item \textbf{5xx}: lỗi hệ thống $\rightarrow$ hiển thị trạng thái retry.
+    \item \textbf{network timeout}: hiển thị offline/reconnect và không cho thao tác tiến trình.
+\end{itemize}
 
 %------------------------------------------------
 
-\subsection{Phạm vi hiện thực và giới hạn}
+\subsection{Hiện thực phía server (NestJS)}
+\label{subsec:impl-server}
 
-Trong giai đoạn 1, hệ thống chỉ hiện thực các chức năng nền tảng:
+\subsubsection{Cấu trúc module và luồng request}
+\label{subsubsec:impl-server-modules}
 
+Backend triển khai theo module hoá để bám sát ranh giới nghiệp vụ:
 \begin{itemize}
-    \item Đăng ký và đăng nhập.
-    \item Quản lý nhân vật tối thiểu.
-    \item Kết nối real-time và đồng bộ di chuyển.
+    \item \textbf{AuthModule}: register/login, issue token, guard/role.
+    \item \textbf{ProfileModule}: CRUD profile, chọn profile, cập nhật last\_played.
+    \item \textbf{CharacterModule}: CRUD character, load character summary.
+    \item \textbf{InventoryModule}: get inventory, apply delta (reward, currency), equip/enhance (tuỳ mốc).
+    \item \textbf{GachaModule}: banner/rate/summon, update pity, duplicate handling.
+    \item \textbf{IslandModule}: get island, build/upgrade, resource sync.
+    \item \textbf{NpcModule}: list NPC, assign worker, update job state.
+    \item \textbf{RealtimeGateway}: websocket auth, join room, input handling, snapshot broadcasting.
+    \item \textbf{ConfigModule}: load config collections, provide lookup service, expose config version.
 \end{itemize}
 
-Các hệ thống nâng cao như NPC, combat, gacha, dungeon và PvP chỉ được đề cập
-ở mức thiết kế và không thuộc phạm vi hiện thực của chương này.
+Luồng xử lý chuẩn cho REST:
+\begin{enumerate}
+    \item Guard xác thực token và gắn context (userId/profileId/characterId nếu có).
+    \item Validate DTO và kiểm tra ràng buộc nghiệp vụ.
+    \item Thực hiện cập nhật DB theo hướng atomic ở mức tài liệu (document update).
+    \item Ghi business log/audit log nếu là giao dịch quan trọng.
+\end{enumerate}
+
+\subsubsection{Realtime: room runtime và tick loop tối thiểu}
+\label{subsubsec:impl-server-realtime}
+
+Room runtime được lưu trong bộ nhớ server (in-memory) trong phạm vi prototype:
+\begin{itemize}
+    \item \texttt{roomId}, \texttt{mode} (island/tower/dungeon/arena), danh sách player trong room.
+    \item Runtime state: position, HP/MP, flags trạng thái, cooldown state tối thiểu.
+    \item Input queue theo socket.
+\end{itemize}
+
+Tick loop tối thiểu (không tối ưu hoá) theo các bước:
+\begin{enumerate}
+    \item Nhận input và đưa vào queue theo \texttt{seq}.
+    \item Validate input (rate limit, trạng thái hợp lệ, không vượt tốc độ).
+    \item Cập nhật state và tạo snapshot.
+    \item Broadcast snapshot theo nhịp (tick rate cấu hình).
+\end{enumerate}
+
+Trong mốc đầu, snapshot chỉ cần chứa thông tin đủ để render:
+\[
+\{\;entityId,\;pos,\;rot,\;hp,\;mp,\;stateFlags\;\}
+\]
+Các kỹ thuật nâng cao (prediction/reconciliation) được xem là hướng mở rộng sau khi luồng cơ bản ổn định.
+
+%------------------------------------------------
+
+\subsection{Thiết kế hiện thực dữ liệu và truy xuất}
+\label{subsec:impl-data}
+
+\subsubsection{Schema collections và nguyên tắc embed/reference}
+\label{subsubsec:impl-data-schema}
+
+Các collections động (progression/state) ưu tiên embed khi dữ liệu gắn chặt vòng đời:
+\begin{itemize}
+    \item \textbf{CHARACTER}: nhúng base\_stats/resources/position/appearance.
+    \item \textbf{INVENTORY}: nhúng danh sách item instance.
+    \item \textbf{PERSONAL\_ISLAND}: nhúng island resources và danh sách buildings.
+    \item \textbf{NPC\_COLLECTION}: nhúng danh sách owned NPC.
+\end{itemize}
+
+Các collections cấu hình (static) dùng reference qua khoá \texttt{id}:
+\begin{itemize}
+    \item \textbf{CONFIG\_ITEM}: định nghĩa item.
+    \item \textbf{CONFIG\_BUILDING}: định nghĩa building và cost/time.
+    \item (mở rộng) \textbf{CONFIG\_SKILL}, \textbf{CONFIG\_RATES}, \textbf{CONFIG\_FORMULAS}, \ldots
+\end{itemize}
+
+\subsubsection{Nguyên tắc cập nhật an toàn cho giao dịch tiến trình}
+\label{subsubsec:impl-data-safety}
+
+Các thao tác nhạy cảm (reward/currency/gacha/build upgrade) cần:
+\begin{itemize}
+    \item \textbf{Idempotency key}: mỗi request có mã định danh giao dịch để tránh cấp trùng khi retry.
+    \item \textbf{Business log}: ghi lại delta trước/sau (hoặc sự kiện) để đối soát.
+    \item \textbf{Atomic update}: với dữ liệu trong một document, ưu tiên update trong một thao tác DB.
+\end{itemize}
+
+%------------------------------------------------
+
+\subsection{Hiện thực pipeline game configuration}
+\label{subsec:impl-config}
+
+\subsubsection{Định dạng TSV và quy ước}
+\label{subsubsec:impl-config-tsv}
+
+Mỗi TSV đại diện một bảng cấu hình, có cột \texttt{id} làm khoá chính. Quy ước:
+\begin{itemize}
+    \item Header dòng đầu tiên; encoding UTF-8.
+    \item Kiểu dữ liệu rõ ràng (int/float/string/bool) theo template.
+    \item Các tham chiếu chéo dùng khoá \texttt{id} (ví dụ itemRefId, buildingId).
+\end{itemize}
+
+\subsubsection{Import script: upsert và log phiên bản}
+\label{subsubsec:impl-config-import}
+
+Script import thực hiện:
+\begin{enumerate}
+    \item Parse TSV theo schema (validate required fields, type).
+    \item Upsert theo \texttt{id} vào collection tương ứng.
+    \item Tạo bản ghi \texttt{CONFIG\_IMPORT\_LOG} gồm: thời gian import, bảng, số dòng, checksum, người thực hiện.
+    \item Cập nhật \texttt{config\_version} (tăng dần) để runtime biết phiên bản đang chạy.
+\end{enumerate}
+
+\subsubsection{Config Manager runtime}
+\label{subsubsec:impl-config-manager}
+
+Config Manager nạp dữ liệu cấu hình từ DB vào bộ nhớ khi server khởi động:
+\begin{itemize}
+    \item Lưu theo map: \texttt{(tableName, id) $\rightarrow$ object}.
+    \item Cung cấp API nội bộ: \texttt{getItem(id)}, \texttt{getBuilding(id)}, \texttt{getFormula(key)}.
+    \item Khi trả dữ liệu về client, có thể kèm \texttt{config\_version} để debug nhất quán.
+\end{itemize}
+
+%------------------------------------------------
+
+\subsection{Kế hoạch kiểm thử và tiêu chí nghiệm thu}
+\label{subsec:impl-testing}
+
+\subsubsection{Kiểm thử theo use case}
+\label{subsubsec:impl-uc-test}
+
+Kiểm thử ưu tiên theo các use case trọng yếu (Chương~\ref{sec:analysis}):
+\begin{itemize}
+    \item Auth: register/login, token expiry.
+    \item Profile/Character: create/select, load summary.
+    \item Realtime: join room, move input, snapshot update, disconnect handling.
+    \item Gacha: summon 1x/10x, pity update, duplicate handling, history.
+    \item Island/NPC: build/upgrade timer (mock), assign worker, resource tick (mô phỏng).
+\end{itemize}
+
+\subsubsection{Kiểm thử dữ liệu và tính nhất quán}
+\label{subsubsec:impl-consistency-test}
+
+Các kịch bản cần kiểm chứng:
+\begin{itemize}
+    \item Retry request (gacha/reward) không làm nhân đôi kết quả.
+    \item Inventory stack và slot không vượt giới hạn.
+    \item Worker assignment không tạo trạng thái treo (NPC vừa ``rảnh'' vừa ``đang làm'').
+    \item Import TSV sai schema bị từ chối và không làm ``bẩn'' config.
+\end{itemize}
+
+\subsubsection{Tiêu chí nghiệm thu prototype}
+\label{subsubsec:impl-acceptance}
+
+Prototype đạt yêu cầu khi thoả tối thiểu:
+\begin{itemize}
+    \item Có thể đăng nhập, chọn profile/nhân vật và vào scene hub.
+    \item Có thể tham gia room realtime và đồng bộ di chuyển ổn định.
+    \item Gacha trả kết quả hợp lệ, lưu DB, cập nhật pity và xử lý trùng lặp.
+    \item Island/NPC có luồng dữ liệu bền vững (lưu và tải lại đúng).
+    \item Pipeline TSV import tạo được config version và runtime truy xuất đúng theo version.
+\end{itemize}
 
 %------------------------------------------------
 
 \subsection{Tổng kết chương}
+\label{subsec:impl-summary}
 
-Chương 8 đã trình bày quá trình hiện thực hệ thống Fortress of the Fallen trong
-giai đoạn 1, bao gồm hiện thực client, backend, cơ chế lưu trữ dữ liệu và tích hợp
-client--server.
-
-Các kết quả hiện thực này là cơ sở cho Chương 9, nơi hệ thống sẽ được đánh giá
-và kiểm thử dựa trên các tiêu chí đã xác định.
+Chương này đã trình bày kế hoạch hiện thực prototype nhằm kiểm chứng thiết kế hệ thống: tổ chức client và server, luồng REST/WebSocket, room realtime tối thiểu, chiến lược lưu trữ dữ liệu, pipeline game configuration theo TSV và kế hoạch kiểm thử theo use case. Kết quả của chương là cơ sở để thực hiện đánh giá/đối chiếu trong chương tiếp theo khi prototype được triển khai và chạy thử.

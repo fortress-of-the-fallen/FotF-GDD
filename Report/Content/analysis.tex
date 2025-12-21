@@ -1,28 +1,36 @@
 \section{Phân tích hệ thống}
 \label{sec:analysis}
 
-Chương này trình bày phân tích hệ thống cho đề tài \textit{Fortress of the Fallen} trong phạm vi giai đoạn 1. Mục tiêu của chương là chuyển hoá các yêu cầu đã nêu ở Chương 5 thành mô tả vận hành ở mức logic: hệ thống gồm những tác nhân nào, các chức năng chính được thể hiện qua các ca sử dụng (use case) nào, luồng xử lý nghiệp vụ diễn ra ra sao, dữ liệu nào được tạo/đọc/cập nhật, và các ràng buộc vận hành quan trọng. Nội dung chương là cơ sở trực tiếp để triển khai thiết kế kiến trúc, thiết kế API và thiết kế dữ liệu ở Chương 7.
+Chương này trình bày phân tích hệ thống cho trò chơi \textit{Fortress of the Fallen} ở mức logic, nhằm chuyển hoá yêu cầu (Chương~\ref{sec:requirements}) thành các mô tả vận hành có thể thiết kế và triển khai: tác nhân tham gia, các ca sử dụng theo từng phân hệ, luồng nghiệp vụ trọng yếu, dữ liệu phát sinh và các ràng buộc quan trọng. Kết quả phân tích là cơ sở trực tiếp cho thiết kế kiến trúc, thiết kế dữ liệu và thiết kế giao tiếp ở Chương~7.
 
 % ===============================================================
-\subsection{Tổng quan hệ thống}
+\subsection{Tổng quan phân hệ và ranh giới trách nhiệm}
 \label{subsec:analysis_overview}
 
-Trong giai đoạn 1, hệ thống tập trung vào việc xây dựng bộ khung nền tảng cho game online nhiều người chơi theo mô hình \textbf{client--server}. Các thành phần chính gồm:
-
+Hệ thống được tổ chức theo mô hình client--server, trong đó:
 \begin{itemize}
-    \item \textbf{Game Client (Unity)}: hiển thị, xử lý input, giao diện đăng nhập và luồng vào game; gửi yêu cầu (HTTP) và trao đổi sự kiện thời gian thực (WebSocket).
-    \item \textbf{Backend (NestJS/Node.js)}: cung cấp API xác thực, quản lý phiên, xử lý logic thời gian thực tối thiểu phục vụ prototype (ví dụ: đồng bộ vị trí/di chuyển mức cơ bản).
-    \item \textbf{Cơ sở dữ liệu (MongoDB)}: lưu trữ dữ liệu bền vững như tài khoản, hồ sơ người chơi, thông tin nhân vật.
-    \item \textbf{Cache/Session (Redis)}: lưu session, token hoặc dữ liệu truy cập thường xuyên (tuỳ mức hiện thực giai đoạn 1).
+    \item \textbf{Client} chịu trách nhiệm hiển thị, UI/UX, thu thập input và gửi yêu cầu/ý định hành động.
+    \item \textbf{Server} chịu trách nhiệm xác thực, quản lý phiên, kiểm tra luật nghiệp vụ và xác nhận các thay đổi ảnh hưởng tiến trình (reward/currency/progression/gacha/island).
 \end{itemize}
 
-Nguyên tắc vận hành cốt lõi của hệ thống là \textbf{server authoritative}: server quyết định trạng thái chính thức (đặc biệt với các dữ liệu có thể ảnh hưởng đến công bằng và tính nhất quán), còn client ưu tiên trải nghiệm hiển thị và phản hồi điều khiển.
+Các phân hệ nghiệp vụ chính của game được phân tích trong chương này gồm:
+\begin{itemize}
+    \item \textbf{Identity \& Profile}: tài khoản, thiết lập người dùng, game profile và phiên hoạt động.
+    \item \textbf{Character \& Progression}: nhân vật, level/EXP, phân bổ chỉ số, mở slot kỹ năng, hệ race/class và điều kiện mở khoá.
+    \item \textbf{Inventory \& Economy}: quản lý inventory, currency, trang bị, nâng cấp, tham chiếu tới cấu hình item.
+    \item \textbf{Combat \& Gameplay Modes}: tháp trung tâm, dungeon theo phiên (instance), arena PvP; vòng lặp chiến đấu thời gian thực.
+    \item \textbf{Recruitment (Gacha)}: banner, tỉ lệ, pity, xử lý trùng lặp và lịch sử.
+    \item \textbf{Personal Island \& NPC}: đảo cá nhân, công trình, timer xây dựng/nâng cấp, tài nguyên, bộ sưu tập NPC và phân công worker.
+    \item \textbf{Administration}: quản trị user, trạng thái, log/audit và cấu hình sự kiện.
+\end{itemize}
+
+Ngoài ra, hệ thống có lớp \textbf{game configuration} (dữ liệu tĩnh) phục vụ định nghĩa item/building/skill/rate, được quản lý theo pipeline riêng và được nạp vào \textit{Config Manager} để truy xuất nhất quán trong runtime.
 
 % ===============================================================
 \subsection{Tác nhân của hệ thống (Actors)}
 \label{subsec:analysis_actors}
 
-Các tác nhân tham gia tương tác với hệ thống được xác định như sau:
+Các tác nhân tương tác với hệ thống được xác định như sau.
 
 \begin{table}[H]
 \centering
@@ -32,527 +40,607 @@ Các tác nhân tham gia tương tác với hệ thống được xác định n
 \hline
 \textbf{Tác nhân} & \textbf{Mô tả} \\
 \hline
-Người chơi & Sử dụng game client; thực hiện đăng ký/đăng nhập; điều khiển nhân vật; tham gia phiên chơi. \\
+Player & Người chơi sử dụng game client để đăng nhập, chọn profile/nhân vật, tham gia nội dung chiến đấu, quản lý tiến trình và tài sản. \\
 \hline
-Game Client (Unity) & Đại diện cho người chơi để gửi/nhận dữ liệu; xử lý UI; gửi request HTTP và sự kiện WebSocket. \\
+Admin & Người quản trị hệ thống; có quyền thao tác trên user, log, mail hệ thống và cấu hình sự kiện. \\
 \hline
-Backend (NestJS) & Xử lý xác thực, cấp token, quản lý phiên và kênh real-time; xác nhận dữ liệu nhân vật; phát trạng thái cho client. \\
+Content Designer & Người thiết kế nội dung/thông số; quản lý bảng cấu hình (items/buildings/skills/rates) và xuất dữ liệu theo pipeline cấu hình. \\
 \hline
-MongoDB & Lưu trữ dữ liệu bền vững: User, Character và các metadata liên quan. \\
+Game Client & Ứng dụng chạy trên máy người chơi; hiển thị, gửi request HTTP, duy trì kênh real-time và hiển thị trạng thái. \\
 \hline
-Redis (tuỳ chọn) & Lưu session, token blacklist/whitelist, cache dữ liệu nóng; hỗ trợ pub/sub nếu mở rộng nhiều instance. \\
+Backend Server & Thành phần xử lý xác thực, nghiệp vụ và đồng bộ; ghi dữ liệu vào DB và cung cấp giao tiếp cho client/admin tools. \\
+\hline
+Database & Lưu trữ bền vững: dữ liệu tiến trình người chơi và các collections cấu hình. \\
 \hline
 \end{tabular}
-\caption{Các tác nhân của hệ thống}
+\caption{Danh sách tác nhân và vai trò}
 \label{tab:actors}
 \end{table}
 
 % ===============================================================
-\subsection{Phạm vi chức năng phân tích trong giai đoạn 1}
-\label{subsec:analysis_scope}
+\subsection{Phân tích Use Case theo phân hệ}
+\label{subsec:analysis_usecase}
 
-Theo định hướng giai đoạn 1, hệ thống phân tích tập trung vào các nhóm chức năng nền tảng sau:
+Phần này trình bày use case theo từng phân hệ nghiệp vụ. Mỗi nhóm use case đi kèm sơ đồ tổng quan và các use case trọng yếu sẽ được đặc tả chi tiết ở Mục~\ref{subsec:analysis_usecase_specs}.
 
-\begin{itemize}
-    \item \textbf{Nhóm xác thực \& tài khoản}: đăng ký, đăng nhập, đăng xuất, quản lý token.
-    \item \textbf{Nhóm nhân vật}: tải dữ liệu nhân vật sau đăng nhập; chọn nhân vật (nếu có nhiều slot); khởi tạo nhân vật tối thiểu.
-    \item \textbf{Nhóm phiên chơi \& kết nối real-time}: thiết lập kết nối WebSocket; tham gia ``phiên chơi'' thử nghiệm; đồng bộ trạng thái cơ bản (ví dụ: di chuyển).
-    \item \textbf{Nhóm vận hành tối thiểu}: xử lý mất kết nối, timeout, giới hạn request, log và theo dõi lỗi cơ bản.
-\end{itemize}
+% ---------------------------
+\subsubsection{Identity \& Profile}
+\label{subsec:analysis_uc_auth}
 
-Các tính năng nâng cao như đảo cá nhân, NPC, gacha, leo tháp/ngục, PvP, AI nâng cao \textbf{không thuộc phạm vi hiện thực của giai đoạn 1} và vì vậy chỉ xuất hiện như mục định hướng ở các chương sau, không đưa vào use case bắt buộc của giai đoạn này.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{Images/auth.png}
+    \caption{Use case tổng quan cho phân hệ Identity \& Profile}
+    \label{fig:uc-auth}
+\end{figure}
+
+Nhóm này bao gồm đăng ký/đăng nhập, quản lý thiết lập, tạo/chọn game profile và thiết lập session runtime để chuẩn bị vào phiên chơi.
+
+% ---------------------------
+\subsubsection{Character \& Progression}
+\label{subsec:analysis_uc_progress}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/progress.png}
+    \caption{Use case tổng quan cho phân hệ Character \& Progression}
+    \label{fig:uc-progress}
+\end{figure}
+
+Nhóm này tập trung vào tạo/chọn nhân vật, level/EXP, phân bổ chỉ số, quản lý kỹ năng theo slot, combo skill và mở khoá/chuyển class theo điều kiện.
+
+% ---------------------------
+\subsubsection{Combat \& Gameplay Modes}
+\label{subsec:analysis_uc_combat}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/combat.png}
+    \caption{Use case tổng quan cho phân hệ Combat \& Gameplay Modes}
+    \label{fig:uc-combat}
+\end{figure}
+
+Nhóm này mô tả hành trình tham gia nội dung (tower/dungeon/arena), vòng lặp chiến đấu real-time, xử lý kết phiên và ghi nhận reward/checkpoint.
+
+% ---------------------------
+\subsubsection{Recruitment (Gacha)}
+\label{subsec:analysis_uc_gacha}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{Images/gacha.png}
+    \caption{Use case tổng quan cho phân hệ Recruitment (Gacha)}
+    \label{fig:uc-gacha}
+\end{figure}
+
+Nhóm này mô tả quy trình xem banner/tỉ lệ, thực hiện summon, cập nhật pity, xử lý trùng lặp và ghi lịch sử.
+
+% ---------------------------
+\subsubsection{Personal Island \& NPC}
+\label{subsec:analysis_uc_island}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/island.png}
+    \caption{Use case tổng quan cho phân hệ Personal Island \& NPC}
+    \label{fig:uc-island}
+\end{figure}
+
+Nhóm này mô tả đảo cá nhân theo mô hình base-building: xây/nâng cấp công trình theo timer, quản lý tài nguyên, và phân công NPC làm worker.
+
+% ---------------------------
+\subsubsection{Administration}
+\label{subsec:analysis_uc_admin}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.\textwidth]{Images/admin.png}
+    \caption{Use case tổng quan cho phân hệ Administration}
+    \label{fig:uc-admin}
+\end{figure}
+
+Nhóm này bao gồm các tác vụ quản trị: quản lý trạng thái user, ban/unban, gửi mail hệ thống, xem log/audit và cấu hình sự kiện.
 
 % ===============================================================
-\subsection{Danh sách Use Case}
-\label{subsec:analysis_usecase_list}
+\subsection{Đặc tả Use Case trọng yếu}
+\label{subsec:analysis_usecase_specs}
 
-Danh sách ca sử dụng (use case) trong giai đoạn 1 được đề xuất như Bảng~\ref{tab:usecase_list}. Các use case được nhóm theo cụm chức năng để thuận tiện cho triển khai và kiểm thử.
+Phần này đặc tả các use case có ảnh hưởng trực tiếp tới tiến trình và tính nhất quán dữ liệu. Mỗi use case gồm: mục tiêu, tác nhân, tiền điều kiện, hậu điều kiện, luồng chính và luồng ngoại lệ.
+
+% ---------------------------
+\subsubsection{UC-A01 -- Đăng ký tài khoản}
+\label{subsubsec:uc-a01}
+
+\textbf{Mục tiêu:} Player tạo tài khoản mới để sử dụng hệ thống.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} Player chưa đăng nhập; client có thể kết nối API.
+
+\textbf{Hậu điều kiện:} USER được tạo trong DB; trạng thái tài khoản hợp lệ để đăng nhập.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Player nhập username/email và mật khẩu.
+    \item Client gửi request đăng ký.
+    \item Server kiểm tra định dạng, trùng lặp và chính sách mật khẩu.
+    \item Server băm mật khẩu và tạo USER (kèm settings mặc định).
+    \item Server trả kết quả thành công.
+\end{enumerate}
+
+\textbf{Ngoại lệ:}
+\begin{itemize}
+    \item Email/username trùng $\rightarrow$ trả lỗi trùng lặp.
+    \item Dữ liệu không hợp lệ $\rightarrow$ trả lỗi theo trường.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{UC-A02 -- Đăng nhập và tạo phiên hoạt động}
+\label{subsubsec:uc-a02}
+
+\textbf{Mục tiêu:} Xác thực Player, cấp token và thiết lập \texttt{SESSION\_RUNTIME} để duy trì phiên.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} USER tồn tại và không bị khoá.
+
+\textbf{Hậu điều kiện:} Token hợp lệ được cấp; server ghi nhận \texttt{last\_login}; phiên runtime có thể tham chiếu profile/character khi Player vào game.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Player nhập thông tin đăng nhập.
+    \item Client gửi request login.
+    \item Server xác thực thông tin, kiểm tra trạng thái tài khoản.
+    \item Server cấp token (có thời hạn) và tạo hoặc cập nhật session runtime (token, socket\_id nếu có, expires\_at).
+    \item Client lưu token và điều hướng sang bước chọn profile.
+\end{enumerate}
+
+\textbf{Ngoại lệ:}
+\begin{itemize}
+    \item Sai thông tin $\rightarrow$ trả lỗi xác thực.
+    \item Token hết hạn/không hợp lệ ở các request sau $\rightarrow$ yêu cầu login lại.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{UC-A03 -- Tạo và chọn Game Profile}
+\label{subsubsec:uc-a03}
+
+\textbf{Mục tiêu:} Player tạo/chọn GAME\_PROFILE để tách tiến trình theo nhiều profile (server/slot) trong cùng user.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} Đã đăng nhập (UC-A02).
+
+\textbf{Hậu điều kiện:} GAME\_PROFILE được tạo hoặc được chọn; session runtime cập nhật \texttt{profile\_id}.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Client hiển thị danh sách profile hiện có.
+    \item Player tạo profile mới hoặc chọn profile.
+    \item Server ghi \texttt{last\_played} khi profile được chọn.
+    \item Server cập nhật session runtime với \texttt{profile\_id}.
+\end{enumerate}
+
+\textbf{Ngoại lệ:}
+\begin{itemize}
+    \item Vượt giới hạn số profile (nếu áp dụng) $\rightarrow$ trả lỗi giới hạn.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{UC-P01 -- Tạo nhân vật và khởi tạo dữ liệu nền}
+\label{subsubsec:uc-p01}
+
+\textbf{Mục tiêu:} Player tạo CHARACTER thuộc GAME\_PROFILE, kèm dữ liệu nền: level, base stats, resources, position và appearance.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} Đã chọn profile (UC-A03); còn slot nhân vật (theo chính sách).
+
+\textbf{Hậu điều kiện:} CHARACTER và INVENTORY 1:1 được tạo; có thể chọn nhân vật để vào game.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Player chọn race, class khởi đầu, đặt tên và chọn appearance.
+    \item Client gửi request tạo nhân vật.
+    \item Server kiểm tra hợp lệ (tên, ràng buộc race/class).
+    \item Server tạo CHARACTER (level=1, exp=0), gán base stats mặc định, resources mặc định và vị trí khởi tạo.
+    \item Server tạo INVENTORY rỗng (max\_slots mặc định, currency mặc định).
+    \item Server trả dữ liệu nhân vật để client hiển thị.
+\end{enumerate}
+
+\textbf{Ngoại lệ:}
+\begin{itemize}
+    \item Tên không hợp lệ/trùng $\rightarrow$ trả lỗi và yêu cầu nhập lại.
+    \item Race/Class không hợp lệ $\rightarrow$ trả lỗi ràng buộc.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{UC-P02 -- Lên level và phân bổ điểm chỉ số}
+\label{subsubsec:uc-p02}
+
+\textbf{Mục tiêu:} Khi nhận đủ EXP, nhân vật lên level và nhận điểm phân bổ chỉ số theo quy tắc.
+
+\textbf{Tác nhân chính:} Player (thông qua hành động gameplay).
+
+\textbf{Tiền điều kiện:} CHARACTER tồn tại; có sự kiện nhận EXP.
+
+\textbf{Hậu điều kiện:} Level tăng (tối đa 100); cộng thêm \textbf{+5 stat points} mỗi level; mở slot kỹ năng theo milestone khi đạt mốc.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Sau khi hoàn thành nội dung, server tính EXP và cộng vào \texttt{current\_exp}.
+    \item Nếu vượt ngưỡng, server tăng level và cộng \texttt{stat\_points\_available} (+5).
+    \item Nếu level đạt mốc mở slot, server cập nhật trạng thái slot (normal/combo).
+    \item Client hiển thị thông báo lên level và cho phép phân bổ điểm.
+\end{enumerate}
+
+\textbf{Ngoại lệ:}
+\begin{itemize}
+    \item Đạt level 100 $\rightarrow$ không tăng level, chỉ cộng EXP theo chính sách hoặc khoá EXP.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{UC-P03 -- Quản lý kỹ năng theo slot và tạo Combo Skill}
+\label{subsubsec:uc-p03}
+
+\textbf{Mục tiêu:} Player trang bị kỹ năng vào slot; combo skill chỉ hợp lệ khi có slot combo và thoả quy tắc kết hợp.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} Player sở hữu kỹ năng đã học; slot tương ứng đã được mở theo level.
+
+\textbf{Hậu điều kiện:} Bộ kỹ năng trang bị được cập nhật; combo skill (nếu có) được lưu như một cấu hình trang bị hợp lệ.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Player mở màn hình kỹ năng và xem danh sách kỹ năng đã học.
+    \item Player kéo/thả hoặc chọn kỹ năng để gán vào normal slots.
+    \item Player chọn các kỹ năng thành phần để tạo combo, sau đó gán vào combo slot.
+    \item Server kiểm tra điều kiện (slot mở, điều kiện class/race/level, quy tắc combo).
+    \item Server lưu trạng thái trang bị và trả kết quả.
+\end{enumerate}
+
+\textbf{Ngoại lệ:}
+\begin{itemize}
+    \item Chưa mở combo slot $\rightarrow$ từ chối thao tác gán combo.
+    \item Combo không hợp lệ $\rightarrow$ trả lỗi quy tắc.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{UC-P04 -- Mở khoá Class theo điều kiện và chuyển Class}
+\label{subsubsec:uc-p04}
+
+\textbf{Mục tiêu:} Player mở khoá class mới dựa trên ngưỡng chỉ số/trait/achievement và có thể chuyển class theo chính sách.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} CHARACTER tồn tại; có dữ liệu chỉ số và trạng thái trait/achievement.
+
+\textbf{Hậu điều kiện:} Class mới được đánh dấu đã mở; nếu chuyển class, server cập nhật class hiện tại và các ràng buộc liên quan (kỹ năng class, loadout).
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Player xem danh sách class và điều kiện mở.
+    \item Player thực hiện hành động ``Unlock'' khi tin rằng đã đủ điều kiện.
+    \item Server kiểm tra điều kiện (stat threshold, karma/affinity/luck/resistance, điều kiện tiến trình).
+    \item Nếu đạt, server ghi nhận class đã mở và trả kết quả.
+    \item (Tuỳ chính sách) Player chọn ``Switch class''; server cập nhật class hiện hành và hiệu lực kỹ năng liên quan.
+\end{enumerate}
+
+\textbf{Ngoại lệ:}
+\begin{itemize}
+    \item Không đủ điều kiện $\rightarrow$ trả lỗi và hiển thị phần thiếu.
+    \item Class yêu cầu race đặc thù $\rightarrow$ từ chối nếu race không khớp.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{UC-I01 -- Nhận reward và cập nhật Inventory}
+\label{subsubsec:uc-i01}
+
+\textbf{Mục tiêu:} Ghi nhận item/currency sau khi hoàn thành nội dung; đảm bảo quy tắc stack và dung lượng inventory.
+
+\textbf{Tác nhân chính:} Player (kết quả từ gameplay).
+
+\textbf{Tiền điều kiện:} Nội dung kết thúc và có reward; INVENTORY tồn tại.
+
+\textbf{Hậu điều kiện:} INVENTORY được cập nhật nhất quán; item instance tham chiếu đúng item config.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Server xác định reward (item, gold, gem, \ldots).
+    \item Với item: server áp dụng quy tắc stack theo \texttt{CONFIG\_ITEM.max\_stack}.
+    \item Nếu thiếu slot, server xử lý theo chính sách (gửi mailbox, trả về kho tạm, hoặc từ chối nhận).
+    \item Server ghi cập nhật inventory và trả danh sách thay đổi cho client.
+\end{enumerate}
+
+\textbf{Ngoại lệ:}
+\begin{itemize}
+    \item Inventory đầy $\rightarrow$ kích hoạt chính sách overflow (tuỳ thiết kế).
+\end{itemize}
+
+% ---------------------------
+\subsubsection{UC-C01 -- Tham gia nội dung theo phiên (Tower/Dungeon/Arena)}
+\label{subsubsec:uc-c01}
+
+\textbf{Mục tiêu:} Player chọn nội dung, tham gia instance/room và bắt đầu vòng lặp combat real-time.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} Đã chọn nhân vật; kết nối real-time sẵn sàng.
+
+\textbf{Hậu điều kiện:} Player được gán vào instance; trạng thái phiên được ghi vào session runtime; client nhận dữ liệu khởi tạo.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Player chọn chế độ (tower/dungeon/arena) và tham số (tầng, độ khó, \ldots).
+    \item Client gửi request/join event.
+    \item Server kiểm tra điều kiện tham gia (level, tài nguyên, vé, \ldots).
+    \item Server tạo hoặc gán vào instance, gửi thông tin spawn/room state.
+    \item Client load scene và hiển thị HUD chiến đấu.
+\end{enumerate}
+
+\textbf{Ngoại lệ:}
+\begin{itemize}
+    \item Không đủ điều kiện $\rightarrow$ trả lỗi điều kiện và không tạo instance.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{UC-C02 -- Vòng lặp chiến đấu real-time và đồng bộ trạng thái}
+\label{subsubsec:uc-c02}
+
+\textbf{Mục tiêu:} Xử lý hành động combat và đồng bộ trạng thái giữa client và server trong phiên chơi.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} Đã ở trong instance (UC-C01) và có kênh real-time.
+
+\textbf{Hậu điều kiện:} Trạng thái authoritative được cập nhật; client hiển thị nhất quán theo snapshot/event.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Client gửi input/intent (move, attack, cast skill, dodge) theo nhịp.
+    \item Server xác thực input theo luật (cooldown, tài nguyên, vị trí hợp lệ).
+    \item Server cập nhật trạng thái (HP/MP/buff/debuff/position) và phát snapshot/event.
+    \item Client nội suy/trình diễn (animation, VFX) theo trạng thái nhận được.
+\end{enumerate}
+
+\textbf{Ngoại lệ:}
+\begin{itemize}
+    \item Mất kết nối $\rightarrow$ server đóng phiên hoặc cho phép reconnect trong thời gian cho phép.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{UC-C03 -- Kết phiên, checkpoint và ghi nhận tiến trình}
+\label{subsubsec:uc-c03}
+
+\textbf{Mục tiêu:} Sau khi kết thúc phiên, hệ thống ghi nhận kết quả: checkpoint, EXP, reward, log nghiệp vụ.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} Phiên kết thúc (thắng/thua/thoát).
+
+\textbf{Hậu điều kiện:} Dữ liệu tiến trình được cập nhật bền vững; reward được đưa vào inventory; checkpoint được ghi theo chính sách.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Server xác định trạng thái kết phiên và bảng phần thưởng.
+    \item Server cập nhật EXP/level (UC-P02), cập nhật inventory (UC-I01).
+    \item Server cập nhật checkpoint (tower/dungeon) nếu đạt điều kiện.
+    \item Server ghi log nghiệp vụ cho các giao dịch quan trọng.
+    \item Client hiển thị màn hình kết quả và phần thưởng.
+\end{enumerate}
+
+% ---------------------------
+\subsubsection{UC-G01 -- Gacha: Summon, pity và xử lý trùng lặp}
+\label{subsubsec:uc-g01}
+
+\textbf{Mục tiêu:} Player thực hiện summon theo banner; hệ thống trả kết quả theo tỉ lệ, cập nhật pity và xử lý duplicate.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} Banner đang hoạt động; Player có đủ tài nguyên summon.
+
+\textbf{Hậu điều kiện:} Kết quả summon được ghi nhận; NPC/đơn vị mới thêm vào collection hoặc chuyển đổi theo rule; pity cập nhật nhất quán.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Player chọn banner và hình thức summon (1x/10x).
+    \item Server kiểm tra tài nguyên và trừ chi phí.
+    \item Server thực hiện RNG theo rate của banner; áp dụng pity nếu đạt ngưỡng.
+    \item Với kết quả trùng: server chuyển đổi sang shard/point theo rule.
+    \item Server ghi lịch sử gacha và trả danh sách kết quả cho client.
+\end{enumerate}
+
+\textbf{Ngoại lệ:}
+\begin{itemize}
+    \item Không đủ tài nguyên $\rightarrow$ từ chối summon.
+    \item Banner hết hạn $\rightarrow$ yêu cầu refresh danh sách banner.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{UC-S01 -- Xây/Nâng cấp công trình trên đảo cá nhân}
+\label{subsubsec:uc-s01}
+
+\textbf{Mục tiêu:} Player xây hoặc nâng cấp công trình; hệ thống trừ tài nguyên và ghi timer.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} PERSONAL\_ISLAND tồn tại; có đủ tài nguyên; building config hợp lệ.
+
+\textbf{Hậu điều kiện:} BUILDING instance được tạo/cập nhật trạng thái; \texttt{finish\_time} được thiết lập; tài nguyên đảo được cập nhật.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Player chọn loại công trình và vị trí grid.
+    \item Client gửi request build/upgrade.
+    \item Server kiểm tra vị trí hợp lệ, không chồng lấn, thoả điều kiện level/town hall.
+    \item Server trừ tài nguyên theo \texttt{CONFIG\_BUILDING.cost} và đặt \texttt{finish\_time}.
+    \item Client hiển thị trạng thái \textit{Constructing/Upgrading}.
+\end{enumerate}
+
+% ---------------------------
+\subsubsection{UC-S02 -- Gán NPC làm worker cho công trình}
+\label{subsubsec:uc-s02}
+
+\textbf{Mục tiêu:} Player phân công NPC vào công trình để vận hành/đẩy tiến trình theo job.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} NPC\_COLLECTION tồn tại; NPC rảnh; công trình cho phép gán worker.
+
+\textbf{Hậu điều kiện:} Building lưu \texttt{assigned\_worker\_id}; NPC cập nhật \texttt{current\_job}.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Player chọn công trình và chọn NPC.
+    \item Server kiểm tra ràng buộc (NPC rảnh, công trình chưa có worker hoặc cho phép thay thế).
+    \item Server cập nhật liên kết hai chiều giữa building và NPC.
+    \item Client hiển thị NPC đang làm việc tại công trình.
+\end{enumerate}
+
+% ---------------------------
+\subsubsection{UC-AD01 -- Quản trị user: ban/unban và audit log}
+\label{subsubsec:uc-ad01}
+
+\textbf{Mục tiêu:} Admin quản lý trạng thái user, ban/unban và đảm bảo có audit log.
+
+\textbf{Tác nhân chính:} Admin.
+
+\textbf{Tiền điều kiện:} Admin đã xác thực và có quyền phù hợp.
+
+\textbf{Hậu điều kiện:} Trạng thái user cập nhật; phiên liên quan có thể bị thu hồi theo chính sách; hành động được ghi log.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Admin tìm kiếm user theo username/email/id.
+    \item Admin thực hiện ban/unban hoặc thay đổi trạng thái.
+    \item Server cập nhật USER.status và ghi audit log (actor, thời gian, hành động).
+    \item (Tuỳ chính sách) Server thu hồi session runtime/token hiện hành.
+\end{enumerate}
+
+% ===============================================================
+\subsection{Quy tắc nghiệp vụ và ràng buộc hệ thống}
+\label{subsec:analysis_rules}
+
+\subsubsection{Quy tắc Level và mở slot kỹ năng}
+\label{subsec:analysis_rules_level}
+
+Theo đặc tả hệ thống level:
+\begin{itemize}
+    \item Level tối đa: \textbf{100}.
+    \item Mỗi level nhận \textbf{+5 stat points}.
+    \item Level không tự động cấp kỹ năng; level chủ yếu mở slot để trang bị kỹ năng đã học.
+\end{itemize}
 
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{8pt}
-\begin{tabular}{|p{2.2cm}|p{4.5cm}|p{8.2cm}|}
+\begin{tabular}{|c|p{10.5cm}|}
 \hline
-\textbf{Mã} & \textbf{Tên Use Case} & \textbf{Mô tả ngắn} \\
+\textbf{Mốc level} & \textbf{Phần thưởng tiến trình (slot)} \\
 \hline
-UC01 & Đăng ký tài khoản & Người chơi tạo tài khoản mới; hệ thống kiểm tra hợp lệ và lưu vào DB. \\
+10 / 20 / 30 & Mở lần lượt Normal Skill Slot 1--3 \\
 \hline
-UC02 & Đăng nhập & Người chơi đăng nhập; hệ thống xác thực và cấp token phiên. \\
+40 & Mở Combo Skill Slot 1 \\
 \hline
-UC03 & Đăng xuất & Người chơi đăng xuất; hệ thống huỷ/đánh dấu token (tuỳ chính sách). \\
+50 & Mốc nội dung (boss loop) và điều chỉnh giới hạn stat cap theo thiết kế \\
 \hline
-UC04 & Tải hồ sơ người chơi & Client lấy thông tin tối thiểu của user (id, tên hiển thị, danh sách nhân vật). \\
+60 / 80 / 100 & Mở lần lượt Combo Skill Slot 2--4; tại level 100 mở \textit{Ultimate Combo} \\
 \hline
-UC05 & Tạo nhân vật (tối thiểu) & Nếu chưa có nhân vật, client tạo mới với dữ liệu cơ bản. \\
-\hline
-UC06 & Chọn nhân vật & Người chơi chọn nhân vật để vào phiên chơi thử nghiệm. \\
-\hline
-UC07 & Thiết lập kết nối real-time & Client mở WebSocket sau đăng nhập; xác thực kênh bằng token. \\
-\hline
-UC08 & Tham gia phiên chơi thử nghiệm & Server gán player vào một ``room/instance'' đơn giản để test. \\
-\hline
-UC09 & Gửi input di chuyển & Client gửi input/ý định di chuyển theo nhịp; server xác nhận và cập nhật trạng thái. \\
-\hline
-UC10 & Nhận cập nhật trạng thái & Client nhận snapshot/packet trạng thái để hiển thị vị trí và chuyển động. \\
-\hline
-UC11 & Xử lý mất kết nối & Khi WebSocket rớt, server giải phóng phiên; client hiển thị trạng thái và cho phép kết nối lại. \\
+70 / 90 & Mở lần lượt Normal Skill Slot 4--5 \\
 \hline
 \end{tabular}
-\caption{Danh sách use case giai đoạn 1}
-\label{tab:usecase_list}
+\caption{Mốc level và cơ chế mở slot kỹ năng}
+\label{tab:level-milestones-analysis}
 \end{table}
 
-% ===============================================================
-\subsection{Đặc tả Use Case chi tiết}
-\label{subsec:analysis_usecase_specs}
+\subsubsection{Quy tắc Race, Stat Cap và Trait bẩm sinh}
+\label{subsec:analysis_rules_race}
 
-Phần này đặc tả chi tiết các use case trọng yếu để làm cơ sở cho thiết kế API, thiết kế mô-đun và kiểm thử. Mỗi use case gồm: mục tiêu, tác nhân, tiền điều kiện, hậu điều kiện, luồng chính và luồng thay thế/ngoại lệ.
-
-% -----------------------------
-\subsubsection{UC01 -- Đăng ký tài khoản}
-\label{subsubsec:uc01_register}
-
-\textbf{Mục tiêu:} Cho phép người chơi tạo tài khoản mới trong hệ thống.
-
-\textbf{Tác nhân chính:} Người chơi (thông qua Game Client)
-
-\textbf{Tiền điều kiện:}
+Race quyết định:
 \begin{itemize}
-    \item Người chơi chưa đăng nhập.
-    \item Client có thể kết nối đến API backend (HTTP).
+    \item \textbf{Stat cap} theo từng thuộc tính.
+    \item \textbf{Trait bẩm sinh} (ví dụ tăng kháng, tăng hiệu quả chế tạo, hoặc điều kiện kích hoạt theo HP).
+\end{itemize}
+Ràng buộc quan trọng là điểm phân bổ chỉ số không được vượt stat cap theo race, và một số class đặc thù yêu cầu race tương ứng.
+
+\subsubsection{Quy tắc mở khoá Class}
+\label{subsec:analysis_rules_class}
+
+Class được phân tầng (Basic/Intermediate/Advanced/Legendary/Hidden). Điều kiện mở khoá có thể kết hợp:
+\begin{itemize}
+    \item Ngưỡng chỉ số (STR/DEX/CON/INT/WIS/CHA).
+    \item Trait đặc biệt (Karma/Affinity/Luck/Resistance, \ldots).
+    \item Điều kiện hành vi/tiến trình (ví dụ thắng PvP, tham gia arena, số NPC chỉ huy).
+    \item Điều kiện race cho các class độc quyền.
+\end{itemize}
+Việc mở khoá cần đảm bảo kiểm tra trên server để tránh sai lệch do client.
+
+\subsubsection{Quy tắc Inventory và tham chiếu cấu hình}
+\label{subsec:analysis_rules_inventory}
+
+\begin{itemize}
+    \item Inventory có giới hạn slot; item áp dụng quy tắc stack theo cấu hình.
+    \item Item trong inventory là \textbf{instance} (có \texttt{unique\_uid}, \texttt{enhancement\_level}, \texttt{durability}) và \textbf{tham chiếu} item definition bằng \texttt{item\_ref\_id}.
 \end{itemize}
 
-\textbf{Hậu điều kiện:}
+\subsubsection{Quy tắc Island và xây dựng công trình}
+\label{subsec:analysis_rules_island}
+
 \begin{itemize}
-    \item Tài khoản mới được lưu trong MongoDB.
-    \item Người chơi có thể thực hiện UC02 (Đăng nhập).
+    \item Đảo cá nhân quản lý tài nguyên và danh sách công trình theo grid.
+    \item Xây/nâng cấp công trình tạo timer (\texttt{finish\_time}) và trạng thái (building status).
+    \item Worker assignment cần đồng bộ hai chiều giữa công trình và NPC để tránh trạng thái treo.
 \end{itemize}
 
-\textbf{Luồng chính:}
-\begin{enumerate}
-    \item Người chơi mở màn hình đăng ký và nhập thông tin (ví dụ: email/username, mật khẩu).
-    \item Client gửi request đăng ký đến backend.
-    \item Backend kiểm tra hợp lệ (định dạng, độ dài, chính sách mật khẩu).
-    \item Backend kiểm tra trùng lặp tài khoản (email/username) trong DB.
-    \item Nếu hợp lệ, backend băm mật khẩu và lưu user mới vào DB.
-    \item Backend trả về kết quả thành công cho client.
-    \item Client hiển thị thông báo đăng ký thành công và chuyển sang màn hình đăng nhập.
-\end{enumerate}
+\subsubsection{Quy tắc Gacha: rate, pity và duplicate}
+\label{subsec:analysis_rules_gacha}
 
-\textbf{Luồng thay thế/ngoại lệ:}
 \begin{itemize}
-    \item \textbf{E01-1:} Thông tin không hợp lệ (mật khẩu quá ngắn, email sai định dạng) $\rightarrow$ backend trả lỗi; client hiển thị lỗi theo trường.
-    \item \textbf{E01-2:} Tài khoản đã tồn tại $\rightarrow$ backend trả lỗi trùng; client gợi ý đăng nhập.
-    \item \textbf{E01-3:} Lỗi DB (mất kết nối, timeout) $\rightarrow$ backend trả lỗi hệ thống; client hiển thị và cho phép thử lại.
+    \item Tỉ lệ theo banner là dữ liệu cấu hình; cần minh bạch hiển thị cho Player.
+    \item Pity là trạng thái tiến trình, cần lưu bền vững theo banner hoặc theo nhóm banner.
+    \item Kết quả trùng lặp được chuyển đổi theo rule (shard/point/\ldots) để tránh ``mất giá trị''.
 \end{itemize}
-
-% -----------------------------
-\subsubsection{UC02 -- Đăng nhập}
-\label{subsubsec:uc02_login}
-
-\textbf{Mục tiêu:} Xác thực người chơi và cấp token phiên để truy cập các chức năng sau.
-
-\textbf{Tác nhân chính:} Người chơi (thông qua Game Client)
-
-\textbf{Tiền điều kiện:}
-\begin{itemize}
-    \item Người chơi đã có tài khoản (UC01).
-    \item Client có thể gọi API backend.
-\end{itemize}
-
-\textbf{Hậu điều kiện:}
-\begin{itemize}
-    \item Client nhận được token (ví dụ: JWT) và lưu tạm (memory/secure storage).
-    \item Người chơi có thể thực hiện UC04, UC07.
-\end{itemize}
-
-\textbf{Luồng chính:}
-\begin{enumerate}
-    \item Người chơi nhập thông tin đăng nhập.
-    \item Client gửi request đăng nhập tới backend.
-    \item Backend tìm user theo username/email.
-    \item Backend so sánh mật khẩu (verify hash).
-    \item Nếu đúng, backend tạo token phiên (kèm hạn dùng) và trả về cho client.
-    \item Client lưu token và chuyển sang màn hình tải dữ liệu người chơi (UC04).
-\end{enumerate}
-
-\textbf{Luồng thay thế/ngoại lệ:}
-\begin{itemize}
-    \item \textbf{E02-1:} Sai tài khoản hoặc mật khẩu $\rightarrow$ trả lỗi xác thực; client hiển thị thông báo chung.
-    \item \textbf{E02-2:} Tài khoản bị khoá (nếu có chính sách) $\rightarrow$ trả lỗi trạng thái; client hiển thị thông tin.
-    \item \textbf{E02-3:} Backend quá tải/timeout $\rightarrow$ client cho phép thử lại.
-\end{itemize}
-
-% -----------------------------
-\subsubsection{UC04 -- Tải hồ sơ người chơi}
-\label{subsubsec:uc04_profile}
-
-\textbf{Mục tiêu:} Client lấy dữ liệu tối thiểu của user và danh sách nhân vật để quyết định tạo/chọn nhân vật.
-
-\textbf{Tác nhân chính:} Game Client
-
-\textbf{Tiền điều kiện:}
-\begin{itemize}
-    \item Client đã có token hợp lệ (UC02).
-\end{itemize}
-
-\textbf{Hậu điều kiện:}
-\begin{itemize}
-    \item Client có dữ liệu profile và danh sách character.
-    \item Nếu chưa có nhân vật: chuyển UC05. Nếu có: chuyển UC06.
-\end{itemize}
-
-\textbf{Luồng chính:}
-\begin{enumerate}
-    \item Client gửi request lấy profile kèm token.
-    \item Backend xác thực token.
-    \item Backend truy vấn DB lấy dữ liệu user và danh sách character liên quan.
-    \item Backend trả dữ liệu về client.
-    \item Client hiển thị màn hình chọn nhân vật (UC06) hoặc tạo nhân vật (UC05).
-\end{enumerate}
-
-\textbf{Luồng thay thế/ngoại lệ:}
-\begin{itemize}
-    \item \textbf{E04-1:} Token hết hạn/không hợp lệ $\rightarrow$ backend trả lỗi; client đưa về màn hình đăng nhập.
-    \item \textbf{E04-2:} Không tìm thấy user $\rightarrow$ lỗi hệ thống; client báo lỗi và yêu cầu đăng nhập lại.
-\end{itemize}
-
-% -----------------------------
-\subsubsection{UC05 -- Tạo nhân vật (tối thiểu)}
-\label{subsubsec:uc05_create_character}
-
-\textbf{Mục tiêu:} Cho phép người chơi khởi tạo nhân vật cơ bản để vào phiên chơi prototype.
-
-\textbf{Tác nhân chính:} Người chơi (thông qua Game Client)
-
-\textbf{Tiền điều kiện:}
-\begin{itemize}
-    \item Đã đăng nhập và có token hợp lệ.
-    \item Người chơi chưa có nhân vật hoặc còn slot trống.
-\end{itemize}
-
-\textbf{Hậu điều kiện:}
-\begin{itemize}
-    \item Nhân vật mới được tạo và lưu DB.
-    \item Client có thể chọn nhân vật để vào game (UC06).
-\end{itemize}
-
-\textbf{Luồng chính:}
-\begin{enumerate}
-    \item Người chơi nhập thông tin nhân vật tối thiểu (tên nhân vật, lựa chọn ngoại hình cơ bản nếu có).
-    \item Client gửi request tạo nhân vật kèm token.
-    \item Backend xác thực token, kiểm tra ràng buộc (tên trống, độ dài, ký tự).
-    \item Backend tạo document character với các thuộc tính nền (level=1, vị trí khởi tạo, chỉ số mặc định).
-    \item Backend lưu vào DB và liên kết với user.
-    \item Backend trả kết quả thành công và dữ liệu nhân vật.
-    \item Client chuyển sang màn hình chọn nhân vật hoặc tự chọn nhân vật vừa tạo (UC06).
-\end{enumerate}
-
-\textbf{Luồng thay thế/ngoại lệ:}
-\begin{itemize}
-    \item \textbf{E05-1:} Tên nhân vật không hợp lệ/trùng $\rightarrow$ báo lỗi và yêu cầu nhập lại.
-    \item \textbf{E05-2:} Hết slot nhân vật $\rightarrow$ báo lỗi giới hạn.
-\end{itemize}
-
-% -----------------------------
-\subsubsection{UC06 -- Chọn nhân vật}
-\label{subsubsec:uc06_select_character}
-
-\textbf{Mục tiêu:} Người chơi chọn một nhân vật để bắt đầu vào phiên chơi.
-
-\textbf{Tác nhân chính:} Người chơi
-
-\textbf{Tiền điều kiện:}
-\begin{itemize}
-    \item Đã có danh sách nhân vật (UC04).
-\end{itemize}
-
-\textbf{Hậu điều kiện:}
-\begin{itemize}
-    \item Client xác định characterId đang hoạt động.
-    \item Chuẩn bị kết nối real-time và tham gia phiên chơi (UC07, UC08).
-\end{itemize}
-
-\textbf{Luồng chính:}
-\begin{enumerate}
-    \item Client hiển thị danh sách nhân vật.
-    \item Người chơi chọn một nhân vật.
-    \item Client lưu characterId được chọn và chuyển sang bước kết nối real-time (UC07).
-\end{enumerate}
-
-% -----------------------------
-\subsubsection{UC07 -- Thiết lập kết nối real-time}
-\label{subsubsec:uc07_ws_connect}
-
-\textbf{Mục tiêu:} Thiết lập kênh WebSocket để trao đổi dữ liệu thời gian thực.
-
-\textbf{Tác nhân chính:} Game Client
-
-\textbf{Tiền điều kiện:}
-\begin{itemize}
-    \item Client có token hợp lệ và đã chọn characterId.
-\end{itemize}
-
-\textbf{Hậu điều kiện:}
-\begin{itemize}
-    \item WebSocket được thiết lập thành công.
-    \item Server gán socket với userId/characterId và tạo session runtime.
-\end{itemize}
-
-\textbf{Luồng chính:}
-\begin{enumerate}
-    \item Client mở kết nối WebSocket đến backend.
-    \item Client gửi message ``authenticate'' kèm token và characterId (hoặc kèm qua query/headers tuỳ thiết kế).
-    \item Server xác thực token, kiểm tra quyền sở hữu characterId.
-    \item Nếu hợp lệ, server gán socket vào session và trả ``auth\_ok''.
-    \item Client chuyển sang use case tham gia phiên chơi (UC08).
-\end{enumerate}
-
-\textbf{Luồng thay thế/ngoại lệ:}
-\begin{itemize}
-    \item \textbf{E07-1:} Token không hợp lệ/hết hạn $\rightarrow$ server từ chối, client quay lại đăng nhập.
-    \item \textbf{E07-2:} CharacterId không thuộc user $\rightarrow$ server từ chối, client tải lại profile.
-    \item \textbf{E07-3:} Mất kết nối khi bắt tay $\rightarrow$ client retry theo số lần giới hạn.
-\end{itemize}
-
-% -----------------------------
-\subsubsection{UC08 -- Tham gia phiên chơi thử nghiệm}
-\label{subsubsec:uc08_join_session}
-
-\textbf{Mục tiêu:} Đưa người chơi vào một phiên chơi (room/instance) đơn giản để kiểm thử đồng bộ.
-
-\textbf{Tác nhân chính:} Game Client
-
-\textbf{Tiền điều kiện:}
-\begin{itemize}
-    \item WebSocket đã xác thực (UC07).
-\end{itemize}
-
-\textbf{Hậu điều kiện:}
-\begin{itemize}
-    \item Người chơi được gán vào một room.
-    \item Client nhận trạng thái khởi tạo (spawn position, snapshot ban đầu).
-\end{itemize}
-
-\textbf{Luồng chính:}
-\begin{enumerate}
-    \item Client gửi message ``join\_session'' (kèm thông tin map/test scene nếu cần).
-    \item Server tạo hoặc chọn một room thử nghiệm.
-    \item Server load dữ liệu nhân vật tối thiểu (vị trí, hướng, tốc độ) và tạo entity runtime.
-    \item Server trả message ``join\_ok'' kèm snapshot ban đầu.
-    \item Client tạo nhân vật trong scene và bắt đầu vòng lặp gửi input di chuyển (UC09).
-\end{enumerate}
-
-\textbf{Luồng thay thế/ngoại lệ:}
-\begin{itemize}
-    \item \textbf{E08-1:} Room đầy (nếu có giới hạn) $\rightarrow$ server chuyển room khác.
-    \item \textbf{E08-2:} Lỗi load dữ liệu nhân vật $\rightarrow$ server trả lỗi; client hiển thị và thử lại.
-\end{itemize}
-
-% -----------------------------
-\subsubsection{UC09 -- Gửi input di chuyển}
-\label{subsubsec:uc09_move_input}
-
-\textbf{Mục tiêu:} Cho phép client gửi ý định di chuyển để server cập nhật vị trí nhân vật theo thời gian thực.
-
-\textbf{Tác nhân chính:} Game Client
-
-\textbf{Tiền điều kiện:}
-\begin{itemize}
-    \item Người chơi đã tham gia phiên chơi (UC08).
-\end{itemize}
-
-\textbf{Hậu điều kiện:}
-\begin{itemize}
-    \item Server nhận input và cập nhật trạng thái nhân vật.
-    \item Client và các client khác (nếu có) nhận được cập nhật để hiển thị.
-\end{itemize}
-
-\textbf{Luồng chính:}
-\begin{enumerate}
-    \item Ở mỗi nhịp (tick client) hoặc khi input thay đổi, client gửi message ``move\_input'' (hướng, tốc độ mong muốn, timestamp/seq).
-    \item Server nhận input và áp dụng vào vòng lặp tick của server.
-    \item Server kiểm tra ràng buộc (tốc độ tối đa, phạm vi hợp lệ, chống spam cơ bản).
-    \item Server cập nhật vị trí nhân vật trên trạng thái authoritative.
-    \item Server phát ``state\_update'' định kỳ về cho client (UC10).
-\end{enumerate}
-
-\textbf{Luồng thay thế/ngoại lệ:}
-\begin{itemize}
-    \item \textbf{E09-1:} Input gửi quá nhanh (flood) $\rightarrow$ server throttle hoặc bỏ qua.
-    \item \textbf{E09-2:} Dữ liệu sai định dạng $\rightarrow$ server cảnh báo và có thể đóng kết nối nếu lặp lại.
-\end{itemize}
-
-% -----------------------------
-\subsubsection{UC10 -- Nhận cập nhật trạng thái}
-\label{subsubsec:uc10_state_update}
-
-\textbf{Mục tiêu:} Client nhận snapshot/cập nhật trạng thái từ server để hiển thị chuyển động và vị trí nhất quán.
-
-\textbf{Tác nhân chính:} Game Client
-
-\textbf{Tiền điều kiện:}
-\begin{itemize}
-    \item Đã kết nối và ở trong phiên (UC08).
-\end{itemize}
-
-\textbf{Hậu điều kiện:}
-\begin{itemize}
-    \item Client cập nhật vị trí/animation theo snapshot.
-\end{itemize}
-
-\textbf{Luồng chính:}
-\begin{enumerate}
-    \item Server định kỳ gửi message ``state\_update'' (vị trí, vận tốc, hướng, timestamp).
-    \item Client nhận dữ liệu và lưu vào buffer snapshot.
-    \item Client nội suy (interpolation) để hiển thị mượt; nếu sai lệch lớn thì hiệu chỉnh (reconciliation) theo chính sách.
-\end{enumerate}
-
-\textbf{Ghi chú:} Ở giai đoạn 1, có thể áp dụng cơ chế đơn giản: cập nhật thẳng vị trí theo server để giảm độ phức tạp; các kỹ thuật nội suy/dự đoán có thể nâng cấp ở giai đoạn sau.
-
-% -----------------------------
-\subsubsection{UC11 -- Xử lý mất kết nối}
-\label{subsubsec:uc11_disconnect}
-
-\textbf{Mục tiêu:} Đảm bảo hệ thống xử lý an toàn khi client mất kết nối hoặc thoát game.
-
-\textbf{Tác nhân chính:} Game Client / Backend
-
-\textbf{Tiền điều kiện:}
-\begin{itemize}
-    \item Người chơi đang có session real-time.
-\end{itemize}
-
-\textbf{Hậu điều kiện:}
-\begin{itemize}
-    \item Server giải phóng session runtime và tài nguyên room.
-    \item Client hiển thị trạng thái mất kết nối và cho phép kết nối lại.
-\end{itemize}
-
-\textbf{Luồng chính:}
-\begin{enumerate}
-    \item Kết nối WebSocket bị ngắt (do mạng hoặc người chơi thoát).
-    \item Server nhận sự kiện disconnect.
-    \item Server xoá mapping socket--user, cập nhật trạng thái ``offline'' runtime.
-    \item (Tuỳ chính sách) Server lưu vị trí/tiến trình tối thiểu vào DB nếu cần.
-    \item Client hiển thị thông báo mất kết nối và chuyển về màn hình đăng nhập hoặc nút ``Reconnect''.
-\end{enumerate}
-
-\textbf{Luồng thay thế/ngoại lệ:}
-\begin{itemize}
-    \item \textbf{E11-1:} Reconnect trong thời gian ngắn $\rightarrow$ server cho phép nối lại session nếu còn hợp lệ (tuỳ phạm vi).
-\end{itemize}
-
-% ===============================================================
-\subsection{Phân tích luồng nghiệp vụ tổng quát}
-\label{subsec:analysis_business_flows}
-
-Phần này mô tả các luồng nghiệp vụ tổng quát ở mức hệ thống, nhằm thể hiện sự liên kết giữa các use case.
-
-% -----------------------------
-\subsubsection{Luồng A: Từ mở game đến vào phiên chơi}
-\label{subsubsec:flow_a}
-
-\begin{enumerate}
-    \item Người chơi mở game client.
-    \item Nếu chưa có tài khoản: thực hiện UC01 (Đăng ký).
-    \item Thực hiện UC02 (Đăng nhập) để nhận token.
-    \item Thực hiện UC04 (Tải hồ sơ người chơi).
-    \item Nếu chưa có nhân vật: UC05 (Tạo nhân vật).
-    \item UC06 (Chọn nhân vật).
-    \item UC07 (Thiết lập WebSocket và xác thực).
-    \item UC08 (Tham gia phiên chơi thử nghiệm).
-    \item Trong phiên: lặp UC09 (Gửi input di chuyển) và UC10 (Nhận cập nhật trạng thái).
-\end{enumerate}
-
-% -----------------------------
-\subsubsection{Luồng B: Mất kết nối khi đang chơi}
-\label{subsubsec:flow_b}
-
-\begin{enumerate}
-    \item Người chơi đang trong phiên chơi.
-    \item Mạng mất hoặc client đóng bất thường.
-    \item Server kích hoạt UC11 (Xử lý mất kết nối).
-    \item Client hiển thị lỗi và cung cấp lựa chọn: thoát về đăng nhập hoặc thử reconnect.
-\end{enumerate}
 
 % ===============================================================
 \subsection{Phân tích dữ liệu ở mức logic}
-\label{subsec:analysis_data_logic}
+\label{subsec:analysis_data}
 
-Ở mức logic (chưa đi vào thiết kế schema chi tiết), hệ thống giai đoạn 1 cần các nhóm dữ liệu chính:
+\subsubsection{Phân lớp dữ liệu: động và tĩnh}
+\label{subsec:analysis_data_types}
 
+Dữ liệu trong hệ thống được phân thành hai nhóm:
 \begin{itemize}
-    \item \textbf{User}: định danh người chơi, thông tin đăng nhập (hash), trạng thái tài khoản.
-    \item \textbf{Character}: thông tin nhân vật, thuộc tính nền (level, chỉ số cơ bản), trạng thái xuất hiện trong phiên (vị trí khởi tạo).
-    \item \textbf{Session (runtime)}: trạng thái phiên kết nối real-time (socketId, roomId, userId, characterId); thường lưu ở bộ nhớ server và/hoặc Redis.
+    \item \textbf{Dữ liệu tiến trình (dynamic)}: USER, GAME\_PROFILE, SESSION\_RUNTIME, CHARACTER, INVENTORY, PERSONAL\_ISLAND, NPC\_COLLECTION, pity state, lịch sử gacha, log nghiệp vụ.
+    \item \textbf{Dữ liệu cấu hình (static)}: CONFIG\_ITEM, CONFIG\_BUILDING và các bảng cấu hình mở rộng (skills, rates, drop tables, \ldots).
 \end{itemize}
 
-\subsubsection{CRUD ở mức logic}
-
-\begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.2}
-\setlength{\tabcolsep}{8pt}
-\begin{tabular}{|p{3.2cm}|p{3.2cm}|p{3.2cm}|p{3.2cm}|}
-\hline
-\textbf{Đối tượng} & \textbf{Create} & \textbf{Read} & \textbf{Update} \\
-\hline
-User &
-UC01 (Đăng ký) &
-UC02/UC04 (xác thực, tải profile) &
-Cập nhật trạng thái/metadata (tuỳ phạm vi) \\
-\hline
-Character &
-UC05 (Tạo nhân vật) &
-UC04/UC06/UC08 (tải để chọn/join) &
-Cập nhật vị trí/tiến trình tối thiểu (tuỳ phạm vi) \\
-\hline
-Session (runtime) &
-UC07/UC08 (tạo session) &
-Trong tick real-time &
-UC09/UC11 (cập nhật trạng thái, giải phóng) \\
-\hline
-\end{tabular}
-\caption{Phân tích CRUD mức logic cho giai đoạn 1}
-\label{tab:crud_logic}
-\end{table}
-
-% ===============================================================
-\subsection{Ràng buộc và giả định hệ thống}
-\label{subsec:analysis_constraints}
-
-Các ràng buộc và giả định dưới đây được đặt ra để phù hợp nguồn lực và phạm vi giai đoạn 1:
+\subsubsection{Các thực thể lõi theo phân hệ}
+\label{subsec:analysis_entities}
 
 \begin{itemize}
-    \item \textbf{Authoritative server}: server xác nhận trạng thái; client không quyết định dữ liệu quan trọng.
-    \item \textbf{Prototype real-time}: đồng bộ di chuyển ở mức cơ bản; các cơ chế tối ưu mạng nâng cao (prediction/reconciliation hoàn chỉnh) có thể giản lược.
-    \item \textbf{Một người chơi -- một kết nối}: mỗi user chỉ duy trì một session WebSocket hoạt động tại một thời điểm (giả định), giúp đơn giản hoá quản lý phiên.
-    \item \textbf{Giới hạn tải}: chưa tối ưu cho số lượng người chơi lớn; mục tiêu là đúng luồng và ổn định ở quy mô thử nghiệm.
-    \item \textbf{Bảo mật tối thiểu}: áp dụng xác thực token, validate input; các cơ chế chống gian lận nâng cao sẽ xem xét ở giai đoạn sau.
+    \item \textbf{Identity}: \texttt{USER} (kèm \texttt{OBJECT\_USER\_SETTINGS}), \texttt{GAME\_PROFILE}, \texttt{SESSION\_RUNTIME}.
+    \item \textbf{Character}: \texttt{CHARACTER} (base\_stats/resources/position/appearance dạng nhúng).
+    \item \textbf{Inventory}: \texttt{INVENTORY} và danh sách \texttt{STRUCT\_INVENTORY\_ITEM} tham chiếu \texttt{CONFIG\_ITEM}.
+    \item \textbf{Island}: \texttt{PERSONAL\_ISLAND} (resources nhúng) và \texttt{STRUCT\_BUILDING} tham chiếu \texttt{CONFIG\_BUILDING}.
+    \item \textbf{NPC}: \texttt{NPC\_COLLECTION} và \texttt{STRUCT\_OWNED\_NPC} (tái sử dụng struct stats/resources).
 \end{itemize}
 
-% ===============================================================
-\subsection{Tiêu chí kiểm thử suy ra từ phân tích}
-\label{subsec:analysis_test_criteria}
+\subsubsection{Quan hệ dữ liệu quan trọng}
+\label{subsec:analysis_relationships}
 
-Từ các use case đã phân tích, một số tiêu chí kiểm thử chức năng tối thiểu cho giai đoạn 1 gồm:
-
+Các quan hệ dữ liệu có ảnh hưởng trực tiếp tới luồng nghiệp vụ:
 \begin{itemize}
-    \item UC01: Đăng ký thành công, đăng ký trùng, dữ liệu không hợp lệ.
-    \item UC02: Đăng nhập đúng/sai, token trả về và lưu đúng.
-    \item UC04: Tải profile với token hợp lệ; từ chối khi token hết hạn.
-    \item UC05: Tạo nhân vật thành công; xử lý tên không hợp lệ.
-    \item UC07--UC08: WebSocket auth ok; join session thành công; join fail khi token sai.
-    \item UC09--UC10: Di chuyển gửi/nhận ổn định; trạng thái cập nhật theo nhịp.
-    \item UC11: Mất kết nối được xử lý; server giải phóng session; client hiển thị phù hợp.
+    \item USER $\rightarrow$ GAME\_PROFILE là quan hệ 1:N.
+    \item GAME\_PROFILE $\rightarrow$ CHARACTER là quan hệ 1:N.
+    \item CHARACTER $\rightarrow$ INVENTORY là quan hệ 1:1.
+    \item GAME\_PROFILE $\rightarrow$ PERSONAL\_ISLAND và NPC\_COLLECTION là quan hệ 1:1.
+    \item Inventory item instance tham chiếu item config; building instance tham chiếu building config.
 \end{itemize}
-
-Các tiêu chí này sẽ được cụ thể hoá ở Chương 9 (Đánh giá/kiểm thử) dưới dạng test case hoặc checklist.
 
 % ===============================================================
 \subsection{Tổng kết chương}
 \label{subsec:analysis_summary}
 
-Chương 6 đã phân tích hệ thống ở mức logic cho giai đoạn 1: xác định tác nhân, danh sách và đặc tả use case, luồng nghiệp vụ tổng quát, dữ liệu logic và các ràng buộc vận hành. Các kết quả phân tích là nền tảng để triển khai Chương 7 (Thiết kế hệ thống), trong đó các nội dung như kiến trúc mô-đun, thiết kế API, thiết kế room/session, thiết kế dữ liệu MongoDB/Redis và các sơ đồ (nếu có) sẽ được trình bày chi tiết.
+Chương này đã phân tích hệ thống theo các phân hệ nghiệp vụ của \textit{Fortress of the Fallen}: xác thực và profile, tiến trình nhân vật (level/slot/combo, race/class), inventory và kinh tế, combat theo phiên, gacha, đảo cá nhân \& NPC, và phân hệ quản trị. Đồng thời, chương đã xác định các use case trọng yếu, quy tắc nghiệp vụ và cấu trúc dữ liệu logic, làm tiền đề cho chương thiết kế hệ thống (Chương~7).

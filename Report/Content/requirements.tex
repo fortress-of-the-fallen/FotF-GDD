@@ -1,162 +1,328 @@
 \section{Phân tích yêu cầu}
+\label{sec:requirements}
 
-Chương này trình bày quá trình phân tích yêu cầu cho hệ thống trò chơi Action RPG trực tuyến \textit{Fortress of the Fallen}. Mục tiêu của chương là xác định rõ phạm vi hiện thực, các yêu cầu chức năng và phi chức năng của hệ thống trong giai đoạn 1, làm cơ sở cho các bước phân tích hệ thống, thiết kế và hiện thực ở các chương tiếp theo.
+Chương này xác định yêu cầu cho hệ thống game \textit{Fortress of the Fallen} ở mức \textbf{phân tích hệ thống}. Nội dung bao gồm: phạm vi, tác nhân, nhóm yêu cầu chức năng theo phân hệ, yêu cầu phi chức năng và yêu cầu dữ liệu. Các yêu cầu ở chương này là cơ sở để xây dựng mô hình use case/luồng nghiệp vụ (Chương~6) và kiến trúc + thiết kế dữ liệu (Chương~7).
 
-\subsection{Mục tiêu của hệ thống}
+% ===============================================================
+\subsection{Phạm vi và giả định}
+\label{subsec:req-scope}
 
-Mục tiêu của hệ thống trong giai đoạn 1 là xây dựng nền tảng kỹ thuật cho một trò chơi Action RPG trực tuyến nhiều người chơi, đóng vai trò như một prototype học thuật nhằm kiểm chứng các quyết định về kiến trúc và công nghệ.
+\subsubsection{Phạm vi giai đoạn 1}
 
-Cụ thể, hệ thống hướng đến các mục tiêu sau:
+Giai đoạn 1 tập trung vào \textbf{thiết kế hệ thống}. Do đó, các yêu cầu được mô tả theo hướng:
 \begin{itemize}
-    \item Xây dựng mô hình client--server cho game online thời gian thực.
-    \item Cho phép nhiều người chơi kết nối và tương tác đồng thời trong cùng một môi trường thử nghiệm.
-    \item Đồng bộ trạng thái nhân vật giữa client và server một cách nhất quán.
-    \item Thiết kế kiến trúc backend và mô hình dữ liệu có khả năng mở rộng cho các giai đoạn phát triển tiếp theo.
-    \item Đảm bảo phạm vi hiện thực phù hợp với quy mô một đồ án chuyên ngành.
+    \item làm rõ \textbf{các tính năng cần tồn tại} và cách chúng liên kết với nhau;
+    \item làm rõ \textbf{dữ liệu cần lưu} để đảm bảo nhất quán trạng thái người chơi;
+    \item làm rõ \textbf{ranh giới trách nhiệm} giữa client và server cho các tác vụ request--response và real-time.
 \end{itemize}
 
-Hệ thống ở giai đoạn này không đặt mục tiêu trở thành một sản phẩm game hoàn chỉnh, mà tập trung vào tính đúng đắn và hợp lý về mặt kỹ thuật.
+\subsubsection{Giả định}
 
-\subsection{Đối tượng sử dụng hệ thống}
-
-Hệ thống phục vụ hai nhóm đối tượng chính: người chơi và quản trị hệ thống.
-
-\subsubsection{Người chơi}
-
-Người chơi là đối tượng trực tiếp tương tác với hệ thống thông qua game client. Trong giai đoạn 1, người chơi có thể:
 \begin{itemize}
-    \item Đăng ký và đăng nhập tài khoản.
-    \item Kết nối đến server game.
-    \item Tải dữ liệu nhân vật từ server.
-    \item Điều khiển nhân vật di chuyển trong môi trường thử nghiệm.
-    \item Nhận các cập nhật trạng thái theo thời gian thực từ server.
+    \item Hệ thống vận hành theo mô hình client--server; server giữ vai trò quyết định cho các kết quả quan trọng (reward/currency/progression).
+    \item Dữ liệu trong hệ thống được chia thành:
+    \begin{itemize}
+        \item \textbf{Player progression/state (động)}: thay đổi theo hành vi người chơi.
+        \item \textbf{Game configuration (tĩnh)}: định nghĩa và tham số gameplay (item/building/skill/rates/\ldots).
+    \end{itemize}
+    \item Pipeline cấu hình \textbf{chỉ áp dụng cho game configuration}, không áp dụng cho toàn bộ dữ liệu DB.
 \end{itemize}
 
-Các chức năng này chủ yếu nhằm kiểm chứng cơ chế kết nối và đồng bộ trạng thái, chưa tập trung vào nội dung gameplay phức tạp.
+% ===============================================================
+\subsection{Tác nhân và ranh giới hệ thống}
+\label{subsec:req-actors}
 
-\subsubsection{Quản trị hệ thống}
+\subsubsection{Tác nhân}
 
-Quản trị hệ thống là đối tượng ở mức kỹ thuật, bao gồm nhóm phát triển. Vai trò chính bao gồm:
 \begin{itemize}
-    \item Quản lý cấu hình và vận hành server.
-    \item Theo dõi trạng thái kết nối và log hệ thống.
-    \item Kiểm thử và đánh giá các chức năng nền tảng.
+    \item \textbf{Player}: người chơi sử dụng client để trải nghiệm gameplay, quản lý tiến trình và tài sản.
+    \item \textbf{Admin}: người quản trị hệ thống, có quyền thao tác trên user, log, mail và cấu hình sự kiện.
 \end{itemize}
 
-Trong giai đoạn 1, hệ thống không yêu cầu giao diện quản trị riêng biệt.
+\subsubsection{Ranh giới hệ thống}
 
-\subsection{Phạm vi hiện thực trong giai đoạn 1}
-
-\subsubsection{Các chức năng thuộc phạm vi hiện thực}
-
-Trong giai đoạn 1, hệ thống tập trung hiện thực các chức năng nền tảng sau:
+Hệ thống được chia theo các nhóm thành phần:
 \begin{itemize}
-    \item Kiến trúc client--server cho game online.
-    \item Hệ thống xác thực người dùng (đăng ký, đăng nhập).
-    \item Kết nối real-time giữa client và server thông qua WebSocket.
-    \item Quản lý phiên kết nối của người chơi.
-    \item Tải và lưu trữ dữ liệu nhân vật cơ bản.
-    \item Đồng bộ vị trí và trạng thái di chuyển của nhân vật trong môi trường thử nghiệm.
+    \item \textbf{Client}: hiển thị (render), UI, input, điều hướng màn hình, nội suy hiển thị; gửi yêu cầu/ý định hành động.
+    \item \textbf{Server}: xác thực, quản lý phiên, xử lý nghiệp vụ, xác nhận kết quả, ghi DB.
+    \item \textbf{Data layer}: DB cho progression/state; collections cấu hình cho configuration; cache/session runtime (định hướng).
 \end{itemize}
 
-\subsubsection{Các chức năng không thuộc phạm vi hiện thực}
-
-Các hệ thống sau chỉ được đề cập ở mức định hướng hoặc thiết kế, không được hiện thực trong giai đoạn 1:
-\begin{itemize}
-    \item Hệ thống xây dựng và quản lý đảo cá nhân.
-    \item Hệ thống NPC, AI NPC và cơ chế gacha.
-    \item Hệ thống leo tháp nhiều tầng và các ngục phức tạp.
-    \item Hệ thống class--race--skill hoàn chỉnh.
-    \item Chế độ PvP Arena.
-    \item Hệ thống cân bằng game ở quy mô lớn và tối ưu hiệu năng nâng cao.
-\end{itemize}
-
-Việc giới hạn phạm vi giúp đảm bảo đồ án tập trung vào các mục tiêu học thuật cốt lõi.
-
+% ===============================================================
 \subsection{Yêu cầu chức năng}
+\label{subsec:req-functional}
 
-\subsubsection{Yêu cầu chức năng phía người chơi}
+Phần này mô tả yêu cầu chức năng theo từng phân hệ. Mỗi yêu cầu được gắn mã định danh để thuận tiện đối chiếu về sau.
 
-Hệ thống phải đáp ứng các yêu cầu chức năng sau đối với người chơi:
+% ---------------------------
+\subsubsection{Nhóm A: Authentication \& Profile}
+\label{subsec:req-auth}
+
 \begin{itemize}
-    \item Đăng ký tài khoản mới.
-    \item Đăng nhập bằng tài khoản hợp lệ.
-    \item Nhận phản hồi xác thực từ server.
-    \item Tải thông tin nhân vật sau khi đăng nhập thành công.
-    \item Tham gia môi trường game thử nghiệm.
-    \item Điều khiển nhân vật di chuyển trong môi trường game.
-    \item Nhận cập nhật trạng thái từ server theo thời gian thực.
+    \item \textbf{FR-A01} -- Đăng ký tài khoản: Player có thể đăng ký bằng username/email và mật khẩu.
+    \item \textbf{FR-A02} -- Đăng nhập: Player đăng nhập, nhận token phiên; server ghi nhận \texttt{last\_login}.
+    \item \textbf{FR-A03} -- Khôi phục mật khẩu: cung cấp luồng khôi phục (tối thiểu ở mức thiết kế).
+    \item \textbf{FR-A04} -- Quản lý thiết lập người dùng: lưu \textit{master volume}, \textit{sfx volume}, \textit{language}, \textit{notifications}.
+    \item \textbf{FR-A05} -- Tạo game profile: một user có thể tạo nhiều profile (phục vụ nhiều server/nhân vật).
+    \item \textbf{FR-A06} -- Chọn game profile: chọn profile để vào game; cập nhật \texttt{last\_played}.
+    \item \textbf{FR-A07} -- Quản lý session runtime: hệ thống lưu trạng thái phiên hiện hành (profile/character/room\_id).
 \end{itemize}
 
-\subsubsection{Yêu cầu chức năng phía hệ thống}
+% ---------------------------
+\subsubsection{Nhóm B: Character Creation \& Character Data}
+\label{subsec:req-character}
 
-Hệ thống backend phải đảm bảo:
+\paragraph{Yêu cầu tạo nhân vật}
 \begin{itemize}
-    \item Xác thực người dùng và quản lý phiên đăng nhập.
-    \item Quản lý kết nối WebSocket cho từng người chơi.
-    \item Nhận và xử lý input từ client.
-    \item Cập nhật trạng thái nhân vật dựa trên input nhận được.
-    \item Gửi snapshot trạng thái thế giới về cho client.
-    \item Lưu trữ và truy xuất dữ liệu một cách nhất quán.
+    \item \textbf{FR-B01} -- Tạo nhân vật: Player tạo CHARACTER thuộc một GAME\_PROFILE.
+    \item \textbf{FR-B02} -- Tuỳ chọn cơ bản: đặt tên, chọn giới tính (nếu có), chọn \textbf{race} và \textbf{class khởi đầu}.
+    \item \textbf{FR-B03} -- Tuỳ chọn ngoại hình: lưu các tham số appearance (hair/skin/face) để tái hiện nhất quán.
+    \item \textbf{FR-B04} -- Xoá nhân vật: Player có thể xoá CHARACTER theo chính sách (có thể yêu cầu xác nhận).
+    \item \textbf{FR-B05} -- Chọn nhân vật: Player chọn nhân vật để vào phiên chơi.
 \end{itemize}
 
-Server đóng vai trò server authoritative, là nguồn chân lý duy nhất cho trạng thái hệ thống.
+\paragraph{Race system (yêu cầu mức dữ liệu và mở khoá)}
+Dựa trên thiết kế chủng tộc, hệ thống cần thoả:
+\begin{itemize}
+    \item \textbf{FR-B06} -- Race ảnh hưởng \textbf{stat cap} và \textbf{trait bẩm sinh}.
+    \item \textbf{FR-B07} -- Race hiếm có thể yêu cầu điều kiện mở khoá (ví dụ: Karma ngưỡng, achievement, hoặc điều kiện tiến trình).
+    \item \textbf{FR-B08} -- Hiển thị thông tin race: client có thể xem mô tả, trait và stat cap trước khi xác nhận tạo nhân vật.
+\end{itemize}
 
+% ---------------------------
+\subsubsection{Nhóm C: Stats, Leveling, Skill Slots}
+\label{subsec:req-stats-level}
+
+\paragraph{Level system}
+\begin{itemize}
+    \item \textbf{FR-C01} -- Level tối đa là \textbf{100}.
+    \item \textbf{FR-C02} -- Mỗi lần lên level nhận \textbf{+5 stat points} để phân bổ.
+    \item \textbf{FR-C03} -- Level không tự động cấp kỹ năng; kỹ năng được thu thập từ nguồn khác (loot/quest/NPC/\ldots).
+\end{itemize}
+
+\paragraph{Stat allocation}
+\begin{itemize}
+    \item \textbf{FR-C04} -- Player có thể phân bổ điểm vào các thuộc tính nền: STR, DEX, CON, INT, WIS, CHA.
+    \item \textbf{FR-C05} -- Hệ thống tính các chỉ số suy diễn (HP/MP/ATK/DEF/CRIT/ACC/EVA/\ldots) từ thuộc tính nền theo công thức cấu hình.
+    \item \textbf{FR-C06} -- Ràng buộc stat cap theo race: không cho phân bổ vượt ngưỡng cho phép.
+\end{itemize}
+
+\paragraph{Skill slots và combo slots}
+Để hỗ trợ lối chơi đa dạng, hệ thống áp dụng cơ chế slot:
+\begin{itemize}
+    \item \textbf{FR-C07} -- Có \textbf{normal skill slots} để trang bị kỹ năng thường.
+    \item \textbf{FR-C08} -- Có \textbf{combo skill slots} để trang bị kỹ năng kết hợp (combo).
+    \item \textbf{FR-C09} -- Slot được mở dần theo level (milestone). Một cấu hình milestone tham chiếu:
+    \begin{itemize}
+        \item Normal slots: mở dần đến tối đa 5 slot.
+        \item Combo slots: mở dần tại các mốc 40/60/80/100 đến tối đa 4 slot (slot cuối là \textit{ultimate combo}).
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Thu thập và quản lý kỹ năng}
+\begin{itemize}
+    \item \textbf{FR-C10} -- Player có thể sở hữu danh sách kỹ năng đã học (learned skills).
+    \item \textbf{FR-C11} -- Player có thể trang bị kỹ năng vào slot; hệ thống kiểm tra điều kiện (class/race/level).
+    \item \textbf{FR-C12} -- Combo skill chỉ hợp lệ nếu thoả quy tắc kết hợp (theo cấu hình).
+\end{itemize}
+
+% ---------------------------
+\subsubsection{Nhóm D: Class System và mở khoá theo điều kiện}
+\label{subsec:req-class}
+
+\paragraph{Phân tầng class}
+Hệ thống class được phân tầng để tạo meta-progression:
+\begin{itemize}
+    \item \textbf{FR-D01} -- Hỗ trợ nhiều nhánh class (Warrior/Archer/Mage/Healer/Rogue/Tactician).
+    \item \textbf{FR-D02} -- Hỗ trợ nhiều tầng class: Basic, Intermediate, Advanced, Legendary và Hidden.
+\end{itemize}
+
+\paragraph{Điều kiện mở khoá class}
+\begin{itemize}
+    \item \textbf{FR-D03} -- Mở khoá class dựa trên điều kiện kết hợp:
+    \begin{itemize}
+        \item ngưỡng chỉ số (STR/DEX/CON/INT/WIS/CHA);
+        \item trait đặc biệt (Karma/Affinity/Luck/Resistance/\ldots);
+        \item điều kiện tiến trình/achievement (PvP, quest, sưu tầm, \ldots).
+    \end{itemize}
+    \item \textbf{FR-D04} -- Player có thể xem trước điều kiện và tiến độ đạt điều kiện để mở class.
+    \item \textbf{FR-D05} -- Khi mở class thành công, Player có thể chuyển class theo chính sách (ví dụ: cần xác nhận, giới hạn số lần, hoặc chi phí).
+\end{itemize}
+
+% ---------------------------
+\subsubsection{Nhóm E: Inventory, Equipment, Resources}
+\label{subsec:req-inventory}
+
+\begin{itemize}
+    \item \textbf{FR-E01} -- Inventory là 1:1 với character, có số slot tối đa và số slot đã dùng.
+    \item \textbf{FR-E02} -- Hỗ trợ currency cơ bản: gold và gem.
+    \item \textbf{FR-E03} -- Item trong inventory là \textbf{item instance} (uid/quantity/slot/enhancement/durability) và tham chiếu đến \textbf{item definition} qua \texttt{item\_ref\_id}.
+    \item \textbf{FR-E04} -- Stack rule: item có \texttt{max\_stack} theo cấu hình.
+    \item \textbf{FR-E05} -- Equip: trang bị vũ khí/giáp theo slot (theo cấu hình), cập nhật chỉ số hiệu lực.
+    \item \textbf{FR-E06} -- Enhance: nâng cấp trang bị theo chi phí và quy tắc; ghi nhận \texttt{enhancement\_level}.
+    \item \textbf{FR-E07} -- Durability (tuỳ chọn theo thiết kế): giảm độ bền theo sử dụng và có cơ chế sửa/khôi phục.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{Nhóm F: Combat \& Gameplay Modes}
+\label{subsec:req-combat}
+
+\paragraph{Nội dung combat}
+\begin{itemize}
+    \item \textbf{FR-F01} -- Central Tower: chọn tầng và tham gia nội dung theo tầng.
+    \item \textbf{FR-F02} -- Dungeon: tham gia nội dung PvE theo phiên (instance).
+    \item \textbf{FR-F03} -- Arena: tham gia PvP arena (tối thiểu ở mức thiết kế).
+\end{itemize}
+
+\paragraph{Hành động trong combat}
+\begin{itemize}
+    \item \textbf{FR-F04} -- Normal attack.
+    \item \textbf{FR-F05} -- Cast active skill.
+    \item \textbf{FR-F06} -- Dodge/Dash.
+    \item \textbf{FR-F07} -- Use consumable item.
+    \item \textbf{FR-F08} -- Revive (nếu có cơ chế hồi sinh).
+\end{itemize}
+
+\paragraph{Checkpoint và reward}
+\begin{itemize}
+    \item \textbf{FR-F09} -- Checkpoint: lưu mốc tiến độ theo nội dung (tower/dungeon) theo chính sách.
+    \item \textbf{FR-F10} -- Loot delivery: reward sau combat được ghi vào inventory; hệ thống kiểm tra capacity/stack.
+    \item \textbf{FR-F11} -- Reward logging: các giao dịch reward/currency cần được ghi log nghiệp vụ để truy vết.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{Nhóm G: Recruitment (Gacha)}
+\label{subsec:req-gacha}
+
+\begin{itemize}
+    \item \textbf{FR-G01} -- Banner: hiển thị danh sách banner đang hoạt động.
+    \item \textbf{FR-G02} -- Rates: hiển thị tỉ lệ rơi theo banner (minh bạch).
+    \item \textbf{FR-G03} -- Summon 1x và \textbf{FR-G04} -- Summon 10x.
+    \item \textbf{FR-G05} -- Pity meter: theo dõi pity theo banner hoặc theo nhóm banner (theo cấu hình).
+    \item \textbf{FR-G06} -- Exchange: đổi pity points theo rule.
+    \item \textbf{FR-G07} -- Duplicate handling: xử lý trùng lặp theo rule (convert shard/point/\ldots).
+    \item \textbf{FR-G08} -- Kết quả gacha được ghi vào DB và có thể truy vấn lịch sử (tối thiểu ở mức thiết kế).
+\end{itemize}
+
+% ---------------------------
+\subsubsection{Nhóm H: Personal Island \& NPC Collection}
+\label{subsec:req-island}
+
+\paragraph{Personal island}
+\begin{itemize}
+    \item \textbf{FR-H01} -- Mỗi GAME\_PROFILE sở hữu 1 đảo cá nhân (1:1).
+    \item \textbf{FR-H02} -- Quản lý tài nguyên đảo: wood/stone/food/iron (hoặc tập tương đương theo cấu hình).
+    \item \textbf{FR-H03} -- Xây công trình theo grid: kiểm tra vị trí hợp lệ, không chồng lấn.
+    \item \textbf{FR-H04} -- Construction timer: công trình có trạng thái và \texttt{finish\_time}.
+    \item \textbf{FR-H05} -- Nâng cấp công trình: trừ tài nguyên và cập nhật level + timer.
+    \item \textbf{FR-H06} -- Harvest: thu tài nguyên theo chu kỳ/điều kiện.
+\end{itemize}
+
+\paragraph{NPC collection và worker assignment}
+\begin{itemize}
+    \item \textbf{FR-H07} -- Mỗi GAME\_PROFILE sở hữu 1 bộ sưu tập NPC (1:1).
+    \item \textbf{FR-H08} -- NPC có rarity/level/star/friendship/current\_job và có thể tái sử dụng cấu trúc stats/resources giống nhân vật.
+    \item \textbf{FR-H09} -- Assign worker: gán NPC vào công trình; cập nhật liên kết hai chiều (building.assigned\_worker\_id và npc.current\_job).
+    \item \textbf{FR-H10} -- NPC hoạt động tạo tài nguyên ở mức đơn giản (định hướng prototype), có thể mở rộng hành vi theo job.
+\end{itemize}
+
+% ---------------------------
+\subsubsection{Nhóm I: Administration}
+\label{subsec:req-admin}
+
+\begin{itemize}
+    \item \textbf{FR-I01} -- Quản lý user: xem thông tin, cập nhật trạng thái (active/banned/\ldots).
+    \item \textbf{FR-I02} -- Ban/Unban: admin có thể ban/unban; thu hồi session theo chính sách.
+    \item \textbf{FR-I03} -- System mail: gửi mail hệ thống theo user/profile/nhóm.
+    \item \textbf{FR-I04} -- Log viewer: xem log theo thời gian/severity/actor.
+    \item \textbf{FR-I05} -- Event config: tạo/sửa cấu hình sự kiện theo thời gian và phần thưởng (lưu DB).
+\end{itemize}
+
+% ===============================================================
 \subsection{Yêu cầu phi chức năng}
+\label{subsec:req-nonfunctional}
 
-\subsubsection{Hiệu năng}
-
-\begin{itemize}
-    \item Hệ thống phải đảm bảo độ trễ chấp nhận được trong môi trường thử nghiệm.
-    \item Có khả năng xử lý nhiều kết nối đồng thời ở quy mô phù hợp với đồ án.
-    \item Đảm bảo trải nghiệm real-time không bị gián đoạn nghiêm trọng.
-\end{itemize}
-
-\subsubsection{Bảo mật}
+\subsubsection{Bảo mật và an toàn dữ liệu}
 
 \begin{itemize}
-    \item Mật khẩu người dùng phải được mã hoá khi lưu trữ.
-    \item Client không được phép tự quyết định kết quả gameplay.
-    \item Các dữ liệu nhạy cảm phải được xử lý phía server.
+    \item \textbf{NFR-S01} -- Mật khẩu phải lưu dạng hash; không lưu plaintext.
+    \item \textbf{NFR-S02} -- Token/session có thời hạn; hỗ trợ revoke khi ban user hoặc logout.
+    \item \textbf{NFR-S03} -- Phân quyền admin theo role; mọi thao tác admin cần audit log.
+    \item \textbf{NFR-S04} -- Các thao tác reward/currency/progression phải chống cấp trùng (idempotent ở mức thiết kế).
 \end{itemize}
 
-\subsubsection{Khả năng mở rộng và bảo trì}
+\subsubsection{Hiệu năng và tính phản hồi}
 
 \begin{itemize}
-    \item Kiến trúc backend phải được tổ chức theo hướng module hoá.
-    \item Dễ dàng mở rộng thêm các hệ thống gameplay trong tương lai.
-    \item Mã nguồn rõ ràng, dễ bảo trì.
+    \item \textbf{NFR-P01} -- Các API không real-time (login/profile/inventory) phải có thời gian phản hồi ổn định.
+    \item \textbf{NFR-P02} -- Kênh real-time cần hỗ trợ cập nhật trạng thái thường xuyên (snapshot/event) để client nội suy mượt.
+    \item \textbf{NFR-P03} -- Giảm truy vấn DB cho dữ liệu nóng bằng cache hoặc nạp cấu hình vào bộ nhớ (Config Manager).
 \end{itemize}
 
-\subsubsection{Tính ổn định}
+\subsubsection{Tính mở rộng và bảo trì}
 
 \begin{itemize}
-    \item Hệ thống phải xử lý được trường hợp ngắt kết nối đột ngột.
-    \item Không gây crash server khi một client gặp lỗi.
-    \item Có cơ chế log để phục vụ kiểm thử và phân tích lỗi.
+    \item \textbf{NFR-M01} -- Hệ thống module hoá theo phân hệ, hạn chế phụ thuộc chéo.
+    \item \textbf{NFR-M02} -- Dữ liệu cấu hình tĩnh tách khỏi code và hỗ trợ versioning.
+    \item \textbf{NFR-M03} -- Có khả năng mở rộng theo chiều ngang ở mức kiến trúc (nhiều instance server).
 \end{itemize}
 
+\subsubsection{Khả dụng và quan sát hệ thống}
+
+\begin{itemize}
+    \item \textbf{NFR-O01} -- Log request và log nghiệp vụ cho các giao dịch quan trọng (reward, gacha, admin actions).
+    \item \textbf{NFR-O02} -- Có khả năng truy vết sự cố theo user/profile/character và theo mốc thời gian.
+\end{itemize}
+
+\subsubsection{Yêu cầu UX/UI ở mức hệ thống}
+
+\begin{itemize}
+    \item \textbf{NFR-U01} -- UI phải hiển thị rõ trạng thái: loading/empty/error/success/disabled.
+    \item \textbf{NFR-U02} -- Với phong cách pixel art, UI cần ưu tiên readability: khung panel rõ, icon theo lưới pixel, tương phản đủ.
+    \item \textbf{NFR-U03} -- Combat HUD tối thiểu: HP/MP (hoặc tài nguyên tương đương), skill slots, cooldown, buff/debuff.
+\end{itemize}
+
+% ===============================================================
 \subsection{Yêu cầu dữ liệu}
+\label{subsec:req-data}
 
-Hệ thống cần quản lý các nhóm dữ liệu chính sau:
+\subsubsection{Phân loại dữ liệu}
+
+\paragraph{Dữ liệu tiến trình người chơi (dynamic)}
+Bao gồm: user/profile/session, character, inventory, island state, npc collection, pity state, history logs.
+
+\paragraph{Dữ liệu cấu hình game (static)}
+Bao gồm: định nghĩa item/building/skill, bảng hệ số chỉ số, drop tables, banner rates, pity rules, event configs.
+
+\subsubsection{Yêu cầu mô hình dữ liệu mức logic}
+
 \begin{itemize}
-    \item Thông tin tài khoản người dùng.
-    \item Thông tin nhân vật và trạng thái cơ bản.
-    \item Trạng thái phiên kết nối.
-    \item Dữ liệu log phục vụ kiểm thử.
+    \item \textbf{DR-01} -- USER có settings nhúng (1:1).
+    \item \textbf{DR-02} -- USER có nhiều GAME\_PROFILE (1:N).
+    \item \textbf{DR-03} -- GAME\_PROFILE sở hữu nhiều CHARACTER (1:N).
+    \item \textbf{DR-04} -- CHARACTER có INVENTORY (1:1).
+    \item \textbf{DR-05} -- GAME\_PROFILE có PERSONAL\_ISLAND (1:1) và NPC\_COLLECTION (1:1).
+    \item \textbf{DR-06} -- Item instance tham chiếu item config (item\_ref\_id $\rightarrow$ CONFIG\_ITEM.id).
+    \item \textbf{DR-07} -- Building instance tham chiếu building config (type/id $\rightarrow$ CONFIG\_BUILDING.id).
 \end{itemize}
 
-Các dữ liệu này phải được lưu trữ nhất quán và sẵn sàng mở rộng trong các giai đoạn tiếp theo.
-
-\subsection{Các ràng buộc và giả định}
+\subsubsection{Yêu cầu pipeline quản trị game configuration}
 
 \begin{itemize}
-    \item Đề tài được thực hiện trong khuôn khổ đồ án chuyên ngành.
-    \item Thời gian và nguồn lực thực hiện có hạn.
-    \item Hệ thống không yêu cầu triển khai ở môi trường production.
-    \item Một số quyết định thiết kế được đưa ra dựa trên tính khả thi học thuật.
+    \item \textbf{DR-08} -- Nguồn nhập liệu cấu hình từ Google Sheets theo template thống nhất.
+    \item \textbf{DR-09} -- Export TSV và import vào DB theo cơ chế upsert theo khoá id.
+    \item \textbf{DR-10} -- Có \textit{config version} để truy vết lần import và đảm bảo nhất quán runtime.
+    \item \textbf{DR-11} -- Config Manager nạp cấu hình từ DB khi khởi động và cung cấp API truy xuất theo id.
 \end{itemize}
 
-\subsection{Tổng kết chương}
+% ===============================================================
+\subsection{Tiêu chí chấp nhận ở mức thiết kế}
+\label{subsec:req-acceptance}
 
-Chương này đã xác định rõ các yêu cầu chức năng và phi chức năng của hệ thống trong giai đoạn 1, đồng thời làm rõ phạm vi và các ràng buộc của đồ án. Những nội dung này là cơ sở trực tiếp cho việc phân tích hệ thống ở Chương 6 và thiết kế hệ thống ở Chương 7.
+Một bản thiết kế đáp ứng yêu cầu giai đoạn 1 cần thoả:
+\begin{itemize}
+    \item Bao phủ đầy đủ các phân hệ đã liệt kê ở \ref{subsec:req-functional}.
+    \item Mô hình dữ liệu mức logic thể hiện rõ quan hệ user/profile/character/inventory/island/npc và mối liên kết với config.
+    \item Có mô tả rõ về ranh giới client--server, đặc biệt với các thao tác reward/currency/gacha và luồng real-time combat.
+    \item Pipeline cấu hình chỉ áp dụng cho game configuration và có cơ chế versioning + log import.
+\end{itemize}

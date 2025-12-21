@@ -8,11 +8,14 @@ Bảng dưới đây liệt kê các thuật ngữ và viết tắt thường đ
 
 \renewcommand{\arraystretch}{1.3}
 
-% Điều chỉnh khoảng cách trên/dưới longtable nếu muốn
 \setlength{\LTpre}{0pt}
 \setlength{\LTpost}{0pt}
 
-\begin{longtable}{|p{3cm}|p{4cm}|p{8cm}|}
+% Tăng khả năng cứu ngắt dòng
+\setlength{\emergencystretch}{2em}
+
+\sloppy
+\begin{longtable}{|L{3cm}|L{4cm}|L{8cm}|}
 \hline
 \textbf{Thuật ngữ} & \textbf{Tên đầy đủ} & \textbf{Giải thích} \\
 \hline
@@ -31,7 +34,7 @@ Bảng dưới đây liệt kê các thuật ngữ và viết tắt thường đ
 \hline
 \endlastfoot
 
-% ====== NHÓM 1: GAME & GAMEPLAY =======================================
+% ================== NHÓM GAME & GAMEPLAY ==================
 \multicolumn{3}{|l|}{\textbf{Nhóm thuật ngữ về game và gameplay}} \\ \hline
 
 RPG & Role-Playing Game &
@@ -53,58 +56,55 @@ Dungeon & Dungeon &
 Khu vực (thường là instance riêng) tập trung chiến đấu, vượt thử thách. Trong đề tài, dungeon có thể là các tầng Tinh Hà Trung Tâm hoặc các khu vực phụ. \\ \hline
 
 Hitbox & Hitbox &
-Vùng hình học trong game đại diện cho phạm vi đòn tấn công có hiệu lực (ví dụ: vùng chém của kiếm, vùng nổ của kỹ năng). \\ \hline
+Vùng hình học trong game đại diện cho phạm vi đòn tấn công có hiệu lực. \\ \hline
 
 Hurtbox & Hurtbox &
-Vùng hình học đại diện cho khu vực trên nhân vật có thể nhận sát thương. Va chạm giữa hitbox và hurtbox thường được sử dụng để quyết định trúng đòn. \\ \hline
+Vùng hình học đại diện cho khu vực trên nhân vật có thể nhận sát thương. \\ \hline
 
 Cooldown (CD) & Cooldown &
 Thời gian chờ sau khi sử dụng kỹ năng trước khi kỹ năng đó có thể được sử dụng lại. \\ \hline
 
 Animation & Animation &
-Chuỗi hình ảnh mô phỏng chuyển động (chạy, tấn công, né, trúng đòn...). Trong Action RPG, animation gắn chặt với gameplay. \\ \hline
+Chuỗi hình ảnh mô phỏng chuyển động trong game. \\ \hline
 
-% ====== NHÓM 2: MULTIPLAYER & NETWORKING ===============================
+% ================== NHÓM MULTIPLAYER & NETWORKING ==================
 \multicolumn{3}{|l|}{\textbf{Nhóm thuật ngữ về multiplayer và networking}} \\ \hline
 
 Multiplayer & Multiplayer &
-Hình thức chơi nhiều người, cho phép nhiều người chơi cùng tồn tại và tương tác trong một thế giới game chung (ví dụ: cùng ở một đảo, dungeon, tầng tháp). \\ \hline
+Hình thức chơi nhiều người trong cùng một thế giới game. \\ \hline
 
 Real-time & Real-time &
-Thời gian thực: hệ thống xử lý và phản hồi gần như ngay lập tức theo input của người chơi. \\ \hline
+Hệ thống xử lý và phản hồi gần như ngay lập tức theo input người chơi. \\ \hline
 
 Latency & Network Latency &
-Độ trễ mạng, là thời gian gói tin đi từ client tới server. Thường đo bằng mili-giây (ms). \\ \hline
+Độ trễ mạng giữa client và server, thường đo bằng mili-giây (ms). \\ \hline
 
 Tick rate & Server Tick Rate &
-Số lần server cập nhật trạng thái game trong một giây (ví dụ: 20~tick/s, 30~tick/s). \\ \hline
+Số lần server cập nhật trạng thái game trong một giây. \\ \hline
 
 Snapshot & State Snapshot &
-Bản “ảnh chụp” trạng thái game tại một thời điểm (vị trí nhân vật, HP, trạng thái kỹ năng...), được server gửi cho client để đồng bộ. \\ \hline
+Bản chụp trạng thái game tại một thời điểm để đồng bộ client. \\ \hline
 
 Client-side Prediction & Client-side Prediction &
-Kỹ thuật client dự đoán trước kết quả chuyển động, hành động dựa trên input người chơi, nhằm giảm cảm giác trễ. \\ \hline
+Client dự đoán kết quả hành động trước khi server phản hồi. \\ \hline
 
 Reconciliation & Reconciliation &
-Quá trình đồng bộ lại trên client: so sánh trạng thái dự đoán với trạng thái do server gửi về và điều chỉnh để khớp. \\ \hline
+Client điều chỉnh trạng thái dự đoán cho khớp với server. \\ \hline
 
 Server Authoritative & Server Authoritative Model &
-Mô hình trong đó server nắm quyền quyết định cuối cùng về logic game (di chuyển hợp lệ, sát thương, kết quả combat). \\ \hline
+Server quyết định cuối cùng mọi logic game. \\ \hline
 
 WebSocket & WebSocket &
-Giao thức truyền thông hai chiều trên nền TCP, cho phép client và server giữ kết nối lâu dài và gửi/nhận dữ liệu thời gian thực. \\ \hline
+Giao thức truyền thông hai chiều trên TCP cho thời gian thực. \\ \hline
 
 Instance & Instance &
-Phiên bản riêng biệt của một khu vực game (ví dụ: một dungeon hoặc một tầng tháp tạo riêng cho một nhóm người chơi). \\ \hline
+Phiên bản riêng của một khu vực game cho nhóm người chơi. \\ \hline
 
 Zone / Shard & Zone / Shard &
-Khu vực logic trong thế giới game, dùng để chia tải hoặc phân vùng nội dung. \\ \hline
+Phân vùng logic thế giới game để chia tải. \\ \hline
 
 Interest Management & Interest Management &
-Kỹ thuật lọc và chỉ gửi dữ liệu cần thiết cho mỗi client để giảm băng thông và tải xử lý. \\ \hline
-
-% ====== NHÓM 3, 4, 5: bạn copy các dòng còn lại từ bảng cũ vào đây, giữ đúng cấu trúc:
-%  - mỗi dòng kết thúc bằng \\ \hline
-%  - mỗi tiêu đề nhóm: \multicolumn{3}{|l|}{\textbf{Tên nhóm}} \\ \hline
+Chỉ gửi dữ liệu cần thiết cho mỗi client để giảm tải hệ thống. \\ \hline
 
 \end{longtable}
+\fussy

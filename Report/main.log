@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  13 DEC 2025 17:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  21 DEC 2025 09:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -23,6 +23,10 @@ File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen148
+) (c:/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
 ) (c:/texlive/texmf-dist/tex/latex/vntex/vntex.sty
 Package: vntex 2009/07/12 v1.1 support for Vietnamese
  (c:/texlive/texmf-dist/tex/latex/base/ifthen.sty
@@ -190,11 +194,7 @@ File: t5enc.dfu 2006/08/19 v1.1 UTF8 support for Vietnamese
 LaTeX Font Info:    Trying to load font information for T5+cmr on input line 116.
  (c:/texlive/texmf-dist/tex/latex/vntex/t5cmr.fd
 File: t5cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)) (c:/texlive/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2024/02/08 v1.3d Input encoding file
-\inpenc@prehook=\toks17
-\inpenc@posthook=\toks18
-) (c:/texlive/texmf-dist/tex/latex/vntex/vncaps.tex
+)) (c:/texlive/texmf-dist/tex/latex/vntex/vncaps.tex
 File: vncaps.tex 2006/06/07 v1.1 Captions in Vietnamese
 )) (c:/texlive/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2025/11/23 v25.16 The multilingual framework for LuaLaTeX, pdfLaTeX and XeLaTeX
@@ -289,7 +289,50 @@ LaTeX Encoding Info:    Redeclaring text symbol \OHORN (encoding T5) on input li
 LaTeX Encoding Info:    Redeclaring text symbol \UHORN (encoding T5) on input line 432.
 )
 Package babel Info: Making " an active character on input line 147.
-)) (c:/texlive/texmf-dist/tex/latex/blindtext/blindtext.sty
+)) (c:/texlive/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (c:/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen150
+\ar@mcellbox=\box53
+\extrarowheight=\dimen151
+\NC@list=\toks19
+\extratabsurround=\skip51
+\backup@length=\skip52
+\ar@cellbox=\box54
+) (c:/texlive/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
  (c:/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
@@ -315,31 +358,31 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 ) (c:/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count303
-\float@exts=\toks19
-\float@box=\box53
-\@float@everytoks=\toks20
-\@floatcapt=\box54
+\float@exts=\toks20
+\float@box=\box55
+\@float@everytoks=\toks21
+\@floatcapt=\box56
 ) (c:/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
 Package: pdfpages 2025/07/23 v0.6g Insert pages of external PDF documents (AM)
  (c:/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
 \calc@Acount=\count304
 \calc@Bcount=\count305
-\calc@Adimen=\dimen150
-\calc@Bdimen=\dimen151
-\calc@Askip=\skip51
-\calc@Bskip=\skip52
+\calc@Adimen=\dimen152
+\calc@Bdimen=\dimen153
+\calc@Askip=\skip53
+\calc@Bskip=\skip54
 LaTeX Info: Redefining \setlength on input line 86.
 LaTeX Info: Redefining \addtolength on input line 87.
 \calc@Ccount=\count306
-\calc@Cskip=\skip53
+\calc@Cskip=\skip55
 ) (c:/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
-\ESO@tempdima=\dimen152
-\ESO@tempdimb=\dimen153
+\ESO@tempdima=\dimen154
+\ESO@tempdimb=\dimen155
  (c:/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks21
+\KV@toks@=\toks22
 ) (c:/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
  (c:/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -372,41 +415,41 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
 )
-\Gin@req@height=\dimen154
-\Gin@req@width=\dimen155
+\Gin@req@height=\dimen156
+\Gin@req@width=\dimen157
 )
-\AM@pagewidth=\dimen156
-\AM@pageheight=\dimen157
-\AM@fboxrule=\dimen158
+\AM@pagewidth=\dimen158
+\AM@pageheight=\dimen159
+\AM@fboxrule=\dimen160
  (c:/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
 File: pppdftex.def 2025/07/23 v0.6g Pdfpages driver for pdfTeX (AM)
 )
 \pdfpages@includegraphics@status=\count308
-\AM@pagebox=\box55
-\AM@global@opts=\toks22
+\AM@pagebox=\box57
+\AM@global@opts=\toks23
 \AM@pagecnt=\count309
-\AM@toc@title=\toks23
-\AM@lof@heading=\toks24
+\AM@toc@title=\toks24
+\AM@lof@heading=\toks25
 \c@AM@survey=\count310
-\AM@templatesizebox=\box56
+\AM@templatesizebox=\box58
 ) (c:/texlive/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
-\LTleft=\skip54
-\LTright=\skip55
-\LTpre=\skip56
-\LTpost=\skip57
+\LTleft=\skip56
+\LTright=\skip57
+\LTpre=\skip58
+\LTpost=\skip59
 \LTchunksize=\count311
-\LTcapwidth=\dimen159
-\LT@head=\box57
-\LT@firsthead=\box58
-\LT@foot=\box59
-\LT@lastfoot=\box60
-\LT@gbox=\box61
+\LTcapwidth=\dimen161
+\LT@head=\box59
+\LT@firsthead=\box60
+\LT@foot=\box61
+\LT@lastfoot=\box62
+\LT@gbox=\box63
 \LT@cols=\count312
 \LT@rows=\count313
 \c@LT@tables=\count314
 \c@LT@chunks=\count315
-\LT@p@ftn=\toks25
+\LT@p@ftn=\toks26
 ) (c:/texlive/texmf-dist/tex/latex/a4wide/a4wide.sty
 Package: a4wide 1994/08/30
  (c:/texlive/texmf-dist/tex/latex/ntgclass/a4.sty
@@ -415,7 +458,7 @@ Package: a4 2023/01/10 v1.2g A4 based page layout
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
  (c:/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks26
+\@emptytoks=\toks27
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
@@ -423,8 +466,8 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )) (c:/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
 Package: epsfig 2024/01/14 v1.7b (e)psfig emulation (SPQR)
-\epsfxsize=\dimen160
-\epsfysize=\dimen161
+\epsfxsize=\dimen162
+\epsfysize=\dimen163
 ) (c:/texlive/texmf-dist/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup6
@@ -433,29 +476,27 @@ LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 ) (c:/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2025/10/21 v2.0b multicolumn formatting (FMi)
 \c@tracingmulticols=\count316
-\mult@box=\box62
-\multicol@leftmargin=\dimen162
+\mult@box=\box64
+\multicol@leftmargin=\dimen164
 \c@unbalance=\count317
 \c@collectmore=\count318
 \doublecol@number=\count319
 \multicoltolerance=\count320
 \multicolpretolerance=\count321
-\full@width=\dimen163
-\page@free=\dimen164
-\premulticols=\dimen165
-\postmulticols=\dimen166
-\multicolsep=\skip58
-\multicolbaselineskip=\skip59
-\partial@page=\box63
-\last@line=\box64
-\mc@boxedresult=\box65
-\maxbalancingoverflow=\dimen167
-\mult@rightbox=\box66
-\mult@grightbox=\box67
-\mult@firstbox=\box68
-\mult@gfirstbox=\box69
-\@tempa=\box70
-\@tempa=\box71
+\full@width=\dimen165
+\page@free=\dimen166
+\premulticols=\dimen167
+\postmulticols=\dimen168
+\multicolsep=\skip60
+\multicolbaselineskip=\skip61
+\partial@page=\box65
+\last@line=\box66
+\mc@boxedresult=\box67
+\maxbalancingoverflow=\dimen169
+\mult@rightbox=\box68
+\mult@grightbox=\box69
+\mult@firstbox=\box70
+\mult@gfirstbox=\box71
 \@tempa=\box72
 \@tempa=\box73
 \@tempa=\box74
@@ -490,25 +531,18 @@ Package: multicol 2025/10/21 v2.0b multicolumn formatting (FMi)
 \@tempa=\box103
 \@tempa=\box104
 \@tempa=\box105
+\@tempa=\box106
+\@tempa=\box107
 \c@minrows=\count322
 \c@columnbadness=\count323
 \c@finalcolumnbadness=\count324
-\last@try=\dimen168
-\multicolovershoot=\dimen169
-\multicolundershoot=\dimen170
-\mult@nat@firstbox=\box106
-\colbreak@box=\box107
+\last@try=\dimen170
+\multicolovershoot=\dimen171
+\multicolundershoot=\dimen172
+\mult@nat@firstbox=\box108
+\colbreak@box=\box109
 \mc@col@check@num=\count325
 \g__mc_curr_col_int=\count326
-) (c:/texlive/texmf-dist/tex/latex/tools/array.sty
-Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
-\col@sep=\dimen171
-\ar@mcellbox=\box108
-\extrarowheight=\dimen172
-\NC@list=\toks27
-\extratabsurround=\skip60
-\backup@length=\skip61
-\ar@cellbox=\box109
 ) (c:/texlive/texmf-dist/tex/latex/tools/hhline.sty
 Package: hhline 2020/01/04 v2.04 Table rule package (DPC)
 ) (c:/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
@@ -1410,6 +1444,8 @@ File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
+Package hyperref Info: Option `unicode' set `true' on input line 4066.
+Package hyperref Info: Option `hypertexnames' set `false' on input line 4066.
 Package hyperref Info: Hyper figures OFF on input line 4195.
 Package hyperref Info: Link nesting OFF on input line 4200.
 Package hyperref Info: Hyper index ON on input line 4203.
@@ -1454,7 +1490,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip193
 )
-Package hyperref Info: Option `colorlinks' set `false' on input line 56.
+Package hyperref Info: Option `colorlinks' set `false' on input line 106.
 
 
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
@@ -1462,32 +1498,39 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 
 \@quotelevel=\count542
 \@quotereset=\count543
-(./main.aux
+LaTeX Font Info:    Trying to load font information for T5+lmr on input line 138.
+(c:/texlive/texmf-dist/tex/latex/lm/t5lmr.fd
+File: t5lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) (./main.aux
 Package babel Info: 'vietnamese' activates 'vietnamese' shorthands.
 (babel)             Reported on input line 11.
+
+
+LaTeX Warning: Label `fig:stats-system' multiply defined.
+
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for T5/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for T5/cmr/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
  (c:/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count544
@@ -1551,7 +1594,7 @@ Package biblatex Info: Trying to load language 'vietnamese'...
 Package biblatex Info: ... file 'vietnamese.lbx' not found.
 
 Package biblatex Warning: Language 'vietnamese' not supported.
-(biblatex)                Using dummy definitions on input line 86.
+(biblatex)                Using dummy definitions on input line 138.
 
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
@@ -1566,47 +1609,44 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 86.
-Package biblatex Info: Reference segment=0 on input line 86.
-Package hyperref Info: Link coloring OFF on input line 86.
+Package biblatex Info: Reference section=0 on input line 138.
+Package biblatex Info: Reference segment=0 on input line 138.
+Package hyperref Info: Link coloring OFF on input line 138.
  (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
  (./Content/titlepage.tex
-<Images/hcmut.png, id=637, 514.3215pt x 491.9178pt>
+<Images/hcmut.png, id=842, 514.3215pt x 491.9178pt>
 File: Images/hcmut.png Graphic file (type png)
 <use Images/hcmut.png>
 Package pdftex.def Info: Images/hcmut.png  used on input line 24.
 (pdftex.def)             Requested size: 142.26378pt x 136.0622pt.
 LaTeX Font Info:    Calculating math sizes for size <13> on input line 52.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
-(Font)              size <12> substituted on input line 52.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 52.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <13> not available
-(Font)              size <12> substituted on input line 52.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 52.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <13> not available
-(Font)              size <12> substituted on input line 52.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 52.
-
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 52.
+ (c:/texlive/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 52.
+ (c:/texlive/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 52.
+ (c:/texlive/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 52.
+ (c:/texlive/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <13> on input line 52.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9.09996> on input line 52.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6.5> on input line 52.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
-(c:/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (c:/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
@@ -1627,47 +1667,19 @@ LaTeX Font Warning: Font shape `U/lasy/m/n' in size <6.5> not available
 
 [1
 
-{c:/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Images/hcmut.png>]) (./Content/protestation.tex) (./Content/acknowledgements.tex) (./Content/abstract.tex) (./Content/glossary.tex
-Underfull \hbox (badness 10000) in paragraph at lines 40--40
-[]|\T5/cmr/m/n/12 Action Role-Playing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 46--46
-[]|\T5/cmr/m/n/12 Player vs
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 85--85
-[]|\T5/cmr/m/n/12 Client-side
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 91--91
-[]|\T5/cmr/m/n/12 Server
- []
-
-
-Underfull \hbox (badness 7925) in paragraph at lines 91--91
-[]|\T5/cmr/m/n/12 Server Authoritative
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 103--103
-[]|\T5/cmr/m/n/12 Interest
- []
-
-./Content/glossary.tex:110: ignored error: Infinite glue shrinkage found in box being split
-LaTeX Font Info:    Trying to load font information for T5+cmtt on input line 110.
- (c:/texlive/texmf-dist/tex/latex/vntex/t5cmtt.fd
-File: t5cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.110 \end{longtable}
-                      [1]
-./Content/glossary.tex:110: ignored error: Infinite glue shrinkage found in box being split [2]) [3] (./main.toc [4] [5] [6])
+{c:/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-t5.enc} <./Images/hcmut.png>]) (./Content/protestation.tex) (./Content/acknowledgements.tex) (./Content/abstract.tex) (./Content/glossary.tex
+./Content/glossary.tex:109: ignored error: Infinite glue shrinkage found in box being split
+LaTeX Font Info:    Trying to load font information for T5+lmss on input line 109.
+ (c:/texlive/texmf-dist/tex/latex/lm/t5lmss.fd
+File: t5lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [1]) [2] (./main.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 4.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 4.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 4.
+ [3] [4] [5] [6])
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
@@ -1679,103 +1691,573 @@ l.110 \end{longtable}
 \tf@lot=\write8
 \openout8 = `main.lot'.
 
- [9] (./Content/introduction.tex [10{c:/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Overfull \hbox (1.11159pt too wide) in paragraph at lines 46--47
-[]\T5/cmr/m/n/12 ^^^i·u khiºn di chuyºn nh¥n vªt trong mët mæi tr÷íng thû nghi»m ^^_ìn gi£n (prototype)
- []
-
-[11] [12]) (./Content/background.tex [13]
-Overfull \hbox (5.60995pt too wide) in paragraph at lines 34--36
- []\T5/cmr/bx/n/12 Mæ h¼nh client--server[] \T5/cmr/m/n/12 H¦u h¸t game online hi»n ^^_¤i sû döng mæ h¼nh \T5/cmr/bx/n/12 server authoritative\T5/cmr/m/n/12 ,
- []
-
-[14]
-<Images/CoreLoop.png, id=956, 422.57875pt x 261.97874pt>
+ [9] (./Content/introduction.tex
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9.
+ (c:/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [10{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [11{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [12]) (./Content/background.tex [13] [14]
+<Images/CoreLoop.png, id=1236, 422.57875pt x 261.97874pt>
 File: Images/CoreLoop.png Graphic file (type png)
 <use Images/CoreLoop.png>
-Package pdftex.def Info: Images/CoreLoop.png  used on input line 83.
+Package pdftex.def Info: Images/CoreLoop.png  used on input line 63.
 (pdftex.def)             Requested size: 386.95897pt x 239.90407pt.
- [15 <./Images/CoreLoop.png>] [16] [17]) (./Content/technology.tex [18] [19] [20]
-Overfull \hbox (1.22498pt too wide) in paragraph at lines 83--84
-[]\T5/cmr/m/n/12 NestJS cung c§p \T5/cmr/bx/n/12 ki¸n tróc mæ-^^_un rã r ng\T5/cmr/m/n/12 , düa tr¶n decorator v  dependency injection,
+ [15 <./Images/CoreLoop.png>]
+Overfull \hbox (23.62607pt too wide) in paragraph at lines 80--81
+[]\T5/lmr/bx/n/12 Primary Attributes\T5/lmr/m/n/12 : ng÷íi chìi ph¥n bê trüc ti¸p (v½ dö STR/DEX/CON/INT/WIS/CHA). 
  []
 
-[21] [22]) (./Content/relatedworks.tex [23] [24] [25]
-Overfull \hbox (6.291pt too wide) in paragraph at lines 83--83
-[]\T5/cmr/bx/n/14.4 Nhâm nguçn c£m hùng v· tr£i nghi»m Action RPG: nhàp combat,
+<Images/stats-system.png, id=1250, 603.25375pt x 472.76625pt>
+File: Images/stats-system.png Graphic file (type png)
+<use Images/stats-system.png>
+Package pdftex.def Info: Images/stats-system.png  used on input line 90.
+(pdftex.def)             Requested size: 411.14528pt x 322.2126pt.
+[16] [17 <./Images/stats-system.png>] [18{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
+Overfull \hbox (23.68695pt too wide) in paragraph at lines 210--211
+\T5/lmr/m/n/12 Trong thi¸t k¸ tham chi¸u, class ^^_÷ñc ph¥n t¦ng (Basic/Intermediate/Advanced/Legendary/Hidden)
  []
 
-[26]
+
+Overfull \hbox (112.37643pt too wide) in paragraph at lines 210--211
+\T5/lmr/m/n/12 vîi ^^_i·u ki»n mð kho¡ d¤ng \T5/lmr/bx/n/12 ng÷ïng ch¿ sè \T5/lmr/m/n/12 (STR/DEX/INT/...), \T5/lmr/bx/n/12 trait ^^_°c bi»t \T5/lmr/m/n/12 (Karma/Affinity/Luck/Resistance)
+ []
+
+[19] [20]
+Overfull \hbox (13.73973pt too wide) in paragraph at lines 263--264
+[]\T5/lmr/bx/n/12 Ph¥n lîp thæng tin\T5/lmr/m/n/12 : trong combat ch¿ hiºn thà thæng tin thi¸t y¸u (HP/MP/cooldown/buff-
+ []
+
+[21]) (./Content/technology.tex
+Overfull \hbox (0.60866pt too wide) in paragraph at lines 7--8
+[]\T5/lmr/bx/n/12 Client/Game Engine\T5/lmr/m/n/12 : hiºn thà ^^_ç ho¤, nhªn input, mæ phäng cöc bë (visual/animation),
+ []
+
+[22] [23] [24] [25]
+Overfull \hbox (8.17436pt too wide) in paragraph at lines 144--145
+[]\T5/lmr/m/n/12 C¡c sì ^^_ç use case/luçng nghi»p vö/ki¸n tróc câ thº ^^_÷ñc x¥y düng b¬ng cæng cö UML/BPMN
+ []
+
+) (./Content/relatedworks.tex [26] [27] [28] [29]
+Underfull \hbox (badness 10000) in paragraph at lines 131--131
+[]|\T5/lmr/bx/n/12 Nguçn tham
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--133
+[]|\T5/lmr/m/n/12 SAO (Aincrad)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+[]|\T5/lmr/m/n/12 Leo t¦ng, boss t¦ng,
+ []
+
+
+Underfull \hbox (badness 3271) in paragraph at lines 135--136
+\T5/lmr/m/n/12 lîp nëi dung; checkpoint
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
+[]|\T5/lmr/m/n/12 Gacha, rarity, collection-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 145--145
-[]|\T5/cmr/bx/n/12 Nguçn tham
+[]|\T5/lmr/m/n/12 Arcane Odyssey
  []
 
 
-Underfull \hbox (badness 1097) in paragraph at lines 149--150
-[]|\T5/cmr/m/n/12 ^^^ành h÷îng th¡p 100 t¦ng
+Underfull \hbox (badness 2150) in paragraph at lines 147--148
+[]|\T5/lmr/m/n/12 ^^^ành h÷îng combat real-
  []
 
 
-Underfull \hbox (badness 7796) in paragraph at lines 159--159
-[]|\T5/cmr/m/n/12 Arcane Odyssey
+Underfull \hbox (badness 1852) in paragraph at lines 147--148
+\T5/lmr/m/n/12 time; r ng buëc thi¸t k¸
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--163
-[]|\T5/cmr/m/n/12 Soul Knight
+Underfull \hbox (badness 1728) in paragraph at lines 147--148
+\T5/lmr/m/n/12 networking cho t½nh nh§t
  []
 
 
-Underfull \hbox (badness 7064) in paragraph at lines 167--167
-[]|\T5/cmr/m/n/12 Clash of Clans
- []
-
-[27] [28]) (./Content/requirements.tex [29] [30] [31] [32]) (./Content/analysis.tex
-Underfull \hbox (badness 10000) in paragraph at lines 37--37
-[]|\T5/cmr/m/n/12 Game Client
- []
-
-[33] [34] [35] [36] [37] [38] [39] [40]
-Overfull \hbox (10.4726pt too wide) in paragraph at lines 409--410
-[]\T5/cmr/m/n/12 Client nëi suy (interpolation) ^^_º hiºn thà m÷ñt; n¸u sai l»ch lîn th¼ hi»u ch¿nh (reconciliation)
- []
-
-[41] [42]
-Overfull \hbox (21.42262pt too wide) in paragraph at lines 489--490
-[]\T5/cmr/bx/n/12 Session (runtime)\T5/cmr/m/n/12 : tr¤ng th¡i phi¶n k¸t nèi real-time (socketId, roomId, userId, characterId);
+Underfull \hbox (badness 10000) in paragraph at lines 149--149
+[]|\T5/lmr/m/n/12 Soul Knight
  []
 
 
-Underfull \hbox (badness 2478) in paragraph at lines 505--506
-[]|\T5/cmr/m/n/12 Cªp nhªt tr¤ng
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
+[]|\T5/lmr/m/n/12 ^^^ành h÷îng
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 505--506
-\T5/cmr/m/n/12 th¡i/metadata
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
+\T5/lmr/m/n/12 dungeon/instance theo
+ []
+
+[30] [31]) (./Content/requirements.tex
+Overfull \hbox (55.46968pt too wide) in paragraph at lines 26--27
+[]\T5/lmr/bx/n/12 Game configuration (t¾nh)\T5/lmr/m/n/12 : ^^_ành ngh¾a v  tham sè gameplay (item/building/skill/rates/...). 
+ []
+
+[32]
+Overfull \hbox (8.64998pt too wide) in paragraph at lines 48--49
+[]\T5/lmr/bx/n/12 Data layer\T5/lmr/m/n/12 : DB cho progression/state; collections c§u h¼nh cho configuration; cache/session
+ []
+
+LaTeX Font Info:    Trying to load font information for T5+lmtt on input line 63.
+(c:/texlive/texmf-dist/tex/latex/lm/t5lmtt.fd
+File: t5lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Overfull \hbox (79.59169pt too wide) in paragraph at lines 68--69
+[]\T5/lmr/bx/n/12 FR-A07 \T5/lmr/m/n/12 -- Qu£n lþ session runtime: h» thèng l÷u tr¤ng th¡i phi¶n hi»n h nh (profile/character/room_id). 
+ []
+
+[33]
+Overfull \hbox (6.82458pt too wide) in paragraph at lines 88--89
+[]\T5/lmr/bx/n/12 FR-B07 \T5/lmr/m/n/12 -- Race hi¸m câ thº y¶u c¦u ^^_i·u ki»n mð kho¡ (v½ dö: Karma ng÷ïng, achievement,
+ []
+
+[34]
+Overfull \hbox (30.35405pt too wide) in paragraph at lines 125--126
+[]\T5/lmr/bx/n/12 FR-C11 \T5/lmr/m/n/12 -- Player câ thº trang bà kÿ n«ng v o slot; h» thèng kiºm tra ^^_i·u ki»n (class/race/level). 
  []
 
 
-Overfull \hbox (7.81047pt too wide) in paragraph at lines 509--509
-[]|\T5/cmr/m/n/12 UC04/UC06/UC08
+Overfull \hbox (28.76833pt too wide) in paragraph at lines 159--160
+[]\T5/lmr/bx/n/12 FR-E03 \T5/lmr/m/n/12 -- Item trong inventory l  \T5/lmr/bx/n/12 item instance \T5/lmr/m/n/12 (uid/quantity/slot/enhancement/durability)
+ []
+
+[35]
+Overfull \hbox (14.84575pt too wide) in paragraph at lines 162--163
+[]\T5/lmr/bx/n/12 FR-E06 \T5/lmr/m/n/12 -- Enhance: n¥ng c§p trang bà theo chi ph½ v  quy t­c; ghi nhªn \T5/lmtt/m/n/12 enhancement_level\T5/lmr/m/n/12 . 
+ []
+
+[36]
+Overfull \hbox (93.2207pt too wide) in paragraph at lines 225--226
+[]\T5/lmr/bx/n/12 FR-H09 \T5/lmr/m/n/12 -- Assign worker: g¡n NPC v o cæng tr¼nh; cªp nhªt li¶n k¸t hai chi·u (building.assigned_worker_id
+ []
+
+[37]
+Overfull \hbox (2.2858pt too wide) in paragraph at lines 258--259
+[]\T5/lmr/bx/n/12 NFR-P02 \T5/lmr/m/n/12 -- K¶nh real-time c¦n hé trñ cªp nhªt tr¤ng th¡i th÷íng xuy¶n (snapshot/event)
+ []
+
+[38]
+Overfull \hbox (12.53778pt too wide) in paragraph at lines 292--293
+ []\T5/lmr/bx/n/12 Dú li»u ti¸n tr¼nh ng÷íi chìi (dynamic)[] \T5/lmr/m/n/12 Bao gçm: user/profile/session, character, inventory,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 510--511
-[]|\T5/cmr/m/n/12 Cªp nhªt và
+Overfull \hbox (18.7931pt too wide) in paragraph at lines 306--307
+[]\T5/lmr/bx/n/12 DR-07 \T5/lmr/m/n/12 -- Building instance tham chi¸u building config (type/id $\OMS/lmsy/m/n/12 !$ \T5/lmr/m/n/12 CONFIG_BUILDING.id). 
+ []
+
+[39]
+Overfull \hbox (2.09369pt too wide) in paragraph at lines 325--326
+[]\T5/lmr/m/n/12 Mæ h¼nh dú li»u mùc logic thº hi»n rã quan h» user/profile/character/inventory/island/npc
+ []
+
+) (./Content/analysis.tex [40]
+Overfull \hbox (69.09895pt too wide) in paragraph at lines 27--28
+[]\T5/lmr/m/n/12 Ngo i ra, h» thèng câ lîp \T5/lmr/bx/n/12 game configuration \T5/lmr/m/n/12 (dú li»u t¾nh) phöc vö ^^_ành ngh¾a item/building/skill/rate,
  []
 
 
-Underfull \hbox (badness 2277) in paragraph at lines 514--514
-[]|\T5/cmr/m/n/12 Trong tick real-
+Underfull \hbox (badness 1845) in paragraph at lines 43--44
+[]|\T5/lmr/m/n/12 Ng÷íi chìi sû döng game client ^^_º ^^_«ng nhªp, chån
+ []
+
+[41]
+<Images/auth.png, id=1523, 6127.89375pt x 2460.19125pt>
+File: Images/auth.png Graphic file (type png)
+<use Images/auth.png>
+Package pdftex.def Info: Images/auth.png  used on input line 72.
+(pdftex.def)             Requested size: 445.00023pt x 178.65022pt.
+<Images/progress.png, id=1524, 3298.3225pt x 5450.3625pt>
+File: Images/progress.png Graphic file (type png)
+<use Images/progress.png>
+Package pdftex.def Info: Images/progress.png  used on input line 85.
+(pdftex.def)             Requested size: 386.95897pt x 639.37813pt.
+ [42 <./Images/auth.png (PNG copy)>] [43 <./Images/progress.png (PNG copy)>]
+<Images/combat.png, id=1536, 6573.55875pt x 5038.825pt>
+File: Images/combat.png Graphic file (type png)
+<use Images/combat.png>
+Package pdftex.def Info: Images/combat.png  used on input line 98.
+(pdftex.def)             Requested size: 459.51054pt x 352.21559pt.
+<Images/gacha.png, id=1537, 3304.345pt x 4608.21625pt>
+File: Images/gacha.png Graphic file (type png)
+<use Images/gacha.png>
+Package pdftex.def Info: Images/gacha.png  used on input line 111.
+(pdftex.def)             Requested size: 445.00023pt x 620.53542pt.
+ [44 <./Images/combat.png (PNG copy)>] [45 <./Images/gacha.png (PNG copy)>]
+<Images/island.png, id=1549, 4784.87625pt x 4833.05624pt>
+File: Images/island.png Graphic file (type png)
+<use Images/island.png>
+Package pdftex.def Info: Images/island.png  used on input line 124.
+(pdftex.def)             Requested size: 459.51054pt x 464.08614pt.
+<Images/admin.png, id=1550, 3790.16pt x 2288.55pt>
+File: Images/admin.png Graphic file (type png)
+<use Images/admin.png>
+Package pdftex.def Info: Images/admin.png  used on input line 137.
+(pdftex.def)             Requested size: 0.0pt x 0.0pt.
+ [46 <./Images/island.png (PNG copy)> <./Images/admin.png (PNG copy)>] [47]
+Overfull \hbox (19.83792pt too wide) in paragraph at lines 208--209
+[]\T5/lmr/bx/n/12 Möc ti¶u: \T5/lmr/m/n/12 Player t¤o/chån GAME_PROFILE ^^_º t¡ch ti¸n tr¼nh theo nhi·u profile (server/slot)
+ []
+
+[48] [49] [50] [51] [52] [53] [54] [55]
+Overfull \hbox (2.08614pt too wide) in paragraph at lines 615--616
+\T5/lmr/m/n/12 CHARACTER, INVENTORY, PERSONAL_ISLAND, NPC_COLLECTION, pity state,
  []
 
 
-Underfull \hbox (badness 1137) in paragraph at lines 515--516
-\T5/cmr/m/n/12 nhªt tr¤ng th¡i,
+Overfull \hbox (38.73773pt too wide) in paragraph at lines 626--627
+[]\T5/lmr/bx/n/12 Island\T5/lmr/m/n/12 : \T5/lmtt/m/n/12 PERSONAL_ISLAND \T5/lmr/m/n/12 (resources nhóng) v  \T5/lmtt/m/n/12 STRUCT_BUILDING \T5/lmr/m/n/12 tham chi¸u \T5/lmtt/m/n/12 CONFIG_BUILDING\T5/lmr/m/n/12 . 
  []
 
-[43]) (./Content/design.tex [44] [45] [46] [47] [48]) (./Content/implementation.tex [49] [50] [51] [52] [53]) (./Content/evaluation.tex [54] [55] [56]) (./Content/conclusion.tex) [57]
+[56]) (./Content/design.tex
+Overfull \hbox (71.69374pt too wide) in paragraph at lines 16--17
+[]\T5/lmr/bx/n/12 T½nh ^^_óng ^^_­n v  nh§t qu¡n\T5/lmr/m/n/12 : c¡c thay ^^_êi £nh h÷ðng ti¸n tr¼nh (reward/currency/gacha/checkpoint)
+ []
+
+<Images/DeployDiagram.png, id=1681, 4286.0125pt x 3784.1375pt>
+File: Images/DeployDiagram.png Graphic file (type png)
+<use Images/DeployDiagram.png>
+Package pdftex.def Info: Images/DeployDiagram.png  used on input line 33.
+(pdftex.def)             Requested size: 459.51054pt x 405.68977pt.
+[57] [58 <./Images/DeployDiagram.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[]|\T5/lmr/bx/n/12 Dú li»u/Collection
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[]|\T5/lmr/m/n/12 USER,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[]|\T5/lmr/m/n/12 Character
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[]|\T5/lmr/m/n/12 Inventory
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[]|\T5/lmr/m/n/12 Qu£n lþ slot, stack, currency;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[]|\T5/lmr/m/n/12 INVENTORY,
+ []
+
+
+Underfull \hbox (badness 4660) in paragraph at lines 109--109
+[]|\T5/lmr/m/n/12 Tham gia tower/dungeon/arena; qu£n lþ
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[]|\T5/lmr/m/n/12 SESSION_RUNTIME,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[]|\T5/lmr/m/n/12 NPC_COLLECTION,
+ []
+
+
+Overfull \hbox (2.5295pt too wide) in paragraph at lines 109--109
+[]|\T5/lmr/m/n/12 PERSONAL_ISLAND,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[]|\T5/lmr/m/n/12 USER,
+ []
+
+
+Underfull \hbox (badness 4229) in paragraph at lines 109--109
+[]|\T5/lmr/m/n/12 N¤p v  cung c§p truy xu§t c§u h¼nh;
+ []
+
+[59]
+Overfull \hbox (9.94463pt too wide) in paragraph at lines 121--122
+[]\T5/lmr/bx/n/12 Logging & audit\T5/lmr/m/n/12 : log request, log nghi»p vö (reward/gacha/admin action), k±m correlation
+ []
+
+[60]
+Overfull \hbox (100.66997pt too wide) in paragraph at lines 134--135
+[]\T5/lmr/bx/n/12 Game Configuration (t¾nh)\T5/lmr/m/n/12 : dú li»u ^^_ành ngh¾a v  thæng sè gameplay (item/building/skill/rates/formulas). 
+ []
+
+
+Overfull \hbox (32.5796pt too wide) in paragraph at lines 140--141
+[]\T5/lmr/bx/n/12 Reference \T5/lmr/m/n/12 khi dú li»u l  ^^_ành ngh¾a t¾nh dòng chung (CONFIG_ITEM/CONFIG_BUILDING)
+ []
+
+
+Overfull \hbox (12.80658pt too wide) in paragraph at lines 169--170
+[]\T5/lmr/bx/n/12 NPC_COLLECTION\T5/lmr/m/n/12 : danh s¡ch NPC sð húu; phöc vö tuyºn döng v  worker assignment. 
+ []
+
+[61]
+File: Images/stats-system.png Graphic file (type png)
+<use Images/stats-system.png>
+Package pdftex.def Info: Images/stats-system.png  used on input line 196.
+(pdftex.def)             Requested size: 377.28296pt x 295.67294pt.
+ [62]
+Overfull \hbox (112.66313pt too wide) in paragraph at lines 231--232
+[]\T5/lmr/m/n/12 Pipeline c§u h¼nh ch¿ ¡p döng cho \T5/lmr/bx/n/12 c¡c b£ng c§u h¼nh/thæng sè gameplay \T5/lmr/m/n/12 (item/building/skill/rates/formulas).
+ []
+
+[63{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [64] [65] [66]) (./Content/implementation.tex [67]
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\T5/lmr/bx/n/12 T½nh n«ng kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+\T5/lmr/m/n/12 nhªn snapshot (di
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\T5/lmr/m/n/12 Inventory/currency,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+\T5/lmr/m/n/12 gacha NPC, island
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+\T5/lmr/m/n/12 resources, worker
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\T5/lmr/m/n/12 TSV import, config
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+\T5/lmr/m/n/12 versioning, business
+ []
+
+
+Overfull \hbox (71.22932pt too wide) in paragraph at lines 55--56
+[]\T5/lmr/bx/n/12 Presentation/UI\T5/lmr/m/n/12 : m n h¼nh login, profile/character select, HUD cì b£n, panel inventory/gacha/island. 
+ []
+
+[68]
+Overfull \hbox (10.87254pt too wide) in paragraph at lines 75--76
+[]\T5/lmr/bx/n/12 Main Hub (Island)\T5/lmr/m/n/12 : load scene, hiºn thà HUD, mð c¡c panel inventory/gacha/NPC/island. 
+ []
+
+
+Overfull \hbox (18.27399pt too wide) in paragraph at lines 76--77
+[]\T5/lmr/bx/n/12 Join Instance (tuý mèc)\T5/lmr/m/n/12 : tham gia room realtime ^^_º kiºm chùng ^^_çng bë di chuyºn/combat
+ []
+
+[69] [70] [71] [72]) (./Content/evaluation.tex
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]|\T5/lmr/m/n/12 AuthModule, ProfileModule, SessionRuntime
+ []
+
+
+Underfull \hbox (badness 3989) in paragraph at lines 49--49
+[]|\T5/lmr/m/n/12 CharacterModule + ConfigModule (milestone
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]|\T5/lmr/m/n/12 CharacterModule/Progression service
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+\T5/lmr/m/n/12 (unlock/switch), ^^_i·u ki»n theo
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]|\T5/lmr/m/n/12 InventoryModule (stack, capacity, currency,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]|\T5/lmr/m/n/12 CombatModule + RealtimeGateway (join
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+\T5/lmr/m/n/12 instance, tick, snapshot, end-session
+ []
+
+
+Overfull \hbox (12.31778pt too wide) in paragraph at lines 49--49
+[]|\T5/lmr/m/n/12 GachaModule (banner/rate/pity/duplicate/history),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]|\T5/lmr/m/n/12 IslandModule (build/upgrade/timer/resources),
+ []
+
+
+Underfull \hbox (badness 4060) in paragraph at lines 49--49
+[]|\T5/lmr/m/n/12 AdminModule (ban/unban, mail, logs, event
+ []
+
+[73] [74] [75]
+Overfull \hbox (64.92719pt too wide) in paragraph at lines 142--143
+[]\T5/lmr/m/n/12 module ho¡ theo ph¥n h» rã r ng (Auth/Profile/Character/Inventory/Combat/Gacha/Island/Admin); 
+ []
+
+[76] [77]
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+[]|\T5/lmr/m/n/12 C§p tròng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+[]|\T5/lmr/m/n/12 Idempotency key,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 business log, kiºm
+ []
+
+
+Underfull \hbox (badness 1189) in paragraph at lines 225--225
+\T5/lmr/m/n/12 thû retry, chèt tr¤ng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 th¡i b¬ng server-
+ []
+
+
+Underfull \hbox (badness 5878) in paragraph at lines 225--225
+[]|\T5/lmr/m/n/12 Tr¤ng th¡i treo
+ []
+
+
+Underfull \hbox (badness 2865) in paragraph at lines 225--225
+[]|\T5/lmr/m/n/12 Cªp nhªt hai chi·u,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 validate tr÷îc khi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 assign/unassign, kàch
+ []
+
+
+Underfull \hbox (badness 6157) in paragraph at lines 225--225
+\T5/lmr/m/n/12 b£n kiºm thû nh§t
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+[]|\T5/lmr/m/n/12 Sai config g¥y
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+[]|\T5/lmr/m/n/12 Validation import,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 schema strict,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 referential checks,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 config version +
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+[]|\T5/lmr/m/n/12 Realtime
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 latency/jitter
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+[]|\T5/lmr/m/n/12 Tick-rate hñp lþ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 snapshot tèi thiºu,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 client interpolation;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 chøa ché mð rëng
+ []
+
+
+Overfull \hbox (6.48459pt too wide) in paragraph at lines 225--225
+\T5/lmr/m/n/12 prediction/reconciliation| 
+ []
+
+
+Underfull \hbox (badness 4647) in paragraph at lines 225--225
+[]|\T5/lmr/m/n/12 Phö thuëc ch²o
+ []
+
+
+Underfull \hbox (badness 3460) in paragraph at lines 225--225
+[]|\T5/lmr/m/n/12 Chu©n ho¡ interface,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 domain services rã
+ []
+
+
+Underfull \hbox (badness 5908) in paragraph at lines 225--225
+\T5/lmr/m/n/12 r ng, event nëi bë,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
+\T5/lmr/m/n/12 review dependency
+ []
+
+[78]) (./Content/conclusion.tex [79] [80]) [81] [82]
 
 Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 (biblatex)                The command should be defined in the .lbx file.
@@ -1785,7 +2267,7 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 
 
 Package biblatex Warning: Bibliography string 'in' untranslated
-(biblatex)                at entry 'moriarty-networked' on input line 141.
+(biblatex)                at entry 'moriarty-networked' on input line 193.
 
 
 Package biblatex Warning: Using fallback definition for \mkbibdatelong.
@@ -1803,7 +2285,7 @@ Package biblatex Warning: Using fallback definition for \mkbibordinal.
 
 
 Package biblatex Warning: Bibliography string 'edition' untranslated
-(biblatex)                at entry 'gregory-engine' on input line 141.
+(biblatex)                at entry 'gregory-engine' on input line 193.
 
 
 Package biblatex Warning: Using fallback definition for \mkbibdatelong.
@@ -1821,7 +2303,7 @@ Package biblatex Warning: Using fallback definition for \mkbibordinal.
 
 
 Package biblatex Warning: Bibliography string 'edition' untranslated
-(biblatex)                at entry 'adams-game-design' on input line 141.
+(biblatex)                at entry 'adams-game-design' on input line 193.
 
 
 Package biblatex Warning: Using fallback definition for \mkbibdatelong.
@@ -1839,7 +2321,7 @@ Package biblatex Warning: Using fallback definition for \mkbibordinal.
 
 
 Package biblatex Warning: Bibliography string 'edition' untranslated
-(biblatex)                at entry 'schell-art' on input line 141.
+(biblatex)                at entry 'schell-art' on input line 193.
 
 
 Package biblatex Warning: Using fallback definition for \mkbibdatelong.
@@ -1857,7 +2339,7 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 
 
 Package biblatex Warning: Bibliography string 'and' untranslated
-(biblatex)                at entry 'nest-docs' on input line 141.
+(biblatex)                at entry 'nest-docs' on input line 193.
 
 
 Package biblatex Warning: Using fallback definition for \mkbibdatelong.
@@ -1875,7 +2357,7 @@ Package biblatex Warning: Using fallback definition for \mkbibordinal.
 
 
 Package biblatex Warning: Bibliography string 'edition' untranslated
-(biblatex)                at entry 'mongodb-guide' on input line 141.
+(biblatex)                at entry 'mongodb-guide' on input line 193.
 
 
 Package biblatex Warning: Using fallback definition for \mkbibdatelong.
@@ -1906,8 +2388,29 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 (biblatex)                for \mkbibdatelong.
 
 
-Overfull \hbox (5.77144pt too wide) in paragraph at lines 142--142
-[]\T5/cmr/m/n/12 GitHub. \T5/cmr/m/it/12 GitHub Projects Documentation\T5/cmr/m/n/12 . []$\T5/cmtt/m/n/12 https : / / docs . github . com / issues / planning -[]
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Package biblatex Warning: Using fallback definition for \mkbibdatelong.
+(biblatex)                The command should be defined in the .lbx file.
+(biblatex)                If you see this message, the .lbx file could not be
+(biblatex)                loaded, is faulty or does not contain a definition
+(biblatex)                for \mkbibdatelong.
+
+
+Overfull \hbox (5.88791pt too wide) in paragraph at lines 194--194
+[]\T5/lmr/m/n/12 GitHub. \T5/lmr/m/it/12 GitHub Projects Documentation\T5/lmr/m/n/12 . []$\T5/lmtt/m/n/12 https : / / docs . github . com / issues / planning -[]
  []
 
 
@@ -1918,27 +2421,13 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 (biblatex)                for \mkbibdatelong.
 
 
-Package biblatex Warning: Using fallback definition for \mkbibdatelong.
-(biblatex)                The command should be defined in the .lbx file.
-(biblatex)                If you see this message, the .lbx file could not be
-(biblatex)                loaded, is faulty or does not contain a definition
-(biblatex)                for \mkbibdatelong.
-
-
-Package biblatex Warning: Using fallback definition for \mkbibdatelong.
-(biblatex)                The command should be defined in the .lbx file.
-(biblatex)                If you see this message, the .lbx file could not be
-(biblatex)                loaded, is faulty or does not contain a definition
-(biblatex)                for \mkbibdatelong.
-
-
-Overfull \hbox (0.98729pt too wide) in paragraph at lines 142--142
-[]\T5/cmr/m/n/12 Thomas Allweyer. \T5/cmr/m/it/12 BPMN 2.0: Introduction to the Standard for Business Process Modeling\T5/cmr/m/n/12 .
+Overfull \hbox (1.10149pt too wide) in paragraph at lines 194--194
+[]\T5/lmr/m/n/12 Thomas Allweyer. \T5/lmr/m/it/12 BPMN 2.0: Introduction to the Standard for Business Process Modeling\T5/lmr/m/n/12 .
  []
 
 
 Package biblatex Warning: Bibliography string 'andothers' untranslated
-(biblatex)                at entry 'latex-companion' on input line 141.
+(biblatex)                at entry 'latex-companion' on input line 193.
 
 
 Package biblatex Warning: Using fallback definition for \mkbibordinal.
@@ -1949,7 +2438,7 @@ Package biblatex Warning: Using fallback definition for \mkbibordinal.
 
 
 Package biblatex Warning: Bibliography string 'edition' untranslated
-(biblatex)                at entry 'latex-companion' on input line 141.
+(biblatex)                at entry 'latex-companion' on input line 193.
 
 
 Package biblatex Warning: Using fallback definition for \mkbibdatelong.
@@ -1965,33 +2454,7 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 (biblatex)                loaded, is faulty or does not contain a definition
 (biblatex)                for \mkbibdatelong.
 
-
-Package biblatex Warning: Using fallback definition for \mkbibdatelong.
-(biblatex)                The command should be defined in the .lbx file.
-(biblatex)                If you see this message, the .lbx file could not be
-(biblatex)                loaded, is faulty or does not contain a definition
-(biblatex)                for \mkbibdatelong.
-
-
-Overfull \hbox (8.8942pt too wide) in paragraph at lines 142--142
-[]\T5/cmr/m/n/12 MongoDB. \T5/cmr/m/it/12 MongoDB Manual (Documentation)\T5/cmr/m/n/12 . T i li»u tham kh£o cì sð dú li»u MongoDB.
- []
-
-[58]
-
-Package biblatex Warning: Using fallback definition for \mkbibdatelong.
-(biblatex)                The command should be defined in the .lbx file.
-(biblatex)                If you see this message, the .lbx file could not be
-(biblatex)                loaded, is faulty or does not contain a definition
-(biblatex)                for \mkbibdatelong.
-
-
-Package biblatex Warning: Using fallback definition for \mkbibdatelong.
-(biblatex)                The command should be defined in the .lbx file.
-(biblatex)                If you see this message, the .lbx file could not be
-(biblatex)                loaded, is faulty or does not contain a definition
-(biblatex)                for \mkbibdatelong.
-
+[83]
 
 Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 (biblatex)                The command should be defined in the .lbx file.
@@ -2027,7 +2490,7 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 (biblatex)                loaded, is faulty or does not contain a definition
 (biblatex)                for \mkbibdatelong.
 
-[59] (./Content/appendices.tex) 
+[84] (./Content/appendices.tex) 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
@@ -2039,25 +2502,28 @@ L3 programming layer <2025-11-14>
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 68F54FF8CA6544DEDD3A5083F63C1D61;37146.
+(rerunfilecheck)             Checksum: 91846C84E5C7E5BFB2D96C2817E7F034;53261.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 40033 strings out of 467538
- 757014 string characters out of 5426329
- 1691821 words of memory out of 5000000
- 67874 multiletter control sequences out of 15000+600000
- 652865 words of font info for 94 fonts, out of 8000000 for 9000
+ 40945 strings out of 467538
+ 771126 string characters out of 5426329
+ 1721616 words of memory out of 5000000
+ 68590 multiletter control sequences out of 15000+600000
+ 761513 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 104i,12n,116p,1223b,1630s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnbx12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr8.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnti12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vnti8.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vntt12.pfb><c:/texlive/texmf-dist/fonts/type1/vntex/vnr/vntt8.pfb>
-Output written on main.pdf (60 pages, 351491 bytes).
+ 104i,12n,116p,1223b,2077s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on main.pdf (85 pages, 5853825 bytes).
 PDF statistics:
- 1490 PDF objects out of 1728 (max. 8388607)
- 1392 compressed objects within 14 object streams
- 337 named destinations out of 1000 (max. 500000)
- 1279 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2097 PDF objects out of 2487 (max. 8388607)
+ 1948 compressed objects within 20 object streams
+ 496 named destinations out of 1000 (max. 500000)
+ 1727 words of extra memory for PDF output out of 10000 (max. 10000000)
 

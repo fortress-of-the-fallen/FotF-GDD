@@ -1,0 +1,600 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{newzoo-report}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=4c854959b07079bcbe0eaf6562061aa4}{%
+           family={Newzoo},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{4c854959b07079bcbe0eaf6562061aa4}
+      \strng{fullhash}{4c854959b07079bcbe0eaf6562061aa4}
+      \strng{fullhashraw}{4c854959b07079bcbe0eaf6562061aa4}
+      \strng{bibnamehash}{4c854959b07079bcbe0eaf6562061aa4}
+      \strng{authorbibnamehash}{4c854959b07079bcbe0eaf6562061aa4}
+      \strng{authornamehash}{4c854959b07079bcbe0eaf6562061aa4}
+      \strng{authorfullhash}{4c854959b07079bcbe0eaf6562061aa4}
+      \strng{authorfullhashraw}{4c854959b07079bcbe0eaf6562061aa4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Online report}
+      \field{note}{Báo cáo thống kê thị trường game toàn cầu}
+      \field{title}{Global Games Market Report}
+      \field{year}{2023}
+    \endentry
+    \entry{moriarty-networked}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=56d3253213a838bd247906f6a90fec34}{%
+           family={{Moriarty}},
+           familyi={M\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{56d3253213a838bd247906f6a90fec34}
+      \strng{fullhash}{56d3253213a838bd247906f6a90fec34}
+      \strng{fullhashraw}{56d3253213a838bd247906f6a90fec34}
+      \strng{bibnamehash}{56d3253213a838bd247906f6a90fec34}
+      \strng{authorbibnamehash}{56d3253213a838bd247906f6a90fec34}
+      \strng{authornamehash}{56d3253213a838bd247906f6a90fec34}
+      \strng{authorfullhash}{56d3253213a838bd247906f6a90fec34}
+      \strng{authorfullhashraw}{56d3253213a838bd247906f6a90fec34}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Game Developers Conference}
+      \field{note}{Trình bày các kỹ thuật client-side prediction, interpolation, reconciliation}
+      \field{title}{Networked Physics and Latency Compensation in Online Games}
+      \field{year}{2014}
+    \endentry
+    \entry{gregory-engine}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=b97f772b60bfb5bf77251b45263e44dd}{%
+           family={Gregory},
+           familyi={G\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {CRC Press}%
+      }
+      \strng{namehash}{b97f772b60bfb5bf77251b45263e44dd}
+      \strng{fullhash}{b97f772b60bfb5bf77251b45263e44dd}
+      \strng{fullhashraw}{b97f772b60bfb5bf77251b45263e44dd}
+      \strng{bibnamehash}{b97f772b60bfb5bf77251b45263e44dd}
+      \strng{authorbibnamehash}{b97f772b60bfb5bf77251b45263e44dd}
+      \strng{authornamehash}{b97f772b60bfb5bf77251b45263e44dd}
+      \strng{authorfullhash}{b97f772b60bfb5bf77251b45263e44dd}
+      \strng{authorfullhashraw}{b97f772b60bfb5bf77251b45263e44dd}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{note}{Kiến trúc game engine, kiến trúc nhiều lớp và real-time system}
+      \field{title}{Game Engine Architecture}
+      \field{year}{2018}
+    \endentry
+    \entry{adams-game-design}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=102d61e785c8cdd4157d4330c857544e}{%
+           family={Adams},
+           familyi={A\bibinitperiod},
+           given={Ernest},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {New Riders}%
+      }
+      \strng{namehash}{102d61e785c8cdd4157d4330c857544e}
+      \strng{fullhash}{102d61e785c8cdd4157d4330c857544e}
+      \strng{fullhashraw}{102d61e785c8cdd4157d4330c857544e}
+      \strng{bibnamehash}{102d61e785c8cdd4157d4330c857544e}
+      \strng{authorbibnamehash}{102d61e785c8cdd4157d4330c857544e}
+      \strng{authornamehash}{102d61e785c8cdd4157d4330c857544e}
+      \strng{authorfullhash}{102d61e785c8cdd4157d4330c857544e}
+      \strng{authorfullhashraw}{102d61e785c8cdd4157d4330c857544e}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{note}{Tài liệu cơ bản về thiết kế game, core loop, progression, economy}
+      \field{title}{Fundamentals of Game Design}
+      \field{year}{2014}
+    \endentry
+    \entry{schell-art}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=9e6bdf45cf25935038be8df5d9876ba2}{%
+           family={Schell},
+           familyi={S\bibinitperiod},
+           given={Jesse},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {CRC Press}%
+      }
+      \strng{namehash}{9e6bdf45cf25935038be8df5d9876ba2}
+      \strng{fullhash}{9e6bdf45cf25935038be8df5d9876ba2}
+      \strng{fullhashraw}{9e6bdf45cf25935038be8df5d9876ba2}
+      \strng{bibnamehash}{9e6bdf45cf25935038be8df5d9876ba2}
+      \strng{authorbibnamehash}{9e6bdf45cf25935038be8df5d9876ba2}
+      \strng{authornamehash}{9e6bdf45cf25935038be8df5d9876ba2}
+      \strng{authorfullhash}{9e6bdf45cf25935038be8df5d9876ba2}
+      \strng{authorfullhashraw}{9e6bdf45cf25935038be8df5d9876ba2}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{note}{Các nguyên lý thiết kế trải nghiệm, level design, UX trong game}
+      \field{title}{The Art of Game Design: A Book of Lenses}
+      \field{year}{2019}
+    \endentry
+    \entry{unity-manual}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=3f56ad8f8e05fcad24de3fcf878fb50b}{%
+           family={{Unity Technologies}},
+           familyi={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{3f56ad8f8e05fcad24de3fcf878fb50b}
+      \strng{fullhash}{3f56ad8f8e05fcad24de3fcf878fb50b}
+      \strng{fullhashraw}{3f56ad8f8e05fcad24de3fcf878fb50b}
+      \strng{bibnamehash}{3f56ad8f8e05fcad24de3fcf878fb50b}
+      \strng{authorbibnamehash}{3f56ad8f8e05fcad24de3fcf878fb50b}
+      \strng{authornamehash}{3f56ad8f8e05fcad24de3fcf878fb50b}
+      \strng{authorfullhash}{3f56ad8f8e05fcad24de3fcf878fb50b}
+      \strng{authorfullhashraw}{3f56ad8f8e05fcad24de3fcf878fb50b}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://docs.unity3d.com/Manual/index.html}}
+      \field{note}{Tài liệu chính thức hướng dẫn sử dụng Unity}
+      \field{title}{Unity User Manual}
+      \field{year}{2023}
+    \endentry
+    \entry{nest-docs}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=fdd7872fae9e005b4be1b996c29497e4}{%
+           family={Myśliwiec},
+           familyi={M\bibinitperiod},
+           given={Kamil},
+           giveni={K\bibinitperiod}}}%
+        {{hash=b952e9f5db4436c88c4f9e76cfca46e3}{%
+           family={Team},
+           familyi={T\bibinitperiod},
+           given={NestJS},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{a81c884bf08b96a5e78c5036a0b82a3e}
+      \strng{fullhash}{a81c884bf08b96a5e78c5036a0b82a3e}
+      \strng{fullhashraw}{a81c884bf08b96a5e78c5036a0b82a3e}
+      \strng{bibnamehash}{a81c884bf08b96a5e78c5036a0b82a3e}
+      \strng{authorbibnamehash}{a81c884bf08b96a5e78c5036a0b82a3e}
+      \strng{authornamehash}{a81c884bf08b96a5e78c5036a0b82a3e}
+      \strng{authorfullhash}{a81c884bf08b96a5e78c5036a0b82a3e}
+      \strng{authorfullhashraw}{a81c884bf08b96a5e78c5036a0b82a3e}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://docs.nestjs.com}}
+      \field{note}{Tài liệu chính thức của NestJS}
+      \field{title}{NestJS Documentation}
+      \field{year}{2023}
+    \endentry
+    \entry{mongodb-guide}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=5307ab27e1d22a04e88f8bffc57c547a}{%
+           family={Chodorow},
+           familyi={C\bibinitperiod},
+           given={Kristina},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{5307ab27e1d22a04e88f8bffc57c547a}
+      \strng{fullhash}{5307ab27e1d22a04e88f8bffc57c547a}
+      \strng{fullhashraw}{5307ab27e1d22a04e88f8bffc57c547a}
+      \strng{bibnamehash}{5307ab27e1d22a04e88f8bffc57c547a}
+      \strng{authorbibnamehash}{5307ab27e1d22a04e88f8bffc57c547a}
+      \strng{authornamehash}{5307ab27e1d22a04e88f8bffc57c547a}
+      \strng{authorfullhash}{5307ab27e1d22a04e88f8bffc57c547a}
+      \strng{authorfullhashraw}{5307ab27e1d22a04e88f8bffc57c547a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{note}{Giới thiệu và hướng dẫn sử dụng MongoDB}
+      \field{title}{MongoDB: The Definitive Guide}
+      \field{year}{2013}
+    \endentry
+    \entry{redis-in-action}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=25e8f4d1f22f628a65c7445db52c6bb9}{%
+           family={Carlson},
+           familyi={C\bibinitperiod},
+           given={Josiah\bibnamedelima L.},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Manning Publications}%
+      }
+      \strng{namehash}{25e8f4d1f22f628a65c7445db52c6bb9}
+      \strng{fullhash}{25e8f4d1f22f628a65c7445db52c6bb9}
+      \strng{fullhashraw}{25e8f4d1f22f628a65c7445db52c6bb9}
+      \strng{bibnamehash}{25e8f4d1f22f628a65c7445db52c6bb9}
+      \strng{authorbibnamehash}{25e8f4d1f22f628a65c7445db52c6bb9}
+      \strng{authornamehash}{25e8f4d1f22f628a65c7445db52c6bb9}
+      \strng{authorfullhash}{25e8f4d1f22f628a65c7445db52c6bb9}
+      \strng{authorfullhashraw}{25e8f4d1f22f628a65c7445db52c6bb9}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Ứng dụng Redis cho cache, pub/sub, lưu trữ session}
+      \field{title}{Redis in Action}
+      \field{year}{2013}
+    \endentry
+    \entry{gaffer-networking}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=115b8af350e59a3a75d1e1601b157185}{%
+           family={Fiedler},
+           familyi={F\bibinitperiod},
+           given={Glenn},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{fullhash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{fullhashraw}{115b8af350e59a3a75d1e1601b157185}
+      \strng{bibnamehash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{authorbibnamehash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{authornamehash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{authorfullhash}{115b8af350e59a3a75d1e1601b157185}
+      \strng{authorfullhashraw}{115b8af350e59a3a75d1e1601b157185}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Tài liệu tham khảo về server authoritative, prediction, interpolation}
+      \field{title}{Gaffer on Games: Networking for Game Programmers}
+      \field{year}{2010}
+    \endentry
+    \entry{csharp-lang}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=140864078aeca1c7c35b4beb33c53c34}{%
+           family={Microsoft},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{fullhash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{fullhashraw}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{bibnamehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{authorbibnamehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{authornamehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{authorfullhash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{authorfullhashraw}{140864078aeca1c7c35b4beb33c53c34}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://learn.microsoft.com/dotnet/csharp/}}
+      \field{note}{Tài liệu chính thức về ngôn ngữ C\#}
+      \field{title}{C\# Programming Guide}
+      \field{year}{2023}
+    \endentry
+    \entry{nodejs-docs}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=263642944f6c498301458458c276f5f3}{%
+           family={{OpenJS Foundation}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{263642944f6c498301458458c276f5f3}
+      \strng{fullhash}{263642944f6c498301458458c276f5f3}
+      \strng{fullhashraw}{263642944f6c498301458458c276f5f3}
+      \strng{bibnamehash}{263642944f6c498301458458c276f5f3}
+      \strng{authorbibnamehash}{263642944f6c498301458458c276f5f3}
+      \strng{authornamehash}{263642944f6c498301458458c276f5f3}
+      \strng{authorfullhash}{263642944f6c498301458458c276f5f3}
+      \strng{authorfullhashraw}{263642944f6c498301458458c276f5f3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://nodejs.org/en/docs}}
+      \field{note}{Tài liệu chính thức của Node.js}
+      \field{title}{Node.js Documentation}
+      \field{year}{2023}
+    \endentry
+    \entry{github-docs}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=d3b7c913cd04ebfec0e9ec32cb6fd58c}{%
+           family={GitHub},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{fullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{fullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{bibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorbibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authornamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorfullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorfullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \field{extraname}{1}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://docs.github.com}}
+      \field{note}{Hướng dẫn sử dụng GitHub và Git cơ bản}
+      \field{title}{GitHub Documentation}
+      \field{year}{2023}
+    \endentry
+    \entry{github-projects}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=d3b7c913cd04ebfec0e9ec32cb6fd58c}{%
+           family={GitHub},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{fullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{fullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{bibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorbibnamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authornamehash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorfullhash}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \strng{authorfullhashraw}{d3b7c913cd04ebfec0e9ec32cb6fd58c}
+      \field{extraname}{2}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://docs.github.com/issues/planning-and-tracking-with-projects}}
+      \field{note}{Hướng dẫn sử dụng GitHub Projects để quản lý tác vụ}
+      \field{title}{GitHub Projects Documentation}
+      \field{year}{2023}
+    \endentry
+    \entry{uml-bpmn}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=575db139e20764318d018a5186acddac}{%
+           family={Allweyer},
+           familyi={A\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Books on Demand}%
+      }
+      \strng{namehash}{575db139e20764318d018a5186acddac}
+      \strng{fullhash}{575db139e20764318d018a5186acddac}
+      \strng{fullhashraw}{575db139e20764318d018a5186acddac}
+      \strng{bibnamehash}{575db139e20764318d018a5186acddac}
+      \strng{authorbibnamehash}{575db139e20764318d018a5186acddac}
+      \strng{authornamehash}{575db139e20764318d018a5186acddac}
+      \strng{authorfullhash}{575db139e20764318d018a5186acddac}
+      \strng{authorfullhashraw}{575db139e20764318d018a5186acddac}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Giới thiệu BPMN 2.0 dùng cho mô hình hoá quy trình}
+      \field{title}{BPMN 2.0: Introduction to the Standard for Business Process Modeling}
+      \field{year}{2016}
+    \endentry
+    \entry{latex-companion}{book}{}{}
+      \name{author}{5}{}{%
+        {{hash=9355edd511e3f6fdd880ee98722a53fb}{%
+           family={Mittelbach},
+           familyi={M\bibinitperiod},
+           given={Frank},
+           giveni={F\bibinitperiod}}}%
+        {{hash=0743efb276e9219ee664a9b3dbd60619}{%
+           family={Goossens},
+           familyi={G\bibinitperiod},
+           given={Michel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d52f183a29af96d48695b8bea23e66e1}{%
+           family={Braams},
+           familyi={B\bibinitperiod},
+           given={Johannes},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3094f4812cc660f7320fd1ab3d3da906}{%
+           family={Carlisle},
+           familyi={C\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0907be26d21af9e9c3820d51f421fe33}{%
+           family={Rowley},
+           familyi={R\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley}%
+      }
+      \strng{namehash}{f6d3f5d3a9cc39507a7ff2f9963883dc}
+      \strng{fullhash}{81b7ecc7e76086895ab856756307e8bc}
+      \strng{fullhashraw}{81b7ecc7e76086895ab856756307e8bc}
+      \strng{bibnamehash}{f6d3f5d3a9cc39507a7ff2f9963883dc}
+      \strng{authorbibnamehash}{f6d3f5d3a9cc39507a7ff2f9963883dc}
+      \strng{authornamehash}{f6d3f5d3a9cc39507a7ff2f9963883dc}
+      \strng{authorfullhash}{81b7ecc7e76086895ab856756307e8bc}
+      \strng{authorfullhashraw}{81b7ecc7e76086895ab856756307e8bc}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{note}{Tài liệu tham khảo về soạn thảo tài liệu bằng {\LaTeX}}
+      \field{title}{The {\LaTeX} Companion}
+      \field{year}{2004}
+    \endentry
+    \entry{sao-aincrad}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=b5dd0e1cffc180a492a1b2cf6a196d82}{%
+           family={Kawahara},
+           familyi={K\bibinitperiod},
+           given={Reki},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Yen Press}%
+      }
+      \strng{namehash}{b5dd0e1cffc180a492a1b2cf6a196d82}
+      \strng{fullhash}{b5dd0e1cffc180a492a1b2cf6a196d82}
+      \strng{fullhashraw}{b5dd0e1cffc180a492a1b2cf6a196d82}
+      \strng{bibnamehash}{b5dd0e1cffc180a492a1b2cf6a196d82}
+      \strng{authorbibnamehash}{b5dd0e1cffc180a492a1b2cf6a196d82}
+      \strng{authornamehash}{b5dd0e1cffc180a492a1b2cf6a196d82}
+      \strng{authorfullhash}{b5dd0e1cffc180a492a1b2cf6a196d82}
+      \strng{authorfullhashraw}{b5dd0e1cffc180a492a1b2cf6a196d82}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Nguồn tham khảo ý tưởng leo tầng và boss tầng}
+      \field{title}{Sword Art Online, Vol. 1: Aincrad}
+      \field{year}{2014}
+    \endentry
+    \entry{overlord-novel}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=2b1ed88bcc5e57fa2d197ddabcba3091}{%
+           family={Maruyama},
+           familyi={M\bibinitperiod},
+           given={Kugane},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Yen Press}%
+      }
+      \strng{namehash}{2b1ed88bcc5e57fa2d197ddabcba3091}
+      \strng{fullhash}{2b1ed88bcc5e57fa2d197ddabcba3091}
+      \strng{fullhashraw}{2b1ed88bcc5e57fa2d197ddabcba3091}
+      \strng{bibnamehash}{2b1ed88bcc5e57fa2d197ddabcba3091}
+      \strng{authorbibnamehash}{2b1ed88bcc5e57fa2d197ddabcba3091}
+      \strng{authornamehash}{2b1ed88bcc5e57fa2d197ddabcba3091}
+      \strng{authorfullhash}{2b1ed88bcc5e57fa2d197ddabcba3091}
+      \strng{authorfullhashraw}{2b1ed88bcc5e57fa2d197ddabcba3091}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Nguồn tham khảo cách xây dựng NPC và thế giới vận hành}
+      \field{title}{Overlord, Vol. 1: The Undead King}
+      \field{year}{2016}
+    \endentry
+    \entry{pickmeup-webtoon}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=842bb74526d0b744ec1c341350ce5019}{%
+           family={{Pick Me Up! Infinite Gacha}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{842bb74526d0b744ec1c341350ce5019}
+      \strng{fullhash}{842bb74526d0b744ec1c341350ce5019}
+      \strng{fullhashraw}{842bb74526d0b744ec1c341350ce5019}
+      \strng{bibnamehash}{842bb74526d0b744ec1c341350ce5019}
+      \strng{authorbibnamehash}{842bb74526d0b744ec1c341350ce5019}
+      \strng{authornamehash}{842bb74526d0b744ec1c341350ce5019}
+      \strng{authorfullhash}{842bb74526d0b744ec1c341350ce5019}
+      \strng{authorfullhashraw}{842bb74526d0b744ec1c341350ce5019}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Nguồn tham khảo cơ chế gacha và meta-progression}
+      \field{title}{Pick Me Up! Infinite Gacha (Webtoon/Manhwa)}
+      \field{year}{2022}
+    \endentry
+    \entry{arcane-odyssey}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=5d356cfe2e9317a0fd94b17b7c68a02c}{%
+           family={{Arcane Odyssey}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{5d356cfe2e9317a0fd94b17b7c68a02c}
+      \strng{fullhash}{5d356cfe2e9317a0fd94b17b7c68a02c}
+      \strng{fullhashraw}{5d356cfe2e9317a0fd94b17b7c68a02c}
+      \strng{bibnamehash}{5d356cfe2e9317a0fd94b17b7c68a02c}
+      \strng{authorbibnamehash}{5d356cfe2e9317a0fd94b17b7c68a02c}
+      \strng{authornamehash}{5d356cfe2e9317a0fd94b17b7c68a02c}
+      \strng{authorfullhash}{5d356cfe2e9317a0fd94b17b7c68a02c}
+      \strng{authorfullhashraw}{5d356cfe2e9317a0fd94b17b7c68a02c}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Nguồn tham khảo trải nghiệm online RPG và cảm giác điều khiển}
+      \field{title}{Arcane Odyssey (Game)}
+      \field{year}{2023}
+    \endentry
+    \entry{soulknight-prequel}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=2be55a2420b9d4c1536ab521d01fe838}{%
+           family={{ChillyRoom}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{2be55a2420b9d4c1536ab521d01fe838}
+      \strng{fullhash}{2be55a2420b9d4c1536ab521d01fe838}
+      \strng{fullhashraw}{2be55a2420b9d4c1536ab521d01fe838}
+      \strng{bibnamehash}{2be55a2420b9d4c1536ab521d01fe838}
+      \strng{authorbibnamehash}{2be55a2420b9d4c1536ab521d01fe838}
+      \strng{authornamehash}{2be55a2420b9d4c1536ab521d01fe838}
+      \strng{authorfullhash}{2be55a2420b9d4c1536ab521d01fe838}
+      \strng{authorfullhashraw}{2be55a2420b9d4c1536ab521d01fe838}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Nguồn tham khảo vòng lặp phiên chơi ngắn và reward theo phiên}
+      \field{title}{Soul Knight Prequel (Game)}
+      \field{year}{2023}
+    \endentry
+    \entry{clashofclans}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=ca3386945384469f7dd7c517ad90ba78}{%
+           family={{Supercell}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{ca3386945384469f7dd7c517ad90ba78}
+      \strng{fullhash}{ca3386945384469f7dd7c517ad90ba78}
+      \strng{fullhashraw}{ca3386945384469f7dd7c517ad90ba78}
+      \strng{bibnamehash}{ca3386945384469f7dd7c517ad90ba78}
+      \strng{authorbibnamehash}{ca3386945384469f7dd7c517ad90ba78}
+      \strng{authornamehash}{ca3386945384469f7dd7c517ad90ba78}
+      \strng{authorfullhash}{ca3386945384469f7dd7c517ad90ba78}
+      \strng{authorfullhashraw}{ca3386945384469f7dd7c517ad90ba78}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Nguồn tham khảo hệ thống căn cứ/công trình và quản trị tài nguyên}
+      \field{title}{Clash of Clans (Game)}
+      \field{year}{2012}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -1,243 +1,399 @@
 \section{Thiết kế hệ thống}
+\label{sec:design}
 
 \subsection{Mục tiêu thiết kế}
+\label{subsec:design-goals}
 
-Mục tiêu của chương này là chuyển hoá các kết quả phân tích hệ thống ở Chương 6 thành
-các quyết định thiết kế cụ thể ở mức kiến trúc và mô-đun, làm cơ sở cho việc hiện thực
-hệ thống trong Chương 8.
+Mục tiêu của chương này là chuyển hoá kết quả phân tích ở Chương~\ref{sec:analysis} thành các quyết định thiết kế cụ thể ở mức:
+(i) kiến trúc tổng thể client--server và triển khai; 
+(ii) thiết kế mô-đun backend và ranh giới trách nhiệm; 
+(iii) thiết kế dữ liệu (progression/state và game configuration);
+(iv) thiết kế giao tiếp (HTTP/WebSocket) và quy ước dữ liệu; 
+(v) thiết kế các cơ chế đảm bảo nhất quán, bảo mật và quan sát hệ thống.
 
-Thiết kế hệ thống trong giai đoạn 1 hướng đến các mục tiêu chính sau:
+Trong giai đoạn 1, thiết kế ưu tiên:
 \begin{itemize}
-    \item Xây dựng kiến trúc client--server rõ ràng, tuân theo mô hình server authoritative.
-    \item Tổ chức hệ thống theo hướng module hoá để thuận tiện cho mở rộng.
-    \item Đảm bảo hỗ trợ đầy đủ các yêu cầu chức năng và phi chức năng đã xác định.
-    \item Giữ mức độ phức tạp phù hợp với phạm vi một đồ án chuyên ngành.
+    \item \textbf{Tính đúng đắn và nhất quán}: các thay đổi ảnh hưởng tiến trình (reward/currency/gacha/checkpoint) phải được server xác nhận.
+    \item \textbf{Tính mô-đun}: phân tách rõ theo phân hệ (auth, profile, character, inventory, combat, gacha, island, admin).
+    \item \textbf{Tính data-driven cho cấu hình}: tách dữ liệu cấu hình gameplay khỏi mã nguồn; hỗ trợ quản trị và thay đổi nhanh.
+    \item \textbf{Phù hợp phạm vi đồ án}: triển khai ở mức hợp lý (single deployment có thể chạy được), nhưng vẫn giữ được hướng mở rộng.
 \end{itemize}
 
-Thiết kế không nhằm tối ưu hoá cho môi trường production hay tải lớn, mà tập trung
-vào tính đúng đắn, rõ ràng và khả năng phát triển trong các giai đoạn tiếp theo.
+\subsection{Kiến trúc tổng thể và triển khai}
+\label{subsec:design-architecture}
 
-%------------------------------------------------
+\subsubsection{Tổng quan triển khai}
+\label{subsubsec:design-deploy-overview}
 
-\subsection{Kiến trúc tổng thể hệ thống}
+Hệ thống được tổ chức thành 3 lớp chính: \textit{Client Devices}, \textit{Backend Infrastructure} và \textit{Data \& Storage}. Hình~\ref{fig:deploy-diagram} mô tả các thành phần và đường giao tiếp chính.
 
-\subsubsection{Mô hình kiến trúc client--server}
+\begin{figure}[H]
+    \centering
+    % Yêu cầu: đặt ảnh vào Report/Images/DeployDiagram.png
+    \includegraphics[width=0.95\textwidth]{Images/DeployDiagram.png}
+    \caption{Sơ đồ triển khai tổng quan hệ thống}
+    \label{fig:deploy-diagram}
+\end{figure}
 
-Hệ thống Fortress of the Fallen trong giai đoạn 1 được thiết kế theo mô hình
-client--server nhiều lớp, bao gồm các thành phần chính sau:
-
+Các thành phần cốt lõi:
 \begin{itemize}
-    \item \textbf{Game Client (Unity):}
+    \item \textbf{Game Client (Unity)}: hiển thị đồ hoạ, UI, thu thập input; giao tiếp với server qua HTTPS và WebSocket.
+    \item \textbf{API Server (NestJS)}: lớp ứng dụng xử lý REST API, đồng thời cung cấp kênh real-time (WebSocket gateway) cho phiên chơi.
+    \item \textbf{Job Worker}: xử lý tác vụ nền theo lịch (ví dụ: mail hệ thống, sự kiện, tổng hợp log, dọn dẹp dữ liệu runtime).
+    \item \textbf{MongoDB (Primary DB)}: lưu dữ liệu tiến trình bền vững và các collections cấu hình.
+    \item \textbf{Redis (Cache \& Pub/Sub)}: lưu cache/session runtime hoặc pub-sub khi mở rộng nhiều instance.
+    \item \textbf{MinIO (Object Storage)}: lưu trữ tệp và asset bundle (nếu áp dụng); client tải qua presigned URL.
+\end{itemize}
+
+\subsubsection{Nguyên tắc server-authoritative}
+\label{subsubsec:design-server-authoritative}
+
+Thiết kế áp dụng nguyên tắc \textbf{server-authoritative} cho các tác vụ ảnh hưởng tiến trình và công bằng:
+\begin{itemize}
+    \item Client chỉ gửi \textbf{ý định} (intent), không gửi trạng thái ``đã xảy ra'' như ``đã trúng đòn'' hay ``đã nhận item''.
+    \item Server kiểm tra luật (cooldown, tài nguyên, điều kiện tham gia, dung lượng inventory) và chỉ khi hợp lệ mới ghi dữ liệu.
+    \item Các giao dịch reward/currency/gacha/checkpoint được coi là \textbf{giao dịch nghiệp vụ} và phải có log/audit để truy vết.
+\end{itemize}
+Các quyết định này giúp giảm rủi ro gian lận và tăng tính nhất quán trong môi trường online \cite{gaffer-networking,moriarty-networked}.
+
+\subsubsection{Phân tách giao tiếp: HTTP và WebSocket}
+\label{subsubsec:design-protocols}
+
+\paragraph{HTTP/REST} được dùng cho:
+\begin{itemize}
+    \item đăng ký/đăng nhập, quản lý profile/nhân vật;
+    \item tải dữ liệu UI (inventory, island state, NPC collection);
+    \item thao tác quản trị (admin) và các tác vụ không yêu cầu độ trễ thấp.
+\end{itemize}
+
+\paragraph{WebSocket} được dùng cho:
+\begin{itemize}
+    \item tham gia instance/room và vòng lặp chiến đấu real-time;
+    \item gửi input (move/attack/cast/dodge) theo nhịp;
+    \item nhận snapshot/event từ server để hiển thị mượt.
+\end{itemize}
+
+\subsection{Thiết kế mô-đun backend}
+\label{subsec:design-backend-modules}
+
+Backend được tổ chức theo phong cách module hoá của NestJS \cite{nest-docs}. Mỗi mô-đun tương ứng một phân hệ nghiệp vụ và sở hữu ranh giới dữ liệu rõ ràng. Bảng~\ref{tab:module-map} tóm tắt các mô-đun chính.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|p{3.1cm}|X|p{4.2cm}|}
+\hline
+\textbf{Mô-đun} & \textbf{Trách nhiệm chính} & \textbf{Dữ liệu/Collection liên quan} \\
+\hline
+Auth Module & Đăng ký/đăng nhập; cấp và xác thực token; chính sách role & USER, SESSION\_RUNTIME \\
+\hline
+Profile Module & Tạo/chọn game profile; cập nhật last\_played; thiết lập profile & GAME\_PROFILE \\
+\hline
+Character Module & Tạo/chọn/xoá nhân vật; quản lý level/EXP; base stats, appearance & CHARACTER \\
+\hline
+Inventory Module & Quản lý slot, stack, currency; equip/enhance/durability; cập nhật reward & INVENTORY, CONFIG\_ITEM \\
+\hline
+Combat Module & Tham gia tower/dungeon/arena; quản lý instance/room; vòng lặp tick & SESSION\_RUNTIME, (runtime state) \\
+\hline
+Gacha Module & Banner, rate, pity, exchange; xử lý duplicate; ghi lịch sử & NPC\_COLLECTION, (gacha history), config rates \\
+\hline
+Island Module & Tài nguyên đảo; xây/nâng cấp công trình; timer; layout & PERSONAL\_ISLAND, CONFIG\_BUILDING \\
+\hline
+NPC Module & Bộ sưu tập NPC; levelling/star/friendship; gán worker & NPC\_COLLECTION \\
+\hline
+Admin Module & Ban/unban; system mail; log viewer; event config & USER, (mail/event/log) \\
+\hline
+Config Module & Nạp và cung cấp truy xuất cấu hình; versioning; cache & CONFIG\_* (static) \\
+\hline
+\end{tabularx}
+\caption{Bản đồ mô-đun backend và dữ liệu liên quan}
+\label{tab:module-map}
+\end{table}
+
+\subsubsection{Các thành phần dùng chung (cross-cutting)}
+\label{subsubsec:design-crosscutting}
+
+Để giảm trùng lặp và tăng tính nhất quán, hệ thống dùng các thành phần dùng chung:
+\begin{itemize}
+    \item \textbf{Validation}: kiểm tra input cho REST và WebSocket (schema/DTO) để chặn dữ liệu sai từ đầu.
+    \item \textbf{Error handling}: chuẩn hoá mã lỗi và thông điệp lỗi; đảm bảo client có thể hiển thị đúng trạng thái UI (loading/error/disabled).
+    \item \textbf{Logging \& audit}: log request, log nghiệp vụ (reward/gacha/admin action), kèm correlation id.
+    \item \textbf{Rate limit / anti-spam}: giới hạn tần suất với endpoint nhạy cảm (login, gacha) và message real-time (input spam).
+\end{itemize}
+
+\subsection{Thiết kế dữ liệu}
+\label{subsec:design-data}
+
+\subsubsection{Nguyên tắc thiết kế dữ liệu}
+\label{subsubsec:design-data-principles}
+
+Hệ thống dữ liệu được chia thành 2 nhóm:
+\begin{itemize}
+    \item \textbf{Progression/State (động)}: dữ liệu người chơi thay đổi theo thời gian (profile, character, inventory, island, NPC, pity).
+    \item \textbf{Game Configuration (tĩnh)}: dữ liệu định nghĩa và thông số gameplay (item/building/skill/rates/formulas).
+\end{itemize}
+
+Với MongoDB, thiết kế ưu tiên:
+\begin{itemize}
+    \item \textbf{Embed} khi dữ liệu có vòng đời gắn chặt với thực thể cha và truy vấn thường đi cùng nhau (ví dụ: base\_stats/resources/appearance nhúng trong CHARACTER; items nhúng trong INVENTORY; buildings nhúng trong PERSONAL\_ISLAND).
+    \item \textbf{Reference} khi dữ liệu là định nghĩa tĩnh dùng chung (CONFIG\_ITEM/CONFIG\_BUILDING) hoặc cần tái sử dụng giữa nhiều thực thể.
+\end{itemize}
+
+\subsubsection{Mô hình thực thể chính (ERD mức logic)}
+\label{subsubsec:design-erd}
+
+Trong phạm vi báo cáo, ERD được trình bày ở mức logic để làm rõ quan hệ 1:1, 1:N và các liên kết tham chiếu tới cấu hình. Mã mô tả ERD (Mermaid) có thể dùng để render thành hình khi cần:
+
+\begin{lstlisting}
+erDiagram
+    USER ||--|{ GAME_PROFILE : "has (1:N)"
+    GAME_PROFILE ||--|{ CHARACTER : "owns (1:N)"
+    CHARACTER ||--|| INVENTORY : "has (1:1)"
+    GAME_PROFILE ||--|| PERSONAL_ISLAND : "owns (1:1)"
+    GAME_PROFILE ||--|| NPC_COLLECTION : "owns (1:1)"
+    INVENTORY ||--|{ STRUCT_INVENTORY_ITEM : "contains"
+    STRUCT_INVENTORY_ITEM }|..|| CONFIG_ITEM : "ref config"
+    PERSONAL_ISLAND ||--|{ STRUCT_BUILDING : "contains"
+    STRUCT_BUILDING }|..|| CONFIG_BUILDING : "ref config"
+\end{lstlisting}
+
+Các thực thể trọng tâm:
+\begin{itemize}
+    \item \textbf{USER}: định danh tài khoản; nhúng \texttt{OBJECT\_USER\_SETTINGS}.
+    \item \textbf{GAME\_PROFILE}: tách tiến trình theo profile; là ``root'' cho character/island/npc.
+    \item \textbf{SESSION\_RUNTIME}: trạng thái phiên hoạt động (token, socket, profile/character đang dùng).
+    \item \textbf{CHARACTER}: dữ liệu nhân vật và trạng thái cơ bản.
+    \item \textbf{INVENTORY}: danh sách item instance + currency.
+    \item \textbf{PERSONAL\_ISLAND}: tài nguyên đảo + công trình theo grid.
+    \item \textbf{NPC\_COLLECTION}: danh sách NPC sở hữu; phục vụ tuyển dụng và worker assignment.
+\end{itemize}
+
+\subsubsection{Chỉ mục (indexes) và khoá truy vấn}
+\label{subsubsec:design-indexes}
+
+Để đảm bảo truy vấn ổn định, các chỉ mục đề xuất:
+\begin{itemize}
+    \item USER: unique index cho \texttt{username}, \texttt{email}.
+    \item GAME\_PROFILE: index theo \texttt{user\_id}; có thể unique theo (\texttt{user\_id}, \texttt{profile\_name}).
+    \item CHARACTER: index theo \texttt{profile\_id}; có thể unique theo (\texttt{profile\_id}, \texttt{name}) nếu cần chống trùng trong profile.
+    \item INVENTORY: unique index theo \texttt{character\_id}.
+    \item PERSONAL\_ISLAND, NPC\_COLLECTION: unique index theo \texttt{profile\_id}.
+    \item CONFIG collections: unique index theo \texttt{id} (khoá cấu hình).
+\end{itemize}
+
+\subsection{Thiết kế hệ thống chỉ số và tăng trưởng nhân vật}
+\label{subsec:design-stats}
+
+\subsubsection{Thuộc tính nền và chỉ số suy diễn}
+\label{subsubsec:design-primary-derived}
+
+Nhân vật có 6 thuộc tính nền: STR, DEX, CON, INT, WIS, CHA. Từ đó hệ thống suy diễn các chỉ số chiến đấu như HP/MP/ATK/DEF/CRIT/ACC/EVA. Hình~\ref{fig:stats-system} minh hoạ mối phụ thuộc giữa các nhóm chỉ số.
+
+\begin{figure}[H]
+    \centering
+    % Yêu cầu: đặt ảnh vào Report/Images/stats-system.png
+    \includegraphics[width=0.78\textwidth]{Images/stats-system.png}
+    \caption{Mô hình thuộc tính nền và chỉ số suy diễn}
+    \label{fig:stats-system}
+\end{figure}
+
+Thiết kế tách rõ:
+\begin{itemize}
+    \item \textbf{Base Stats}: điểm phân bổ trực tiếp bởi người chơi theo level (+5 points/level, tối đa level 100).
+    \item \textbf{Derived Stats}: chỉ số tính toán (HP/MP/ATK/\ldots) dựa trên công thức và hệ số cân bằng.
+    \item \textbf{Special Traits}: Karma, Affinity, Luck, Resistance là nhóm ``đặc tính'' dùng cho điều kiện mở khoá và/hoặc hiệu ứng meta.
+\end{itemize}
+
+\subsubsection{Tính toán chỉ số theo hướng data-driven}
+\label{subsubsec:design-stat-formula}
+
+Để tránh hard-code công thức, thiết kế cho phép cấu hình hoá hệ số (ví dụ: HP nhận trọng số từ CON và STR; MP nhận trọng số từ WIS và INT; SPD từ DEX). Cách tiếp cận:
+\begin{itemize}
+    \item Công thức được lưu dưới dạng \textbf{config} (ví dụ bảng hệ số theo stat).
+    \item Server tính toán derived stats khi:
     \begin{itemize}
-        \item Hiển thị đồ hoạ và giao diện người dùng.
-        \item Thu thập input từ người chơi.
-        \item Gửi request HTTP và message WebSocket đến server.
-        \item Hiển thị trạng thái nhận được từ server.
-    \end{itemize}
-
-    \item \textbf{Backend Server (NestJS/Node.js):}
-    \begin{itemize}
-        \item Xử lý xác thực và quản lý người dùng.
-        \item Quản lý phiên chơi và kết nối real-time.
-        \item Xử lý logic gameplay tối thiểu (đồng bộ di chuyển).
-        \item Đóng vai trò nguồn chân lý cho trạng thái hệ thống.
-    \end{itemize}
-
-    \item \textbf{Data Layer (MongoDB, Redis):}
-    \begin{itemize}
-        \item MongoDB lưu trữ dữ liệu bền vững (User, Character).
-        \item Redis (tuỳ mức hiện thực) hỗ trợ session hoặc cache dữ liệu truy cập thường xuyên.
+        \item player phân bổ điểm;
+        \item thay đổi trang bị;
+        \item thay đổi class/race có modifier.
     \end{itemize}
 \end{itemize}
 
-Nguyên tắc thiết kế cốt lõi của hệ thống là \textbf{server authoritative}:
-mọi trạng thái có ảnh hưởng đến tính nhất quán và công bằng đều do server xác nhận.
+Ở mức thiết kế, có thể biểu diễn công thức bằng dạng tuyến tính:
+\[
+    S_{derived} = \sum_i w_i \cdot A_i + b
+\]
+trong đó $A_i$ là thuộc tính nền (STR/DEX/CON/INT/WIS/CHA) và $w_i$ là hệ số cấu hình.
 
-%------------------------------------------------
+\subsection{Thiết kế quản trị cấu hình game (Config Pipeline)}
+\label{subsec:design-config-pipeline}
 
-\subsubsection{Phân tách theo lớp chức năng}
+Pipeline cấu hình chỉ áp dụng cho \textbf{các bảng cấu hình/thông số gameplay} (item/building/skill/rates/formulas). Dữ liệu tiến trình người chơi vẫn được ghi trực tiếp bởi server trong các collections động.
 
-Ở mức logic, hệ thống được phân chia thành các lớp chức năng:
+\subsubsection{Luồng dữ liệu cấu hình}
+\label{subsubsec:design-config-flow}
 
-\begin{itemize}
-    \item \textbf{Presentation Layer:} Game client Unity.
-    \item \textbf{Application Layer:} Các module backend xử lý nghiệp vụ.
-    \item \textbf{Real-time Layer:} Gateway WebSocket và logic phiên chơi.
-    \item \textbf{Data Layer:} MongoDB và Redis.
-\end{itemize}
-
-Cách phân tách này giúp giảm phụ thuộc giữa các thành phần, đồng thời tạo điều kiện
-mở rộng hệ thống trong các giai đoạn sau (NPC, dungeon, PvP).
-
-%------------------------------------------------
-
-\subsection{Thiết kế các mô-đun backend}
-
-Backend được tổ chức theo kiến trúc module hoá của NestJS. Trong giai đoạn 1,
-các mô-đun chính bao gồm:
-
-\subsubsection{Auth Module}
-
-\textbf{Chức năng:}
-\begin{itemize}
-    \item Đăng ký tài khoản.
-    \item Đăng nhập và cấp token phiên.
-    \item Xác thực token cho các request tiếp theo.
-\end{itemize}
-
-\textbf{Thiết kế:}
-\begin{itemize}
-    \item Sử dụng HTTP/REST cho đăng ký và đăng nhập.
-    \item Token (ví dụ JWT) được gửi kèm trong header hoặc handshake WebSocket.
-    \item Mật khẩu chỉ được lưu dưới dạng hash.
-\end{itemize}
-
-\subsubsection{User và Character Module}
-
-\textbf{User Module} chịu trách nhiệm quản lý thông tin tài khoản người chơi và
-liên kết với danh sách nhân vật.
-
-\textbf{Character Module} đảm nhiệm:
-\begin{itemize}
-    \item Tạo nhân vật tối thiểu.
-    \item Lưu trữ các thuộc tính nền như level, vị trí khởi tạo và chỉ số cơ bản.
-    \item Cung cấp dữ liệu cho phiên chơi real-time.
-\end{itemize}
-
-Thiết kế hai module này hướng đến khả năng mở rộng cho các hệ thống class, skill
-và progression trong các giai đoạn tiếp theo.
-
-%------------------------------------------------
-
-\subsubsection{Session và Room Module}
-
-Module Session quản lý trạng thái phiên chơi real-time, bao gồm ánh xạ giữa
-user, character và socket.
-
-Module Room dùng để nhóm các người chơi vào các instance logic nhằm phục vụ
-kiểm thử đồng bộ trạng thái trong giai đoạn 1.
-
-Các session chủ yếu tồn tại trong bộ nhớ runtime và không yêu cầu lưu bền vững.
-
-%------------------------------------------------
-
-\subsubsection{Real-time Gateway}
-
-Gateway WebSocket đảm nhiệm:
-\begin{itemize}
-    \item Nhận input di chuyển từ client.
-    \item Phát snapshot trạng thái về client.
-    \item Xử lý kết nối và ngắt kết nối.
-\end{itemize}
-
-Input từ client được xem là \emph{ý định}, không phải trạng thái cuối cùng;
-server kiểm tra ràng buộc trước khi cập nhật trạng thái authoritative.
-
-%------------------------------------------------
-
-\subsection{Thiết kế giao tiếp client--server}
-
-\subsubsection{Giao tiếp HTTP}
-
-HTTP được sử dụng cho các chức năng không yêu cầu real-time:
-\begin{itemize}
-    \item Đăng ký, đăng nhập.
-    \item Tải hồ sơ người chơi.
-    \item Tạo và chọn nhân vật.
-\end{itemize}
-
-Cách tiếp cận này giúp đơn giản hoá thiết kế và thuận tiện cho kiểm thử.
-
-\subsubsection{Giao tiếp WebSocket}
-
-WebSocket được sử dụng cho:
-\begin{itemize}
-    \item Thiết lập phiên chơi.
-    \item Gửi input di chuyển.
-    \item Nhận cập nhật trạng thái.
-\end{itemize}
-
-Mỗi message WebSocket được thiết kế theo dạng message-based, gồm loại sự kiện
-và payload dữ liệu.
-
-%------------------------------------------------
-
-\subsection{Thiết kế dữ liệu ở mức logic}
-
-\subsubsection{Đối tượng User}
-
-Đối tượng User bao gồm các thuộc tính logic chính:
-\begin{itemize}
-    \item userId
-    \item username/email
-    \item passwordHash
-    \item metadata cơ bản
-\end{itemize}
-
-User đóng vai trò định danh và liên kết các dữ liệu khác.
-
-\subsubsection{Đối tượng Character}
-
-Đối tượng Character bao gồm:
-\begin{itemize}
-    \item characterId
-    \item ownerUserId
-    \item level
-    \item baseStats
-    \item position (spawn)
-\end{itemize}
-
-Thiết kế này sẵn sàng mở rộng cho class, skill và equipment.
-
-\subsubsection{Đối tượng Session (Runtime)}
-
-Session tồn tại trong runtime server, bao gồm:
-\begin{itemize}
-    \item socketId
-    \item userId
-    \item characterId
-    \item roomId
-    \item trạng thái kết nối
-\end{itemize}
-
-Session không bắt buộc lưu vào DB trong giai đoạn 1.
-
-%------------------------------------------------
-
-\subsection{Thiết kế luồng xử lý real-time}
-
-Luồng xử lý di chuyển được thiết kế như sau:
+Luồng quản trị cấu hình đề xuất:
 \begin{enumerate}
-    \item Client gửi input di chuyển theo nhịp.
-    \item Server nhận input và đưa vào vòng lặp tick.
-    \item Server kiểm tra ràng buộc (tốc độ, spam).
-    \item Server cập nhật trạng thái authoritative.
-    \item Server gửi snapshot về client.
+    \item \textbf{Soạn thảo trên Google Sheets}: mỗi bảng là một nhóm cấu hình (CONFIG\_ITEM, CONFIG\_BUILDING, rates, formulas).
+    \item \textbf{Xuất TSV}: xuất theo template thống nhất; đảm bảo kiểu dữ liệu và khoá \texttt{id}.
+    \item \textbf{Import vào DB}: script import thực hiện \textit{upsert} theo \texttt{id}; tạo bản ghi version/import log.
+    \item \textbf{Nạp vào Config Manager}: khi server khởi động (hoặc khi client vào game tuỳ chính sách), server tải config từ DB vào bộ nhớ để truy xuất nhanh.
 \end{enumerate}
 
-Ở giai đoạn 1, cơ chế snapshot được triển khai ở mức đơn giản, chưa yêu cầu
-prediction và reconciliation hoàn chỉnh.
+\subsubsection{Thiết kế Config Manager}
+\label{subsubsec:design-config-manager}
 
-%------------------------------------------------
-
-\subsection{Các quyết định thiết kế và giới hạn}
-
-Một số quyết định thiết kế quan trọng trong giai đoạn 1:
+Config Manager là lớp truy xuất cấu hình thống nhất cho toàn bộ service:
 \begin{itemize}
-    \item Chỉ hiện thực đồng bộ di chuyển cơ bản.
-    \item Một user duy trì tối đa một session active.
-    \item Chưa tối ưu cho quy mô người chơi lớn.
-    \item Ưu tiên tính rõ ràng và ổn định hơn tối ưu hiệu năng.
+    \item \textbf{In-memory cache}: lưu map \texttt{id $\rightarrow$ config object} cho từng nhóm cấu hình.
+    \item \textbf{Versioning}: gắn \texttt{config\_version} cho lần nạp, phục vụ debug và đảm bảo nhất quán khi tính toán.
+    \item \textbf{Validation khi nạp}: kiểm tra dữ liệu TSV sau import (schema, khoá trùng, tham chiếu hợp lệ).
 \end{itemize}
 
-Các giới hạn này giúp đảm bảo đồ án phù hợp với nguồn lực và mục tiêu học thuật.
+Ở giai đoạn 1, cơ chế reload có thể ở mức đơn giản (restart server để nạp lại). Khi mở rộng, có thể bổ sung:
+\begin{itemize}
+    \item endpoint admin ``reload config'' có xác thực;
+    \item publish sự kiện qua Redis pub/sub để các instance nạp lại đồng bộ.
+\end{itemize}
 
-%------------------------------------------------
+\subsection{Thiết kế giao tiếp client--server}
+\label{subsec:design-communication}
 
-\subsection{Tổng kết chương}
+\subsubsection{REST API: nhóm endpoint và quy ước}
+\label{subsubsec:design-rest}
 
-Chương này đã trình bày thiết kế hệ thống Fortress of the Fallen ở mức kiến trúc
-và mô-đun cho giai đoạn 1, bao gồm kiến trúc tổng thể, thiết kế backend, giao tiếp
-client--server, dữ liệu logic và luồng xử lý real-time.
+REST API được nhóm theo phân hệ. Mục tiêu thiết kế API:
+\begin{itemize}
+    \item tài nguyên rõ ràng (resource-oriented);
+    \item payload ổn định cho UI;
+    \item lỗi có mã và thông điệp nhất quán.
+\end{itemize}
 
-Các nội dung trên là cơ sở trực tiếp cho Chương 8 -- Hiện thực hệ thống.
+Ví dụ nhóm endpoint (mức thiết kế):
+\begin{itemize}
+    \item \texttt{/auth/register}, \texttt{/auth/login}, \texttt{/auth/recover}
+    \item \texttt{/profiles} (list/create/select)
+    \item \texttt{/characters} (list/create/delete/select)
+    \item \texttt{/inventory} (get/update equip/enhance)
+    \item \texttt{/island} (get/build/upgrade/assign-worker/collect)
+    \item \texttt{/gacha} (banners/rates/summon/history/exchange)
+    \item \texttt{/admin} (users/ban/mail/logs/events)
+\end{itemize}
+
+\subsubsection{WebSocket: định dạng message và vòng đời phiên}
+\label{subsubsec:design-ws}
+
+Thiết kế message theo dạng envelope để dễ mở rộng:
+\begin{lstlisting}[language=json]
+{
+  "type": "combat.input",
+  "seq": 1024,
+  "ts": 1730000000,
+  "payload": { ... }
+}
+\end{lstlisting}
+
+Quy ước chính:
+\begin{itemize}
+    \item \textbf{type}: loại thông điệp (join, input, snapshot, event, error).
+    \item \textbf{seq}: số thứ tự để hỗ trợ kiểm soát spam, debug và (nếu cần) reconciliation.
+    \item \textbf{payload}: dữ liệu tuỳ theo type.
+\end{itemize}
+
+Vòng đời phiên:
+\begin{enumerate}
+    \item Client đăng nhập và chọn profile/character qua REST.
+    \item Client handshake WebSocket kèm token; server xác thực và gán \texttt{socket\_id}.
+    \item Client gửi \texttt{join} để vào instance/room; server trả dữ liệu spawn và state ban đầu.
+    \item Trong phiên: client gửi input theo nhịp; server phát snapshot/event.
+    \item Kết phiên: server trả kết quả, reward delta và trạng thái checkpoint.
+\end{enumerate}
+
+\subsection{Thiết kế vòng lặp real-time cho combat/instance}
+\label{subsec:design-realtime}
+
+\subsubsection{Mô hình instance/room}
+\label{subsubsec:design-room}
+
+Hệ thống tổ chức người chơi theo \textbf{room} (đơn vị logic của một instance). Mỗi room có:
+\begin{itemize}
+    \item danh sách người chơi tham gia (socket id, character id);
+    \item trạng thái runtime (vị trí, HP/MP, trạng thái kỹ năng, entity trong phòng);
+    \item cấu hình phiên (mode: tower/dungeon/arena; floor/seed).
+\end{itemize}
+
+\subsubsection{Tick loop và phát snapshot}
+\label{subsubsec:design-tick}
+
+Thiết kế loop ở mức khái niệm:
+\begin{enumerate}
+    \item Thu thập input queue từ client.
+    \item Xác thực input (cooldown, tài nguyên, vị trí hợp lệ, tốc độ).
+    \item Cập nhật trạng thái authoritative theo tick.
+    \item Phát snapshot định kỳ và phát event khi có thay đổi quan trọng (hit/loot/death).
+\end{enumerate}
+
+Trong giai đoạn 1, cơ chế snapshot có thể thiết kế theo hướng \textbf{đơn giản và rõ ràng}:
+\begin{itemize}
+    \item snapshot theo tick rate cố định (ví dụ 10--20 tick/s tuỳ mục tiêu kiểm thử);
+    \item payload snapshot ưu tiên các giá trị tối thiểu để render (pos, hp/mp, state flags);
+    \item chưa bắt buộc triển khai đầy đủ prediction/reconciliation, nhưng định dạng message chừa chỗ cho mở rộng \cite{gaffer-networking,moriarty-networked}.
+\end{itemize}
+
+\subsection{Thiết kế phân hệ Administration}
+\label{subsec:design-admin}
+
+Phân hệ admin phục vụ quản trị vận hành và kiểm soát rủi ro:
+\begin{itemize}
+    \item \textbf{Ban/Unban user}: cập nhật \texttt{USER.status}; thu hồi phiên đang hoạt động.
+    \item \textbf{System mail}: gửi thông báo/phần thưởng theo user/profile; được xử lý như job để kiểm soát retry.
+    \item \textbf{View logs}: truy vấn log theo thời gian/actor/severity; hỗ trợ điều tra sự cố.
+    \item \textbf{Configure events}: tạo cấu hình sự kiện và phần thưởng; dữ liệu sự kiện tách khỏi config item cơ bản.
+\end{itemize}
+
+Các thao tác admin phải có:
+\begin{itemize}
+    \item phân quyền theo role;
+    \item audit log đầy đủ (ai làm, làm gì, khi nào, trước/sau);
+    \item cơ chế chống thao tác lặp gây cấp trùng phần thưởng (idempotent key).
+\end{itemize}
+
+\subsection{Bảo mật, nhất quán và quan sát hệ thống}
+\label{subsec:design-nfr}
+
+\subsubsection{Bảo mật}
+\label{subsubsec:design-security}
+
+Các nguyên tắc:
+\begin{itemize}
+    \item mật khẩu lưu dạng hash; không lưu plaintext;
+    \item token có thời hạn; khi ban user cần thu hồi session;
+    \item phân quyền rõ giữa player và admin (role-based);
+    \item giới hạn tần suất login/gacha và kiểm tra input realtime để chống spam.
+\end{itemize}
+
+\subsubsection{Nhất quán dữ liệu và giao dịch nghiệp vụ}
+\label{subsubsec:design-consistency}
+
+Các thao tác như reward, gacha, exchange, nâng cấp công trình cần đảm bảo:
+\begin{itemize}
+    \item \textbf{atomic ở mức tài liệu} (MongoDB document update) khi cập nhật trong cùng thực thể (inventory/items/currency);
+    \item \textbf{idempotency} cho request dễ bị gửi lại (retry do mạng);
+    \item \textbf{log nghiệp vụ} để có thể đối soát và khôi phục khi lỗi.
+\end{itemize}
+
+\subsubsection{Quan sát hệ thống (observability)}
+\label{subsubsec:design-observability}
+
+Thiết kế log tối thiểu:
+\begin{itemize}
+    \item request log: endpoint, latency, status code, user id (nếu có);
+    \item business log: gacha result, reward delivery, currency delta, admin actions;
+    \item realtime log: join/leave room, disconnect, lỗi xác thực socket.
+\end{itemize}
+
+\subsection{Tổng kết chương} 
+\label{subsec:design-summary}
+
+Chương này đã mô tả thiết kế hệ thống ở mức kiến trúc, mô-đun, dữ liệu và giao tiếp cho \textit{Fortress of the Fallen}. Thiết kế nhấn mạnh ranh giới trách nhiệm client--server theo hướng server-authoritative, tổ chức backend theo mô-đun rõ ràng, tách dữ liệu tiến trình khỏi dữ liệu cấu hình, và xây dựng pipeline quản trị cấu hình theo hướng data-driven. Các quyết định thiết kế này là nền tảng để mô tả hiện thực hệ thống và kiểm thử trong các chương tiếp theo \cite{nest-docs,mongodb-guide,redis-in-action,gaffer-networking,moriarty-networked}.

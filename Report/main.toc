@@ -1,168 +1,243 @@
 \babel@toc {vietnamese}{}\relax 
 \contentsline {section}{Danh mục thuật ngữ}{1}{section*.2}%
-\contentsline {section}{\numberline {1}Giới thiệu}{10}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Động lực}{10}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Mục tiêu}{10}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Phạm vi}{11}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Ý nghĩa của đề tài}{12}{subsection.1.4}%
-\contentsline {subsubsection}{\numberline {1.4.1}Ý nghĩa thực tiễn}{12}{subsubsection.1.4.1}%
-\contentsline {subsubsection}{\numberline {1.4.2}Ý nghĩa khoa học và học thuật}{12}{subsubsection.1.4.2}%
-\contentsline {subsection}{\numberline {1.5}Cấu trúc báo cáo}{12}{subsection.1.5}%
-\contentsline {section}{\numberline {2}Kiến thức nền tảng}{13}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Kiến thức nền tảng về Action RPG và môi trường real-time}{13}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Đặc điểm của Action RPG}{13}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Hệ thống multiplayer trong Action RPG}{14}{subsubsection.2.1.2}%
-\contentsline {paragraph}{Mô hình client--server}{14}{section*.6}%
-\contentsline {paragraph}{Tick-rate và vòng lặp cập nhật}{14}{section*.7}%
-\contentsline {paragraph}{Đồng bộ trạng thái}{15}{section*.8}%
-\contentsline {subsection}{\numberline {2.2}Kiến thức nền tảng về Game Design}{15}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Core Loop và Meta Loop}{15}{subsubsection.2.2.1}%
-\contentsline {paragraph}{Core Loop}{15}{section*.9}%
-\contentsline {paragraph}{Meta Loop}{16}{section*.11}%
-\contentsline {subsubsection}{\numberline {2.2.2}Progression System (Hệ thống phát triển nhân vật)}{16}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Combat Design (Thiết kế chiến đấu)}{16}{subsubsection.2.2.3}%
-\contentsline {paragraph}{Pacing (nhịp độ chiến đấu)}{16}{section*.12}%
-\contentsline {paragraph}{Frame Data}{17}{section*.13}%
-\contentsline {paragraph}{Hit Detection}{17}{section*.14}%
-\contentsline {subsubsection}{\numberline {2.2.4}World System và Level Design}{17}{subsubsection.2.2.4}%
-\contentsline {subsubsection}{\numberline {2.2.5}Hệ thống kinh tế (Game Economy)}{17}{subsubsection.2.2.5}%
-\contentsline {paragraph}{Nguồn tài nguyên (Resource Sources)}{17}{section*.15}%
-\contentsline {paragraph}{Tiêu thụ tài nguyên (Resource Sinks)}{18}{section*.16}%
-\contentsline {subsubsection}{\numberline {2.2.6}UX/UI Design trong game}{18}{subsubsection.2.2.6}%
-\contentsline {subsubsection}{\numberline {2.2.7}Balancing Fundamentals (Cân bằng game)}{18}{subsubsection.2.2.7}%
-\contentsline {subsection}{\numberline {2.3}Tổng kết chương}{18}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Công nghệ sử dụng}{19}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Kiến trúc tổng quát nhiều lớp}{19}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Công nghệ phía client (Game Engine)}{20}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Game engine cho Action RPG}{20}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Ngôn ngữ lập trình phía client}{20}{subsubsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.3}Công nghệ phía server (Backend)}{21}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Lựa chọn nền tảng backend: Node.js và NestJS}{21}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Mô hình dịch vụ và tổ chức logic backend}{21}{subsubsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.4}Công nghệ networking và giao tiếp thời gian thực}{21}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Giao tiếp client--server}{21}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}Quản lý kết nối và phiên chơi}{22}{subsubsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.5}Công nghệ lưu trữ và cơ sở dữ liệu}{22}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}Cơ sở dữ liệu NoSQL (MongoDB)}{22}{subsubsection.3.5.1}%
-\contentsline {subsubsection}{\numberline {3.5.2}Hệ thống cache (Redis)}{23}{subsubsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.6}Công cụ hỗ trợ phát triển và vận hành}{23}{subsection.3.6}%
-\contentsline {subsubsection}{\numberline {3.6.1}Quản lý mã nguồn và làm việc nhóm}{23}{subsubsection.3.6.1}%
-\contentsline {subsubsection}{\numberline {3.6.2}Công cụ thiết kế và tài liệu}{23}{subsubsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.7}Tổng kết}{23}{subsection.3.7}%
-\contentsline {section}{\numberline {4}Các công trình liên quan}{24}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Khung phân tích và tiêu chí lựa chọn nguồn tham khảo}{24}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Nhóm nguồn cảm hứng về cấu trúc tiến trình: Leo tháp, boss và checkpoint}{24}{subsection.4.2}%
-\contentsline {subsubsection}{\numberline {4.2.1}Sword Art Online (Season 1): trục nội dung leo tầng và boss tầng}{24}{subsubsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.3}Nhóm nguồn cảm hứng về thế giới sống: NPC, vận hành thế giới và vai trò tổ chức}{25}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}Overlord: NPC có vai trò, trật tự và vận hành thế giới}{25}{subsubsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.4}Nhóm nguồn cảm hứng về cơ chế tuyển dụng/thu thập: Gacha và meta-progression}{25}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Pick Me Up! Infinite Gacha: gacha như hệ thống meta và động lực dài hạn}{25}{subsubsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.5}Nhóm nguồn cảm hứng về trải nghiệm Action RPG: nhịp combat, phản hồi và điều khiển}{26}{subsection.4.5}%
-\contentsline {subsubsection}{\numberline {4.5.1}Arcane Odyssey: cảm giác điều khiển và tương tác thời gian thực trong online RPG}{26}{subsubsection.4.5.1}%
-\contentsline {subsubsection}{\numberline {4.5.2}Soul Knight Prequel: vòng lặp ngắn, build đơn giản và tái chơi}{26}{subsubsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.6}Nhóm nguồn cảm hứng về căn cứ/đảo cá nhân: phát triển dài hạn và quản trị tài nguyên}{27}{subsection.4.6}%
-\contentsline {subsubsection}{\numberline {4.6.1}Clash of Clans: căn cứ cá nhân và tiến trình phát triển theo tài nguyên}{27}{subsubsection.4.6.1}%
-\contentsline {subsection}{\numberline {4.7}Tổng hợp: Bảng đối chiếu nguồn tham khảo và phần áp dụng}{27}{subsection.4.7}%
-\contentsline {subsection}{\numberline {4.8}Tham khảo kỹ thuật và liên hệ với kiến trúc hệ thống}{28}{subsection.4.8}%
-\contentsline {subsection}{\numberline {4.9}Kết luận chương}{28}{subsection.4.9}%
-\contentsline {section}{\numberline {5}Phân tích yêu cầu}{29}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Mục tiêu của hệ thống}{29}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Đối tượng sử dụng hệ thống}{29}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Người chơi}{29}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Quản trị hệ thống}{30}{subsubsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.3}Phạm vi hiện thực trong giai đoạn 1}{30}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Các chức năng thuộc phạm vi hiện thực}{30}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Các chức năng không thuộc phạm vi hiện thực}{30}{subsubsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.4}Yêu cầu chức năng}{31}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}Yêu cầu chức năng phía người chơi}{31}{subsubsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.2}Yêu cầu chức năng phía hệ thống}{31}{subsubsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.5}Yêu cầu phi chức năng}{32}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Hiệu năng}{32}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}Bảo mật}{32}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Khả năng mở rộng và bảo trì}{32}{subsubsection.5.5.3}%
-\contentsline {subsubsection}{\numberline {5.5.4}Tính ổn định}{32}{subsubsection.5.5.4}%
-\contentsline {subsection}{\numberline {5.6}Yêu cầu dữ liệu}{32}{subsection.5.6}%
-\contentsline {subsection}{\numberline {5.7}Các ràng buộc và giả định}{33}{subsection.5.7}%
-\contentsline {subsection}{\numberline {5.8}Tổng kết chương}{33}{subsection.5.8}%
-\contentsline {section}{\numberline {6}Phân tích hệ thống}{33}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Tổng quan hệ thống}{33}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Tác nhân của hệ thống (Actors)}{34}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Phạm vi chức năng phân tích trong giai đoạn 1}{34}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Danh sách Use Case}{34}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Đặc tả Use Case chi tiết}{35}{subsection.6.5}%
-\contentsline {subsubsection}{\numberline {6.5.1}UC01 -- Đăng ký tài khoản}{35}{subsubsection.6.5.1}%
-\contentsline {subsubsection}{\numberline {6.5.2}UC02 -- Đăng nhập}{36}{subsubsection.6.5.2}%
-\contentsline {subsubsection}{\numberline {6.5.3}UC04 -- Tải hồ sơ người chơi}{37}{subsubsection.6.5.3}%
-\contentsline {subsubsection}{\numberline {6.5.4}UC05 -- Tạo nhân vật (tối thiểu)}{38}{subsubsection.6.5.4}%
-\contentsline {subsubsection}{\numberline {6.5.5}UC06 -- Chọn nhân vật}{38}{subsubsection.6.5.5}%
-\contentsline {subsubsection}{\numberline {6.5.6}UC07 -- Thiết lập kết nối real-time}{39}{subsubsection.6.5.6}%
-\contentsline {subsubsection}{\numberline {6.5.7}UC08 -- Tham gia phiên chơi thử nghiệm}{40}{subsubsection.6.5.7}%
-\contentsline {subsubsection}{\numberline {6.5.8}UC09 -- Gửi input di chuyển}{40}{subsubsection.6.5.8}%
-\contentsline {subsubsection}{\numberline {6.5.9}UC10 -- Nhận cập nhật trạng thái}{41}{subsubsection.6.5.9}%
-\contentsline {subsubsection}{\numberline {6.5.10}UC11 -- Xử lý mất kết nối}{42}{subsubsection.6.5.10}%
-\contentsline {subsection}{\numberline {6.6}Phân tích luồng nghiệp vụ tổng quát}{42}{subsection.6.6}%
-\contentsline {subsubsection}{\numberline {6.6.1}Luồng A: Từ mở game đến vào phiên chơi}{42}{subsubsection.6.6.1}%
-\contentsline {subsubsection}{\numberline {6.6.2}Luồng B: Mất kết nối khi đang chơi}{43}{subsubsection.6.6.2}%
-\contentsline {subsection}{\numberline {6.7}Phân tích dữ liệu ở mức logic}{43}{subsection.6.7}%
-\contentsline {subsubsection}{\numberline {6.7.1}CRUD ở mức logic}{43}{subsubsection.6.7.1}%
-\contentsline {subsection}{\numberline {6.8}Ràng buộc và giả định hệ thống}{44}{subsection.6.8}%
-\contentsline {subsection}{\numberline {6.9}Tiêu chí kiểm thử suy ra từ phân tích}{44}{subsection.6.9}%
-\contentsline {subsection}{\numberline {6.10}Tổng kết chương}{44}{subsection.6.10}%
-\contentsline {section}{\numberline {7}Thiết kế hệ thống}{45}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Mục tiêu thiết kế}{45}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Kiến trúc tổng thể hệ thống}{45}{subsection.7.2}%
-\contentsline {subsubsection}{\numberline {7.2.1}Mô hình kiến trúc client--server}{45}{subsubsection.7.2.1}%
-\contentsline {subsubsection}{\numberline {7.2.2}Phân tách theo lớp chức năng}{46}{subsubsection.7.2.2}%
-\contentsline {subsection}{\numberline {7.3}Thiết kế các mô-đun backend}{46}{subsection.7.3}%
-\contentsline {subsubsection}{\numberline {7.3.1}Auth Module}{46}{subsubsection.7.3.1}%
-\contentsline {subsubsection}{\numberline {7.3.2}User và Character Module}{47}{subsubsection.7.3.2}%
-\contentsline {subsubsection}{\numberline {7.3.3}Session và Room Module}{47}{subsubsection.7.3.3}%
-\contentsline {subsubsection}{\numberline {7.3.4}Real-time Gateway}{47}{subsubsection.7.3.4}%
-\contentsline {subsection}{\numberline {7.4}Thiết kế giao tiếp client--server}{47}{subsection.7.4}%
-\contentsline {subsubsection}{\numberline {7.4.1}Giao tiếp HTTP}{47}{subsubsection.7.4.1}%
-\contentsline {subsubsection}{\numberline {7.4.2}Giao tiếp WebSocket}{48}{subsubsection.7.4.2}%
-\contentsline {subsection}{\numberline {7.5}Thiết kế dữ liệu ở mức logic}{48}{subsection.7.5}%
-\contentsline {subsubsection}{\numberline {7.5.1}Đối tượng User}{48}{subsubsection.7.5.1}%
-\contentsline {subsubsection}{\numberline {7.5.2}Đối tượng Character}{48}{subsubsection.7.5.2}%
-\contentsline {subsubsection}{\numberline {7.5.3}Đối tượng Session (Runtime)}{49}{subsubsection.7.5.3}%
-\contentsline {subsection}{\numberline {7.6}Thiết kế luồng xử lý real-time}{49}{subsection.7.6}%
-\contentsline {subsection}{\numberline {7.7}Các quyết định thiết kế và giới hạn}{49}{subsection.7.7}%
-\contentsline {subsection}{\numberline {7.8}Tổng kết chương}{50}{subsection.7.8}%
-\contentsline {section}{\numberline {8}Hiện thực hệ thống}{50}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Mục tiêu hiện thực}{50}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Môi trường và công cụ triển khai}{50}{subsection.8.2}%
-\contentsline {subsubsection}{\numberline {8.2.1}Môi trường phát triển}{50}{subsubsection.8.2.1}%
-\contentsline {subsubsection}{\numberline {8.2.2}Công cụ hỗ trợ}{50}{subsubsection.8.2.2}%
-\contentsline {subsection}{\numberline {8.3}Hiện thực phía client}{51}{subsection.8.3}%
-\contentsline {subsubsection}{\numberline {8.3.1}Cấu trúc project Unity}{51}{subsubsection.8.3.1}%
-\contentsline {subsubsection}{\numberline {8.3.2}Hiện thực luồng đăng ký và đăng nhập}{51}{subsubsection.8.3.2}%
-\contentsline {subsubsection}{\numberline {8.3.3}Hiện thực quản lý nhân vật}{51}{subsubsection.8.3.3}%
-\contentsline {subsubsection}{\numberline {8.3.4}Hiện thực điều khiển và hiển thị}{51}{subsubsection.8.3.4}%
-\contentsline {subsection}{\numberline {8.4}Hiện thực phía server}{52}{subsection.8.4}%
-\contentsline {subsubsection}{\numberline {8.4.1}Cấu trúc project backend}{52}{subsubsection.8.4.1}%
-\contentsline {subsubsection}{\numberline {8.4.2}Hiện thực xác thực và quản lý phiên}{52}{subsubsection.8.4.2}%
-\contentsline {subsubsection}{\numberline {8.4.3}Hiện thực WebSocket và đồng bộ trạng thái}{52}{subsubsection.8.4.3}%
-\contentsline {subsubsection}{\numberline {8.4.4}Xử lý mất kết nối}{53}{subsubsection.8.4.4}%
-\contentsline {subsection}{\numberline {8.5}Hiện thực lưu trữ dữ liệu}{53}{subsection.8.5}%
-\contentsline {subsubsection}{\numberline {8.5.1}Lưu trữ dữ liệu bền vững}{53}{subsubsection.8.5.1}%
-\contentsline {subsubsection}{\numberline {8.5.2}Dữ liệu runtime}{53}{subsubsection.8.5.2}%
-\contentsline {subsection}{\numberline {8.6}Tích hợp client--server}{53}{subsection.8.6}%
-\contentsline {subsection}{\numberline {8.7}Phạm vi hiện thực và giới hạn}{54}{subsection.8.7}%
-\contentsline {subsection}{\numberline {8.8}Tổng kết chương}{54}{subsection.8.8}%
-\contentsline {section}{\numberline {9}Đánh giá hệ thống}{54}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Mục tiêu đánh giá}{54}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Phương pháp đánh giá}{54}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9.3}Đánh giá yêu cầu chức năng}{55}{subsection.9.3}%
-\contentsline {subsubsection}{\numberline {9.3.1}Đăng ký và đăng nhập}{55}{subsubsection.9.3.1}%
-\contentsline {subsubsection}{\numberline {9.3.2}Quản lý nhân vật}{55}{subsubsection.9.3.2}%
-\contentsline {subsubsection}{\numberline {9.3.3}Kết nối real-time và phiên chơi}{55}{subsubsection.9.3.3}%
-\contentsline {subsubsection}{\numberline {9.3.4}Đồng bộ trạng thái di chuyển}{56}{subsubsection.9.3.4}%
-\contentsline {subsubsection}{\numberline {9.3.5}Xử lý mất kết nối}{56}{subsubsection.9.3.5}%
-\contentsline {subsection}{\numberline {9.4}Đánh giá yêu cầu phi chức năng}{56}{subsection.9.4}%
-\contentsline {subsubsection}{\numberline {9.4.1}Hiệu năng}{56}{subsubsection.9.4.1}%
-\contentsline {subsubsection}{\numberline {9.4.2}Tính ổn định}{56}{subsubsection.9.4.2}%
-\contentsline {subsubsection}{\numberline {9.4.3}Bảo mật ở mức cơ bản}{57}{subsubsection.9.4.3}%
-\contentsline {subsection}{\numberline {9.5}Đánh giá mức độ phù hợp giữa thiết kế và hiện thực}{57}{subsection.9.5}%
-\contentsline {subsection}{\numberline {9.6}Hạn chế và tồn tại}{57}{subsection.9.6}%
-\contentsline {subsection}{\numberline {9.7}Tổng kết chương}{57}{subsection.9.7}%
-\contentsline {section}{Tài liệu tham khảo}{58}{subsection.9.7}%
+\contentsline {section}{\numberline {1}Giới thiệu}{10}{section.6}%
+\contentsline {subsection}{\numberline {1.1}Động lực}{10}{subsection.7}%
+\contentsline {subsection}{\numberline {1.2}Mục tiêu}{10}{subsection.8}%
+\contentsline {subsection}{\numberline {1.3}Phạm vi}{11}{subsection.9}%
+\contentsline {subsubsection}{\numberline {1.3.1}Phạm vi trong giai đoạn 1}{11}{subsubsection.10}%
+\contentsline {subsubsection}{\numberline {1.3.2}Ngoài phạm vi giai đoạn 1}{12}{subsubsection.11}%
+\contentsline {subsection}{\numberline {1.4}Ý nghĩa của đề tài}{12}{subsection.12}%
+\contentsline {subsubsection}{\numberline {1.4.1}Ý nghĩa thực tiễn}{12}{subsubsection.13}%
+\contentsline {subsubsection}{\numberline {1.4.2}Ý nghĩa khoa học và học thuật}{12}{subsubsection.14}%
+\contentsline {subsection}{\numberline {1.5}Cấu trúc báo cáo}{12}{subsection.15}%
+\contentsline {section}{\numberline {2}Kiến thức nền tảng}{13}{section.16}%
+\contentsline {subsection}{\numberline {2.1}Kiến thức nền tảng về Action RPG và môi trường real-time}{13}{subsection.17}%
+\contentsline {subsubsection}{\numberline {2.1.1}Đặc điểm của Action RPG}{13}{subsubsection.18}%
+\contentsline {subsubsection}{\numberline {2.1.2}Hệ thống multiplayer trong Action RPG}{14}{subsubsection.22}%
+\contentsline {paragraph}{Mô hình client--server và tính thẩm quyền (authoritative)}{14}{section*.23}%
+\contentsline {paragraph}{Tick-rate và vòng lặp mô phỏng}{14}{section*.24}%
+\contentsline {paragraph}{Các kỹ thuật che giấu độ trễ}{15}{section*.25}%
+\contentsline {subsection}{\numberline {2.2}Kiến thức nền tảng về Game Design}{15}{subsection.26}%
+\contentsline {subsubsection}{\numberline {2.2.1}Core Loop và Meta Loop}{15}{subsubsection.27}%
+\contentsline {paragraph}{Core Loop}{15}{section*.28}%
+\contentsline {paragraph}{Meta Loop}{16}{section*.30}%
+\contentsline {subsubsection}{\numberline {2.2.2}Progression System (Hệ thống phát triển nhân vật)}{16}{subsubsection.31}%
+\contentsline {paragraph}{Phân loại chỉ số: Primary vs. Secondary}{16}{section*.32}%
+\contentsline {paragraph}{Hệ thống chỉ số 6 thuộc tính và quan hệ phụ thuộc}{16}{section*.33}%
+\contentsline {paragraph}{Nhóm trait đặc biệt (Special Traits) và ý nghĩa thiết kế}{18}{section*.37}%
+\contentsline {paragraph}{Leveling và mở slot kỹ năng}{18}{section*.38}%
+\contentsline {paragraph}{Kỹ năng kết hợp (Combo Skills) như cơ chế đa dạng hoá build}{19}{section*.40}%
+\contentsline {paragraph}{Race/Class và cơ chế mở khoá theo điều kiện}{19}{section*.41}%
+\contentsline {subsubsection}{\numberline {2.2.3}Combat Design (Thiết kế chiến đấu)}{20}{subsubsection.42}%
+\contentsline {paragraph}{Nhịp độ (Pacing) và cửa sổ rủi ro}{20}{section*.43}%
+\contentsline {paragraph}{Tương tác giữa chỉ số và cảm giác điều khiển}{20}{section*.44}%
+\contentsline {subsubsection}{\numberline {2.2.4}World System và Level Design}{20}{subsubsection.45}%
+\contentsline {subsubsection}{\numberline {2.2.5}Hệ thống kinh tế (Game Economy)}{21}{subsubsection.46}%
+\contentsline {subsubsection}{\numberline {2.2.6}UX/UI Design trong game và định hướng phong cách Pixel Art}{21}{subsubsection.47}%
+\contentsline {subsubsection}{\numberline {2.2.7}Balancing Fundamentals (Cân bằng game)}{21}{subsubsection.48}%
+\contentsline {subsection}{\numberline {2.3}Tổng kết chương}{22}{subsection.49}%
+\contentsline {section}{\numberline {3}Công nghệ sử dụng}{22}{section.50}%
+\contentsline {subsection}{\numberline {3.1}Công nghệ phía client}{23}{subsection.51}%
+\contentsline {subsubsection}{\numberline {3.1.1}Game engine: Unity}{23}{subsubsection.52}%
+\contentsline {subsubsection}{\numberline {3.1.2}Ngôn ngữ lập trình: C\#}{23}{subsubsection.53}%
+\contentsline {subsubsection}{\numberline {3.1.3}Nguyên tắc xử lý logic ở client}{23}{subsubsection.54}%
+\contentsline {subsection}{\numberline {3.2}Công nghệ phía server}{24}{subsection.55}%
+\contentsline {subsubsection}{\numberline {3.2.1}Nền tảng runtime: Node.js}{24}{subsubsection.56}%
+\contentsline {subsubsection}{\numberline {3.2.2}Framework: NestJS và TypeScript}{24}{subsubsection.57}%
+\contentsline {subsubsection}{\numberline {3.2.3}Tác vụ nền (background jobs)}{24}{subsubsection.58}%
+\contentsline {subsection}{\numberline {3.3}Công nghệ giao tiếp mạng}{24}{subsection.59}%
+\contentsline {subsubsection}{\numberline {3.3.1}HTTP/REST}{24}{subsubsection.60}%
+\contentsline {subsubsection}{\numberline {3.3.2}WebSocket}{25}{subsubsection.61}%
+\contentsline {subsection}{\numberline {3.4}Công nghệ lưu trữ dữ liệu}{25}{subsection.62}%
+\contentsline {subsubsection}{\numberline {3.4.1}MongoDB}{25}{subsubsection.63}%
+\contentsline {subsubsection}{\numberline {3.4.2}Redis}{25}{subsubsection.64}%
+\contentsline {subsubsection}{\numberline {3.4.3}Object Storage (tuỳ chọn theo giai đoạn)}{25}{subsubsection.65}%
+\contentsline {subsection}{\numberline {3.5}Công cụ quản trị game configuration theo hướng data-driven}{25}{subsection.66}%
+\contentsline {subsection}{\numberline {3.6}Công cụ hỗ trợ phát triển và tài liệu hoá}{26}{subsection.67}%
+\contentsline {subsubsection}{\numberline {3.6.1}Quản lý mã nguồn và phối hợp nhóm}{26}{subsubsection.68}%
+\contentsline {subsubsection}{\numberline {3.6.2}Công cụ mô hình hoá và tài liệu}{26}{subsubsection.69}%
+\contentsline {subsection}{\numberline {3.7}Tổng kết}{26}{subsection.70}%
+\contentsline {section}{\numberline {4}Các công trình liên quan}{27}{section.71}%
+\contentsline {subsection}{\numberline {4.1}Khung phân tích và tiêu chí lựa chọn nguồn tham khảo}{27}{subsection.72}%
+\contentsline {subsection}{\numberline {4.2}Nguồn cảm hứng cho trục tiến trình: leo tháp, boss tầng và checkpoint}{27}{subsection.73}%
+\contentsline {subsubsection}{\numberline {4.2.1}Sword Art Online (Aincrad): cấu trúc leo tầng như “xương sống” nội dung}{27}{subsubsection.74}%
+\contentsline {subsection}{\numberline {4.3}Nguồn cảm hứng cho “thế giới vận hành”: NPC có vai trò và hệ thống nhân sự}{28}{subsection.75}%
+\contentsline {subsubsection}{\numberline {4.3.1}Overlord: NPC như tác nhân hệ thống và tổ chức vận hành}{28}{subsubsection.76}%
+\contentsline {subsection}{\numberline {4.4}Nguồn cảm hứng cho cơ chế tuyển dụng/thu thập: gacha và meta-progression}{28}{subsection.77}%
+\contentsline {subsubsection}{\numberline {4.4.1}Pick Me Up! Infinite Gacha: gacha như vòng lặp meta và động lực sưu tầm}{28}{subsubsection.78}%
+\contentsline {subsection}{\numberline {4.5}Nguồn cảm hứng cho trải nghiệm Action RPG online: nhịp combat và cảm giác điều khiển}{29}{subsection.79}%
+\contentsline {subsubsection}{\numberline {4.5.1}Arcane Odyssey: ưu tiên phản hồi thao tác và nhấn mạnh kỹ năng người chơi}{29}{subsubsection.80}%
+\contentsline {subsubsection}{\numberline {4.5.2}Soul Knight Prequel: vòng lặp phiên chơi ngắn và thưởng rõ ràng theo phiên}{29}{subsubsection.81}%
+\contentsline {subsection}{\numberline {4.6}Nguồn cảm hứng cho hệ thống đảo/căn cứ: tiến trình dài hạn và quản trị tài nguyên}{30}{subsection.82}%
+\contentsline {subsubsection}{\numberline {4.6.1}Clash of Clans: công trình theo thời gian và meta-progression bền vững}{30}{subsubsection.83}%
+\contentsline {subsection}{\numberline {4.7}Bảng tổng hợp: đối chiếu nguồn tham khảo và hướng áp dụng}{30}{subsection.84}%
+\contentsline {subsection}{\numberline {4.8}Nguồn tham khảo nền tảng và kỹ thuật: cơ sở cho lập luận thiết kế và ràng buộc triển khai}{31}{subsection.86}%
+\contentsline {subsection}{\numberline {4.9}Tổng kết chương}{32}{subsection.87}%
+\contentsline {section}{\numberline {5}Phân tích yêu cầu}{32}{section.88}%
+\contentsline {subsection}{\numberline {5.1}Phạm vi và giả định}{32}{subsection.89}%
+\contentsline {subsubsection}{\numberline {5.1.1}Phạm vi giai đoạn 1}{32}{subsubsection.90}%
+\contentsline {subsubsection}{\numberline {5.1.2}Giả định}{32}{subsubsection.91}%
+\contentsline {subsection}{\numberline {5.2}Tác nhân và ranh giới hệ thống}{33}{subsection.92}%
+\contentsline {subsubsection}{\numberline {5.2.1}Tác nhân}{33}{subsubsection.93}%
+\contentsline {subsubsection}{\numberline {5.2.2}Ranh giới hệ thống}{33}{subsubsection.94}%
+\contentsline {subsection}{\numberline {5.3}Yêu cầu chức năng}{33}{subsection.95}%
+\contentsline {subsubsection}{\numberline {5.3.1}Nhóm A: Authentication \& Profile}{33}{subsubsection.96}%
+\contentsline {subsubsection}{\numberline {5.3.2}Nhóm B: Character Creation \& Character Data}{34}{subsubsection.97}%
+\contentsline {paragraph}{Yêu cầu tạo nhân vật}{34}{section*.98}%
+\contentsline {paragraph}{Race system (yêu cầu mức dữ liệu và mở khoá)}{34}{section*.99}%
+\contentsline {subsubsection}{\numberline {5.3.3}Nhóm C: Stats, Leveling, Skill Slots}{34}{subsubsection.100}%
+\contentsline {paragraph}{Level system}{34}{section*.101}%
+\contentsline {paragraph}{Stat allocation}{34}{section*.102}%
+\contentsline {paragraph}{Skill slots và combo slots}{35}{section*.103}%
+\contentsline {paragraph}{Thu thập và quản lý kỹ năng}{35}{section*.104}%
+\contentsline {subsubsection}{\numberline {5.3.4}Nhóm D: Class System và mở khoá theo điều kiện}{35}{subsubsection.105}%
+\contentsline {paragraph}{Phân tầng class}{35}{section*.106}%
+\contentsline {paragraph}{Điều kiện mở khoá class}{35}{section*.107}%
+\contentsline {subsubsection}{\numberline {5.3.5}Nhóm E: Inventory, Equipment, Resources}{36}{subsubsection.108}%
+\contentsline {subsubsection}{\numberline {5.3.6}Nhóm F: Combat \& Gameplay Modes}{36}{subsubsection.109}%
+\contentsline {paragraph}{Nội dung combat}{36}{section*.110}%
+\contentsline {paragraph}{Hành động trong combat}{36}{section*.111}%
+\contentsline {paragraph}{Checkpoint và reward}{36}{section*.112}%
+\contentsline {subsubsection}{\numberline {5.3.7}Nhóm G: Recruitment (Gacha)}{37}{subsubsection.113}%
+\contentsline {subsubsection}{\numberline {5.3.8}Nhóm H: Personal Island \& NPC Collection}{37}{subsubsection.114}%
+\contentsline {paragraph}{Personal island}{37}{section*.115}%
+\contentsline {paragraph}{NPC collection và worker assignment}{37}{section*.116}%
+\contentsline {subsubsection}{\numberline {5.3.9}Nhóm I: Administration}{38}{subsubsection.117}%
+\contentsline {subsection}{\numberline {5.4}Yêu cầu phi chức năng}{38}{subsection.118}%
+\contentsline {subsubsection}{\numberline {5.4.1}Bảo mật và an toàn dữ liệu}{38}{subsubsection.119}%
+\contentsline {subsubsection}{\numberline {5.4.2}Hiệu năng và tính phản hồi}{38}{subsubsection.120}%
+\contentsline {subsubsection}{\numberline {5.4.3}Tính mở rộng và bảo trì}{38}{subsubsection.121}%
+\contentsline {subsubsection}{\numberline {5.4.4}Khả dụng và quan sát hệ thống}{39}{subsubsection.122}%
+\contentsline {subsubsection}{\numberline {5.4.5}Yêu cầu UX/UI ở mức hệ thống}{39}{subsubsection.123}%
+\contentsline {subsection}{\numberline {5.5}Yêu cầu dữ liệu}{39}{subsection.124}%
+\contentsline {subsubsection}{\numberline {5.5.1}Phân loại dữ liệu}{39}{subsubsection.125}%
+\contentsline {paragraph}{Dữ liệu tiến trình người chơi (dynamic)}{39}{section*.126}%
+\contentsline {paragraph}{Dữ liệu cấu hình game (static)}{39}{section*.127}%
+\contentsline {subsubsection}{\numberline {5.5.2}Yêu cầu mô hình dữ liệu mức logic}{39}{subsubsection.128}%
+\contentsline {subsubsection}{\numberline {5.5.3}Yêu cầu pipeline quản trị game configuration}{40}{subsubsection.129}%
+\contentsline {subsection}{\numberline {5.6}Tiêu chí chấp nhận ở mức thiết kế}{40}{subsection.130}%
+\contentsline {section}{\numberline {6}Phân tích hệ thống}{40}{section.131}%
+\contentsline {subsection}{\numberline {6.1}Tổng quan phân hệ và ranh giới trách nhiệm}{40}{subsection.132}%
+\contentsline {subsection}{\numberline {6.2}Tác nhân của hệ thống (Actors)}{41}{subsection.133}%
+\contentsline {subsection}{\numberline {6.3}Phân tích Use Case theo phân hệ}{42}{subsection.135}%
+\contentsline {subsubsection}{\numberline {6.3.1}Identity \& Profile}{42}{subsubsection.136}%
+\contentsline {subsubsection}{\numberline {6.3.2}Character \& Progression}{43}{subsubsection.138}%
+\contentsline {subsubsection}{\numberline {6.3.3}Combat \& Gameplay Modes}{44}{subsubsection.140}%
+\contentsline {subsubsection}{\numberline {6.3.4}Recruitment (Gacha)}{45}{subsubsection.142}%
+\contentsline {subsubsection}{\numberline {6.3.5}Personal Island \& NPC}{46}{subsubsection.144}%
+\contentsline {subsubsection}{\numberline {6.3.6}Administration}{46}{subsubsection.146}%
+\contentsline {subsection}{\numberline {6.4}Đặc tả Use Case trọng yếu}{47}{subsection.148}%
+\contentsline {subsubsection}{\numberline {6.4.1}UC-A01 -- Đăng ký tài khoản}{47}{subsubsection.149}%
+\contentsline {subsubsection}{\numberline {6.4.2}UC-A02 -- Đăng nhập và tạo phiên hoạt động}{47}{subsubsection.155}%
+\contentsline {subsubsection}{\numberline {6.4.3}UC-A03 -- Tạo và chọn Game Profile}{48}{subsubsection.161}%
+\contentsline {subsubsection}{\numberline {6.4.4}UC-P01 -- Tạo nhân vật và khởi tạo dữ liệu nền}{48}{subsubsection.166}%
+\contentsline {subsubsection}{\numberline {6.4.5}UC-P02 -- Lên level và phân bổ điểm chỉ số}{49}{subsubsection.173}%
+\contentsline {subsubsection}{\numberline {6.4.6}UC-P03 -- Quản lý kỹ năng theo slot và tạo Combo Skill}{49}{subsubsection.178}%
+\contentsline {subsubsection}{\numberline {6.4.7}UC-P04 -- Mở khoá Class theo điều kiện và chuyển Class}{50}{subsubsection.184}%
+\contentsline {subsubsection}{\numberline {6.4.8}UC-I01 -- Nhận reward và cập nhật Inventory}{51}{subsubsection.190}%
+\contentsline {subsubsection}{\numberline {6.4.9}UC-C01 -- Tham gia nội dung theo phiên (Tower/Dungeon/Arena)}{51}{subsubsection.195}%
+\contentsline {subsubsection}{\numberline {6.4.10}UC-C02 -- Vòng lặp chiến đấu real-time và đồng bộ trạng thái}{52}{subsubsection.201}%
+\contentsline {subsubsection}{\numberline {6.4.11}UC-C03 -- Kết phiên, checkpoint và ghi nhận tiến trình}{52}{subsubsection.206}%
+\contentsline {subsubsection}{\numberline {6.4.12}UC-G01 -- Gacha: Summon, pity và xử lý trùng lặp}{53}{subsubsection.212}%
+\contentsline {subsubsection}{\numberline {6.4.13}UC-S01 -- Xây/Nâng cấp công trình trên đảo cá nhân}{53}{subsubsection.218}%
+\contentsline {subsubsection}{\numberline {6.4.14}UC-S02 -- Gán NPC làm worker cho công trình}{54}{subsubsection.224}%
+\contentsline {subsubsection}{\numberline {6.4.15}UC-AD01 -- Quản trị user: ban/unban và audit log}{54}{subsubsection.229}%
+\contentsline {subsection}{\numberline {6.5}Quy tắc nghiệp vụ và ràng buộc hệ thống}{54}{subsection.234}%
+\contentsline {subsubsection}{\numberline {6.5.1}Quy tắc Level và mở slot kỹ năng}{54}{subsubsection.235}%
+\contentsline {subsubsection}{\numberline {6.5.2}Quy tắc Race, Stat Cap và Trait bẩm sinh}{55}{subsubsection.237}%
+\contentsline {subsubsection}{\numberline {6.5.3}Quy tắc mở khoá Class}{55}{subsubsection.238}%
+\contentsline {subsubsection}{\numberline {6.5.4}Quy tắc Inventory và tham chiếu cấu hình}{55}{subsubsection.239}%
+\contentsline {subsubsection}{\numberline {6.5.5}Quy tắc Island và xây dựng công trình}{56}{subsubsection.240}%
+\contentsline {subsubsection}{\numberline {6.5.6}Quy tắc Gacha: rate, pity và duplicate}{56}{subsubsection.241}%
+\contentsline {subsection}{\numberline {6.6}Phân tích dữ liệu ở mức logic}{56}{subsection.242}%
+\contentsline {subsubsection}{\numberline {6.6.1}Phân lớp dữ liệu: động và tĩnh}{56}{subsubsection.243}%
+\contentsline {subsubsection}{\numberline {6.6.2}Các thực thể lõi theo phân hệ}{56}{subsubsection.244}%
+\contentsline {subsubsection}{\numberline {6.6.3}Quan hệ dữ liệu quan trọng}{56}{subsubsection.245}%
+\contentsline {subsection}{\numberline {6.7}Tổng kết chương}{57}{subsection.246}%
+\contentsline {section}{\numberline {7}Thiết kế hệ thống}{57}{section.247}%
+\contentsline {subsection}{\numberline {7.1}Mục tiêu thiết kế}{57}{subsection.248}%
+\contentsline {subsection}{\numberline {7.2}Kiến trúc tổng thể và triển khai}{57}{subsection.249}%
+\contentsline {subsubsection}{\numberline {7.2.1}Tổng quan triển khai}{57}{subsubsection.250}%
+\contentsline {subsubsection}{\numberline {7.2.2}Nguyên tắc server-authoritative}{59}{subsubsection.252}%
+\contentsline {subsubsection}{\numberline {7.2.3}Phân tách giao tiếp: HTTP và WebSocket}{59}{subsubsection.253}%
+\contentsline {paragraph}{HTTP/REST}{59}{section*.254}%
+\contentsline {paragraph}{WebSocket}{59}{section*.255}%
+\contentsline {subsection}{\numberline {7.3}Thiết kế mô-đun backend}{59}{subsection.256}%
+\contentsline {subsubsection}{\numberline {7.3.1}Các thành phần dùng chung (cross-cutting)}{60}{subsubsection.258}%
+\contentsline {subsection}{\numberline {7.4}Thiết kế dữ liệu}{60}{subsection.259}%
+\contentsline {subsubsection}{\numberline {7.4.1}Nguyên tắc thiết kế dữ liệu}{60}{subsubsection.260}%
+\contentsline {subsubsection}{\numberline {7.4.2}Mô hình thực thể chính (ERD mức logic)}{61}{subsubsection.261}%
+\contentsline {subsubsection}{\numberline {7.4.3}Chỉ mục (indexes) và khoá truy vấn}{62}{subsubsection.273}%
+\contentsline {subsection}{\numberline {7.5}Thiết kế hệ thống chỉ số và tăng trưởng nhân vật}{62}{subsection.274}%
+\contentsline {subsubsection}{\numberline {7.5.1}Thuộc tính nền và chỉ số suy diễn}{62}{subsubsection.275}%
+\contentsline {subsubsection}{\numberline {7.5.2}Tính toán chỉ số theo hướng data-driven}{63}{subsubsection.277}%
+\contentsline {subsection}{\numberline {7.6}Thiết kế quản trị cấu hình game (Config Pipeline)}{63}{subsection.278}%
+\contentsline {subsubsection}{\numberline {7.6.1}Luồng dữ liệu cấu hình}{63}{subsubsection.279}%
+\contentsline {subsubsection}{\numberline {7.6.2}Thiết kế Config Manager}{64}{subsubsection.284}%
+\contentsline {subsection}{\numberline {7.7}Thiết kế giao tiếp client--server}{64}{subsection.285}%
+\contentsline {subsubsection}{\numberline {7.7.1}REST API: nhóm endpoint và quy ước}{64}{subsubsection.286}%
+\contentsline {subsubsection}{\numberline {7.7.2}WebSocket: định dạng message và vòng đời phiên}{65}{subsubsection.287}%
+\contentsline {subsection}{\numberline {7.8}Thiết kế vòng lặp real-time cho combat/instance}{65}{subsection.300}%
+\contentsline {subsubsection}{\numberline {7.8.1}Mô hình instance/room}{65}{subsubsection.301}%
+\contentsline {subsubsection}{\numberline {7.8.2}Tick loop và phát snapshot}{65}{subsubsection.302}%
+\contentsline {subsection}{\numberline {7.9}Thiết kế phân hệ Administration}{66}{subsection.307}%
+\contentsline {subsection}{\numberline {7.10}Bảo mật, nhất quán và quan sát hệ thống}{66}{subsection.308}%
+\contentsline {subsubsection}{\numberline {7.10.1}Bảo mật}{66}{subsubsection.309}%
+\contentsline {subsubsection}{\numberline {7.10.2}Nhất quán dữ liệu và giao dịch nghiệp vụ}{67}{subsubsection.310}%
+\contentsline {subsubsection}{\numberline {7.10.3}Quan sát hệ thống (observability)}{67}{subsubsection.311}%
+\contentsline {subsection}{\numberline {7.11}Tổng kết chương}{67}{subsection.312}%
+\contentsline {section}{\numberline {8}Kế hoạch hiện thực prototype}{67}{section.313}%
+\contentsline {subsection}{\numberline {8.1}Mục tiêu và phạm vi}{67}{subsection.314}%
+\contentsline {subsection}{\numberline {8.2}Kế hoạch triển khai theo mốc}{68}{subsection.315}%
+\contentsline {subsection}{\numberline {8.3}Hiện thực phía client (Unity)}{68}{subsection.317}%
+\contentsline {subsubsection}{\numberline {8.3.1}Tổ chức project và nguyên tắc phân lớp}{68}{subsubsection.318}%
+\contentsline {subsubsection}{\numberline {8.3.2}Luồng màn hình đề xuất}{69}{subsubsection.319}%
+\contentsline {subsubsection}{\numberline {8.3.3}Networking client: REST + WebSocket}{69}{subsubsection.325}%
+\contentsline {subsection}{\numberline {8.4}Hiện thực phía server (NestJS)}{69}{subsection.326}%
+\contentsline {subsubsection}{\numberline {8.4.1}Cấu trúc module và luồng request}{69}{subsubsection.327}%
+\contentsline {subsubsection}{\numberline {8.4.2}Realtime: room runtime và tick loop tối thiểu}{70}{subsubsection.332}%
+\contentsline {subsection}{\numberline {8.5}Thiết kế hiện thực dữ liệu và truy xuất}{71}{subsection.337}%
+\contentsline {subsubsection}{\numberline {8.5.1}Schema collections và nguyên tắc embed/reference}{71}{subsubsection.338}%
+\contentsline {subsubsection}{\numberline {8.5.2}Nguyên tắc cập nhật an toàn cho giao dịch tiến trình}{71}{subsubsection.339}%
+\contentsline {subsection}{\numberline {8.6}Hiện thực pipeline game configuration}{71}{subsection.340}%
+\contentsline {subsubsection}{\numberline {8.6.1}Định dạng TSV và quy ước}{71}{subsubsection.341}%
+\contentsline {subsubsection}{\numberline {8.6.2}Import script: upsert và log phiên bản}{72}{subsubsection.342}%
+\contentsline {subsubsection}{\numberline {8.6.3}Config Manager runtime}{72}{subsubsection.347}%
+\contentsline {subsection}{\numberline {8.7}Kế hoạch kiểm thử và tiêu chí nghiệm thu}{72}{subsection.348}%
+\contentsline {subsubsection}{\numberline {8.7.1}Kiểm thử theo use case}{72}{subsubsection.349}%
+\contentsline {subsubsection}{\numberline {8.7.2}Kiểm thử dữ liệu và tính nhất quán}{72}{subsubsection.350}%
+\contentsline {subsubsection}{\numberline {8.7.3}Tiêu chí nghiệm thu prototype}{73}{subsubsection.351}%
+\contentsline {subsection}{\numberline {8.8}Tổng kết chương}{73}{subsection.352}%
+\contentsline {section}{\numberline {9}Đánh giá hệ thống}{73}{section.353}%
+\contentsline {subsection}{\numberline {9.1}Mục tiêu và phương pháp đánh giá}{73}{subsection.354}%
+\contentsline {subsection}{\numberline {9.2}Đối chiếu bao phủ yêu cầu chức năng}{74}{subsection.355}%
+\contentsline {subsubsection}{\numberline {9.2.1}Ma trận bao phủ yêu cầu theo mô-đun}{74}{subsubsection.356}%
+\contentsline {subsubsection}{\numberline {9.2.2}Đánh giá luồng nghiệp vụ trọng yếu}{74}{subsubsection.358}%
+\contentsline {paragraph}{(1) Auth $\rightarrow $ Profile $\rightarrow $ Character $\rightarrow $ Session}{74}{section*.359}%
+\contentsline {paragraph}{(2) Reward delivery và cập nhật inventory}{75}{section*.360}%
+\contentsline {paragraph}{(3) Gacha: rate/pity/duplicate}{75}{section*.361}%
+\contentsline {paragraph}{(4) Island build/upgrade và worker assignment}{75}{section*.362}%
+\contentsline {subsection}{\numberline {9.3}Đánh giá yêu cầu phi chức năng}{75}{subsection.363}%
+\contentsline {subsubsection}{\numberline {9.3.1}Bảo mật và phân quyền}{75}{subsubsection.364}%
+\contentsline {subsubsection}{\numberline {9.3.2}Nhất quán dữ liệu và khả năng chống cấp trùng}{76}{subsubsection.365}%
+\contentsline {subsubsection}{\numberline {9.3.3}Hiệu năng và khả năng mở rộng}{76}{subsubsection.366}%
+\contentsline {subsubsection}{\numberline {9.3.4}Tính bảo trì và khả năng mở rộng tính năng}{76}{subsubsection.367}%
+\contentsline {subsubsection}{\numberline {9.3.5}Khả năng quan sát (Observability)}{77}{subsubsection.368}%
+\contentsline {subsection}{\numberline {9.4}Đánh giá pipeline cấu hình game (data-driven config)}{77}{subsection.369}%
+\contentsline {subsubsection}{\numberline {9.4.1}Ưu điểm}{77}{subsubsection.370}%
+\contentsline {subsubsection}{\numberline {9.4.2}Rủi ro và kiểm soát}{77}{subsubsection.371}%
+\contentsline {subsection}{\numberline {9.5}Đánh giá UI/UX theo định hướng pixel art ở mức hệ thống}{77}{subsection.372}%
+\contentsline {subsection}{\numberline {9.6}Phân tích rủi ro và hướng giảm thiểu}{78}{subsection.373}%
+\contentsline {subsection}{\numberline {9.7}Tổng kết chương}{78}{subsection.375}%
+\contentsline {section}{\numberline {10}Kết luận và hướng phát triển}{79}{section.376}%
+\contentsline {subsection}{\numberline {10.1}Tổng kết kết quả đạt được}{79}{subsection.377}%
+\contentsline {subsection}{\numberline {10.2}Đóng góp của đồ án}{80}{subsection.378}%
+\contentsline {subsection}{\numberline {10.3}Hạn chế}{80}{subsection.379}%
+\contentsline {subsection}{\numberline {10.4}Hướng phát triển}{80}{subsection.380}%
+\contentsline {subsubsection}{\numberline {10.4.1}Hiện thực prototype và kiểm chứng theo use case}{81}{subsubsection.381}%
+\contentsline {subsubsection}{\numberline {10.4.2}Nâng cấp realtime cho cảm giác chiến đấu}{81}{subsubsection.382}%
+\contentsline {subsubsection}{\numberline {10.4.3}Hoàn thiện hệ thống giao dịch và chống gian lận}{81}{subsubsection.383}%
+\contentsline {subsubsection}{\numberline {10.4.4}Mở rộng pipeline cấu hình}{81}{subsubsection.384}%
+\contentsline {subsubsection}{\numberline {10.4.5}Chuẩn hoá quan sát hệ thống}{81}{subsubsection.385}%
+\contentsline {subsection}{\numberline {10.5}Kết luận}{82}{subsection.386}%
+\contentsline {section}{Tài liệu tham khảo}{83}{subsection.386}%

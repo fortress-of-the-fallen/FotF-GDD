@@ -1,187 +1,240 @@
 \section{Đánh giá hệ thống}
+\label{sec:evaluation}
 
-\subsection{Mục tiêu đánh giá}
+\subsection{Mục tiêu và phương pháp đánh giá}
+\label{subsec:eval-method}
 
-Mục tiêu của chương này là đánh giá mức độ đáp ứng của hệ thống Fortress of the Fallen
-so với các mục tiêu và yêu cầu đã xác định ở Chương 5, đồng thời kiểm chứng tính đúng đắn
-của các quyết định thiết kế và hiện thực trong giai đoạn 1.
-
-Việc đánh giá tập trung vào:
+Mục tiêu của chương này là đánh giá mức độ phù hợp của bản thiết kế hệ thống (Chương~\ref{sec:design}) so với yêu cầu đã phân tích (Chương~\ref{sec:requirements}), đồng thời chỉ ra các điểm mạnh, hạn chế và rủi ro còn tồn tại. Do giai đoạn 1 tập trung vào thiết kế, phương pháp đánh giá được thực hiện theo các hướng:
 \begin{itemize}
-    \item Mức độ hoàn thành các yêu cầu chức năng cốt lõi.
-    \item Khả năng vận hành ổn định của hệ thống prototype.
-    \item Mức độ phù hợp giữa thiết kế và hiện thực.
-    \item Các hạn chế còn tồn tại trong phạm vi đồ án.
+    \item \textbf{Đối chiếu bao phủ yêu cầu (Requirement Coverage)}: kiểm tra các yêu cầu chức năng/phi chức năng đã được ánh xạ tới mô-đun, dữ liệu và luồng giao tiếp hay chưa.
+    \item \textbf{Đánh giá kiến trúc theo thuộc tính chất lượng (Quality Attributes)}: nhất quán dữ liệu, bảo mật, khả năng mở rộng, tính bảo trì, khả năng quan sát.
+    \item \textbf{Đánh giá tính khả thi triển khai (Feasibility)}: dựa trên kế hoạch prototype ở Chương~\ref{sec:implementation} và các kịch bản use case trọng yếu ở Chương~\ref{sec:analysis}.
+    \item \textbf{Phân tích rủi ro và hướng giảm thiểu}: xác định các rủi ro kỹ thuật/thiết kế, mức ảnh hưởng và biện pháp kiểm soát.
 \end{itemize}
 
-Hệ thống không được đánh giá theo tiêu chí sản phẩm thương mại hay quy mô lớn,
-mà theo góc độ một prototype học thuật.
+\subsection{Đối chiếu bao phủ yêu cầu chức năng}
+\label{subsec:eval-functional}
 
-%------------------------------------------------
+\subsubsection{Ma trận bao phủ yêu cầu theo mô-đun}
+\label{subsubsec:eval-functional-matrix}
 
-\subsection{Phương pháp đánh giá}
+Bảng~\ref{tab:req-coverage} tổng hợp ánh xạ giữa các nhóm yêu cầu chức năng (FR) và mô-đun thiết kế ở Chương~\ref{sec:design}. Mục tiêu là đảm bảo mọi nhóm yêu cầu đều có ``điểm đặt'' rõ ràng trong kiến trúc.
 
-Hệ thống được đánh giá dựa trên các phương pháp sau:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|p{2.6cm}|p{4.1cm}|X|}
+\hline
+\textbf{Nhóm FR} & \textbf{Phân hệ} & \textbf{Mô-đun/Thiết kế đáp ứng} \\
+\hline
+FR-A & Auth \& Profile & AuthModule, ProfileModule, SessionRuntime (token, profile\_id, socket\_id) \\
+\hline
+FR-B & Character & CharacterModule (create/select/delete), dữ liệu nhúng appearance/base\_stats/resources \\
+\hline
+FR-C & Stats/Level/Slots & CharacterModule + ConfigModule (milestone slots, công thức chỉ số data-driven) \\
+\hline
+FR-D & Class System & CharacterModule/Progression service (unlock/switch), điều kiện theo stat/trait/achievement \\
+\hline
+FR-E & Inventory/Economy & InventoryModule (stack, capacity, currency, equip/enhance), tham chiếu CONFIG\_ITEM \\
+\hline
+FR-F & Combat/Modes & CombatModule + RealtimeGateway (join instance, tick, snapshot, end-session reward/checkpoint) \\
+\hline
+FR-G & Gacha & GachaModule (banner/rate/pity/duplicate/history), NPC\_COLLECTION cập nhật bền vững \\
+\hline
+FR-H & Island \& NPC & IslandModule (build/upgrade/timer/resources), NpcModule (assign worker, job state) \\
+\hline
+FR-I & Admin & AdminModule (ban/unban, mail, logs, event config), audit log \\
+\hline
+\end{tabularx}
+\caption{Ma trận bao phủ yêu cầu chức năng theo mô-đun}
+\label{tab:req-coverage}
+\end{table}
 
+Kết quả đối chiếu cho thấy các nhóm tính năng chính đều đã được gắn với mô-đun và dữ liệu tương ứng, phù hợp hướng module hoá theo phân hệ của backend \cite{nest-docs}.
+
+\subsubsection{Đánh giá luồng nghiệp vụ trọng yếu}
+\label{subsubsec:eval-critical-flows}
+
+Các luồng nghiệp vụ được xem là trọng yếu vì ảnh hưởng trực tiếp tới tiến trình hoặc tính công bằng:
+
+\paragraph{(1) Auth $\rightarrow$ Profile $\rightarrow$ Character $\rightarrow$ Session}
+Luồng này có trạng thái phụ thuộc theo chuỗi (USER $\rightarrow$ GAME\_PROFILE $\rightarrow$ CHARACTER) và có yêu cầu nhất quán ở session runtime. Thiết kế đáp ứng bằng:
 \begin{itemize}
-    \item \textbf{Đối chiếu yêu cầu:} so sánh chức năng hiện thực với yêu cầu chức năng
-    và phi chức năng đã nêu ở Chương 5.
-    \item \textbf{Kiểm thử theo use case:} kiểm chứng các ca sử dụng đã phân tích ở Chương 6.
-    \item \textbf{Quan sát vận hành:} theo dõi hành vi hệ thống khi chạy prototype với
-    một số client đồng thời.
-    \item \textbf{Phân tích định tính:} đánh giá mức độ rõ ràng, nhất quán và khả năng mở rộng.
+    \item REST dùng để xác thực và chọn profile/character;
+    \item session runtime lưu \texttt{profile\_id}/\texttt{character\_id} để WebSocket có thể xác định bối cảnh phiên;
+    \item token có hạn và có thể revoke khi cần (ban/unban).
 \end{itemize}
 
-Các phép đo định lượng chi tiết (benchmark hiệu năng, stress test) không được
-đặt trọng tâm trong giai đoạn này.
-
-%------------------------------------------------
-
-\subsection{Đánh giá yêu cầu chức năng}
-
-\subsubsection{Đăng ký và đăng nhập}
-
-Hệ thống đã hiện thực thành công các chức năng:
+\paragraph{(2) Reward delivery và cập nhật inventory}
+Luồng thưởng sau phiên (tower/dungeon) dễ phát sinh lỗi cấp trùng nếu người chơi retry hoặc mất kết nối. Thiết kế giảm rủi ro bằng:
 \begin{itemize}
-    \item Đăng ký tài khoản mới.
-    \item Đăng nhập bằng thông tin hợp lệ.
-    \item Từ chối đăng nhập với thông tin không hợp lệ.
+    \item server-authoritative: client không tự ghi reward;
+    \item cập nhật inventory theo quy tắc stack/capacity và tham chiếu config item;
+    \item đề xuất idempotency và business log để đối soát.
 \end{itemize}
 
-Quá trình xác thực hoạt động đúng luồng phân tích, token được cấp và sử dụng
-cho các bước tiếp theo. Điều này đáp ứng đầy đủ các yêu cầu chức năng UC01 và UC02.
-
-%------------------------------------------------
-
-\subsubsection{Quản lý nhân vật}
-
-Chức năng quản lý nhân vật ở mức tối thiểu được hiện thực gồm:
+\paragraph{(3) Gacha: rate/pity/duplicate}
+Luồng gacha có yêu cầu “đúng xác suất theo cấu hình” và “không cấp trùng”. Thiết kế đáp ứng bằng:
 \begin{itemize}
-    \item Tải hồ sơ người chơi sau đăng nhập.
-    \item Tạo nhân vật cơ bản khi chưa có dữ liệu.
-    \item Chọn nhân vật để tham gia phiên chơi.
+    \item rates/banners là game configuration (tĩnh) và có thể quản trị bằng pipeline;
+    \item pity là state (động) lưu bền vững theo banner hoặc nhóm banner;
+    \item duplicate handling chuyển đổi theo rule, giảm cảm giác ``mất giá trị''.
 \end{itemize}
 
-Các chức năng này đáp ứng các use case UC04, UC05 và UC06, đồng thời tạo nền tảng
-cho việc mở rộng hệ thống progression trong các giai đoạn tiếp theo.
-
-%------------------------------------------------
-
-\subsubsection{Kết nối real-time và phiên chơi}
-
-Hệ thống đã thiết lập được kết nối WebSocket ổn định giữa client và server:
+\paragraph{(4) Island build/upgrade và worker assignment}
+Luồng island có rủi ro trạng thái treo (worker vừa rảnh vừa bận, hoặc building có worker nhưng worker không trỏ về building). Thiết kế đáp ứng bằng:
 \begin{itemize}
-    \item Client xác thực kết nối real-time bằng token hợp lệ.
-    \item Server quản lý phiên chơi và ánh xạ user--character--socket.
-    \item Người chơi được gán vào phiên chơi thử nghiệm.
+    \item cập nhật liên kết hai chiều khi assign worker;
+    \item timer (\texttt{finish\_time}) và trạng thái building rõ ràng;
+    \item island/resources và buildings nhúng trong cùng thực thể để truy xuất nhất quán.
 \end{itemize}
-
-Các chức năng này đáp ứng UC07 và UC08 trong phạm vi giai đoạn 1.
-
-%------------------------------------------------
-
-\subsubsection{Đồng bộ trạng thái di chuyển}
-
-Cơ chế đồng bộ di chuyển được kiểm chứng thông qua:
-\begin{itemize}
-    \item Client gửi input di chuyển theo nhịp.
-    \item Server xử lý input và cập nhật trạng thái authoritative.
-    \item Client nhận snapshot và hiển thị vị trí nhân vật.
-\end{itemize}
-
-Hệ thống hoạt động ổn định với số lượng nhỏ client đồng thời, đáp ứng UC09 và UC10.
-Việc chưa triển khai prediction và reconciliation nâng cao được xem là phù hợp
-với phạm vi prototype.
-
-%------------------------------------------------
-
-\subsubsection{Xử lý mất kết nối}
-
-Khi client mất kết nối:
-\begin{itemize}
-    \item Server nhận sự kiện disconnect.
-    \item Session runtime được giải phóng.
-    \item Client hiển thị trạng thái mất kết nối.
-\end{itemize}
-
-Chức năng này đáp ứng UC11 ở mức cơ bản, đảm bảo hệ thống không rơi vào trạng thái
-không nhất quán khi có lỗi mạng.
-
-%------------------------------------------------
 
 \subsection{Đánh giá yêu cầu phi chức năng}
+\label{subsec:eval-nfr}
 
-\subsubsection{Hiệu năng}
+\subsubsection{Bảo mật và phân quyền}
+\label{subsubsec:eval-security}
 
-Trong môi trường thử nghiệm cục bộ:
+Thiết kế đáp ứng các yêu cầu bảo mật nền tảng:
 \begin{itemize}
-    \item Độ trễ truyền dữ liệu ở mức chấp nhận được cho prototype.
-    \item Hệ thống xử lý ổn định với 2--3 client đồng thời.
+    \item mật khẩu lưu hash (không plaintext);
+    \item token có thời hạn; WebSocket handshake phải xác thực token;
+    \item phân quyền admin theo role; thao tác admin có audit log;
+    \item giới hạn tần suất thao tác nhạy cảm (login/gacha) và kiểm soát spam input realtime.
+\end{itemize}
+Hướng tiếp cận này phù hợp nguyên tắc hệ thống online: hạn chế tin tưởng client và đặt kiểm tra luật ở server \cite{moriarty-networked}.
+
+\subsubsection{Nhất quán dữ liệu và khả năng chống cấp trùng}
+\label{subsubsec:eval-consistency}
+
+Đối với game online, nhất quán dữ liệu quan trọng hơn tối ưu sớm. Thiết kế thể hiện các điểm tích cực:
+\begin{itemize}
+    \item tách rõ dữ liệu động và tĩnh; dữ liệu tĩnh được nạp qua Config Manager để đồng bộ cách tính;
+    \item cập nhật tiến trình (inventory/gacha/island) định hướng atomic ở mức document;
+    \item đề xuất idempotency key cho các giao dịch dễ retry (reward/gacha/build upgrade).
 \end{itemize}
 
-Hệ thống chưa được kiểm thử ở tải lớn, điều này phù hợp với phạm vi giai đoạn 1.
+Hạn chế còn lại: ở mức thiết kế, cơ chế idempotency và transaction log mới dừng ở nguyên tắc, chưa có đặc tả schema log/delta chi tiết cho từng giao dịch. Đây là phần cần đặc tả thêm khi chuyển sang hiện thực.
 
-%------------------------------------------------
+\subsubsection{Hiệu năng và khả năng mở rộng}
+\label{subsubsec:eval-performance}
 
-\subsubsection{Tính ổn định}
-
-Trong quá trình kiểm thử:
+Thiết kế ưu tiên chạy ổn định ở mức đồ án, nhưng vẫn có hướng mở rộng:
 \begin{itemize}
-    \item Backend không bị crash khi client ngắt kết nối đột ngột.
-    \item Các session được giải phóng đúng cách.
+    \item realtime tách riêng bằng WebSocket gateway và mô hình room runtime in-memory để giảm độ trễ;
+    \item Redis được định hướng dùng cho cache/pub-sub khi scale ngang nhiều instance;
+    \item Config Manager nạp config vào bộ nhớ giúp giảm truy vấn DB cho dữ liệu tĩnh.
 \end{itemize}
 
-Điều này cho thấy thiết kế quản lý phiên và xử lý lỗi cơ bản hoạt động đúng.
-
-%------------------------------------------------
-
-\subsubsection{Bảo mật ở mức cơ bản}
-
-Các biện pháp bảo mật tối thiểu đã được áp dụng:
+Hạn chế:
 \begin{itemize}
-    \item Mật khẩu được mã hoá trước khi lưu trữ.
-    \item Client không được phép tự quyết định trạng thái gameplay.
-    \item Token được kiểm tra trước khi truy cập các chức năng quan trọng.
+    \item room runtime in-memory khiến việc scale ngang cần thêm cơ chế phân vùng room (room sharding) hoặc session affinity;
+    \item chưa có tiêu chí tick-rate/bandwidth cụ thể theo mục tiêu tải.
+\end{itemize}
+Các hạn chế này phù hợp với phạm vi giai đoạn 1 (thiết kế), và sẽ được xử lý khi nâng mức triển khai/benchmark.
+
+\subsubsection{Tính bảo trì và khả năng mở rộng tính năng}
+\label{subsubsec:eval-maintainability}
+
+Tính bảo trì được hỗ trợ bởi:
+\begin{itemize}
+    \item module hoá theo phân hệ rõ ràng (Auth/Profile/Character/Inventory/Combat/Gacha/Island/Admin);
+    \item cross-cutting service cho validation, error handling, logging;
+    \item cấu hình data-driven giúp thay đổi nội dung/thông số mà không sửa code lõi.
 \end{itemize}
 
-Các cơ chế bảo mật nâng cao chưa được triển khai trong giai đoạn này.
+Điểm cần chú ý: khi số lượng phân hệ tăng, cần kiểm soát phụ thuộc chéo (đặc biệt giữa Progression/Inventory/Gacha) bằng cách chuẩn hoá service interface và event nội bộ.
 
-%------------------------------------------------
+\subsubsection{Khả năng quan sát (Observability)}
+\label{subsubsec:eval-observability}
 
-\subsection{Đánh giá mức độ phù hợp giữa thiết kế và hiện thực}
-
-Kết quả hiện thực cho thấy:
+Thiết kế đã nêu các lớp log tối thiểu:
 \begin{itemize}
-    \item Các mô-đun backend được tổ chức đúng theo thiết kế ở Chương 7.
-    \item Luồng client--server vận hành đúng theo phân tích use case.
-    \item Không phát sinh sự lệch hướng lớn giữa thiết kế và triển khai.
+    \item request log (latency/status/user context);
+    \item business log (reward/currency/gacha/admin actions);
+    \item realtime log (join/leave room/disconnect).
 \end{itemize}
 
-Điều này chứng minh thiết kế hệ thống ban đầu có tính khả thi và phù hợp
-với điều kiện hiện thực của đồ án.
+Đánh giá: hướng này đủ cho giai đoạn prototype và debug nghiệp vụ. Để nâng lên vận hành thực tế, cần bổ sung thêm metric (tick time, snapshot size, error rate), tracing và cảnh báo.
 
-%------------------------------------------------
+\subsection{Đánh giá pipeline cấu hình game (data-driven config)}
+\label{subsec:eval-config}
 
-\subsection{Hạn chế và tồn tại}
+Pipeline cấu hình: Google Sheets $\rightarrow$ TSV $\rightarrow$ DB $\rightarrow$ Config Manager, chỉ áp dụng cho \textbf{game configuration}.
 
-Bên cạnh các kết quả đạt được, hệ thống vẫn còn một số hạn chế:
-
+\subsubsection{Ưu điểm}
 \begin{itemize}
-    \item Chưa hỗ trợ các hệ thống gameplay nâng cao (combat, NPC, gacha).
-    \item Chưa tối ưu cho số lượng người chơi lớn.
-    \item Chưa triển khai đầy đủ các kỹ thuật networking nâng cao.
+    \item \textbf{Giảm hard-code}: các thông số (item/building/rate/formula) được thay đổi qua TSV.
+    \item \textbf{Dễ kiểm soát phiên bản}: TSV có thể quản lý qua version control; import log giúp truy vết.
+    \item \textbf{Tối ưu truy xuất runtime}: Config Manager nạp in-memory, phù hợp với các phép tra cứu thường xuyên.
 \end{itemize}
 
-Các hạn chế này xuất phát từ việc chủ động giới hạn phạm vi để đảm bảo
-tính khả thi và chất lượng học thuật của đồ án.
+\subsubsection{Rủi ro và kiểm soát}
+\begin{itemize}
+    \item \textbf{Sai schema/kiểu dữ liệu}: cần validation khi import và báo lỗi rõ ràng theo dòng/cột.
+    \item \textbf{Tham chiếu chéo sai}: cần kiểm tra referential integrity (itemRefId/buildingId/skillId).
+    \item \textbf{Không đồng bộ phiên bản giữa instance}: nếu chạy nhiều server, cần cơ chế reload đồng bộ hoặc restart theo chiến lược triển khai.
+\end{itemize}
 
-%------------------------------------------------
+\subsection{Đánh giá UI/UX theo định hướng pixel art ở mức hệ thống}
+\label{subsec:eval-ui}
+
+Do UI theo phong cách pixel art nhấn mạnh readability và phản hồi nhanh, thiết kế hệ thống hỗ trợ UX bằng:
+\begin{itemize}
+    \item chuẩn hoá trạng thái UI (loading/error/disabled) thông qua mã lỗi nhất quán;
+    \item ưu tiên payload ``delta'' hoặc snapshot nhỏ gọn cho HUD combat;
+    \item phân tách màn hình meta (inventory/gacha/island) khỏi HUD combat để không làm gián đoạn nhịp chơi.
+\end{itemize}
+
+Hạn chế: chưa có đặc tả UI state machine chi tiết cho từng màn (ví dụ: trường hợp disconnect khi đang ở gacha hoặc đang xây building). Đây là phần có thể mở rộng ở giai đoạn hiện thực prototype.
+
+\subsection{Phân tích rủi ro và hướng giảm thiểu}
+\label{subsec:eval-risks}
+
+Bảng~\ref{tab:risk-register} liệt kê các rủi ro kỹ thuật chính và hướng giảm thiểu trong phạm vi đồ án.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|p{3.3cm}|p{2.0cm}|X|p{4.2cm}|}
+\hline
+\textbf{Rủi ro} & \textbf{Mức} & \textbf{Mô tả} & \textbf{Giảm thiểu} \\
+\hline
+Cấp trùng reward/gacha & Cao &
+Retry do mạng/mất kết nối có thể tạo giao dịch lặp &
+Idempotency key, business log, kiểm thử retry, chốt trạng thái bằng server-authoritative \\
+\hline
+Trạng thái treo worker assignment & Trung bình &
+NPC và building lệch trạng thái (một chiều) &
+Cập nhật hai chiều, validate trước khi assign/unassign, kịch bản kiểm thử nhất quán \\
+\hline
+Sai config gây mất cân bằng/lỗi runtime & Cao &
+TSV sai kiểu hoặc tham chiếu chéo sai gây crash hoặc lệch gameplay &
+Validation import, schema strict, referential checks, config version + rollback \\
+\hline
+Realtime latency/jitter làm mất cảm giác combat & Trung bình &
+Snapshot không ổn định gây giật/khó điều khiển &
+Tick-rate hợp lý, snapshot tối thiểu, client interpolation; chừa chỗ mở rộng prediction/reconciliation \\
+\hline
+Phụ thuộc chéo giữa mô-đun tăng dần & Trung bình &
+Feature mới kéo theo gọi chéo nhiều service khó bảo trì &
+Chuẩn hoá interface, domain services rõ ràng, event nội bộ, review dependency định kỳ \\
+\hline
+\end{tabularx}
+\caption{Bảng rủi ro và hướng giảm thiểu}
+\label{tab:risk-register}
+\end{table}
 
 \subsection{Tổng kết chương}
+\label{subsec:eval-summary}
 
-Chương 9 đã đánh giá hệ thống Fortress of the Fallen trong giai đoạn 1 dựa trên
-các yêu cầu và use case đã phân tích. Kết quả cho thấy hệ thống prototype đáp ứng
-được các mục tiêu nền tảng về kiến trúc, kết nối real-time và quản lý phiên chơi.
+Kết quả đánh giá cho thấy bản thiết kế đã:
+\begin{itemize}
+    \item bao phủ các nhóm yêu cầu chức năng chính thông qua mô-đun hoá rõ ràng và mô hình dữ liệu nhất quán;
+    \item đáp ứng các yêu cầu phi chức năng nền tảng (bảo mật, nhất quán, bảo trì, quan sát) ở mức phù hợp với phạm vi giai đoạn 1;
+    \item đưa ra pipeline quản trị game configuration theo hướng data-driven, giúp giảm phụ thuộc vào hard-code và tạo nền tảng cân bằng nội dung.
+\end{itemize}
 
-Những kết quả và hạn chế được ghi nhận là cơ sở cho phần kết luận và định hướng
-phát triển trong Chương 10.
+Các điểm còn cần đặc tả sâu hơn khi chuyển sang hiện thực gồm: cơ chế idempotency/log cho từng giao dịch, chính sách xử lý overflow inventory, tiêu chí tick-rate/bandwidth cho realtime và đặc tả UI state chi tiết cho các tình huống lỗi mạng.

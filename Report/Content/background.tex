@@ -1,215 +1,296 @@
 \section{Kiến thức nền tảng}
 
-Chương này trình bày có hệ thống các kiến thức cơ sở liên quan đến phát triển trò chơi điện tử thuộc thể loại Action RPG trong môi trường trực tuyến. Nội dung tập trung vào hai nhóm chính: (1) các khái niệm nền tảng về game thời gian thực và hệ thống multiplayer; (2) kiến thức nền tảng về thiết kế game (Game Design), bao gồm core loop, progression, combat, economy và trải nghiệm người dùng (UX)\cite{adams-game-design,schell-art}. Những kiến thức này làm cơ sở cho việc phân tích yêu cầu và thiết kế hệ thống ở các chương tiếp theo.
+Chương này hệ thống hoá các kiến thức cơ sở phục vụ cho việc thiết kế một trò chơi Action RPG trong môi trường trực tuyến thời gian thực. Nội dung tập trung vào hai nhóm chính: (i) đặc trưng của Action RPG và các nguyên lý đồng bộ multiplayer; (ii) các khái niệm nền tảng của Game Design gồm vòng lặp chơi (loop), hệ thống tiến trình (progression), thiết kế chiến đấu, thiết kế thế giới, kinh tế trong game, UX/UI và cân bằng thông số\cite{adams-game-design,schell-art}. Các khái niệm ở chương này đóng vai trò ``khung lý thuyết'' để liên kết xuyên suốt sang phần phân tích yêu cầu (Chương~5) và phần thiết kế hệ thống (Chương~7).
 
 % ===============================================================
 \subsection{Kiến thức nền tảng về Action RPG và môi trường real-time}
 
 \subsubsection{Đặc điểm của Action RPG}
 
-Action RPG (Action Role-Playing Game) là thể loại game kết hợp cơ chế nhập vai với chiến đấu thời gian thực. Một số đặc điểm quan trọng\cite{adams-game-design,schell-art}:
+Action RPG (Action Role-Playing Game) kết hợp cơ chế nhập vai (tăng trưởng sức mạnh, xây dựng nhân vật) với chiến đấu thời gian thực (real-time combat). Các đặc điểm cốt lõi thường gặp\cite{adams-game-design,schell-art}:
 
 \begin{itemize}
-    \item \textbf{Tương tác thời gian thực}: mọi hành động như tấn công, di chuyển, né tránh được xử lý và phản hồi gần như tức thời.
-    \item \textbf{Combat gắn liền với animation}: chuyển động của nhân vật (animation) liên kết trực tiếp với logic chiến đấu (thời điểm gây sát thương, thời gian bất tử, v.v.).
-    \item \textbf{Hitbox / Hurtbox}: hệ thống kiểm tra va chạm dựa trên các hình học đơn giản như AABB, Sphere, Capsule để xác định vùng gây sát thương và vùng nhận sát thương.
-    \item \textbf{Kỹ năng người chơi và chỉ số nhân vật phối hợp}: hiệu quả chiến đấu phụ thuộc đồng thời vào thao tác điều khiển của người chơi và chỉ số (stat) của nhân vật.
+    \item \textbf{Điều khiển trực tiếp và phản hồi tức thời}: hành vi chiến đấu (tấn công, né tránh, di chuyển, dùng kỹ năng) cần phản hồi nhanh để tạo cảm giác ``đã tay''.
+    \item \textbf{Chiến đấu gắn với animation}: logic đòn đánh phụ thuộc vào các mốc thời gian của animation (khi nào hitbox bật/tắt, khi nào có i-frame, thời gian hồi chiêu/khôi phục).
+    \item \textbf{Kết hợp kỹ năng người chơi và chỉ số nhân vật}: thao tác (timing, vị trí, né đòn) quyết định hiệu quả ngắn hạn; hệ thống chỉ số, trang bị và kỹ năng quyết định ``tiềm năng'' dài hạn.
+    \item \textbf{Tính công bằng trong va chạm và sát thương}: cần quy ước rõ về hitbox/hurtbox, phạm vi hiệu lực và điều kiện trúng đòn nhằm giảm cảm giác ``bị oan''.
 \end{itemize}
 
-Một đòn tấn công điển hình có thể được chia thành ba giai đoạn\cite{adams-game-design}:
+Một hành động tấn công điển hình thường được chia thành ba pha\cite{adams-game-design}:
 \begin{enumerate}
-    \item \textbf{Startup}: nhân vật chuẩn bị ra đòn.
-    \item \textbf{Active}: hitbox có hiệu lực, có thể gây sát thương.
-    \item \textbf{Recovery}: nhân vật quay về trạng thái sẵn sàng cho hành động tiếp theo.
+    \item \textbf{Startup}: thời gian chuẩn bị, người chơi có thể bị ngắt hoặc bị trừng phạt nếu ra đòn sai thời điểm.
+    \item \textbf{Active}: thời gian hitbox có hiệu lực, đòn có thể gây sát thương/hiệu ứng.
+    \item \textbf{Recovery}: thời gian hồi lại, tạo ``cửa sổ'' để đối thủ phản công.
 \end{enumerate}
-
-Việc hiểu rõ ba giai đoạn này là cơ sở để thiết kế combat có nhịp độ hợp lý, tạo cảm giác mượt và công bằng.
+Việc xác định hợp lý độ dài ba pha giúp kiểm soát nhịp độ combat (pacing), tạo khác biệt giữa vũ khí/kỹ năng, và là cơ sở để cân bằng.
 
 \subsubsection{Hệ thống multiplayer trong Action RPG}
 
-Một trò chơi Action RPG nhiều người chơi yêu cầu cơ chế đồng bộ trạng thái giữa các người chơi sao cho tất cả đều quan sát được diễn biến nhất quán. Các kiến thức nền tảng chính bao gồm\cite{moriarty-networked,gregory-engine}:
+Với Action RPG online, bài toán kỹ thuật trung tâm là đồng bộ trạng thái trong điều kiện mạng không ổn định: độ trễ (latency), jitter, mất gói, chênh lệch tốc độ khung hình giữa các máy. Thực tế triển khai thường dựa trên mô hình \textbf{server authoritative}\cite{moriarty-networked,gaffer-networking}.
 
-\paragraph{Mô hình client--server}
-
-Hầu hết game online hiện đại sử dụng mô hình \textbf{server authoritative}, trong đó:
+\paragraph{Mô hình client--server và tính thẩm quyền (authoritative)}
+Trong mô hình phổ biến:
 \begin{itemize}
-    \item \textbf{Client} chịu trách nhiệm thu thập input (phím bấm, chuột, tay cầm) và hiển thị kết quả.
-    \item \textbf{Server} xử lý toàn bộ logic gameplay quan trọng (tính sát thương, kiểm tra va chạm, xác nhận vị trí, trạng thái kỹ năng) và lưu trữ trạng thái chính thức.
+    \item \textbf{Client} thu thập input, dự đoán (prediction) ở mức hiển thị và render hình ảnh/âm thanh.
+    \item \textbf{Server} giữ trạng thái ``chuẩn'', xử lý các luật gameplay quan trọng (xác nhận vị trí, tính sát thương, trạng thái kỹ năng, kiểm tra điều kiện) và chống gian lận ở mức hệ thống\cite{moriarty-networked}.
 \end{itemize}
+Ưu điểm của server authoritative là giảm sai lệch giữa người chơi và hạn chế cheat; đánh đổi là cần cơ chế che giấu độ trễ để giữ cảm giác điều khiển mượt.
 
-Ưu điểm\cite{moriarty-networked}:
+\paragraph{Tick-rate và vòng lặp mô phỏng}
+Server chạy theo chu kỳ mô phỏng (tick). Ở mỗi tick, server có thể thực hiện: nhận input, cập nhật trạng thái, xử lý va chạm/chiến đấu, sau đó gửi snapshot cho client\cite{moriarty-networked}. Tick-rate cao cho phản hồi tốt hơn nhưng tăng chi phí CPU/băng thông; tick-rate thấp tiết kiệm hơn nhưng đòi hỏi client xử lý nội suy tốt để tránh giật.
+
+\paragraph{Các kỹ thuật che giấu độ trễ}
+Để gameplay cảm giác ``real-time'' dù có latency, các kỹ thuật nền tảng thường phối hợp\cite{moriarty-networked,gaffer-networking}:
 \begin{itemize}
-    \item Đảm bảo tính nhất quán giữa các người chơi.
-    \item Giảm khả năng gian lận do client không được tự ý quyết định kết quả.
-    \item Thuận lợi cho việc mở rộng và bảo trì hệ thống về lâu dài.
+    \item \textbf{Snapshot interpolation}: client nhận snapshot định kỳ và nội suy để hiển thị chuyển động mượt.
+    \item \textbf{Client-side prediction}: client tạm dự đoán kết quả dựa trên input thay vì chờ phản hồi server.
+    \item \textbf{Reconciliation}: khi server gửi trạng thái chuẩn, client điều chỉnh sai lệch một cách ``êm'' để tránh giật.
 \end{itemize}
-
-\paragraph{Tick-rate và vòng lặp cập nhật}
-
-Server vận hành theo chu kỳ cập nhật gọi là \textit{tick}. Ví dụ, với tick-rate 20 hoặc 30 lần mỗi giây, ở mỗi tick, server sẽ\cite{moriarty-networked}:
-\begin{verbatim}
-- Nhận và xử lý input từ người chơi
-- Cập nhật vị trí và trạng thái đối tượng trong thế giới
-- Kiểm tra va chạm và xử lý chiến đấu
-- Gửi snapshot trạng thái đến client
-\end{verbatim}
-
-Tick-rate càng cao, gameplay càng mượt nhưng chi phí tài nguyên càng lớn; tick-rate thấp hơn sẽ tiết kiệm tài nguyên nhưng ảnh hưởng đến độ mượt và độ chính xác của combat.
-
-\paragraph{Đồng bộ trạng thái}
-
-Để giảm tác động của độ trễ mạng và đảm bảo trải nghiệm mượt mà, thường kết hợp nhiều kỹ thuật\cite{moriarty-networked}:
-
-\begin{itemize}
-    \item \textbf{Snapshot interpolation}: client nhận các snapshot trạng thái định kỳ từ server và nội suy giữa các snapshot để hiển thị chuyển động mượt.
-    \item \textbf{Client-side prediction}: client tạm thời dự đoán trạng thái tiếp theo dựa trên input của người chơi, thay vì chờ server phản hồi.
-    \item \textbf{Server reconciliation}: server gửi lại trạng thái chính xác, và client điều chỉnh sai lệch giữa trạng thái dự đoán và trạng thái thực tế.
-\end{itemize}
-
-Các kỹ thuật này là nền tảng cho mọi trò chơi real-time có yếu tố cạnh tranh hoặc yêu cầu điều khiển chính xác.
+Các kỹ thuật này là nền tảng khi thiết kế combat có yêu cầu timing chính xác (né, dash, cast skill) và là tiền đề cho các quyết định ở phần thiết kế hệ thống.
 
 % ===============================================================
 \subsection{Kiến thức nền tảng về Game Design}
 
-Game Design là lĩnh vực xây dựng cơ chế hoạt động của trò chơi, quy định người chơi làm gì, vì sao họ muốn làm điều đó và cách trò chơi phản hồi với hành động của họ\cite{adams-game-design,schell-art}. Một trò chơi hoàn chỉnh thường bao gồm nhiều lớp thiết kế: core loop, hệ thống phát triển nhân vật, hệ thống chiến đấu, hệ thống kinh tế trong game, cơ chế phần thưởng và trải nghiệm người dùng.
+Game Design mô tả cách trò chơi vận hành: người chơi làm gì, vì sao họ muốn làm điều đó, và trò chơi phản hồi như thế nào\cite{adams-game-design,schell-art}. Một Action RPG online thường được phân tích theo các lớp: vòng lặp chơi, tiến trình nhân vật, chiến đấu, nội dung/không gian, kinh tế phần thưởng và UX/UI.
 
 % ---------------------------------------------------------------
 \subsubsection{Core Loop và Meta Loop}
 
-\paragraph{Core Loop} là vòng lặp hành động cốt lõi mà người chơi thực hiện liên tục trong suốt quá trình chơi. Với Action RPG, một dạng core loop điển hình có thể được mô tả như sau\cite{adams-game-design}:
+\paragraph{Core Loop} là vòng lặp hành vi ngắn hạn lặp lại liên tục. Với Action RPG, core loop thường xoay quanh: (i) tham gia giao tranh; (ii) nhận phần thưởng; (iii) dùng phần thưởng để mạnh lên; (iv) quay lại nội dung khó hơn\cite{adams-game-design}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Images/CoreLoop.png}
-    \caption{Sơ đồ ví dụ về Core Loop trong Action RPG}
+    \includegraphics[width=0.80\textwidth]{Images/CoreLoop.png}
+    \caption{Ví dụ mô hình hoá Core Loop trong Action RPG}
     \label{fig:core-loop}
 \end{figure}
 
+Một core loop tốt cần dễ hiểu, có nhịp độ hợp lý và cung cấp ``phản hồi thoả mãn'' sau mỗi vòng lặp (âm thanh, hiệu ứng, tiến bộ nhìn thấy được)\cite{schell-art}.
 
-Một core loop hiệu quả cần:
-\begin{itemize}
-    \item Đơn giản, dễ hiểu ngay từ những phút chơi đầu tiên.
-    \item Mang lại cảm giác thoả mãn sau mỗi vòng lặp.
-    \item Có nhịp độ đủ nhanh để tránh nhàm chán nhưng không gây quá tải.
-\end{itemize}
-
-\paragraph{Meta Loop} là các hệ thống dài hạn giữ chân người chơi trong thời gian dài hơn, ví dụ\cite{schell-art}:
-\begin{itemize}
-    \item Tăng cấp nhân vật và mở khoá thuộc tính.
-    \item Mở khoá kỹ năng, class hoặc khu vực mới.
-    \item Thu thập và nâng cấp trang bị.
-    \item Hoàn thành mục tiêu dài hạn (thành tựu, cốt truyện, mô hình hoá sức mạnh nhân vật).
-\end{itemize}
+\paragraph{Meta Loop} là lớp động lực dài hạn (giữ chân người chơi): tăng cấp, mở khoá hệ thống, sưu tầm trang bị/kỹ năng, tối ưu hoá build, tham gia nội dung endgame\cite{adams-game-design}. Meta loop cần có các \textbf{mốc rõ ràng} để tạo cảm giác tiến bộ, đồng thời đủ không gian cho người chơi cá nhân hoá (nhiều hướng build khác nhau).
 
 % ---------------------------------------------------------------
 \subsubsection{Progression System (Hệ thống phát triển nhân vật)}
 
-Hệ thống progression định hình hành trình phát triển của nhân vật theo thời gian. Các thành phần thường gặp\cite{adams-game-design,schell-art}:
+Progression là ``xương sống'' của Action RPG: quyết định tốc độ mạnh lên, cách người chơi ra quyết định build và cách nội dung được mở khoá theo thời gian\cite{adams-game-design,schell-art}. Trong phạm vi đề tài, hệ thống tiến trình được tổ chức theo ba lớp: (i) chỉ số nền (attributes/stats); (ii) tăng cấp và mở slot kỹ năng; (iii) tiến trình chủng tộc--nghề nghiệp (race/class) và điều kiện mở khoá.
 
+\paragraph{Phân loại chỉ số: Primary vs. Secondary}
+Một thiết kế phổ biến là chia chỉ số thành:
 \begin{itemize}
-    \item \textbf{Leveling}: hệ thống lên cấp, giúp nhân vật tăng chỉ số hoặc mở khoá kỹ năng mới.
-    \item \textbf{Stats}: các chỉ số như sức mạnh, nhanh nhẹn, trí lực, thể lực, ảnh hưởng đến khả năng chiến đấu.
-    \item \textbf{Equipment Progression}: tiến trình nâng cấp trang bị, vũ khí, giáp và vật phẩm hỗ trợ.
-    \item \textbf{Skill Tree}: cây kỹ năng dạng nhánh cho phép người chơi xây dựng phong cách chơi riêng.
-    \item \textbf{Unlocking System}: cơ chế mở khoá tính năng, khu vực hoặc nội dung mới dựa trên tiến độ.
+    \item \textbf{Primary Attributes}: người chơi phân bổ trực tiếp (ví dụ STR/DEX/CON/INT/WIS/CHA).
+    \item \textbf{Secondary Stats}: suy ra từ primary (HP, MP, tốc độ, chí mạng, chính xác, né tránh, tấn công/phòng thủ, \ldots).
 \end{itemize}
+Cách phân lớp này giúp hệ thống dễ mở rộng và thuận lợi cho cân bằng: thay vì chỉnh trực tiếp mọi thứ, có thể điều chỉnh hệ số chuyển đổi giữa primary và secondary.
+
+\paragraph{Hệ thống chỉ số 6 thuộc tính và quan hệ phụ thuộc}
+Trong thiết kế tham chiếu của đề tài, nhân vật có 6 thuộc tính nền và các chỉ số chiến đấu suy diễn theo quan hệ phụ thuộc như Hình~\ref{fig:stats-system}. Mục tiêu là đảm bảo \textit{mỗi thuộc tính đều có giá trị} và hỗ trợ nhiều hướng build (tấn công, sống sót, cơ động, hỗ trợ).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/stats-system.png}
+    \caption{Mô hình hoá thuộc tính nền, chỉ số suy diễn và nhóm trait đặc biệt}
+    \label{fig:stats-system}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Vai trò của 6 thuộc tính nền trong thiết kế build}
+\label{tab:primary-attributes}
+\begin{tabular}{|l|p{11cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Ý nghĩa thiết kế} \\
+\hline
+STR & Sức mạnh thể chất; hỗ trợ sát thương cận chiến, tăng hiệu quả các hành động thiên về ``đè lực''. \\
+\hline
+DEX & Sự nhanh nhẹn; hỗ trợ tốc độ, độ linh hoạt (dash/dodge), chí mạng và các hướng build cơ động. \\
+\hline
+CON & Thể lực; tăng sống sót (HP), giảm rủi ro bị ``bốc hơi'', giúp cân bằng giữa tấn công và phòng thủ. \\
+\hline
+INT & Trí tuệ; hỗ trợ sát thương phép/khả năng kiểm soát, tương tác với cơ chế kỹ năng và hiệu ứng. \\
+\hline
+WIS & Minh triết; hỗ trợ tài nguyên (MP), hồi phục/kháng hiệu ứng và các vai trò hỗ trợ. \\
+\hline
+CHA & Sức hút/khả năng dẫn dắt; dùng làm biến điều kiện cho mở khoá, tương tác NPC/đội nhóm và một số hướng build đặc thù. \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Ví dụ quan hệ phụ thuộc Secondary Stats từ Primary Attributes}
+\label{tab:derived-stats}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Chỉ số suy diễn} & \textbf{Phụ thuộc chính} \\
+\hline
+HP (máu tối đa) & CON, STR \\
+\hline
+MP (năng lượng kỹ năng) & WIS, INT \\
+\hline
+PATK/DATK (tấn công vật lý) & STR, DEX, CON \\
+\hline
+MATK/MDEF (tấn công/phòng thủ phép) & INT, WIS \\
+\hline
+SPD (tốc độ) & DEX \\
+\hline
+CRIT (tỉ lệ chí mạng) & DEX \\
+\hline
+ACC (độ chính xác) & DEX, INT \\
+\hline
+EVA (né tránh) & DEX, CON \\
+\hline
+\end{tabular}
+\end{table}
+
+Từ góc độ triển khai, các công thức nên được cấu hình hoá (hệ số có thể thay đổi), ví dụ:
+\[
+HP_{\max} = HP_0 + a\cdot CON + b\cdot STR,\quad
+MP_{\max} = MP_0 + c\cdot WIS + d\cdot INT
+\]
+\[
+PATK = p_1\cdot STR + p_2\cdot DEX + p_3\cdot CON,\quad
+SPD = s_1\cdot DEX
+\]
+Việc tách \textit{hệ số} khỏi logic cho phép cân bằng mà không cần thay đổi mã nguồn, đồng thời hỗ trợ thử nghiệm nhiều ``đường cong sức mạnh'' (linear/exponential) ở giai đoạn tinh chỉnh\cite{adams-game-design}.
+
+\paragraph{Nhóm trait đặc biệt (Special Traits) và ý nghĩa thiết kế}
+Bên cạnh hệ 6 thuộc tính, thiết kế tham chiếu còn đưa vào nhóm trait đặc biệt nhằm tăng chiều sâu meta-progression:
+\begin{itemize}
+    \item \textbf{Karma}: trục lựa chọn/định hướng hành vi, có thể ảnh hưởng điều kiện mở khoá class và nội dung.
+    \item \textbf{Affinity}: liên kết nguyên tố/hệ (Light/Dark/Nature/\ldots), dùng cho phân nhánh class/kỹ năng và kháng.
+    \item \textbf{Luck}: tăng biến thiên theo hướng tích cực (drop, tỉ lệ chí mạng, các cơ chế RNG), nhưng cần giới hạn để tránh phá cân bằng.
+    \item \textbf{Resistance}: sức đề kháng/kháng hiệu ứng, giảm cảm giác bị ``khống chế liên hoàn'' trong combat.
+\end{itemize}
+Nhóm trait này giúp hệ thống mở rộng theo hướng ``điều kiện mở khoá'' thay vì chỉ tăng số, tạo thêm mục tiêu dài hạn cho người chơi.
+
+\paragraph{Leveling và mở slot kỹ năng}
+Một lựa chọn thiết kế quan trọng là \textbf{level không trực tiếp cấp kỹ năng}, mà cấp \textbf{tài nguyên build} (điểm cộng chỉ số và slot để trang bị kỹ năng). Cách tiếp cận này tạo ra khác biệt giữa:
+\begin{itemize}
+    \item \textbf{Học kỹ năng} (thu thập từ sách, nhiệm vụ, NPC, quái rơi, \ldots).
+    \item \textbf{Trang bị kỹ năng} (bị giới hạn bởi slot, buộc người chơi ra quyết định).
+\end{itemize}
+Trong tham chiếu của đề tài: level tối đa 100; mỗi level cho +5 điểm chỉ số để phân bổ; các mốc level mở dần slot kỹ năng thường và slot kỹ năng kết hợp (combo).
+
+\begin{table}[H]
+\centering
+\caption{Ví dụ mốc level và phần thưởng mở slot kỹ năng}
+\label{tab:level-milestones}
+\begin{tabular}{|c|p{11cm}|}
+\hline
+\textbf{Mốc} & \textbf{Phần thưởng tiến trình} \\
+\hline
+10, 20, 30 & Mở dần các slot kỹ năng thường (slot 1--3), giúp người chơi hình thành bộ kỹ năng cơ bản. \\
+\hline
+40 & Mở slot kỹ năng combo đầu tiên, bắt đầu giai đoạn ``xây dựng lối chơi''. \\
+\hline
+50 & Mốc nội dung/boss theo tuyến truyện và nới giới hạn stat cap (định hướng power spike). \\
+\hline
+60, 80, 100 & Mở thêm các slot combo (2--4), hướng tới các tổ hợp mạnh và ``ultimate combo''. \\
+\hline
+70, 90 & Mở thêm slot thường (slot 4--5), tăng tính linh hoạt của bộ kỹ năng. \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Kỹ năng kết hợp (Combo Skills) như cơ chế đa dạng hoá build}
+Combo skill là kỹ năng hình thành từ việc kết hợp ít nhất 2 kỹ năng đã học (cơ bản hoặc theo class). Từ góc độ Game Design, combo skill tạo ra:
+\begin{itemize}
+    \item \textbf{Động lực sưu tầm kỹ năng}: người chơi có lý do tìm thêm kỹ năng ngoài ``meta'' hiện tại.
+    \item \textbf{Không gian thử nghiệm}: cùng một level nhưng khác bộ kỹ năng vẫn tạo trải nghiệm khác biệt.
+    \item \textbf{Đòn bẩy endgame}: ở level cao, số slot combo tăng, cho phép build chuyên sâu.
+\end{itemize}
+Tuy nhiên, combo skill cũng là rủi ro cân bằng: cần giới hạn điều kiện trang bị (slot), chi phí tài nguyên (MP/stamina), và ràng buộc cooldown để tránh ``một combo thống trị''.
+
+\paragraph{Race/Class và cơ chế mở khoá theo điều kiện}
+Hệ race/class là lớp meta-progression giúp người chơi định hình vai trò và phong cách chơi. Một mô hình thường gặp:
+\begin{itemize}
+    \item \textbf{Race} cung cấp stat cap và trait bẩm sinh (thiên hướng dài hạn).
+    \item \textbf{Class} cung cấp kỹ năng nghề nghiệp, cơ chế chiến đấu đặc thù và nhánh thăng tiến (định hình lối chơi).
+\end{itemize}
+Trong thiết kế tham chiếu, class được phân tầng (Basic/Intermediate/Advanced/Legendary/Hidden) với điều kiện mở khoá dạng \textbf{ngưỡng chỉ số} (STR/DEX/INT/\ldots), \textbf{trait đặc biệt} (Karma/Affinity/Luck/Resistance) và \textbf{thành tựu hành vi} (PvP, Arena, chỉ huy NPC, \ldots). Cách thiết kế này biến ``mở class'' thành mục tiêu gameplay thay vì chỉ là lựa chọn menu, đồng thời cho phép hệ thống nội dung gắn với điều kiện mở khoá.
 
 % ---------------------------------------------------------------
 \subsubsection{Combat Design (Thiết kế chiến đấu)}
 
-Chiến đấu là trung tâm của Action RPG. Các khái niệm nền tảng\cite{adams-game-design,schell-art}:
+Combat là trung tâm trải nghiệm của Action RPG; mọi hệ thống tiến trình cuối cùng đều ``đổ'' vào cảm giác chiến đấu\cite{adams-game-design,schell-art}. Vì vậy, thiết kế combat cần đồng thời kiểm soát nhịp độ, độ rõ ràng và độ công bằng.
 
-\paragraph{Pacing (nhịp độ chiến đấu)}
-
-Nhịp độ chiến đấu có thể:
+\paragraph{Nhịp độ (Pacing) và cửa sổ rủi ro}
+Pacing được tạo bởi tốc độ animation, thời gian cooldown, khoảng cách hiệu lực và mức ``trừng phạt'' khi người chơi mắc lỗi. Một thiết kế tốt thường đảm bảo:
 \begin{itemize}
-    \item \textbf{Nhanh}: nhấn mạnh phản xạ, né tránh, ra quyết định tức thời.
-    \item \textbf{Chậm}: thiên về quan sát, ra quyết định chiến lược, tính toán khoảng cách và thời điểm.
+    \item Có hành động nhanh (đánh thường/dash) để duy trì nhịp.
+    \item Có hành động mạnh nhưng rủi ro (kỹ năng nặng, hồi chiêu dài) để tạo quyết định.
+    \item Có cơ chế phòng thủ/cơ động (dodge/i-frame) nhưng bị giới hạn tài nguyên để tránh lạm dụng.
 \end{itemize}
 
-\paragraph{Frame Data}
-
-Mỗi hành động chiến đấu có thể được phân tích theo “frame data”:
+\paragraph{Tương tác giữa chỉ số và cảm giác điều khiển}
+Khi chỉ số ảnh hưởng đến combat, cần tránh để ``chỉ số thay thế kỹ năng người chơi''. Ví dụ:
 \begin{itemize}
-    \item \textbf{Startup}: thời gian chuẩn bị trước khi đòn đánh có hiệu lực.
-    \item \textbf{Active}: khoảng thời gian hitbox có thể gây sát thương.
-    \item \textbf{Recovery}: thời gian hồi lại trước khi có thể thực hiện hành động khác.
-    \item \textbf{Invincibility Frames (i-frames)}: khoảng thời gian nhân vật không thể bị trúng đòn (thường xuất hiện trong các động tác lăn hoặc né).
+    \item Tốc độ (SPD) và né tránh (EVA) nên tăng theo ngưỡng hợp lý để không biến combat thành ``không thể trúng''.
+    \item Chính xác (ACC) cần có vai trò đối trọng với EVA để cân bằng PvE/PvP.
+    \item HP/Resistance tăng sống sót nhưng cần đi kèm trade-off (mất sát thương hoặc giảm cơ động).
 \end{itemize}
-
-\paragraph{Hit Detection}
-
-Hit detection là quá trình kiểm tra xem một đòn tấn công có trúng mục tiêu hay không, dựa trên:
-\begin{itemize}
-    \item Hình dạng và vị trí hitbox.
-    \item Hình dạng và vị trí hurtbox.
-    \item Thời điểm kích hoạt trong animation.
-\end{itemize}
+Các nguyên tắc này liên quan trực tiếp tới thiết kế power budget và TTK trong phần cân bằng.
 
 % ---------------------------------------------------------------
 \subsubsection{World System và Level Design}
 
-Level design quyết định cách người chơi di chuyển, tương tác và trải nghiệm không gian trò chơi. Một số yếu tố quan trọng\cite{schell-art}:
-
+World/Level design xác định cấu trúc không gian và cách nội dung được phân phối: luồng di chuyển, mật độ giao tranh, checkpoint, nhịp nghỉ\cite{schell-art}. Với Action RPG online, world design còn liên quan tới:
 \begin{itemize}
-    \item Bố cục không gian (layout) rõ ràng, tránh gây lạc hướng.
-    \item Đường di chuyển chính/phụ, nhánh rẽ tạo cảm giác khám phá.
-    \item Phân bố quái, vật phẩm, checkpoint hợp lý.
-    \item Xen kẽ các đoạn chiến đấu, khám phá và nghỉ ngơi để tạo nhịp độ cân bằng.
+    \item \textbf{Tổ chức phiên chơi}: nội dung dạng phòng (room), khu (zone) hoặc dungeon; ảnh hưởng tới cách đồng bộ multiplayer.
+    \item \textbf{Điểm neo tiến trình}: checkpoint và mốc nội dung để tạo cảm giác ``đi được một đoạn'' thay vì cày vô hạn.
+    \item \textbf{Phân tầng độ khó}: đảm bảo nội dung ``vừa tầm'' theo tiến trình, giảm cảm giác bế tắc.
 \end{itemize}
+Các nguyên lý này thường được kết hợp với progression (mốc level, mở slot, mở class) để tạo ra đường cong trải nghiệm liền mạch.
 
 % ---------------------------------------------------------------
 \subsubsection{Hệ thống kinh tế (Game Economy)}
 
-Hệ thống kinh tế trong game quy định cách tài nguyên được tạo ra và sử dụng\cite{adams-game-design}.
-
-\paragraph{Nguồn tài nguyên (Resource Sources)}
-
-Ví dụ:
+Kinh tế trong game mô tả luồng tạo và tiêu thụ tài nguyên\cite{adams-game-design}. Về nguyên tắc, luôn cần đồng thời:
 \begin{itemize}
-    \item Phần thưởng nhiệm vụ.
-    \item Quái rơi vật phẩm.
-    \item Thu thập và khai thác tài nguyên.
-    \item Hệ thống crafting.
-    \item Sự kiện trong game.
+    \item \textbf{Nguồn (sources)}: quà nhiệm vụ, rơi vật phẩm, phần thưởng theo phiên, sự kiện.
+    \item \textbf{Hút (sinks)}: nâng cấp trang bị, chế tạo, tiêu hao vật phẩm, phí sửa chữa/duy trì, các cơ chế RNG.
 \end{itemize}
-
-\paragraph{Tiêu thụ tài nguyên (Resource Sinks)}
-
-Ví dụ:
-\begin{itemize}
-    \item Nâng cấp trang bị.
-    \item Mua vật phẩm tiêu hao.
-    \item Mở khoá tính năng hoặc khu vực mới.
-    \item Chi phí duy trì hoặc sửa chữa trang bị.
-\end{itemize}
+Thiết kế kinh tế tốt đảm bảo người chơi luôn có mục tiêu chi tiêu hợp lý, tránh tích luỹ vô hạn hoặc cạn kiệt quá nhanh.
 
 % ---------------------------------------------------------------
-\subsubsection{UX/UI Design trong game}
+\subsubsection{UX/UI Design trong game và định hướng phong cách Pixel Art}
 
-Trải nghiệm người dùng (UX) và giao diện người dùng (UI) đóng vai trò quan trọng trong việc truyền tải thông tin và hỗ trợ người chơi tương tác với hệ thống\cite{schell-art}.
+UX/UI trong game có nhiệm vụ: truyền tải trạng thái, hỗ trợ ra quyết định nhanh và tạo phản hồi nhất quán\cite{schell-art}. Với định hướng đồ hoạ \textbf{pixel art}, các nguyên tắc UI cần nhấn mạnh tính \textbf{đọc được} (readability) và \textbf{rõ trạng thái}:
 
-Các nguyên lý cơ bản:
 \begin{itemize}
-    \item \textbf{Phản hồi rõ ràng (Visual Feedback)}: mọi hành động quan trọng (nhặt vật phẩm, nâng cấp, gây sát thương) cần có hiệu ứng hình ảnh và/hoặc âm thanh tương ứng.
-    \item \textbf{Giao diện nhất quán}: vị trí, màu sắc và hành vi của các nút, menu cần được duy trì nhất quán giữa các màn hình.
-    \item \textbf{Giảm tải thông tin}: chỉ hiển thị thông tin cần thiết trong mỗi ngữ cảnh, tránh làm người chơi bị “ngợp” vì quá nhiều chi tiết.
+    \item \textbf{Lưới pixel và căn chỉnh}: UI nên bám lưới, viền/thanh máu dùng bội số pixel để tránh mờ/nhòe.
+    \item \textbf{Tương phản cao}: chữ/icon cần tương phản nền đủ lớn; hạn chế gradient mịn gây giảm độ sắc.
+    \item \textbf{Phân lớp thông tin}: trong combat chỉ hiển thị thông tin thiết yếu (HP/MP/cooldown/buff-debuff), thông tin chi tiết chuyển sang màn hình nhân vật.
+    \item \textbf{Phản hồi hành động}: tấn công trúng, bị trúng, nhặt vật phẩm, nâng cấp thành công/thất bại cần có phản hồi hình--âm rõ ràng, nhất quán.
+\end{itemize}
+
+Ngoài ra, một bộ UI tối thiểu cho Action RPG online thường bao gồm:
+\begin{itemize}
+    \item HUD chiến đấu: HP/MP, thanh kỹ năng theo slot, trạng thái cooldown, buff/debuff.
+    \item Màn hình nhân vật: chỉ số, phân bổ điểm, class/race, trait đặc biệt.
+    \item Inventory/Equipment: quản lý slot, trang bị, vật phẩm tiêu hao.
+    \item Menu xã hội/cơ bản: bạn bè, party (nếu có), thiết lập (âm lượng, ngôn ngữ).
 \end{itemize}
 
 % ---------------------------------------------------------------
 \subsubsection{Balancing Fundamentals (Cân bằng game)}
 
-Cân bằng (balancing) là quá trình điều chỉnh các thông số trong game sao cho trải nghiệm tổng thể hợp lý\cite{adams-game-design,schell-art}.
+Cân bằng là quá trình điều chỉnh thông số để đảm bảo trải nghiệm hợp lý\cite{adams-game-design,schell-art}. Với Action RPG có hệ chỉ số và slot kỹ năng, các trục cân bằng thường gặp:
 
-Các khái niệm nền tảng:
 \begin{itemize}
-    \item \textbf{Linear vs Exponential Growth}: tốc độ tăng chỉ số tuyến tính hay lũy thừa.
-    \item \textbf{Time-to-Kill (TTK)}: thời gian trung bình để hạ gục một mục tiêu.
-    \item \textbf{Risk--Reward Ratio}: tỉ lệ giữa rủi ro mà người chơi chấp nhận và phần thưởng nhận được.
-    \item \textbf{Power Budget}: giới hạn tổng sức mạnh cho phép trong một hệ hoặc một build nhân vật.
+    \item \textbf{Tăng trưởng tuyến tính vs. luỹ thừa}: quyết định tốc độ mạnh lên theo thời gian và ``độ chênh'' giữa người chơi.
+    \item \textbf{Time-to-Kill (TTK)}: thời gian hạ mục tiêu; quá thấp gây ``bốc hơi'', quá cao gây lê thê.
+    \item \textbf{Risk--Reward}: nội dung rủi ro cao phải thưởng tương xứng; nếu không sẽ bị bỏ qua.
+    \item \textbf{Power Budget}: tổng sức mạnh được phân bổ qua chỉ số, trang bị, kỹ năng; cần kiểm soát để combo/skill không vượt ngân sách.
+\end{itemize}
+
+Trong bối cảnh có combo skill và điều kiện mở class theo trait, cân bằng cần chú ý thêm:
+\begin{itemize}
+    \item Giới hạn khả năng ``stack'' (xếp chồng) các lợi thế: chí mạng + tốc độ + né tránh + kháng hiệu ứng.
+    \item Đảm bảo nhiều hướng build đều có ``đất diễn'': build cơ động mạnh nhưng mỏng; build trâu bò sống lâu nhưng thiếu bùng nổ; build phép mạnh nhưng phụ thuộc tài nguyên.
 \end{itemize}
 
 % ===============================================================
 \subsection{Tổng kết chương}
 
-Chương này đã trình bày các kiến thức nền tảng về Action RPG, hệ thống multiplayer và các khái niệm cốt lõi trong thiết kế game: core loop, progression, combat, economy và UX. Những kiến thức này sẽ được sử dụng làm cơ sở cho các chương tiếp theo, đặc biệt là trong việc phân tích yêu cầu (Chương~5) và thiết kế hệ thống (Chương~7).
+Chương này đã trình bày các kiến thức nền tảng phục vụ thiết kế Action RPG online: đặc trưng real-time và đồng bộ multiplayer; các khái niệm game design như core loop, progression, combat, economy, UX/UI và balancing\cite{adams-game-design,schell-art,moriarty-networked,gaffer-networking}. Đồng thời, chương cũng mô hình hoá hệ chỉ số 6 thuộc tính, nhóm trait đặc biệt và cơ chế tiến trình thông qua mở slot kỹ năng/combo. Đây là cơ sở để chuyển sang phân tích yêu cầu (Chương~5) và đặc tả thiết kế hệ thống (Chương~7).

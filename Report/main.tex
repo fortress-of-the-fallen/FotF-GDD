@@ -1,16 +1,37 @@
 \documentclass[12pt,a4paper]{article}
 
 % ================== GÓI TIẾNG VIỆT & CƠ BẢN ==================
+% Thứ tự ổn định cho pdfLaTeX + vntex
+\usepackage[utf8]{inputenc}
 \usepackage[utf8]{vntex}
 \usepackage[english,vietnamese]{babel}
-\usepackage[utf8]{inputenc}
 
+% ================== NÉ LỖI SPLIT BOX / GLUE ==================
+% Giảm việc TeX ép co giãn chiều dọc khi ngắt trang
+\raggedbottom
+
+% ================== FONT ==================
+% Latin Modern để ổn định hơn khi dùng T5
+\usepackage{lmodern}
+\renewcommand{\ttdefault}{lmtt}
+
+% ================== CỘT BẢNG RAGGEDRIGHT ==================
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% ================== GÓI CƠ BẢN ==================
 \usepackage{blindtext}
 \usepackage{float}
 \usepackage{pdfpages}
 \usepackage{longtable}
+
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{codeframe}{RGB}{200,200,200}
+\definecolor{codekeyword}{RGB}{0,0,120}
+\definecolor{codestring}{RGB}{120,0,0}
+\definecolor{codecomment}{RGB}{0,96,0}
 % ================== GÓI BỔ TRỢ ==================
-\usepackage{a4wide,amssymb,epsfig,latexsym,multicol,array,hhline,fancyhdr}
+\usepackage{a4wide,amssymb,epsfig,latexsym,multicol,hhline,fancyhdr}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[framemethod=tikz]{mdframed}
 \usepackage{lastpage}
@@ -37,19 +58,48 @@
 \usepackage{colortbl}
 \usepackage{makecell}
 \usepackage{listings}
+
+% ================== BIBLIOGRAPHY ==================
 \usepackage[
     backend=biber,
     style=numeric,
     sorting=none,
     language=english
 ]{biblatex}
+\addbibresource{refs.bib}
 
+% ================== LISTINGS ==================
+\lstdefinelanguage{json}{
+  morestring=[b]",
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morekeywords={true,false,null}
+}
+\lstdefinestyle{report}{
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{codekeyword}\bfseries,
+  stringstyle=\color{codestring},
+  commentstyle=\color{codecomment}\itshape,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=8pt,
+  breaklines=true,
+  breakatwhitespace=true,
+  showstringspaces=false,
+  tabsize=2,
+  captionpos=b,
+  xleftmargin=1em,
+  xrightmargin=1em
+}
 
-\addbibresource{refs.bib}  % dùng đúng tên file .bib bạn muốn
+\lstset{style=report}
 
-
-% ================== HYPERREF (ẨN VIỀN LINK) ==================
-\usepackage{hyperref}
+% ================== HYPERREF ==================
+\usepackage[unicode,hypertexnames=false]{hyperref}
 \hypersetup{
     hidelinks,
     colorlinks=false
@@ -70,23 +120,25 @@
 % ================== HEADER / FOOTER ==================
 \setlength{\headheight}{40pt}
 \pagestyle{fancy}
-\fancyhead{}    % xóa header mặc định
-\fancyfoot{}    % xóa footer mặc định
+\fancyhead{}
+\fancyfoot{}
 
-\fancyfoot[L]{\scriptsize \ttfamily Khoa Khoa Học và Kỹ Thuật Máy Tính}
-\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/\pageref{LastPage}}
+% KHÔNG dùng \ttfamily cho tiếng Việt ở footer
+\fancyfoot[L]{\scriptsize \sffamily Khoa Khoa Học và Kỹ Thuật Máy Tính}
+\fancyfoot[R]{\scriptsize \sffamily Page {\thepage}/\pageref{LastPage}}
 
-\renewcommand{\headrulewidth}{0pt}    % không vẽ line ở header
-\renewcommand{\footrulewidth}{0.3pt}  % vẽ line ở footer
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.3pt}
 
-% Đổi tên mục lục sang tiếng Việt
+% ================== KHÁC ==================
 \renewcommand{\contentsname}{Mục lục}
 \setcounter{table}{0}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
 % ===================== TRANG BÌA =====================
-\input{Content/titlepage} % trong titlepage.tex nên có \thispagestyle{empty}
+\input{Content/titlepage}
 
 % ===================== PROTESTATION =====================
 \input{Content/protestation}
@@ -103,7 +155,6 @@
 
 % ===================== TOC, LOF, LOT =====================
 \newpage
-
 \begin{singlespace}
 \tableofcontents
 \end{singlespace}
@@ -118,12 +169,13 @@
 \listoftables
 \end{singlespace}
 \newpage
-% reset trước nội dung chính
-\setcounter{table}{0}
-\setcounter{figure}{0} % nếu muốn hình cũng bắt đầu từ 1
-\setcounter{section}{0} % nếu muốn chương/section bắt đầu từ 1
-% ===================== NỘI DUNG CHÍNH =====================
 
+% Reset trước nội dung chính
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\setcounter{section}{0}
+
+% ===================== NỘI DUNG CHÍNH =====================
 \input{Content/introduction}
 \input{Content/background}
 \input{Content/technology}
