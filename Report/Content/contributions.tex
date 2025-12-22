@@ -1,0 +1,34 @@
+% ===================== Content/contributions.tex =====================
+\clearpage
+\section*{Phân công nhiệm vụ và đóng góp của các thành viên}
+\addcontentsline{toc}{section}{Phân công nhiệm vụ và đóng góp của các thành viên}
+
+Phần này tổng hợp phạm vi công việc và mức đóng góp của từng thành viên trong suốt quá trình thực hiện đồ án. Việc phân công được xây dựng dựa trên thế mạnh của mỗi thành viên và được phối hợp xuyên suốt theo từng mốc triển khai, nhằm đảm bảo tính nhất quán giữa trải nghiệm người dùng (client/UI) và xử lý nghiệp vụ (server/DB/giao tiếp).
+
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|p{3.2cm}|X|p{3.2cm}|p{3.0cm}|}
+\hline
+\textbf{Hạng mục} & \textbf{Mô tả công việc} & \textbf{Thành viên chính} & \textbf{Phối hợp} \\
+\hline
+Lên ý tưởng đề tài & Thống nhất định hướng gameplay, scope hệ thống, các phân hệ chính (auth, profile/character, inventory/equipment, skills, island/npc, combat/gacha). & Toàn + Khang & Cả hai \\
+\hline
+Tìm game tham khảo và chốt hướng UI & Tìm các tựa game/reference phù hợp, tổng hợp luồng UI, bố cục màn hình và quy ước tương tác để chốt phong cách giao diện và trải nghiệm. & Hà Thái Toàn & Trần Minh Khang \\
+\hline
+Client và UI/UX & Thiết kế luồng màn hình (login/register, profile, create character, main hub, inventory), định nghĩa UI state (loading/error/disabled), chuẩn hoá dữ liệu hiển thị theo response từ API. & Hà Thái Toàn & Trần Minh Khang \\
+\hline
+Đề xuất tính năng và đánh giá khả thi & Đề xuất các tính năng trọng tâm theo phạm vi đồ án; đánh giá rủi ro/độ phức tạp; chốt các chức năng phải server-authoritative và các điểm cần audit/log. & Trần Minh Khang & Hà Thái Toàn \\
+\hline
+Hiện thực hệ thống server & Thiết kế/hiện thực backend theo mô-đun; tổ chức REST API và WebSocket; xác thực, phân quyền, xử lý lỗi; chuẩn hoá payload; quản lý session runtime và luồng nghiệp vụ chính. & Trần Minh Khang & Hà Thái Toàn \\
+\hline
+Đồng bộ client--server & Thống nhất contract dữ liệu giữa UI và API (endpoint, request/response, message envelope realtime), rà soát mismatch, điều chỉnh luồng để đảm bảo trải nghiệm mượt và dữ liệu nhất quán. & Cả hai & Cả hai \\
+\hline
+\end{tabularx}
+\caption{Phân công nhiệm vụ và đóng góp của các thành viên}
+\label{tab:team-contributions}
+\end{table}
+
+\clearpage

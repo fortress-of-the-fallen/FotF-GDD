@@ -1,12 +1,12 @@
 \section{Công nghệ sử dụng}
 
-Chương này trình bày các công nghệ và nền tảng phần mềm được sử dụng hoặc \textbf{định hướng sử dụng} trong đồ án để xây dựng một trò chơi Action RPG trực tuyến. Nội dung tập trung vào vai trò của từng công nghệ trong kiến trúc tổng thể, các ưu điểm/hạn chế và lý do phù hợp với bối cảnh hệ thống game online thời gian thực\cite{gregory-engine,moriarty-networked}.
+Chương này trình bày các công nghệ và nền tảng phần mềm được sử dụng hoặc \textbf{định hướng sử dụng} trong đồ án để xây dựng một trò chơi Action RPG trực tuyến. Nội dung tập trung vào vai trò của từng công nghệ trong kiến trúc tổng thể, các ưu điểm/\allowbreak hạn chế và lý do phù hợp với bối cảnh hệ thống game online thời gian thực\cite{gregory-engine,moriarty-networked}.
 
 Về mặt chức năng, hệ thống có thể chia thành các lớp chính:
 \begin{itemize}
-    \item \textbf{Client/Game Engine}: hiển thị đồ hoạ, nhận input, mô phỏng cục bộ (visual/animation), UI và giao tiếp mạng.
-    \item \textbf{Backend/Application Server}: xử lý nghiệp vụ game, xác thực, quản lý phiên, đồng bộ trạng thái và cung cấp API.
-    \item \textbf{Data \& Storage}: lưu trữ lâu dài (progress người chơi), cache/pub-sub, và kho dữ liệu cấu hình/tài nguyên.
+    \item \textbf{Client/\allowbreak Game Engine}: hiển thị đồ hoạ, nhận input, mô phỏng cục bộ (visual/\allowbreak animation), UI và giao tiếp mạng.
+    \item \textbf{Backend/\allowbreak Application Server}: xử lý nghiệp vụ game, xác thực, quản lý phiên, đồng bộ trạng thái và cung cấp API.
+    \item \textbf{Data \& Storage}: lưu trữ lâu dài (progress người chơi), cache/\allowbreak pub-sub, và kho dữ liệu cấu hình/\allowbreak tài nguyên.
     \item \textbf{Tooling \& Process}: quản lý mã nguồn, quản lý tác vụ, tài liệu hoá và công cụ thiết kế.
 \end{itemize}
 
@@ -17,7 +17,7 @@ Về mặt chức năng, hệ thống có thể chia thành các lớp chính:
 
 Unity là lựa chọn phù hợp để hiện thực client trong bối cảnh đồ án nhờ hệ sinh thái hoàn chỉnh và tài liệu phong phú\cite{unity-manual}. Các lý do chính:
 \begin{itemize}
-    \item \textbf{Pipeline đồ hoạ và nội dung}: hỗ trợ sprite/animation, quản lý scene, prefab và asset import giúp tăng tốc phát triển nội dung.
+    \item \textbf{Pipeline đồ hoạ và nội dung}: hỗ trợ sprite/\allowbreak animation, quản lý scene, prefab và asset import giúp tăng tốc phát triển nội dung.
     \item \textbf{UI framework}: cung cấp hệ thống UI phục vụ HUD chiến đấu, inventory, menu và các màn hình meta-progression.
     \item \textbf{Khả năng mở rộng}: cho phép tổ chức mã theo hướng component-based; có thể mở rộng sang hướng ECS tuỳ mức độ phức tạp\cite{gregory-engine}.
 \end{itemize}
@@ -47,7 +47,7 @@ Nguyên tắc này giúp giảm rủi ro gian lận và đảm bảo tính nhấ
 
 \subsubsection{Nền tảng runtime: Node.js}
 
-Node.js phù hợp với backend game online nhờ mô hình I/O bất đồng bộ, thuận lợi khi phải xử lý đồng thời nhiều kết nối mạng (đặc biệt là WebSocket)\cite{nodejs-docs}. Với đặc thù đồ án, Node.js hỗ trợ:
+Node.js phù hợp với backend game online nhờ mô hình I/\allowbreak O bất đồng bộ, thuận lợi khi phải xử lý đồng thời nhiều kết nối mạng (đặc biệt là WebSocket)\cite{nodejs-docs}. Với đặc thù đồ án, Node.js hỗ trợ:
 \begin{itemize}
     \item Xây dựng API nhanh, dễ mở rộng theo mô-đun.
     \item Tích hợp tốt với hệ sinh thái thư viện cho xác thực, logging, validation và kết nối DB.
@@ -55,12 +55,12 @@ Node.js phù hợp với backend game online nhờ mô hình I/O bất đồng b
 
 \subsubsection{Framework: NestJS và TypeScript}
 
-NestJS cung cấp kiến trúc rõ ràng theo hướng module + dependency injection, phù hợp khi hệ thống cần phân rã theo phân hệ (auth/profile, session, character, inventory, \ldots)\cite{nest-docs}. TypeScript giúp tăng độ an toàn của mã nguồn nhờ kiểu tường minh, giảm lỗi trong phát triển trung hạn.
+NestJS cung cấp kiến trúc rõ ràng theo hướng module + dependency injection, phù hợp khi hệ thống cần phân rã theo phân hệ (auth/\allowbreak profile, session, character, inventory, \ldots)\cite{nest-docs}. TypeScript giúp tăng độ an toàn của mã nguồn nhờ kiểu tường minh, giảm lỗi trong phát triển trung hạn.
 
 Các lý do lựa chọn:
 \begin{itemize}
     \item \textbf{Tổ chức mã nguồn}: module hoá tự nhiên, dễ quản lý ranh giới nghiệp vụ và tái sử dụng service dùng chung.
-    \item \textbf{Hỗ trợ đa giao thức}: REST cho tác vụ quản trị/truy vấn; WebSocket gateway cho tương tác thời gian thực\cite{nest-docs}.
+    \item \textbf{Hỗ trợ đa giao thức}: REST cho tác vụ quản trị/\allowbreak truy vấn; WebSocket gateway cho tương tác thời gian thực\cite{nest-docs}.
     \item \textbf{Khả năng mở rộng}: có thể bắt đầu theo kiểu monolithic-module để giảm độ phức tạp, và có cơ sở để tách dịch vụ khi hệ thống tăng quy mô.
 \end{itemize}
 
@@ -71,11 +71,11 @@ Trong game online, một số xử lý không cần chạy trực tiếp trên r
 % ===============================================================
 \subsection{Công nghệ giao tiếp mạng}
 
-\subsubsection{HTTP/REST}
+\subsubsection{HTTP/\allowbreak REST}
 
 HTTP phù hợp với các tác vụ không yêu cầu độ trễ thấp hoặc không cần kết nối hai chiều liên tục:
 \begin{itemize}
-    \item Đăng ký/đăng nhập, chọn profile, lấy thông tin nhân vật.
+    \item Đăng ký/\allowbreak đăng nhập, chọn profile, lấy thông tin nhân vật.
     \item Tải dữ liệu cấu hình khi khởi động (tuỳ cách triển khai Config Manager).
     \item Các thao tác quản trị (admin tools) và truy vấn lịch sử\cite{nest-docs}.
 \end{itemize}
@@ -85,9 +85,9 @@ HTTP phù hợp với các tác vụ không yêu cầu độ trễ thấp hoặc
 WebSocket phù hợp cho các tương tác realtime trong phiên chơi:
 \begin{itemize}
     \item Cập nhật trạng thái chiến đấu, sự kiện tức thời trong instance.
-    \item Thông báo thay đổi trạng thái (loot, revive, buff/debuff) và đồng bộ theo nhịp tick.
+    \item Thông báo thay đổi trạng thái (loot, revive, buff/\allowbreak debuff) và đồng bộ theo nhịp tick.
 \end{itemize}
-Với mô hình server authoritative, WebSocket đóng vai trò kênh truyền nhận input/snapshot, kết hợp các kỹ thuật giảm cảm giác trễ ở client\cite{moriarty-networked,gaffer-networking}.
+Với mô hình server authoritative, WebSocket đóng vai trò kênh truyền nhận input/\allowbreak snapshot, kết hợp các kỹ thuật giảm cảm giác trễ ở client\cite{moriarty-networked,gaffer-networking}.
 
 % ===============================================================
 \subsection{Công nghệ lưu trữ dữ liệu}
@@ -96,8 +96,8 @@ Với mô hình server authoritative, WebSocket đóng vai trò kênh truyền n
 
 MongoDB phù hợp cho dữ liệu game do đặc tính document linh hoạt, dễ biểu diễn các cấu trúc lồng nhau (inventory items, island buildings, npc collection) và thích nghi khi schema thay đổi trong quá trình phát triển\cite{mongodb-guide}. Trong bối cảnh đồ án:
 \begin{itemize}
-    \item \textbf{Dữ liệu tiến trình (dynamic)}: user/profile/session/character/inventory/island/npc cần lưu bền vững và truy vấn theo khoá định danh.
-    \item \textbf{Dữ liệu cấu hình (static)}: các collection cấu hình như item/building/skill có thể được import từ pipeline TSV và nạp vào bộ nhớ khi chạy.
+    \item \textbf{Dữ liệu tiến trình (dynamic)}: user/\allowbreak profile/\allowbreak session/\allowbreak character/\allowbreak inventory/\allowbreak island/\allowbreak npc cần lưu bền vững và truy vấn theo khoá định danh.
+    \item \textbf{Dữ liệu cấu hình (static)}: các collection cấu hình như item/\allowbreak building/\allowbreak skill có thể được import từ pipeline TSV và nạp vào bộ nhớ khi chạy.
 \end{itemize}
 
 \subsubsection{Redis}
@@ -105,7 +105,7 @@ MongoDB phù hợp cho dữ liệu game do đặc tính document linh hoạt, d�
 Redis được định hướng sử dụng như lớp hỗ trợ hiệu năng và phối hợp realtime\cite{redis-in-action}:
 \begin{itemize}
     \item \textbf{Cache}: giảm tải đọc DB cho dữ liệu truy cập thường xuyên (ví dụ session mapping, một phần config hot, trạng thái online).
-    \item \textbf{Pub/Sub}: chia sẻ sự kiện giữa nhiều tiến trình/instance backend khi mở rộng theo chiều ngang.
+    \item \textbf{Pub/\allowbreak Sub}: chia sẻ sự kiện giữa nhiều tiến trình/\allowbreak instance backend khi mở rộng theo chiều ngang.
 \end{itemize}
 
 \subsubsection{Object Storage (tuỳ chọn theo giai đoạn)}
@@ -115,7 +115,7 @@ Một số dữ liệu dạng file (asset pack, snapshot log, hoặc các tệp 
 % ===============================================================
 \subsection{Công cụ quản trị game configuration theo hướng data-driven}
 
-Trong đồ án, \textbf{pipeline cấu hình} chỉ áp dụng cho \textbf{các bảng cấu hình/thông số game} (ví dụ: định nghĩa item/building/skill và các hệ số cân bằng), không áp dụng cho toàn bộ dữ liệu tiến trình người chơi.
+Trong đồ án, \textbf{pipeline cấu hình} chỉ áp dụng cho \textbf{các bảng cấu hình/\allowbreak thông số game} (ví dụ: định nghĩa item/\allowbreak building/\allowbreak skill và các hệ số cân bằng), không áp dụng cho toàn bộ dữ liệu tiến trình người chơi.
 
 Định hướng quy trình:
 \begin{itemize}
@@ -129,7 +129,7 @@ Lợi ích chính của cách tiếp cận data-driven:
 \begin{itemize}
     \item Giảm phụ thuộc vào hard-code tham số, hỗ trợ điều chỉnh cân bằng nhanh.
     \item Tăng khả năng kiểm soát thay đổi: TSV có thể được quản lý theo commit để truy vết phiên bản cấu hình.
-    \item Tạo tiền đề cho mở rộng nội dung và kiểm thử A/B cấu hình trong tương lai.
+    \item Tạo tiền đề cho mở rộng nội dung và kiểm thử A/\allowbreak B cấu hình trong tương lai.
 \end{itemize}
 
 % ===============================================================
@@ -137,11 +137,11 @@ Lợi ích chính của cách tiếp cận data-driven:
 
 \subsubsection{Quản lý mã nguồn và phối hợp nhóm}
 
-Git/GitHub được sử dụng để quản lý phiên bản mã nguồn và phối hợp theo pull request; GitHub Projects dùng để quản lý tác vụ theo bảng, gán trách nhiệm và theo dõi tiến độ\cite{github-docs,github-projects}.
+Git/\allowbreak GitHub được sử dụng để quản lý phiên bản mã nguồn và phối hợp theo pull request; GitHub Projects dùng để quản lý tác vụ theo bảng, gán trách nhiệm và theo dõi tiến độ\cite{github-docs,github-projects}.
 
 \subsubsection{Công cụ mô hình hoá và tài liệu}
 
-Các sơ đồ use case/luồng nghiệp vụ/kiến trúc có thể được xây dựng bằng công cụ UML/BPMN hoặc Mermaid để đảm bảo tính nhất quán khi trình bày\cite{uml-bpmn}. Báo cáo và tài liệu hệ thống được soạn thảo bằng \LaTeX\ nhằm đảm bảo định dạng học thuật và quản lý nội dung theo từng chương độc lập\cite{latex-companion}.
+Các sơ đồ use case/\allowbreak luồng nghiệp vụ/\allowbreak kiến trúc có thể được xây dựng bằng công cụ UML/\allowbreak BPMN hoặc Mermaid để đảm bảo tính nhất quán khi trình bày\cite{uml-bpmn}. Báo cáo và tài liệu hệ thống được soạn thảo bằng \LaTeX\ nhằm đảm bảo định dạng học thuật và quản lý nội dung theo từng chương độc lập\cite{latex-companion}.
 
 % ===============================================================
 \subsection{Tổng kết}

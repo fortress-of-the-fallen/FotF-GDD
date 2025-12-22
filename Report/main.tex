@@ -1,3 +1,4 @@
+% ===================== main.tex (FULL) =====================
 \documentclass[12pt,a4paper]{article}
 
 % ================== GÓI TIẾNG VIỆT & CƠ BẢN ==================
@@ -18,6 +19,7 @@
 % ================== CỘT BẢNG RAGGEDRIGHT ==================
 \usepackage{array}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 
 % ================== GÓI CƠ BẢN ==================
 \usepackage{blindtext}
@@ -30,6 +32,7 @@
 \definecolor{codekeyword}{RGB}{0,0,120}
 \definecolor{codestring}{RGB}{120,0,0}
 \definecolor{codecomment}{RGB}{0,96,0}
+
 % ================== GÓI BỔ TRỢ ==================
 \usepackage{a4wide,amssymb,epsfig,latexsym,multicol,hhline,fancyhdr}
 \usepackage[dvipsnames]{xcolor}
@@ -95,7 +98,6 @@
   xleftmargin=1em,
   xrightmargin=1em
 }
-
 \lstset{style=report}
 
 % ================== HYPERREF ==================
@@ -132,50 +134,57 @@
 
 % ================== KHÁC ==================
 \renewcommand{\contentsname}{Mục lục}
-\setcounter{table}{0}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-% ===================== TRANG BÌA =====================
+% ===================== TRANG BÌA (có thông tin hội đồng) =====================
 \input{Content/titlepage}
 
-% ===================== PROTESTATION =====================
-\input{Content/protestation}
+% Phần đầu: đánh số trang kiểu roman (trang bìa để empty nên không hiển thị số)
+\clearpage
+\pagenumbering{roman}
 
-% ===================== ACKNOWLEDGEMENTS =====================
+% ===================== LỜI CẢM ƠN =====================
 \input{Content/acknowledgements}
+\clearpage
 
-% ===================== ABSTRACT =====================
+% ===================== LỜI CAM ĐOAN =====================
+\input{Content/protestation}
+\clearpage
+
+% ===================== TÓM TẮT =====================
 \input{Content/abstract}
+\clearpage
 
 % ===================== DANH MỤC THUẬT NGỮ =====================
-\newpage
 \input{Content/glossary}
+\clearpage
 
 % ===================== TOC, LOF, LOT =====================
-\newpage
 \begin{singlespace}
 \tableofcontents
 \end{singlespace}
-\newpage
+\clearpage
 
 \begin{singlespace}
 \listoffigures
 \end{singlespace}
-\newpage
+\clearpage
 
 \begin{singlespace}
 \listoftables
 \end{singlespace}
-\newpage
+\clearpage
 
-% Reset trước nội dung chính
+% ===================== NỘI DUNG CHÍNH =====================
+\pagenumbering{arabic}
+
+% (Tuỳ chọn) Reset bộ đếm trước nội dung chính
 \setcounter{table}{0}
 \setcounter{figure}{0}
 \setcounter{section}{0}
 
-% ===================== NỘI DUNG CHÍNH =====================
 \input{Content/introduction}
 \input{Content/background}
 \input{Content/technology}
@@ -187,13 +196,20 @@
 \input{Content/evaluation}
 \input{Content/conclusion}
 
+% ===================== TIMELINE GIAI ĐOẠN TIẾP THEO =====================
+% Nếu bạn muốn timeline nằm trong Phụ lục thì chuyển \input này sang Content/appendices.
+\clearpage
+\input{Content/contributions}
+\clearpage
+\input{Content/timeline_next_phase}
+
 % ===================== TÀI LIỆU THAM KHẢO =====================
-\newpage
+\clearpage
 \addcontentsline{toc}{section}{Tài liệu tham khảo}
 \printbibliography
 
 % ===================== PHỤ LỤC =====================
-\newpage
+\clearpage
 \input{Content/appendices}
 
 \end{document}

@@ -8,7 +8,7 @@ Trong những năm gần đây, thị trường game trực tuyến tiếp tục
 \begin{itemize}
     \item Quản lý phiên chơi và xử lý nhiều kết nối đồng thời.
     \item Đồng bộ trạng thái theo mô hình phù hợp để giảm sai lệch giữa client và server, đồng thời hạn chế gian lận ở mức kiến trúc\cite{moriarty-networked}.
-    \item Thiết kế dữ liệu tiến trình người chơi (profile/character/inventory/island/npc) sao cho có thể mở rộng và truy vết.
+    \item Thiết kế dữ liệu tiến trình người chơi (profile/\allowbreak character/\allowbreak inventory/\allowbreak island/\allowbreak npc) sao cho có thể mở rộng và truy vết.
     \item Tổ chức nhiều phân hệ nghiệp vụ (combat, progression, gacha, base-building, admin) trong một kiến trúc nhất quán, giảm phụ thuộc chéo và thuận lợi bảo trì\cite{gregory-engine}.
 \end{itemize}
 
@@ -42,17 +42,17 @@ Giai đoạn 1 tập trung hoàn toàn vào \textbf{phân tích và thiết kế
 
 \begin{itemize}
     \item \textbf{Thiết kế phân hệ và luồng nghiệp vụ:}
-    mô tả actors, use case, luồng tổng quát cho các tác vụ chính (đăng nhập/chọn profile/chọn nhân vật; tham gia tower/dungeon/arena; loot và cập nhật inventory; nâng cấp/equip; gacha và pity; island xây dựng và worker; thao tác admin).
+    mô tả actors, use case, luồng tổng quát cho các tác vụ chính (đăng nhập/\allowbreak chọn profile/\allowbreak chọn nhân vật; tham gia tower/\allowbreak dungeon/\allowbreak arena; loot và cập nhật inventory; nâng cấp/\allowbreak equip; gacha và pity; island xây dựng và worker; thao tác admin).
     \item \textbf{Thiết kế kiến trúc triển khai:}
     phân tách vai trò client và server; tổ chức backend thành các thành phần (API server, WebSocket gateway, worker) và tích hợp hạ tầng dữ liệu (DB, cache, object storage) ở mức kiến trúc.
     \item \textbf{Thiết kế kiến trúc phần mềm theo module:}
-    phân rã module theo phân hệ, xác định dịch vụ dùng chung (validation, resource, RNG, inventory rules, sync/audit) nhằm giảm trùng lặp và đảm bảo nhất quán nghiệp vụ.
+    phân rã module theo phân hệ, xác định dịch vụ dùng chung (validation, resource, RNG, inventory rules, sync/\allowbreak audit) nhằm giảm trùng lặp và đảm bảo nhất quán nghiệp vụ.
     \item \textbf{Thiết kế dữ liệu mức logic:}
     xây dựng mô hình dữ liệu cho tiến trình người chơi (dynamic) và mô hình cho cấu hình game (static), làm rõ điểm tham chiếu giữa item instance và item definition, giữa building instance và building definition.
     \item \textbf{Thiết kế hợp đồng giao tiếp:}
     định hướng nhóm REST API cho các thao tác không real-time và nhóm WebSocket events cho các hành vi trong phiên chơi.
     \item \textbf{Thiết kế pipeline cấu hình tĩnh:}
-    mô tả quy trình export/import TSV và cơ chế nạp cấu hình vào Config Manager khi khởi động để phục vụ truy xuất thống nhất.
+    mô tả quy trình export/\allowbreak import TSV và cơ chế nạp cấu hình vào Config Manager khi khởi động để phục vụ truy xuất thống nhất.
 \end{itemize}
 
 \subsubsection{Ngoài phạm vi giai đoạn 1}
@@ -60,7 +60,7 @@ Giai đoạn 1 tập trung hoàn toàn vào \textbf{phân tích và thiết kế
 Các nội dung sau \textbf{không thuộc phạm vi giai đoạn 1} do không phù hợp mục tiêu thiết kế ở mức đồ án:
 
 \begin{itemize}
-    \item Hiện thực gameplay hoàn chỉnh (combat runtime đầy đủ, tối ưu điều khiển, animation/FX pipeline).
+    \item Hiện thực gameplay hoàn chỉnh (combat runtime đầy đủ, tối ưu điều khiển, animation/\allowbreak FX pipeline).
     \item Hoàn thiện PvP ở mức sản phẩm (matchmaking nâng cao, chống gian lận toàn diện, xếp hạng theo mùa với hệ thống phần thưởng vận hành dài hạn).
     \item Live-ops và monetization thương mại; cân bằng kinh tế game ở quy mô lớn.
     \item Benchmark tải lớn, tối ưu hiệu năng production, và triển khai đa vùng (multi-region) ở mức vận hành thực tế.
@@ -81,7 +81,7 @@ Các nội dung sau \textbf{không thuộc phạm vi giai đoạn 1} do không p
 Báo cáo được tổ chức như sau:
 
 \begin{itemize}
-    \item \textbf{Chương 2 -- Kiến thức nền tảng:} Trình bày các khái niệm nền tảng về Action RPG online, core loop/meta loop, nguyên tắc client--server và hướng tiếp cận data-driven cho cấu hình\cite{adams-game-design,schell-art}.
+    \item \textbf{Chương 2 -- Kiến thức nền tảng:} Trình bày các khái niệm nền tảng về Action RPG online, core loop/\allowbreak meta loop, nguyên tắc client--server và hướng tiếp cận data-driven cho cấu hình\cite{adams-game-design,schell-art}.
     \item \textbf{Chương 3 -- Công nghệ sử dụng:} Giới thiệu các công nghệ dự kiến sử dụng và lý do lựa chọn trong bối cảnh kiến trúc hệ thống (engine, backend, networking, database, công cụ quản lý)\cite{unity-manual,nest-docs,mongodb-guide,redis-in-action}.
     \item \textbf{Chương 4 -- Các công trình liên quan:} Tổng hợp tham khảo theo nhóm phân hệ và bảng đối chiếu để rút ra các điểm áp dụng vào thiết kế.
     \item \textbf{Chương 5 -- Phân tích yêu cầu:} Xác định yêu cầu chức năng, phi chức năng, dữ liệu và phạm vi giai đoạn 1.

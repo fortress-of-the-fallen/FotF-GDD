@@ -6,10 +6,10 @@
 
 Mục tiêu của chương này là đánh giá mức độ phù hợp của bản thiết kế hệ thống (Chương~\ref{sec:design}) so với yêu cầu đã phân tích (Chương~\ref{sec:requirements}), đồng thời chỉ ra các điểm mạnh, hạn chế và rủi ro còn tồn tại. Do giai đoạn 1 tập trung vào thiết kế, phương pháp đánh giá được thực hiện theo các hướng:
 \begin{itemize}
-    \item \textbf{Đối chiếu bao phủ yêu cầu (Requirement Coverage)}: kiểm tra các yêu cầu chức năng/phi chức năng đã được ánh xạ tới mô-đun, dữ liệu và luồng giao tiếp hay chưa.
+    \item \textbf{Đối chiếu bao phủ yêu cầu (Requirement Coverage)}: kiểm tra các yêu cầu chức năng/\allowbreak phi chức năng đã được ánh xạ tới mô-đun, dữ liệu và luồng giao tiếp hay chưa.
     \item \textbf{Đánh giá kiến trúc theo thuộc tính chất lượng (Quality Attributes)}: nhất quán dữ liệu, bảo mật, khả năng mở rộng, tính bảo trì, khả năng quan sát.
     \item \textbf{Đánh giá tính khả thi triển khai (Feasibility)}: dựa trên kế hoạch prototype ở Chương~\ref{sec:implementation} và các kịch bản use case trọng yếu ở Chương~\ref{sec:analysis}.
-    \item \textbf{Phân tích rủi ro và hướng giảm thiểu}: xác định các rủi ro kỹ thuật/thiết kế, mức ảnh hưởng và biện pháp kiểm soát.
+    \item \textbf{Phân tích rủi ro và hướng giảm thiểu}: xác định các rủi ro kỹ thuật/\allowbreak thiết kế, mức ảnh hưởng và biện pháp kiểm soát.
 \end{itemize}
 
 \subsection{Đối chiếu bao phủ yêu cầu chức năng}
@@ -24,27 +24,27 @@ Bảng~\ref{tab:req-coverage} tổng hợp ánh xạ giữa các nhóm yêu cầ
 \centering
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{6pt}
-\begin{tabularx}{\textwidth}{|p{2.6cm}|p{4.1cm}|X|}
+\begin{tabularx}{\textwidth}{|L{2.6cm}|L{4.1cm}|Y|}
 \hline
-\textbf{Nhóm FR} & \textbf{Phân hệ} & \textbf{Mô-đun/Thiết kế đáp ứng} \\
+\textbf{Nhóm FR} & \textbf{Phân hệ} & \textbf{Mô-đun/\allowbreak Thiết kế đáp ứng} \\
 \hline
 FR-A & Auth \& Profile & AuthModule, ProfileModule, SessionRuntime (token, profile\_id, socket\_id) \\
 \hline
-FR-B & Character & CharacterModule (create/select/delete), dữ liệu nhúng appearance/base\_stats/resources \\
+FR-B & Character & CharacterModule (create/\allowbreak select/\allowbreak delete), dữ liệu nhúng appearance/\allowbreak base\_stats/\allowbreak resources \\
 \hline
-FR-C & Stats/Level/Slots & CharacterModule + ConfigModule (milestone slots, công thức chỉ số data-driven) \\
+FR-C & Stats/\allowbreak Level/\allowbreak Slots & CharacterModule + ConfigModule (milestone slots, công thức chỉ số data-driven) \\
 \hline
-FR-D & Class System & CharacterModule/Progression service (unlock/switch), điều kiện theo stat/trait/achievement \\
+FR-D & Class System & CharacterModule/\allowbreak Progression service (unlock/\allowbreak switch), điều kiện theo stat/\allowbreak trait/\allowbreak achievement \\
 \hline
-FR-E & Inventory/Economy & InventoryModule (stack, capacity, currency, equip/enhance), tham chiếu CONFIG\_ITEM \\
+FR-E & Inventory/\allowbreak Economy & InventoryModule (stack, capacity, currency, equip/\allowbreak enhance), tham chiếu CONFIG\_ITEM \\
 \hline
-FR-F & Combat/Modes & CombatModule + RealtimeGateway (join instance, tick, snapshot, end-session reward/checkpoint) \\
+FR-F & Combat/\allowbreak Modes & CombatModule + RealtimeGateway (join instance, tick, snapshot, end-session reward/\allowbreak checkpoint) \\
 \hline
-FR-G & Gacha & GachaModule (banner/rate/pity/duplicate/history), NPC\_COLLECTION cập nhật bền vững \\
+FR-G & Gacha & GachaModule (banner/\allowbreak rate/\allowbreak pity/\allowbreak duplicate/\allowbreak history), NPC\_COLLECTION cập nhật bền vững \\
 \hline
-FR-H & Island \& NPC & IslandModule (build/upgrade/timer/resources), NpcModule (assign worker, job state) \\
+FR-H & Island \& NPC & IslandModule (build/\allowbreak upgrade/\allowbreak timer/\allowbreak resources), NpcModule (assign worker, job state) \\
 \hline
-FR-I & Admin & AdminModule (ban/unban, mail, logs, event config), audit log \\
+FR-I & Admin & AdminModule (ban/\allowbreak unban, mail, logs, event config), audit log \\
 \hline
 \end{tabularx}
 \caption{Ma trận bao phủ yêu cầu chức năng theo mô-đun}
@@ -61,33 +61,33 @@ Các luồng nghiệp vụ được xem là trọng yếu vì ảnh hưởng tr�
 \paragraph{(1) Auth $\rightarrow$ Profile $\rightarrow$ Character $\rightarrow$ Session}
 Luồng này có trạng thái phụ thuộc theo chuỗi (USER $\rightarrow$ GAME\_PROFILE $\rightarrow$ CHARACTER) và có yêu cầu nhất quán ở session runtime. Thiết kế đáp ứng bằng:
 \begin{itemize}
-    \item REST dùng để xác thực và chọn profile/character;
+    \item REST dùng để xác thực và chọn profile/\allowbreak character;
     \item session runtime lưu \texttt{profile\_id}/\texttt{character\_id} để WebSocket có thể xác định bối cảnh phiên;
-    \item token có hạn và có thể revoke khi cần (ban/unban).
+    \item token có hạn và có thể revoke khi cần (ban/\allowbreak unban).
 \end{itemize}
 
 \paragraph{(2) Reward delivery và cập nhật inventory}
-Luồng thưởng sau phiên (tower/dungeon) dễ phát sinh lỗi cấp trùng nếu người chơi retry hoặc mất kết nối. Thiết kế giảm rủi ro bằng:
+Luồng thưởng sau phiên (tower/\allowbreak dungeon) dễ phát sinh lỗi cấp trùng nếu người chơi retry hoặc mất kết nối. Thiết kế giảm rủi ro bằng:
 \begin{itemize}
     \item server-authoritative: client không tự ghi reward;
-    \item cập nhật inventory theo quy tắc stack/capacity và tham chiếu config item;
+    \item cập nhật inventory theo quy tắc stack/\allowbreak capacity và tham chiếu config item;
     \item đề xuất idempotency và business log để đối soát.
 \end{itemize}
 
-\paragraph{(3) Gacha: rate/pity/duplicate}
+\paragraph{(3) Gacha: rate/\allowbreak pity/\allowbreak duplicate}
 Luồng gacha có yêu cầu “đúng xác suất theo cấu hình” và “không cấp trùng”. Thiết kế đáp ứng bằng:
 \begin{itemize}
-    \item rates/banners là game configuration (tĩnh) và có thể quản trị bằng pipeline;
+    \item rates/\allowbreak banners là game configuration (tĩnh) và có thể quản trị bằng pipeline;
     \item pity là state (động) lưu bền vững theo banner hoặc nhóm banner;
     \item duplicate handling chuyển đổi theo rule, giảm cảm giác ``mất giá trị''.
 \end{itemize}
 
-\paragraph{(4) Island build/upgrade và worker assignment}
+\paragraph{(4) Island build/\allowbreak upgrade và worker assignment}
 Luồng island có rủi ro trạng thái treo (worker vừa rảnh vừa bận, hoặc building có worker nhưng worker không trỏ về building). Thiết kế đáp ứng bằng:
 \begin{itemize}
     \item cập nhật liên kết hai chiều khi assign worker;
     \item timer (\texttt{finish\_time}) và trạng thái building rõ ràng;
-    \item island/resources và buildings nhúng trong cùng thực thể để truy xuất nhất quán.
+    \item island/\allowbreak resources và buildings nhúng trong cùng thực thể để truy xuất nhất quán.
 \end{itemize}
 
 \subsection{Đánh giá yêu cầu phi chức năng}
@@ -101,7 +101,7 @@ Thiết kế đáp ứng các yêu cầu bảo mật nền tảng:
     \item mật khẩu lưu hash (không plaintext);
     \item token có thời hạn; WebSocket handshake phải xác thực token;
     \item phân quyền admin theo role; thao tác admin có audit log;
-    \item giới hạn tần suất thao tác nhạy cảm (login/gacha) và kiểm soát spam input realtime.
+    \item giới hạn tần suất thao tác nhạy cảm (login/\allowbreak gacha) và kiểm soát spam input realtime.
 \end{itemize}
 Hướng tiếp cận này phù hợp nguyên tắc hệ thống online: hạn chế tin tưởng client và đặt kiểm tra luật ở server \cite{moriarty-networked}.
 
@@ -111,11 +111,11 @@ Hướng tiếp cận này phù hợp nguyên tắc hệ thống online: hạn c
 Đối với game online, nhất quán dữ liệu quan trọng hơn tối ưu sớm. Thiết kế thể hiện các điểm tích cực:
 \begin{itemize}
     \item tách rõ dữ liệu động và tĩnh; dữ liệu tĩnh được nạp qua Config Manager để đồng bộ cách tính;
-    \item cập nhật tiến trình (inventory/gacha/island) định hướng atomic ở mức document;
-    \item đề xuất idempotency key cho các giao dịch dễ retry (reward/gacha/build upgrade).
+    \item cập nhật tiến trình (inventory/\allowbreak gacha/\allowbreak island) định hướng atomic ở mức document;
+    \item đề xuất idempotency key cho các giao dịch dễ retry (reward/\allowbreak gacha/\allowbreak build upgrade).
 \end{itemize}
 
-Hạn chế còn lại: ở mức thiết kế, cơ chế idempotency và transaction log mới dừng ở nguyên tắc, chưa có đặc tả schema log/delta chi tiết cho từng giao dịch. Đây là phần cần đặc tả thêm khi chuyển sang hiện thực.
+Hạn chế còn lại: ở mức thiết kế, cơ chế idempotency và transaction log mới dừng ở nguyên tắc, chưa có đặc tả schema log/\allowbreak delta chi tiết cho từng giao dịch. Đây là phần cần đặc tả thêm khi chuyển sang hiện thực.
 
 \subsubsection{Hiệu năng và khả năng mở rộng}
 \label{subsubsec:eval-performance}
@@ -123,37 +123,37 @@ Hạn chế còn lại: ở mức thiết kế, cơ chế idempotency và transa
 Thiết kế ưu tiên chạy ổn định ở mức đồ án, nhưng vẫn có hướng mở rộng:
 \begin{itemize}
     \item realtime tách riêng bằng WebSocket gateway và mô hình room runtime in-memory để giảm độ trễ;
-    \item Redis được định hướng dùng cho cache/pub-sub khi scale ngang nhiều instance;
+    \item Redis được định hướng dùng cho cache/\allowbreak pub-sub khi scale ngang nhiều instance;
     \item Config Manager nạp config vào bộ nhớ giúp giảm truy vấn DB cho dữ liệu tĩnh.
 \end{itemize}
 
 Hạn chế:
 \begin{itemize}
     \item room runtime in-memory khiến việc scale ngang cần thêm cơ chế phân vùng room (room sharding) hoặc session affinity;
-    \item chưa có tiêu chí tick-rate/bandwidth cụ thể theo mục tiêu tải.
+    \item chưa có tiêu chí tick-rate/\allowbreak bandwidth cụ thể theo mục tiêu tải.
 \end{itemize}
-Các hạn chế này phù hợp với phạm vi giai đoạn 1 (thiết kế), và sẽ được xử lý khi nâng mức triển khai/benchmark.
+Các hạn chế này phù hợp với phạm vi giai đoạn 1 (thiết kế), và sẽ được xử lý khi nâng mức triển khai/\allowbreak benchmark.
 
 \subsubsection{Tính bảo trì và khả năng mở rộng tính năng}
 \label{subsubsec:eval-maintainability}
 
 Tính bảo trì được hỗ trợ bởi:
 \begin{itemize}
-    \item module hoá theo phân hệ rõ ràng (Auth/Profile/Character/Inventory/Combat/Gacha/Island/Admin);
+    \item module hoá theo phân hệ rõ ràng (Auth/\allowbreak Profile/\allowbreak Character/\allowbreak Inventory/\allowbreak Combat/\allowbreak Gacha/\allowbreak Island/\allowbreak Admin);
     \item cross-cutting service cho validation, error handling, logging;
-    \item cấu hình data-driven giúp thay đổi nội dung/thông số mà không sửa code lõi.
+    \item cấu hình data-driven giúp thay đổi nội dung/\allowbreak thông số mà không sửa code lõi.
 \end{itemize}
 
-Điểm cần chú ý: khi số lượng phân hệ tăng, cần kiểm soát phụ thuộc chéo (đặc biệt giữa Progression/Inventory/Gacha) bằng cách chuẩn hoá service interface và event nội bộ.
+Điểm cần chú ý: khi số lượng phân hệ tăng, cần kiểm soát phụ thuộc chéo (đặc biệt giữa Progression/\allowbreak Inventory/\allowbreak Gacha) bằng cách chuẩn hoá service interface và event nội bộ.
 
 \subsubsection{Khả năng quan sát (Observability)}
 \label{subsubsec:eval-observability}
 
 Thiết kế đã nêu các lớp log tối thiểu:
 \begin{itemize}
-    \item request log (latency/status/user context);
-    \item business log (reward/currency/gacha/admin actions);
-    \item realtime log (join/leave room/disconnect).
+    \item request log (latency/\allowbreak status/\allowbreak user context);
+    \item business log (reward/\allowbreak currency/\allowbreak gacha/\allowbreak admin actions);
+    \item realtime log (join/\allowbreak leave room/\allowbreak disconnect).
 \end{itemize}
 
 Đánh giá: hướng này đủ cho giai đoạn prototype và debug nghiệp vụ. Để nâng lên vận hành thực tế, cần bổ sung thêm metric (tick time, snapshot size, error rate), tracing và cảnh báo.
@@ -165,26 +165,26 @@ Pipeline cấu hình: Google Sheets $\rightarrow$ TSV $\rightarrow$ DB $\rightar
 
 \subsubsection{Ưu điểm}
 \begin{itemize}
-    \item \textbf{Giảm hard-code}: các thông số (item/building/rate/formula) được thay đổi qua TSV.
+    \item \textbf{Giảm hard-code}: các thông số (item/\allowbreak building/\allowbreak rate/\allowbreak formula) được thay đổi qua TSV.
     \item \textbf{Dễ kiểm soát phiên bản}: TSV có thể quản lý qua version control; import log giúp truy vết.
     \item \textbf{Tối ưu truy xuất runtime}: Config Manager nạp in-memory, phù hợp với các phép tra cứu thường xuyên.
 \end{itemize}
 
 \subsubsection{Rủi ro và kiểm soát}
 \begin{itemize}
-    \item \textbf{Sai schema/kiểu dữ liệu}: cần validation khi import và báo lỗi rõ ràng theo dòng/cột.
-    \item \textbf{Tham chiếu chéo sai}: cần kiểm tra referential integrity (itemRefId/buildingId/skillId).
+    \item \textbf{Sai schema/\allowbreak kiểu dữ liệu}: cần validation khi import và báo lỗi rõ ràng theo dòng/\allowbreak cột.
+    \item \textbf{Tham chiếu chéo sai}: cần kiểm tra referential integrity (itemRefId/\allowbreak buildingId/\allowbreak skillId).
     \item \textbf{Không đồng bộ phiên bản giữa instance}: nếu chạy nhiều server, cần cơ chế reload đồng bộ hoặc restart theo chiến lược triển khai.
 \end{itemize}
 
-\subsection{Đánh giá UI/UX theo định hướng pixel art ở mức hệ thống}
+\subsection{Đánh giá UI/\allowbreak UX theo định hướng pixel art ở mức hệ thống}
 \label{subsec:eval-ui}
 
 Do UI theo phong cách pixel art nhấn mạnh readability và phản hồi nhanh, thiết kế hệ thống hỗ trợ UX bằng:
 \begin{itemize}
-    \item chuẩn hoá trạng thái UI (loading/error/disabled) thông qua mã lỗi nhất quán;
+    \item chuẩn hoá trạng thái UI (loading/\allowbreak error/\allowbreak disabled) thông qua mã lỗi nhất quán;
     \item ưu tiên payload ``delta'' hoặc snapshot nhỏ gọn cho HUD combat;
-    \item phân tách màn hình meta (inventory/gacha/island) khỏi HUD combat để không làm gián đoạn nhịp chơi.
+    \item phân tách màn hình meta (inventory/\allowbreak gacha/\allowbreak island) khỏi HUD combat để không làm gián đoạn nhịp chơi.
 \end{itemize}
 
 Hạn chế: chưa có đặc tả UI state machine chi tiết cho từng màn (ví dụ: trường hợp disconnect khi đang ở gacha hoặc đang xây building). Đây là phần có thể mở rộng ở giai đoạn hiện thực prototype.
@@ -198,25 +198,25 @@ Bảng~\ref{tab:risk-register} liệt kê các rủi ro kỹ thuật chính và 
 \centering
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{6pt}
-\begin{tabularx}{\textwidth}{|p{3.3cm}|p{2.0cm}|X|p{4.2cm}|}
+\begin{tabularx}{\textwidth}{|L{3.3cm}|L{2.0cm}|Y|L{4.2cm}|}
 \hline
 \textbf{Rủi ro} & \textbf{Mức} & \textbf{Mô tả} & \textbf{Giảm thiểu} \\
 \hline
-Cấp trùng reward/gacha & Cao &
-Retry do mạng/mất kết nối có thể tạo giao dịch lặp &
+Cấp trùng reward/\allowbreak gacha & Cao &
+Retry do mạng/\allowbreak mất kết nối có thể tạo giao dịch lặp &
 Idempotency key, business log, kiểm thử retry, chốt trạng thái bằng server-authoritative \\
 \hline
 Trạng thái treo worker assignment & Trung bình &
 NPC và building lệch trạng thái (một chiều) &
-Cập nhật hai chiều, validate trước khi assign/unassign, kịch bản kiểm thử nhất quán \\
+Cập nhật hai chiều, validate trước khi assign/\allowbreak unassign, kịch bản kiểm thử nhất quán \\
 \hline
-Sai config gây mất cân bằng/lỗi runtime & Cao &
+Sai config gây mất cân bằng/\allowbreak lỗi runtime & Cao &
 TSV sai kiểu hoặc tham chiếu chéo sai gây crash hoặc lệch gameplay &
 Validation import, schema strict, referential checks, config version + rollback \\
 \hline
-Realtime latency/jitter làm mất cảm giác combat & Trung bình &
-Snapshot không ổn định gây giật/khó điều khiển &
-Tick-rate hợp lý, snapshot tối thiểu, client interpolation; chừa chỗ mở rộng prediction/reconciliation \\
+Realtime latency/\allowbreak jitter làm mất cảm giác combat & Trung bình &
+Snapshot không ổn định gây giật/\allowbreak khó điều khiển &
+Tick-rate hợp lý, snapshot tối thiểu, client interpolation; chừa chỗ mở rộng prediction/\allowbreak reconciliation \\
 \hline
 Phụ thuộc chéo giữa mô-đun tăng dần & Trung bình &
 Feature mới kéo theo gọi chéo nhiều service khó bảo trì &
@@ -237,4 +237,4 @@ Kết quả đánh giá cho thấy bản thiết kế đã:
     \item đưa ra pipeline quản trị game configuration theo hướng data-driven, giúp giảm phụ thuộc vào hard-code và tạo nền tảng cân bằng nội dung.
 \end{itemize}
 
-Các điểm còn cần đặc tả sâu hơn khi chuyển sang hiện thực gồm: cơ chế idempotency/log cho từng giao dịch, chính sách xử lý overflow inventory, tiêu chí tick-rate/bandwidth cho realtime và đặc tả UI state chi tiết cho các tình huống lỗi mạng.
+Các điểm còn cần đặc tả sâu hơn khi chuyển sang hiện thực gồm: cơ chế idempotency/\allowbreak log cho từng giao dịch, chính sách xử lý overflow inventory, tiêu chí tick-rate/\allowbreak bandwidth cho realtime và đặc tả UI state chi tiết cho các tình huống lỗi mạng.

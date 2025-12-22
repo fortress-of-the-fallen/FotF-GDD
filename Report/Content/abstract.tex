@@ -1,0 +1,12 @@
+% ===================== Content/abstract.tex =====================
+\section*{Tóm tắt}
+\addcontentsline{toc}{section}{Tóm tắt}
+
+Đồ án tập trung phát triển một hệ thống game online nhập vai hành động nhiều người chơi có tên \textit{Fortress of the Fallen}. Mục tiêu của đề tài là xây dựng nền tảng client--server có khả năng vận hành ổn định cho các chức năng cốt lõi: xác thực người dùng, quản lý profile/nhân vật, quản lý túi đồ và trang bị, hệ thống kỹ năng, lưu trữ tiến trình người chơi và các mô-đun gameplay mở rộng như đảo cá nhân, NPC và gacha.
+
+Hệ thống được tổ chức theo mô hình server-authoritative nhằm đảm bảo tính nhất quán dữ liệu và giảm rủi ro gian lận. Client (Unity) giao tiếp với backend (NestJS) thông qua REST cho các tác vụ meta (đăng nhập, tải dữ liệu, quản lý nhân vật) và WebSocket cho các tương tác yêu cầu thời gian thực. Cơ sở dữ liệu MongoDB lưu trữ dữ liệu tiến trình, trong khi dữ liệu cấu hình gameplay được quản trị theo hướng data-driven thông qua quy trình: soạn thảo trên Google Sheets, xuất TSV, import vào database và nạp vào Config Manager khi hệ thống khởi động.
+
+Kết quả đồ án là một kiến trúc mô-đun rõ ràng, có khả năng mở rộng theo từng phân hệ và hỗ trợ kiểm thử tích hợp dựa trên các luồng nghiệp vụ chính.
+
+\vspace{0.3cm}
+\noindent\textbf{Từ khóa:} game online, Action RPG, client--server, server-authoritative, NestJS, MongoDB, WebSocket, data-driven configuration.

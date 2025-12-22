@@ -1,0 +1,41 @@
+% ===================== Content/timeline_next_phase.tex =====================
+\section*{Kế hoạch giai đoạn tiếp theo}
+\addcontentsline{toc}{section}{Kế hoạch giai đoạn tiếp theo}
+
+Phần này trình bày kế hoạch triển khai cho giai đoạn sau khi hoàn tất giai đoạn thiết kế (Giai đoạn 1). Timeline dưới đây mang tính định hướng theo tuần, có thể điều chỉnh theo mức độ hoàn thiện thực tế và phạm vi nghiệm thu.
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[H]
+\centering
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|p{2.2cm}|X|p{4.2cm}|}
+\hline
+\textbf{Mốc} & \textbf{Hạng mục thực hiện} & \textbf{Kết quả/Deliverables} \\
+\hline
+Tuần 1 & Chuẩn hoá project Unity + NestJS; thiết lập pipeline build cơ bản; chuẩn hoá cấu trúc module; tạo seed DB và import config (TSV) & Repo ổn định; script import TSV; Config Manager nạp được config \\
+\hline
+Tuần 2 & Hoàn thiện Identity/Profile/Character: đăng ký/đăng nhập; tạo/chọn profile; tạo/chọn nhân vật; đồng bộ dữ liệu vào DB & API hoàn chỉnh; luồng đăng nhập $\rightarrow$ chọn profile $\rightarrow$ chọn nhân vật chạy được \\
+\hline
+Tuần 3 & Inventory \& Equipment: slot/stack; currency; trang bị theo slot; cập nhật derived stats theo equipment & CRUD inventory/equipment; validate ràng buộc; payload ổn định cho UI \\
+\hline
+Tuần 4 & Skill Module: học kỹ năng; skill points; hotbar; validate cooldown/mana cost theo config & CharacterSkills hoạt động; hotbar mapping; test luồng học + gán phím \\
+\hline
+Tuần 5 & Gacha \& NPC Collection: banner/rate; lưu lịch sử; duplicate handling; cập nhật NPC collection & Endpoint gacha + lưu kết quả; nhật ký gacha; mô hình NPC collection chạy được \\
+\hline
+Tuần 6 & Island Module: tài nguyên; xây/nâng cấp; timer; gán worker; validate layout grid & Luồng xây/upgrade; worker assignment; cập nhật resources \\
+\hline
+Tuần 7 & Realtime skeleton: WebSocket gateway; join room; gửi input; snapshot tối thiểu; test độ trễ cơ bản & Room loop chạy; message envelope; snapshot ổn định (prototype) \\
+\hline
+Tuần 8 & Tích hợp + kiểm thử: test tích hợp theo use-case; kiểm thử dữ liệu; hardening lỗi; log/audit; viết tài liệu triển khai & Báo cáo test; checklist luồng nghiệp vụ; log/audit cho reward/gacha/admin \\
+\hline
+\end{tabularx}
+\caption{Timeline triển khai giai đoạn tiếp theo (định hướng theo tuần)}
+\label{tab:next-phase-timeline}
+\end{table}
+
+\noindent
+\textbf{Ghi chú vận hành:}
+\begin{itemize}
+    \item Các mốc có thể chạy song song theo phân hệ, nhưng cần ưu tiên hoàn tất pipeline config và luồng đăng nhập/profile/character trước để tạo nền cho các module còn lại.
+    \item Với các phần realtime, giai đoạn đầu ưu tiên chạy được loop và snapshot tối thiểu; các kỹ thuật nâng cao (prediction/reconciliation) chỉ bổ sung khi đủ thời gian.
+\end{itemize}

@@ -1,11 +1,25 @@
 \babel@toc {vietnamese}{}\relax 
-\contentsline {table}{\numberline {1}{\ignorespaces Vai trò của 6 thuộc tính nền trong thiết kế build}}{17}{table.caption.35}%
-\contentsline {table}{\numberline {2}{\ignorespaces Ví dụ quan hệ phụ thuộc Secondary Stats từ Primary Attributes}}{18}{table.caption.36}%
-\contentsline {table}{\numberline {3}{\ignorespaces Ví dụ mốc level và phần thưởng mở slot kỹ năng}}{19}{table.caption.39}%
-\contentsline {table}{\numberline {4}{\ignorespaces Đối chiếu nguồn tham khảo và hướng áp dụng vào đề tài}}{31}{table.caption.85}%
-\contentsline {table}{\numberline {5}{\ignorespaces Danh sách tác nhân và vai trò}}{41}{table.caption.134}%
-\contentsline {table}{\numberline {6}{\ignorespaces Mốc level và cơ chế mở slot kỹ năng}}{55}{table.caption.236}%
-\contentsline {table}{\numberline {7}{\ignorespaces Bản đồ mô-đun backend và dữ liệu liên quan}}{60}{table.caption.257}%
-\contentsline {table}{\numberline {8}{\ignorespaces Kế hoạch hiện thực prototype theo mốc}}{68}{table.caption.316}%
-\contentsline {table}{\numberline {9}{\ignorespaces Ma trận bao phủ yêu cầu chức năng theo mô-đun}}{74}{table.caption.357}%
-\contentsline {table}{\numberline {10}{\ignorespaces Bảng rủi ro và hướng giảm thiểu}}{78}{table.caption.374}%
+\contentsline {table}{\numberline {1}{\ignorespaces Vai trò của 6 thuộc tính nền trong thiết kế build}}{8}{table.caption.37}%
+\contentsline {table}{\numberline {2}{\ignorespaces Ví dụ quan hệ phụ thuộc Secondary Stats từ Primary Attributes}}{9}{table.caption.38}%
+\contentsline {table}{\numberline {3}{\ignorespaces Ví dụ mốc level và phần thưởng mở slot kỹ năng}}{10}{table.caption.41}%
+\contentsline {table}{\numberline {4}{\ignorespaces Đối chiếu nguồn tham khảo và hướng áp dụng vào đề tài}}{22}{table.caption.87}%
+\contentsline {table}{\numberline {5}{\ignorespaces Danh sách tác nhân và vai trò}}{32}{table.caption.136}%
+\contentsline {table}{\numberline {6}{\ignorespaces Mốc level và cơ chế mở slot kỹ năng}}{46}{table.caption.238}%
+\contentsline {table}{\numberline {7}{\ignorespaces Bản đồ mô-đun backend và dữ liệu liên quan}}{51}{table.caption.259}%
+\contentsline {table}{\numberline {8}{\ignorespaces Từ điển dữ liệu -- Collection USER}}{61}{table.8}%
+\contentsline {table}{\numberline {9}{\ignorespaces Từ điển dữ liệu -- Collection GAME\_PROFILE}}{62}{table.9}%
+\contentsline {table}{\numberline {10}{\ignorespaces Từ điển dữ liệu -- Collection SESSION\_RUNTIME}}{62}{table.10}%
+\contentsline {table}{\numberline {11}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER}}{63}{table.11}%
+\contentsline {table}{\numberline {12}{\ignorespaces Từ điển dữ liệu -- Collection INVENTORY}}{64}{table.12}%
+\contentsline {table}{\numberline {13}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER\_EQUIPMENT}}{65}{table.13}%
+\contentsline {table}{\numberline {14}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER\_SKILLS}}{66}{table.14}%
+\contentsline {table}{\numberline {15}{\ignorespaces Từ điển dữ liệu -- Collection PERSONAL\_ISLAND}}{66}{table.15}%
+\contentsline {table}{\numberline {16}{\ignorespaces Từ điển dữ liệu -- Collection NPC\_COLLECTION}}{67}{table.16}%
+\contentsline {table}{\numberline {17}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_ITEM}}{68}{table.17}%
+\contentsline {table}{\numberline {18}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_BUILDING}}{68}{table.18}%
+\contentsline {table}{\numberline {19}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_SKILL}}{68}{table.19}%
+\contentsline {table}{\numberline {20}{\ignorespaces Kế hoạch hiện thực prototype theo mốc}}{81}{table.caption.614}%
+\contentsline {table}{\numberline {21}{\ignorespaces Ma trận bao phủ yêu cầu chức năng theo mô-đun}}{87}{table.caption.655}%
+\contentsline {table}{\numberline {22}{\ignorespaces Bảng rủi ro và hướng giảm thiểu}}{92}{table.caption.672}%
+\contentsline {table}{\numberline {23}{\ignorespaces Phân công nhiệm vụ và đóng góp của các thành viên}}{96}{table.caption.686}%
+\contentsline {table}{\numberline {24}{\ignorespaces Timeline triển khai giai đoạn tiếp theo (định hướng theo tuần)}}{97}{table.caption.688}%

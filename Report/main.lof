@@ -1,11 +1,18 @@
 \babel@toc {vietnamese}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Ví dụ mô hình hoá Core Loop trong Action RPG}}{15}{figure.caption.29}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Mô hình hoá thuộc tính nền, chỉ số suy diễn và nhóm trait đặc biệt}}{17}{figure.caption.34}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Use case tổng quan cho phân hệ Identity \& Profile}}{42}{figure.caption.137}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Use case tổng quan cho phân hệ Character \& Progression}}{43}{figure.caption.139}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Use case tổng quan cho phân hệ Combat \& Gameplay Modes}}{44}{figure.caption.141}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Use case tổng quan cho phân hệ Recruitment (Gacha)}}{45}{figure.caption.143}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Use case tổng quan cho phân hệ Personal Island \& NPC}}{46}{figure.caption.145}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Use case tổng quan cho phân hệ Administration}}{46}{figure.caption.147}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Sơ đồ triển khai tổng quan hệ thống}}{58}{figure.caption.251}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Mô hình thuộc tính nền và chỉ số suy diễn}}{62}{figure.caption.276}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Ví dụ mô hình hoá Core Loop trong Action RPG}}{6}{figure.caption.31}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Mô hình hoá thuộc tính nền, chỉ số suy diễn và nhóm trait đặc biệt}}{8}{figure.caption.36}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Use case tổng quan cho phân hệ Identity \& Profile}}{33}{figure.caption.139}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Use case tổng quan cho phân hệ Character \& Progression}}{34}{figure.caption.141}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Use case tổng quan cho phân hệ Combat \& Gameplay Modes}}{35}{figure.caption.143}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Use case tổng quan cho phân hệ Recruitment (Gacha)}}{36}{figure.caption.145}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Use case tổng quan cho phân hệ Personal Island \& NPC}}{37}{figure.caption.147}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Use case tổng quan cho phân hệ Administration}}{38}{figure.caption.149}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Sơ đồ triển khai tổng quan hệ thống}}{49}{figure.caption.253}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Mô hình thuộc tính nền và chỉ số suy diễn}}{69}{figure.caption.561}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Minh hoạ bối cảnh/\allowbreak pixel art mood của game}}{73}{figure.caption.587}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Màn hình đăng nhập (Login)}}{73}{figure.caption.589}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Màn hình đăng ký (Register)}}{74}{figure.caption.590}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Màn hình chọn profile (Select Profile)}}{75}{figure.caption.592}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Màn hình tạo profile/\allowbreak nhân vật (Create Profile/\allowbreak Character)}}{76}{figure.caption.593}%
+\contentsline {figure}{\numberline {16}{\ignorespaces UI Hub: điều hướng Inventory/\allowbreak Heroes/\allowbreak Battle/\allowbreak Gacha/\allowbreak Quests}}{77}{figure.caption.595}%
+\contentsline {figure}{\numberline {17}{\ignorespaces UI Inventory: phân loại item, thao tác Use/\allowbreak Equip và hiển thị currency}}{78}{figure.caption.597}%

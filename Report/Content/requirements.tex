@@ -1,7 +1,7 @@
 \section{Phân tích yêu cầu}
 \label{sec:requirements}
 
-Chương này xác định yêu cầu cho hệ thống game \textit{Fortress of the Fallen} ở mức \textbf{phân tích hệ thống}. Nội dung bao gồm: phạm vi, tác nhân, nhóm yêu cầu chức năng theo phân hệ, yêu cầu phi chức năng và yêu cầu dữ liệu. Các yêu cầu ở chương này là cơ sở để xây dựng mô hình use case/luồng nghiệp vụ (Chương~6) và kiến trúc + thiết kế dữ liệu (Chương~7).
+Chương này xác định yêu cầu cho hệ thống game \textit{Fortress of the Fallen} ở mức \textbf{phân tích hệ thống}. Nội dung bao gồm: phạm vi, tác nhân, nhóm yêu cầu chức năng theo phân hệ, yêu cầu phi chức năng và yêu cầu dữ liệu. Các yêu cầu ở chương này là cơ sở để xây dựng mô hình use case/\allowbreak luồng nghiệp vụ (Chương~6) và kiến trúc + thiết kế dữ liệu (Chương~7).
 
 % ===============================================================
 \subsection{Phạm vi và giả định}
@@ -19,11 +19,11 @@ Giai đoạn 1 tập trung vào \textbf{thiết kế hệ thống}. Do đó, cá
 \subsubsection{Giả định}
 
 \begin{itemize}
-    \item Hệ thống vận hành theo mô hình client--server; server giữ vai trò quyết định cho các kết quả quan trọng (reward/currency/progression).
+    \item Hệ thống vận hành theo mô hình client--server; server giữ vai trò quyết định cho các kết quả quan trọng (reward/\allowbreak currency/\allowbreak progression).
     \item Dữ liệu trong hệ thống được chia thành:
     \begin{itemize}
-        \item \textbf{Player progression/state (động)}: thay đổi theo hành vi người chơi.
-        \item \textbf{Game configuration (tĩnh)}: định nghĩa và tham số gameplay (item/building/skill/rates/\ldots).
+        \item \textbf{Player progression/\allowbreak state (động)}: thay đổi theo hành vi người chơi.
+        \item \textbf{Game configuration (tĩnh)}: định nghĩa và tham số gameplay (item/\allowbreak building/\allowbreak skill/\allowbreak rates/\ldots).
     \end{itemize}
     \item Pipeline cấu hình \textbf{chỉ áp dụng cho game configuration}, không áp dụng cho toàn bộ dữ liệu DB.
 \end{itemize}
@@ -43,9 +43,9 @@ Giai đoạn 1 tập trung vào \textbf{thiết kế hệ thống}. Do đó, cá
 
 Hệ thống được chia theo các nhóm thành phần:
 \begin{itemize}
-    \item \textbf{Client}: hiển thị (render), UI, input, điều hướng màn hình, nội suy hiển thị; gửi yêu cầu/ý định hành động.
+    \item \textbf{Client}: hiển thị (render), UI, input, điều hướng màn hình, nội suy hiển thị; gửi yêu cầu/\allowbreak ý định hành động.
     \item \textbf{Server}: xác thực, quản lý phiên, xử lý nghiệp vụ, xác nhận kết quả, ghi DB.
-    \item \textbf{Data layer}: DB cho progression/state; collections cấu hình cho configuration; cache/session runtime (định hướng).
+    \item \textbf{Data layer}: DB cho progression/\allowbreak state; collections cấu hình cho configuration; cache/\allowbreak session runtime (định hướng).
 \end{itemize}
 
 % ===============================================================
@@ -59,13 +59,13 @@ Phần này mô tả yêu cầu chức năng theo từng phân hệ. Mỗi yêu 
 \label{subsec:req-auth}
 
 \begin{itemize}
-    \item \textbf{FR-A01} -- Đăng ký tài khoản: Player có thể đăng ký bằng username/email và mật khẩu.
+    \item \textbf{FR-A01} -- Đăng ký tài khoản: Player có thể đăng ký bằng username/\allowbreak email và mật khẩu.
     \item \textbf{FR-A02} -- Đăng nhập: Player đăng nhập, nhận token phiên; server ghi nhận \texttt{last\_login}.
     \item \textbf{FR-A03} -- Khôi phục mật khẩu: cung cấp luồng khôi phục (tối thiểu ở mức thiết kế).
     \item \textbf{FR-A04} -- Quản lý thiết lập người dùng: lưu \textit{master volume}, \textit{sfx volume}, \textit{language}, \textit{notifications}.
-    \item \textbf{FR-A05} -- Tạo game profile: một user có thể tạo nhiều profile (phục vụ nhiều server/nhân vật).
+    \item \textbf{FR-A05} -- Tạo game profile: một user có thể tạo nhiều profile (phục vụ nhiều server/\allowbreak nhân vật).
     \item \textbf{FR-A06} -- Chọn game profile: chọn profile để vào game; cập nhật \texttt{last\_played}.
-    \item \textbf{FR-A07} -- Quản lý session runtime: hệ thống lưu trạng thái phiên hiện hành (profile/character/room\_id).
+    \item \textbf{FR-A07} -- Quản lý session runtime: hệ thống lưu trạng thái phiên hiện hành (profile/\allowbreak character/\allowbreak room\_id).
 \end{itemize}
 
 % ---------------------------
@@ -76,7 +76,7 @@ Phần này mô tả yêu cầu chức năng theo từng phân hệ. Mỗi yêu 
 \begin{itemize}
     \item \textbf{FR-B01} -- Tạo nhân vật: Player tạo CHARACTER thuộc một GAME\_PROFILE.
     \item \textbf{FR-B02} -- Tuỳ chọn cơ bản: đặt tên, chọn giới tính (nếu có), chọn \textbf{race} và \textbf{class khởi đầu}.
-    \item \textbf{FR-B03} -- Tuỳ chọn ngoại hình: lưu các tham số appearance (hair/skin/face) để tái hiện nhất quán.
+    \item \textbf{FR-B03} -- Tuỳ chọn ngoại hình: lưu các tham số appearance (hair/\allowbreak skin/\allowbreak face) để tái hiện nhất quán.
     \item \textbf{FR-B04} -- Xoá nhân vật: Player có thể xoá CHARACTER theo chính sách (có thể yêu cầu xác nhận).
     \item \textbf{FR-B05} -- Chọn nhân vật: Player chọn nhân vật để vào phiên chơi.
 \end{itemize}
@@ -97,13 +97,13 @@ Dựa trên thiết kế chủng tộc, hệ thống cần thoả:
 \begin{itemize}
     \item \textbf{FR-C01} -- Level tối đa là \textbf{100}.
     \item \textbf{FR-C02} -- Mỗi lần lên level nhận \textbf{+5 stat points} để phân bổ.
-    \item \textbf{FR-C03} -- Level không tự động cấp kỹ năng; kỹ năng được thu thập từ nguồn khác (loot/quest/NPC/\ldots).
+    \item \textbf{FR-C03} -- Level không tự động cấp kỹ năng; kỹ năng được thu thập từ nguồn khác (loot/\allowbreak quest/\allowbreak NPC/\ldots).
 \end{itemize}
 
 \paragraph{Stat allocation}
 \begin{itemize}
     \item \textbf{FR-C04} -- Player có thể phân bổ điểm vào các thuộc tính nền: STR, DEX, CON, INT, WIS, CHA.
-    \item \textbf{FR-C05} -- Hệ thống tính các chỉ số suy diễn (HP/MP/ATK/DEF/CRIT/ACC/EVA/\ldots) từ thuộc tính nền theo công thức cấu hình.
+    \item \textbf{FR-C05} -- Hệ thống tính các chỉ số suy diễn (HP/\allowbreak MP/\allowbreak ATK/\allowbreak DEF/\allowbreak CRIT/\allowbreak ACC/\allowbreak EVA/\ldots) từ thuộc tính nền theo công thức cấu hình.
     \item \textbf{FR-C06} -- Ràng buộc stat cap theo race: không cho phân bổ vượt ngưỡng cho phép.
 \end{itemize}
 
@@ -115,14 +115,14 @@ Dựa trên thiết kế chủng tộc, hệ thống cần thoả:
     \item \textbf{FR-C09} -- Slot được mở dần theo level (milestone). Một cấu hình milestone tham chiếu:
     \begin{itemize}
         \item Normal slots: mở dần đến tối đa 5 slot.
-        \item Combo slots: mở dần tại các mốc 40/60/80/100 đến tối đa 4 slot (slot cuối là \textit{ultimate combo}).
+        \item Combo slots: mở dần tại các mốc 40/\allowbreak 60/\allowbreak 80/\allowbreak 100 đến tối đa 4 slot (slot cuối là \textit{ultimate combo}).
     \end{itemize}
 \end{itemize}
 
 \paragraph{Thu thập và quản lý kỹ năng}
 \begin{itemize}
     \item \textbf{FR-C10} -- Player có thể sở hữu danh sách kỹ năng đã học (learned skills).
-    \item \textbf{FR-C11} -- Player có thể trang bị kỹ năng vào slot; hệ thống kiểm tra điều kiện (class/race/level).
+    \item \textbf{FR-C11} -- Player có thể trang bị kỹ năng vào slot; hệ thống kiểm tra điều kiện (class/\allowbreak race/\allowbreak level).
     \item \textbf{FR-C12} -- Combo skill chỉ hợp lệ nếu thoả quy tắc kết hợp (theo cấu hình).
 \end{itemize}
 
@@ -133,7 +133,7 @@ Dựa trên thiết kế chủng tộc, hệ thống cần thoả:
 \paragraph{Phân tầng class}
 Hệ thống class được phân tầng để tạo meta-progression:
 \begin{itemize}
-    \item \textbf{FR-D01} -- Hỗ trợ nhiều nhánh class (Warrior/Archer/Mage/Healer/Rogue/Tactician).
+    \item \textbf{FR-D01} -- Hỗ trợ nhiều nhánh class (Warrior/\allowbreak Archer/\allowbreak Mage/\allowbreak Healer/\allowbreak Rogue/\allowbreak Tactician).
     \item \textbf{FR-D02} -- Hỗ trợ nhiều tầng class: Basic, Intermediate, Advanced, Legendary và Hidden.
 \end{itemize}
 
@@ -141,9 +141,9 @@ Hệ thống class được phân tầng để tạo meta-progression:
 \begin{itemize}
     \item \textbf{FR-D03} -- Mở khoá class dựa trên điều kiện kết hợp:
     \begin{itemize}
-        \item ngưỡng chỉ số (STR/DEX/CON/INT/WIS/CHA);
-        \item trait đặc biệt (Karma/Affinity/Luck/Resistance/\ldots);
-        \item điều kiện tiến trình/achievement (PvP, quest, sưu tầm, \ldots).
+        \item ngưỡng chỉ số (STR/\allowbreak DEX/\allowbreak CON/\allowbreak INT/\allowbreak WIS/\allowbreak CHA);
+        \item trait đặc biệt (Karma/\allowbreak Affinity/\allowbreak Luck/\allowbreak Resistance/\ldots);
+        \item điều kiện tiến trình/\allowbreak achievement (PvP, quest, sưu tầm, \ldots).
     \end{itemize}
     \item \textbf{FR-D04} -- Player có thể xem trước điều kiện và tiến độ đạt điều kiện để mở class.
     \item \textbf{FR-D05} -- Khi mở class thành công, Player có thể chuyển class theo chính sách (ví dụ: cần xác nhận, giới hạn số lần, hoặc chi phí).
@@ -156,11 +156,11 @@ Hệ thống class được phân tầng để tạo meta-progression:
 \begin{itemize}
     \item \textbf{FR-E01} -- Inventory là 1:1 với character, có số slot tối đa và số slot đã dùng.
     \item \textbf{FR-E02} -- Hỗ trợ currency cơ bản: gold và gem.
-    \item \textbf{FR-E03} -- Item trong inventory là \textbf{item instance} (uid/quantity/slot/enhancement/durability) và tham chiếu đến \textbf{item definition} qua \texttt{item\_ref\_id}.
+    \item \textbf{FR-E03} -- Item trong inventory là \textbf{item instance} (uid/\allowbreak quantity/\allowbreak slot/\allowbreak enhancement/\allowbreak durability) và tham chiếu đến \textbf{item definition} qua \texttt{item\_ref\_id}.
     \item \textbf{FR-E04} -- Stack rule: item có \texttt{max\_stack} theo cấu hình.
-    \item \textbf{FR-E05} -- Equip: trang bị vũ khí/giáp theo slot (theo cấu hình), cập nhật chỉ số hiệu lực.
+    \item \textbf{FR-E05} -- Equip: trang bị vũ khí/\allowbreak giáp theo slot (theo cấu hình), cập nhật chỉ số hiệu lực.
     \item \textbf{FR-E06} -- Enhance: nâng cấp trang bị theo chi phí và quy tắc; ghi nhận \texttt{enhancement\_level}.
-    \item \textbf{FR-E07} -- Durability (tuỳ chọn theo thiết kế): giảm độ bền theo sử dụng và có cơ chế sửa/khôi phục.
+    \item \textbf{FR-E07} -- Durability (tuỳ chọn theo thiết kế): giảm độ bền theo sử dụng và có cơ chế sửa/\allowbreak khôi phục.
 \end{itemize}
 
 % ---------------------------
@@ -178,16 +178,16 @@ Hệ thống class được phân tầng để tạo meta-progression:
 \begin{itemize}
     \item \textbf{FR-F04} -- Normal attack.
     \item \textbf{FR-F05} -- Cast active skill.
-    \item \textbf{FR-F06} -- Dodge/Dash.
+    \item \textbf{FR-F06} -- Dodge/\allowbreak Dash.
     \item \textbf{FR-F07} -- Use consumable item.
     \item \textbf{FR-F08} -- Revive (nếu có cơ chế hồi sinh).
 \end{itemize}
 
 \paragraph{Checkpoint và reward}
 \begin{itemize}
-    \item \textbf{FR-F09} -- Checkpoint: lưu mốc tiến độ theo nội dung (tower/dungeon) theo chính sách.
-    \item \textbf{FR-F10} -- Loot delivery: reward sau combat được ghi vào inventory; hệ thống kiểm tra capacity/stack.
-    \item \textbf{FR-F11} -- Reward logging: các giao dịch reward/currency cần được ghi log nghiệp vụ để truy vết.
+    \item \textbf{FR-F09} -- Checkpoint: lưu mốc tiến độ theo nội dung (tower/\allowbreak dungeon) theo chính sách.
+    \item \textbf{FR-F10} -- Loot delivery: reward sau combat được ghi vào inventory; hệ thống kiểm tra capacity/\allowbreak stack.
+    \item \textbf{FR-F11} -- Reward logging: các giao dịch reward/\allowbreak currency cần được ghi log nghiệp vụ để truy vết.
 \end{itemize}
 
 % ---------------------------
@@ -200,7 +200,7 @@ Hệ thống class được phân tầng để tạo meta-progression:
     \item \textbf{FR-G03} -- Summon 1x và \textbf{FR-G04} -- Summon 10x.
     \item \textbf{FR-G05} -- Pity meter: theo dõi pity theo banner hoặc theo nhóm banner (theo cấu hình).
     \item \textbf{FR-G06} -- Exchange: đổi pity points theo rule.
-    \item \textbf{FR-G07} -- Duplicate handling: xử lý trùng lặp theo rule (convert shard/point/\ldots).
+    \item \textbf{FR-G07} -- Duplicate handling: xử lý trùng lặp theo rule (convert shard/\allowbreak point/\ldots).
     \item \textbf{FR-G08} -- Kết quả gacha được ghi vào DB và có thể truy vấn lịch sử (tối thiểu ở mức thiết kế).
 \end{itemize}
 
@@ -211,17 +211,17 @@ Hệ thống class được phân tầng để tạo meta-progression:
 \paragraph{Personal island}
 \begin{itemize}
     \item \textbf{FR-H01} -- Mỗi GAME\_PROFILE sở hữu 1 đảo cá nhân (1:1).
-    \item \textbf{FR-H02} -- Quản lý tài nguyên đảo: wood/stone/food/iron (hoặc tập tương đương theo cấu hình).
+    \item \textbf{FR-H02} -- Quản lý tài nguyên đảo: wood/\allowbreak stone/\allowbreak food/\allowbreak iron (hoặc tập tương đương theo cấu hình).
     \item \textbf{FR-H03} -- Xây công trình theo grid: kiểm tra vị trí hợp lệ, không chồng lấn.
     \item \textbf{FR-H04} -- Construction timer: công trình có trạng thái và \texttt{finish\_time}.
     \item \textbf{FR-H05} -- Nâng cấp công trình: trừ tài nguyên và cập nhật level + timer.
-    \item \textbf{FR-H06} -- Harvest: thu tài nguyên theo chu kỳ/điều kiện.
+    \item \textbf{FR-H06} -- Harvest: thu tài nguyên theo chu kỳ/\allowbreak điều kiện.
 \end{itemize}
 
 \paragraph{NPC collection và worker assignment}
 \begin{itemize}
     \item \textbf{FR-H07} -- Mỗi GAME\_PROFILE sở hữu 1 bộ sưu tập NPC (1:1).
-    \item \textbf{FR-H08} -- NPC có rarity/level/star/friendship/current\_job và có thể tái sử dụng cấu trúc stats/resources giống nhân vật.
+    \item \textbf{FR-H08} -- NPC có rarity/\allowbreak level/\allowbreak star/\allowbreak friendship/\allowbreak current\_job và có thể tái sử dụng cấu trúc stats/\allowbreak resources giống nhân vật.
     \item \textbf{FR-H09} -- Assign worker: gán NPC vào công trình; cập nhật liên kết hai chiều (building.assigned\_worker\_id và npc.current\_job).
     \item \textbf{FR-H10} -- NPC hoạt động tạo tài nguyên ở mức đơn giản (định hướng prototype), có thể mở rộng hành vi theo job.
 \end{itemize}
@@ -231,11 +231,11 @@ Hệ thống class được phân tầng để tạo meta-progression:
 \label{subsec:req-admin}
 
 \begin{itemize}
-    \item \textbf{FR-I01} -- Quản lý user: xem thông tin, cập nhật trạng thái (active/banned/\ldots).
-    \item \textbf{FR-I02} -- Ban/Unban: admin có thể ban/unban; thu hồi session theo chính sách.
-    \item \textbf{FR-I03} -- System mail: gửi mail hệ thống theo user/profile/nhóm.
-    \item \textbf{FR-I04} -- Log viewer: xem log theo thời gian/severity/actor.
-    \item \textbf{FR-I05} -- Event config: tạo/sửa cấu hình sự kiện theo thời gian và phần thưởng (lưu DB).
+    \item \textbf{FR-I01} -- Quản lý user: xem thông tin, cập nhật trạng thái (active/\allowbreak banned/\ldots).
+    \item \textbf{FR-I02} -- Ban/\allowbreak Unban: admin có thể ban/\allowbreak unban; thu hồi session theo chính sách.
+    \item \textbf{FR-I03} -- System mail: gửi mail hệ thống theo user/\allowbreak profile/\allowbreak nhóm.
+    \item \textbf{FR-I04} -- Log viewer: xem log theo thời gian/\allowbreak severity/\allowbreak actor.
+    \item \textbf{FR-I05} -- Event config: tạo/\allowbreak sửa cấu hình sự kiện theo thời gian và phần thưởng (lưu DB).
 \end{itemize}
 
 % ===============================================================
@@ -246,16 +246,16 @@ Hệ thống class được phân tầng để tạo meta-progression:
 
 \begin{itemize}
     \item \textbf{NFR-S01} -- Mật khẩu phải lưu dạng hash; không lưu plaintext.
-    \item \textbf{NFR-S02} -- Token/session có thời hạn; hỗ trợ revoke khi ban user hoặc logout.
+    \item \textbf{NFR-S02} -- Token/\allowbreak session có thời hạn; hỗ trợ revoke khi ban user hoặc logout.
     \item \textbf{NFR-S03} -- Phân quyền admin theo role; mọi thao tác admin cần audit log.
-    \item \textbf{NFR-S04} -- Các thao tác reward/currency/progression phải chống cấp trùng (idempotent ở mức thiết kế).
+    \item \textbf{NFR-S04} -- Các thao tác reward/\allowbreak currency/\allowbreak progression phải chống cấp trùng (idempotent ở mức thiết kế).
 \end{itemize}
 
 \subsubsection{Hiệu năng và tính phản hồi}
 
 \begin{itemize}
-    \item \textbf{NFR-P01} -- Các API không real-time (login/profile/inventory) phải có thời gian phản hồi ổn định.
-    \item \textbf{NFR-P02} -- Kênh real-time cần hỗ trợ cập nhật trạng thái thường xuyên (snapshot/event) để client nội suy mượt.
+    \item \textbf{NFR-P01} -- Các API không real-time (login/\allowbreak profile/\allowbreak inventory) phải có thời gian phản hồi ổn định.
+    \item \textbf{NFR-P02} -- Kênh real-time cần hỗ trợ cập nhật trạng thái thường xuyên (snapshot/\allowbreak event) để client nội suy mượt.
     \item \textbf{NFR-P03} -- Giảm truy vấn DB cho dữ liệu nóng bằng cache hoặc nạp cấu hình vào bộ nhớ (Config Manager).
 \end{itemize}
 
@@ -271,15 +271,15 @@ Hệ thống class được phân tầng để tạo meta-progression:
 
 \begin{itemize}
     \item \textbf{NFR-O01} -- Log request và log nghiệp vụ cho các giao dịch quan trọng (reward, gacha, admin actions).
-    \item \textbf{NFR-O02} -- Có khả năng truy vết sự cố theo user/profile/character và theo mốc thời gian.
+    \item \textbf{NFR-O02} -- Có khả năng truy vết sự cố theo user/\allowbreak profile/\allowbreak character và theo mốc thời gian.
 \end{itemize}
 
-\subsubsection{Yêu cầu UX/UI ở mức hệ thống}
+\subsubsection{Yêu cầu UX/\allowbreak UI ở mức hệ thống}
 
 \begin{itemize}
-    \item \textbf{NFR-U01} -- UI phải hiển thị rõ trạng thái: loading/empty/error/success/disabled.
+    \item \textbf{NFR-U01} -- UI phải hiển thị rõ trạng thái: loading/\allowbreak empty/\allowbreak error/\allowbreak success/\allowbreak disabled.
     \item \textbf{NFR-U02} -- Với phong cách pixel art, UI cần ưu tiên readability: khung panel rõ, icon theo lưới pixel, tương phản đủ.
-    \item \textbf{NFR-U03} -- Combat HUD tối thiểu: HP/MP (hoặc tài nguyên tương đương), skill slots, cooldown, buff/debuff.
+    \item \textbf{NFR-U03} -- Combat HUD tối thiểu: HP/\allowbreak MP (hoặc tài nguyên tương đương), skill slots, cooldown, buff/\allowbreak debuff.
 \end{itemize}
 
 % ===============================================================
@@ -289,10 +289,10 @@ Hệ thống class được phân tầng để tạo meta-progression:
 \subsubsection{Phân loại dữ liệu}
 
 \paragraph{Dữ liệu tiến trình người chơi (dynamic)}
-Bao gồm: user/profile/session, character, inventory, island state, npc collection, pity state, history logs.
+Bao gồm: user/\allowbreak profile/\allowbreak session, character, inventory, island state, npc collection, pity state, history logs.
 
 \paragraph{Dữ liệu cấu hình game (static)}
-Bao gồm: định nghĩa item/building/skill, bảng hệ số chỉ số, drop tables, banner rates, pity rules, event configs.
+Bao gồm: định nghĩa item/\allowbreak building/\allowbreak skill, bảng hệ số chỉ số, drop tables, banner rates, pity rules, event configs.
 
 \subsubsection{Yêu cầu mô hình dữ liệu mức logic}
 
@@ -303,7 +303,7 @@ Bao gồm: định nghĩa item/building/skill, bảng hệ số chỉ số, drop
     \item \textbf{DR-04} -- CHARACTER có INVENTORY (1:1).
     \item \textbf{DR-05} -- GAME\_PROFILE có PERSONAL\_ISLAND (1:1) và NPC\_COLLECTION (1:1).
     \item \textbf{DR-06} -- Item instance tham chiếu item config (item\_ref\_id $\rightarrow$ CONFIG\_ITEM.id).
-    \item \textbf{DR-07} -- Building instance tham chiếu building config (type/id $\rightarrow$ CONFIG\_BUILDING.id).
+    \item \textbf{DR-07} -- Building instance tham chiếu building config (type/\allowbreak id $\rightarrow$ CONFIG\_BUILDING.id).
 \end{itemize}
 
 \subsubsection{Yêu cầu pipeline quản trị game configuration}
@@ -322,7 +322,7 @@ Bao gồm: định nghĩa item/building/skill, bảng hệ số chỉ số, drop
 Một bản thiết kế đáp ứng yêu cầu giai đoạn 1 cần thoả:
 \begin{itemize}
     \item Bao phủ đầy đủ các phân hệ đã liệt kê ở \ref{subsec:req-functional}.
-    \item Mô hình dữ liệu mức logic thể hiện rõ quan hệ user/profile/character/inventory/island/npc và mối liên kết với config.
-    \item Có mô tả rõ về ranh giới client--server, đặc biệt với các thao tác reward/currency/gacha và luồng real-time combat.
+    \item Mô hình dữ liệu mức logic thể hiện rõ quan hệ user/\allowbreak profile/\allowbreak character/\allowbreak inventory/\allowbreak island/\allowbreak npc và mối liên kết với config.
+    \item Có mô tả rõ về ranh giới client--server, đặc biệt với các thao tác reward/\allowbreak currency/\allowbreak gacha và luồng real-time combat.
     \item Pipeline cấu hình chỉ áp dụng cho game configuration và có cơ chế versioning + log import.
 \end{itemize}

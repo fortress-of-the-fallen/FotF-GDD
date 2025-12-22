@@ -6,8 +6,8 @@
 
 Chương này mô tả kế hoạch hiện thực một \textbf{prototype} nhằm kiểm chứng các quyết định thiết kế đã trình bày ở Chương~\ref{sec:design}. Prototype được định hướng như một ``bản chạy được'' để xác thực:
 \begin{itemize}
-    \item Luồng \textbf{Identity \& Profile}: đăng ký/đăng nhập, chọn profile/nhân vật, thiết lập phiên.
-    \item Luồng \textbf{real-time}: client gửi input, server xử lý authoritative và trả snapshot/event.
+    \item Luồng \textbf{Identity \& Profile}: đăng ký/\allowbreak đăng nhập, chọn profile/\allowbreak nhân vật, thiết lập phiên.
+    \item Luồng \textbf{real-time}: client gửi input, server xử lý authoritative và trả snapshot/\allowbreak event.
     \item Các mô-đun meta-progression có dữ liệu bền vững: \textbf{Inventory}, \textbf{Gacha}, \textbf{Personal Island \& NPC}.
     \item Pipeline \textbf{game configuration} theo hướng data-driven: Google Sheets $\rightarrow$ TSV $\rightarrow$ DB $\rightarrow$ Config Manager.
 \end{itemize}
@@ -25,17 +25,17 @@ Kế hoạch triển khai được tổ chức theo các mốc tăng dần độ
 \centering
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{6pt}
-\begin{tabularx}{\textwidth}{|p{2.3cm}|X|p{4.2cm}|}
+\begin{tabularx}{\textwidth}{|L{2.3cm}|Y|L{4.2cm}|}
 \hline
 \textbf{Mốc} & \textbf{Mục tiêu kỹ thuật} & \textbf{Tính năng kiểm chứng} \\
 \hline
-M1 & Dựng backend, DB, auth và kết nối client & Register/Login, token, chọn profile \\
+M1 & Dựng backend, DB, auth và kết nối client & Register/\allowbreak Login, token, chọn profile \\
 \hline
-M2 & Dựng kênh real-time và room/instance runtime cơ bản & Join room, gửi input, nhận snapshot (di chuyển) \\
+M2 & Dựng kênh real-time và room/\allowbreak instance runtime cơ bản & Join room, gửi input, nhận snapshot (di chuyển) \\
 \hline
-M3 & Tích hợp dữ liệu bền vững và mô-đun meta tối thiểu & Inventory/currency, gacha NPC, island resources, worker assignment \\
+M3 & Tích hợp dữ liệu bền vững và mô-đun meta tối thiểu & Inventory/\allowbreak currency, gacha NPC, island resources, worker assignment \\
 \hline
-M4 & Hoàn thiện pipeline cấu hình và logging/audit tối thiểu & TSV import, config versioning, business logs \\
+M4 & Hoàn thiện pipeline cấu hình và logging/\allowbreak audit tối thiểu & TSV import, config versioning, business logs \\
 \hline
 \end{tabularx}
 \caption{Kế hoạch hiện thực prototype theo mốc}
@@ -52,7 +52,7 @@ M4 & Hoàn thiện pipeline cấu hình và logging/audit tối thiểu & TSV im
 
 Client được tổ chức theo hướng tách biệt rõ ràng:
 \begin{itemize}
-    \item \textbf{Presentation/UI}: màn hình login, profile/character select, HUD cơ bản, panel inventory/gacha/island.
+    \item \textbf{Presentation/\allowbreak UI}: màn hình login, profile/\allowbreak character select, HUD cơ bản, panel inventory/\allowbreak gacha/\allowbreak island.
     \item \textbf{Gameplay}: điều khiển nhân vật, state machine animation, xử lý tương tác cơ bản.
     \item \textbf{Networking}: lớp HTTP client (REST) và WebSocket client (real-time), quản lý token, retry và timeout.
     \item \textbf{Data binding}: model dữ liệu để bind ra UI, tránh UI đọc trực tiếp dữ liệu thô từ network.
@@ -60,8 +60,8 @@ Client được tổ chức theo hướng tách biệt rõ ràng:
 
 Nguyên tắc chính:
 \begin{itemize}
-    \item Client không tự ý ``xác nhận'' các thay đổi tiến trình (reward/currency/gacha).
-    \item Client hiển thị trạng thái dựa trên phản hồi server; với realtime, ưu tiên snapshot/event authoritative.
+    \item Client không tự ý ``xác nhận'' các thay đổi tiến trình (reward/\allowbreak currency/\allowbreak gacha).
+    \item Client hiển thị trạng thái dựa trên phản hồi server; với realtime, ưu tiên snapshot/\allowbreak event authoritative.
 \end{itemize}
 
 \subsubsection{Luồng màn hình đề xuất}
@@ -69,11 +69,11 @@ Nguyên tắc chính:
 
 Luồng điều hướng UI tối thiểu cho prototype:
 \begin{enumerate}
-    \item \textbf{Login/Register}: nhập thông tin, gọi API, lưu token.
-    \item \textbf{Profile Select}: liệt kê profile, tạo/chọn profile.
-    \item \textbf{Character Select/Create}: liệt kê nhân vật theo profile, tạo/chọn nhân vật.
-    \item \textbf{Main Hub (Island)}: load scene, hiển thị HUD, mở các panel inventory/gacha/NPC/island.
-    \item \textbf{Join Instance (tuỳ mốc)}: tham gia room realtime để kiểm chứng đồng bộ di chuyển/combat đơn giản.
+    \item \textbf{Login/\allowbreak Register}: nhập thông tin, gọi API, lưu token.
+    \item \textbf{Profile Select}: liệt kê profile, tạo/\allowbreak chọn profile.
+    \item \textbf{Character Select/\allowbreak Create}: liệt kê nhân vật theo profile, tạo/\allowbreak chọn nhân vật.
+    \item \textbf{Main Hub (Island)}: load scene, hiển thị HUD, mở các panel inventory/\allowbreak gacha/\allowbreak NPC/\allowbreak island.
+    \item \textbf{Join Instance (tuỳ mốc)}: tham gia room realtime để kiểm chứng đồng bộ di chuyển/\allowbreak combat đơn giản.
 \end{enumerate}
 
 \subsubsection{Networking client: REST + WebSocket}
@@ -81,15 +81,15 @@ Luồng điều hướng UI tối thiểu cho prototype:
 
 Client duy trì 2 kênh:
 \begin{itemize}
-    \item \textbf{REST}: các thao tác quản lý (auth/profile/character/inventory/island/gacha).
-    \item \textbf{WebSocket}: join room, gửi input, nhận snapshot/event.
+    \item \textbf{REST}: các thao tác quản lý (auth/\allowbreak profile/\allowbreak character/\allowbreak inventory/\allowbreak island/\allowbreak gacha).
+    \item \textbf{WebSocket}: join room, gửi input, nhận snapshot/\allowbreak event.
 \end{itemize}
 
 Quy ước xử lý lỗi UI:
 \begin{itemize}
-    \item \textbf{401/403}: token hết hạn hoặc sai quyền $\rightarrow$ điều hướng về login.
+    \item \textbf{401/\allowbreak 403}: token hết hạn hoặc sai quyền $\rightarrow$ điều hướng về login.
     \item \textbf{5xx}: lỗi hệ thống $\rightarrow$ hiển thị trạng thái retry.
-    \item \textbf{network timeout}: hiển thị offline/reconnect và không cho thao tác tiến trình.
+    \item \textbf{network timeout}: hiển thị offline/\allowbreak reconnect và không cho thao tác tiến trình.
 \end{itemize}
 
 %------------------------------------------------
@@ -102,12 +102,12 @@ Quy ước xử lý lỗi UI:
 
 Backend triển khai theo module hoá để bám sát ranh giới nghiệp vụ:
 \begin{itemize}
-    \item \textbf{AuthModule}: register/login, issue token, guard/role.
+    \item \textbf{AuthModule}: register/\allowbreak login, issue token, guard/\allowbreak role.
     \item \textbf{ProfileModule}: CRUD profile, chọn profile, cập nhật last\_played.
     \item \textbf{CharacterModule}: CRUD character, load character summary.
-    \item \textbf{InventoryModule}: get inventory, apply delta (reward, currency), equip/enhance (tuỳ mốc).
-    \item \textbf{GachaModule}: banner/rate/summon, update pity, duplicate handling.
-    \item \textbf{IslandModule}: get island, build/upgrade, resource sync.
+    \item \textbf{InventoryModule}: get inventory, apply delta (reward, currency), equip/\allowbreak enhance (tuỳ mốc).
+    \item \textbf{GachaModule}: banner/\allowbreak rate/\allowbreak summon, update pity, duplicate handling.
+    \item \textbf{IslandModule}: get island, build/\allowbreak upgrade, resource sync.
     \item \textbf{NpcModule}: list NPC, assign worker, update job state.
     \item \textbf{RealtimeGateway}: websocket auth, join room, input handling, snapshot broadcasting.
     \item \textbf{ConfigModule}: load config collections, provide lookup service, expose config version.
@@ -115,10 +115,10 @@ Backend triển khai theo module hoá để bám sát ranh giới nghiệp vụ:
 
 Luồng xử lý chuẩn cho REST:
 \begin{enumerate}
-    \item Guard xác thực token và gắn context (userId/profileId/characterId nếu có).
+    \item Guard xác thực token và gắn context (userId/\allowbreak profileId/\allowbreak characterId nếu có).
     \item Validate DTO và kiểm tra ràng buộc nghiệp vụ.
     \item Thực hiện cập nhật DB theo hướng atomic ở mức tài liệu (document update).
-    \item Ghi business log/audit log nếu là giao dịch quan trọng.
+    \item Ghi business log/\allowbreak audit log nếu là giao dịch quan trọng.
 \end{enumerate}
 
 \subsubsection{Realtime: room runtime và tick loop tối thiểu}
@@ -126,8 +126,8 @@ Luồng xử lý chuẩn cho REST:
 
 Room runtime được lưu trong bộ nhớ server (in-memory) trong phạm vi prototype:
 \begin{itemize}
-    \item \texttt{roomId}, \texttt{mode} (island/tower/dungeon/arena), danh sách player trong room.
-    \item Runtime state: position, HP/MP, flags trạng thái, cooldown state tối thiểu.
+    \item \texttt{roomId}, \texttt{mode} (island/\allowbreak tower/\allowbreak dungeon/\allowbreak arena), danh sách player trong room.
+    \item Runtime state: position, HP/\allowbreak MP, flags trạng thái, cooldown state tối thiểu.
     \item Input queue theo socket.
 \end{itemize}
 
@@ -143,19 +143,19 @@ Trong mốc đầu, snapshot chỉ cần chứa thông tin đủ để render:
 \[
 \{\;entityId,\;pos,\;rot,\;hp,\;mp,\;stateFlags\;\}
 \]
-Các kỹ thuật nâng cao (prediction/reconciliation) được xem là hướng mở rộng sau khi luồng cơ bản ổn định.
+Các kỹ thuật nâng cao (prediction/\allowbreak reconciliation) được xem là hướng mở rộng sau khi luồng cơ bản ổn định.
 
 %------------------------------------------------
 
 \subsection{Thiết kế hiện thực dữ liệu và truy xuất}
 \label{subsec:impl-data}
 
-\subsubsection{Schema collections và nguyên tắc embed/reference}
+\subsubsection{Schema collections và nguyên tắc embed/\allowbreak reference}
 \label{subsubsec:impl-data-schema}
 
-Các collections động (progression/state) ưu tiên embed khi dữ liệu gắn chặt vòng đời:
+Các collections động (progression/\allowbreak state) ưu tiên embed khi dữ liệu gắn chặt vòng đời:
 \begin{itemize}
-    \item \textbf{CHARACTER}: nhúng base\_stats/resources/position/appearance.
+    \item \textbf{CHARACTER}: nhúng base\_stats/\allowbreak resources/\allowbreak position/\allowbreak appearance.
     \item \textbf{INVENTORY}: nhúng danh sách item instance.
     \item \textbf{PERSONAL\_ISLAND}: nhúng island resources và danh sách buildings.
     \item \textbf{NPC\_COLLECTION}: nhúng danh sách owned NPC.
@@ -164,17 +164,17 @@ Các collections động (progression/state) ưu tiên embed khi dữ liệu g�
 Các collections cấu hình (static) dùng reference qua khoá \texttt{id}:
 \begin{itemize}
     \item \textbf{CONFIG\_ITEM}: định nghĩa item.
-    \item \textbf{CONFIG\_BUILDING}: định nghĩa building và cost/time.
+    \item \textbf{CONFIG\_BUILDING}: định nghĩa building và cost/\allowbreak time.
     \item (mở rộng) \textbf{CONFIG\_SKILL}, \textbf{CONFIG\_RATES}, \textbf{CONFIG\_FORMULAS}, \ldots
 \end{itemize}
 
 \subsubsection{Nguyên tắc cập nhật an toàn cho giao dịch tiến trình}
 \label{subsubsec:impl-data-safety}
 
-Các thao tác nhạy cảm (reward/currency/gacha/build upgrade) cần:
+Các thao tác nhạy cảm (reward/\allowbreak currency/\allowbreak gacha/\allowbreak build upgrade) cần:
 \begin{itemize}
     \item \textbf{Idempotency key}: mỗi request có mã định danh giao dịch để tránh cấp trùng khi retry.
-    \item \textbf{Business log}: ghi lại delta trước/sau (hoặc sự kiện) để đối soát.
+    \item \textbf{Business log}: ghi lại delta trước/\allowbreak sau (hoặc sự kiện) để đối soát.
     \item \textbf{Atomic update}: với dữ liệu trong một document, ưu tiên update trong một thao tác DB.
 \end{itemize}
 
@@ -189,7 +189,7 @@ Các thao tác nhạy cảm (reward/currency/gacha/build upgrade) cần:
 Mỗi TSV đại diện một bảng cấu hình, có cột \texttt{id} làm khoá chính. Quy ước:
 \begin{itemize}
     \item Header dòng đầu tiên; encoding UTF-8.
-    \item Kiểu dữ liệu rõ ràng (int/float/string/bool) theo template.
+    \item Kiểu dữ liệu rõ ràng (int/\allowbreak float/\allowbreak string/\allowbreak bool) theo template.
     \item Các tham chiếu chéo dùng khoá \texttt{id} (ví dụ itemRefId, buildingId).
 \end{itemize}
 
@@ -224,11 +224,11 @@ Config Manager nạp dữ liệu cấu hình từ DB vào bộ nhớ khi server 
 
 Kiểm thử ưu tiên theo các use case trọng yếu (Chương~\ref{sec:analysis}):
 \begin{itemize}
-    \item Auth: register/login, token expiry.
-    \item Profile/Character: create/select, load summary.
+    \item Auth: register/\allowbreak login, token expiry.
+    \item Profile/\allowbreak Character: create/\allowbreak select, load summary.
     \item Realtime: join room, move input, snapshot update, disconnect handling.
-    \item Gacha: summon 1x/10x, pity update, duplicate handling, history.
-    \item Island/NPC: build/upgrade timer (mock), assign worker, resource tick (mô phỏng).
+    \item Gacha: summon 1x/\allowbreak 10x, pity update, duplicate handling, history.
+    \item Island/\allowbreak NPC: build/\allowbreak upgrade timer (mock), assign worker, resource tick (mô phỏng).
 \end{itemize}
 
 \subsubsection{Kiểm thử dữ liệu và tính nhất quán}
@@ -236,7 +236,7 @@ Kiểm thử ưu tiên theo các use case trọng yếu (Chương~\ref{sec:analy
 
 Các kịch bản cần kiểm chứng:
 \begin{itemize}
-    \item Retry request (gacha/reward) không làm nhân đôi kết quả.
+    \item Retry request (gacha/\allowbreak reward) không làm nhân đôi kết quả.
     \item Inventory stack và slot không vượt giới hạn.
     \item Worker assignment không tạo trạng thái treo (NPC vừa ``rảnh'' vừa ``đang làm'').
     \item Import TSV sai schema bị từ chối và không làm ``bẩn'' config.
@@ -247,10 +247,10 @@ Các kịch bản cần kiểm chứng:
 
 Prototype đạt yêu cầu khi thoả tối thiểu:
 \begin{itemize}
-    \item Có thể đăng nhập, chọn profile/nhân vật và vào scene hub.
+    \item Có thể đăng nhập, chọn profile/\allowbreak nhân vật và vào scene hub.
     \item Có thể tham gia room realtime và đồng bộ di chuyển ổn định.
     \item Gacha trả kết quả hợp lệ, lưu DB, cập nhật pity và xử lý trùng lặp.
-    \item Island/NPC có luồng dữ liệu bền vững (lưu và tải lại đúng).
+    \item Island/\allowbreak NPC có luồng dữ liệu bền vững (lưu và tải lại đúng).
     \item Pipeline TSV import tạo được config version và runtime truy xuất đúng theo version.
 \end{itemize}
 
@@ -259,4 +259,4 @@ Prototype đạt yêu cầu khi thoả tối thiểu:
 \subsection{Tổng kết chương}
 \label{subsec:impl-summary}
 
-Chương này đã trình bày kế hoạch hiện thực prototype nhằm kiểm chứng thiết kế hệ thống: tổ chức client và server, luồng REST/WebSocket, room realtime tối thiểu, chiến lược lưu trữ dữ liệu, pipeline game configuration theo TSV và kế hoạch kiểm thử theo use case. Kết quả của chương là cơ sở để thực hiện đánh giá/đối chiếu trong chương tiếp theo khi prototype được triển khai và chạy thử.
+Chương này đã trình bày kế hoạch hiện thực prototype nhằm kiểm chứng thiết kế hệ thống: tổ chức client và server, luồng REST/\allowbreak WebSocket, room realtime tối thiểu, chiến lược lưu trữ dữ liệu, pipeline game configuration theo TSV và kế hoạch kiểm thử theo use case. Kết quả của chương là cơ sở để thực hiện đánh giá/\allowbreak đối chiếu trong chương tiếp theo khi prototype được triển khai và chạy thử.

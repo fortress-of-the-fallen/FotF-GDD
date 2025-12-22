@@ -8,11 +8,11 @@
 
 Trong phạm vi giai đoạn 1 tập trung vào \textbf{thiết kế hệ thống}, báo cáo đã đạt được các kết quả chính:
 \begin{itemize}
-    \item \textbf{Xác định yêu cầu và phạm vi}: hệ thống hoá các yêu cầu chức năng theo phân hệ (auth/profile, character/progression, inventory/economy, combat, gacha, island \& NPC, admin) và các yêu cầu phi chức năng (bảo mật, nhất quán, mở rộng, quan sát).
-    \item \textbf{Phân tích hệ thống theo use case và luồng nghiệp vụ}: mô tả tác nhân, use case tổng quan và đặc tả các luồng trọng yếu (đăng nhập--chọn profile, tạo nhân vật, reward delivery, gacha, island build/upgrade và worker assignment).
+    \item \textbf{Xác định yêu cầu và phạm vi}: hệ thống hoá các yêu cầu chức năng theo phân hệ (auth/\allowbreak profile, character/\allowbreak progression, inventory/\allowbreak economy, combat, gacha, island \& NPC, admin) và các yêu cầu phi chức năng (bảo mật, nhất quán, mở rộng, quan sát).
+    \item \textbf{Phân tích hệ thống theo use case và luồng nghiệp vụ}: mô tả tác nhân, use case tổng quan và đặc tả các luồng trọng yếu (đăng nhập--chọn profile, tạo nhân vật, reward delivery, gacha, island build/\allowbreak upgrade và worker assignment).
     \item \textbf{Thiết kế kiến trúc client--server}: phân tách rõ REST cho thao tác quản lý và WebSocket cho realtime; áp dụng nguyên tắc server-authoritative cho các thao tác ảnh hưởng tiến trình.
-    \item \textbf{Thiết kế dữ liệu}: tổ chức thực thể lõi (USER, GAME\_PROFILE, CHARACTER, INVENTORY, PERSONAL\_ISLAND, NPC\_COLLECTION, SESSION\_RUNTIME), chỉ ra quan hệ và nguyên tắc embed/reference phù hợp cho MongoDB.
-    \item \textbf{Thiết kế pipeline game configuration theo hướng data-driven}: Google Sheets $\rightarrow$ TSV $\rightarrow$ DB $\rightarrow$ Config Manager (chỉ áp dụng cho các bảng cấu hình/thông số gameplay), giúp giảm hard-code và hỗ trợ quản trị phiên bản cấu hình.
+    \item \textbf{Thiết kế dữ liệu}: tổ chức thực thể lõi (USER, GAME\_PROFILE, CHARACTER, INVENTORY, PERSONAL\_ISLAND, NPC\_COLLECTION, SESSION\_RUNTIME), chỉ ra quan hệ và nguyên tắc embed/\allowbreak reference phù hợp cho MongoDB.
+    \item \textbf{Thiết kế pipeline game configuration theo hướng data-driven}: Google Sheets $\rightarrow$ TSV $\rightarrow$ DB $\rightarrow$ Config Manager (chỉ áp dụng cho các bảng cấu hình/\allowbreak thông số gameplay), giúp giảm hard-code và hỗ trợ quản trị phiên bản cấu hình.
     \item \textbf{Kế hoạch hiện thực prototype và đánh giá thiết kế}: đề xuất các mốc triển khai để kiểm chứng thiết kế và đánh giá mức độ bao phủ yêu cầu, chất lượng kiến trúc, rủi ro và biện pháp giảm thiểu.
 \end{itemize}
 
@@ -23,7 +23,7 @@ Các đóng góp chính của đồ án trong phạm vi thiết kế bao gồm:
 \begin{itemize}
     \item \textbf{Bộ khung thiết kế hệ thống hoàn chỉnh cho một game online theo mô-đun}, có thể mở rộng theo nhiều hướng (thêm nội dung, mở rộng server, bổ sung dịch vụ phụ trợ).
     \item \textbf{Mô hình dữ liệu bền vững và nhất quán} phục vụ các mô-đun meta-progression (inventory, gacha, island \& NPC) đồng thời giữ được ranh giới rõ ràng giữa dữ liệu động (progress) và dữ liệu tĩnh (config).
-    \item \textbf{Định hướng giao tiếp realtime có khả năng phát triển}: thiết kế envelope message và vòng đời phiên (handshake, join room, input, snapshot/event, end session), tạo nền cho việc bổ sung các kỹ thuật networking nâng cao.
+    \item \textbf{Định hướng giao tiếp realtime có khả năng phát triển}: thiết kế envelope message và vòng đời phiên (handshake, join room, input, snapshot/\allowbreak event, end session), tạo nền cho việc bổ sung các kỹ thuật networking nâng cao.
     \item \textbf{Pipeline cấu hình game độc lập với dữ liệu tiến trình}, giúp nhóm nội dung có thể điều chỉnh cân bằng và mở rộng nội dung mà không phụ thuộc nhiều vào thay đổi mã nguồn.
 \end{itemize}
 
@@ -32,8 +32,8 @@ Các đóng góp chính của đồ án trong phạm vi thiết kế bao gồm:
 
 Do tập trung vào giai đoạn 1 (thiết kế), một số nội dung chưa được hiện thực hoặc chưa được kiểm chứng bằng benchmark:
 \begin{itemize}
-    \item \textbf{Cơ chế giao dịch nghiệp vụ chi tiết}: idempotency/log/delta cho từng loại giao dịch (reward, gacha, upgrade) mới dừng ở mức nguyên tắc; cần đặc tả schema log và quy trình đối soát cụ thể hơn khi hiện thực.
-    \item \textbf{Realtime nâng cao}: thiết kế đã chừa chỗ cho mở rộng, nhưng chưa triển khai và đánh giá các kỹ thuật như prediction/reconciliation, interest management và tối ưu băng thông.
+    \item \textbf{Cơ chế giao dịch nghiệp vụ chi tiết}: idempotency/\allowbreak log/\allowbreak delta cho từng loại giao dịch (reward, gacha, upgrade) mới dừng ở mức nguyên tắc; cần đặc tả schema log và quy trình đối soát cụ thể hơn khi hiện thực.
+    \item \textbf{Realtime nâng cao}: thiết kế đã chừa chỗ cho mở rộng, nhưng chưa triển khai và đánh giá các kỹ thuật như prediction/\allowbreak reconciliation, interest management và tối ưu băng thông.
     \item \textbf{Chính sách xử lý ngoại lệ}: các trường hợp đặc thù như overflow inventory, reconnect giữa phiên, rollback khi import config lỗi cần được đặc tả sâu và kiểm thử khi prototype chạy thật.
     \item \textbf{Đánh giá hiệu năng theo tải}: chưa có số đo thực nghiệm cho tick time, snapshot size, throughput hoặc độ ổn định khi tăng số lượng kết nối.
 \end{itemize}
@@ -45,34 +45,34 @@ Trong các giai đoạn tiếp theo, hệ thống có thể phát triển theo c
 
 \subsubsection{Hiện thực prototype và kiểm chứng theo use case}
 \begin{itemize}
-    \item Hoàn thiện prototype theo các mốc đã đề xuất: auth/profile, realtime room, meta modules (inventory/gacha/island), pipeline config.
+    \item Hoàn thiện prototype theo các mốc đã đề xuất: auth/\allowbreak profile, realtime room, meta modules (inventory/\allowbreak gacha/\allowbreak island), pipeline config.
     \item Xây dựng bộ kiểm thử theo kịch bản: retry giao dịch, mất kết nối, đồng bộ dữ liệu sau reconnect, consistency giữa NPC và building.
 \end{itemize}
 
 \subsubsection{Nâng cấp realtime cho cảm giác chiến đấu}
 \begin{itemize}
-    \item Bổ sung interpolation chuẩn cho client và phân tách snapshot/event rõ ràng.
-    \item Thử nghiệm prediction/reconciliation cho chuyển động cơ bản, sau đó mở rộng cho kỹ năng.
+    \item Bổ sung interpolation chuẩn cho client và phân tách snapshot/\allowbreak event rõ ràng.
+    \item Thử nghiệm prediction/\allowbreak reconciliation cho chuyển động cơ bản, sau đó mở rộng cho kỹ năng.
     \item Tối ưu payload snapshot (delta compression) và áp dụng interest management khi có nhiều thực thể trong room.
 \end{itemize}
 
 \subsubsection{Hoàn thiện hệ thống giao dịch và chống gian lận}
 \begin{itemize}
-    \item Chuẩn hoá idempotency key cho các endpoint nhạy cảm (reward/gacha/upgrade).
+    \item Chuẩn hoá idempotency key cho các endpoint nhạy cảm (reward/\allowbreak gacha/\allowbreak upgrade).
     \item Thiết kế business ledger (sổ giao dịch) để truy vết thay đổi currency và phần thưởng theo thời gian.
-    \item Tăng cường kiểm soát input realtime (anti-spam/anti-speedhack) dựa trên luật server-authoritative.
+    \item Tăng cường kiểm soát input realtime (anti-spam/\allowbreak anti-speedhack) dựa trên luật server-authoritative.
 \end{itemize}
 
 \subsubsection{Mở rộng pipeline cấu hình}
 \begin{itemize}
-    \item Mở rộng nhóm config: skill definitions, drop tables, banner schedules, formulas và economy sinks/sources.
+    \item Mở rộng nhóm config: skill definitions, drop tables, banner schedules, formulas và economy sinks/\allowbreak sources.
     \item Bổ sung kiểm tra tham chiếu chéo và cơ chế rollback phiên bản khi import gây lỗi.
-    \item Khi chạy nhiều instance server: đồng bộ reload config bằng pub/sub hoặc chiến lược triển khai có kiểm soát phiên bản.
+    \item Khi chạy nhiều instance server: đồng bộ reload config bằng pub/\allowbreak sub hoặc chiến lược triển khai có kiểm soát phiên bản.
 \end{itemize}
 
 \subsubsection{Chuẩn hoá quan sát hệ thống}
 \begin{itemize}
-    \item Bổ sung metrics (tick time, snapshot size, error rate), tracing theo request/correlation id.
+    \item Bổ sung metrics (tick time, snapshot size, error rate), tracing theo request/\allowbreak correlation id.
     \item Chuẩn hoá log nghiệp vụ cho các thao tác quan trọng và dashboard quan sát cho admin.
 \end{itemize}
 
