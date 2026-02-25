@@ -1,0 +1,389 @@
+//////////////////////////////////////////////////////////////
+// Source: game-design-docs/erd.mmd
+// Target: dbdiagram.io (DBML)
+// Notes:
+// - Names are kept close to Mermaid ERD for easy diff.
+// - Embedded/list structs are represented as tables for readability.
+//////////////////////////////////////////////////////////////
+
+Table USER [headercolor: #D6EAF8] {
+  _id ObjectId [pk]
+  username string
+  email string
+  password_hash string
+  role string
+  status enum
+  created_at date
+  last_login date
+  settings object [note: 'Embed: OBJECT_USER_SETTINGS']
+}
+
+Table OBJECT_USER_SETTINGS [headercolor: #D6EAF8] {
+  master_volume float
+  sfx_volume float
+  language_code string
+  notifications_enabled boolean
+}
+
+Table GAME_PROFILE [headercolor: #D6EAF8] {
+  _id ObjectId [pk]
+  user_id ObjectId [ref: > USER._id]
+  profile_name string
+  server_id string [note: 'Optional: Asia, NA...']
+  created_at date
+  last_played date
+  preferences object [note: 'Embed: Local Game Settings']
+}
+
+Table SESSION_RUNTIME [headercolor: #D6EAF8] {
+  token string [pk]
+  socket_id string
+  user_id string
+  profile_id string [note: 'Current Active Profile']
+  character_id string
+  current_room_id string
+  expires_at timestamp
+}
+
+Table CHARACTER [headercolor: #D5F5E3] {
+  _id ObjectId [pk]
+  profile_id ObjectId [ref: > GAME_PROFILE._id]
+  name string [note: 'User input at profile creation']
+  gender enum [note: 'User selected at profile creation']
+  race enum [note: 'Human, Elf, Orc (User selected at profile creation)']
+  class enum [note: 'Warrior, Mage, Archer']
+  level int
+  current_exp long
+  created_at date
+  base_stats object [note: 'Embed: STRUCT_BASE_STATS']
+  derived_stats object [note: 'Embed: STRUCT_DERIVED_STATS']
+  special_traits object [note: 'Embed: STRUCT_SPECIAL_TRAITS']
+  resources object [note: 'Embed: STRUCT_CURRENT_RESOURCES']
+  position object [note: 'Embed: STRUCT_POSITION_DATA']
+  appearance object [note: 'Embed: STRUCT_APPEARANCE']
+  creation_meta object [note: 'Embed: STRUCT_CHARACTER_CREATION_META']
+  combat_kit object [note: 'Embed: STRUCT_COMBAT_KIT']
+  learned_skills array [note: 'List: STRUCT_CHARACTER_SKILL']
+  skill_slots object [note: 'Embed: STRUCT_SKILL_SLOTS']
+}
+
+Table STRUCT_BASE_STATS [headercolor: #D5F5E3] {
+  STR int
+  DEX int
+  CON int
+  INT int
+  WIS int
+  CHA int
+}
+
+Table STRUCT_DERIVED_STATS [headercolor: #D5F5E3] {
+  HP float [note: 'Depend: CON, STR']
+  MP float [note: 'Depend: WIS, INT']
+  PATK float [note: 'Depend: STR, DEX, CON']
+  DATK float [note: 'Depend: STR, DEX, CON']
+  MATK float [note: 'Depend: INT, WIS']
+  MDEF float [note: 'Depend: INT, WIS']
+  SPD float [note: 'Depend: DEX']
+  CRIT float [note: 'Depend: DEX']
+  ACC float [note: 'Depend: DEX, INT']
+  EVA float [note: 'Depend: DEX, CON']
+}
+
+Table STRUCT_SPECIAL_TRAITS [headercolor: #D5F5E3] {
+  karma int
+  affinity enum [note: 'none, water, fire, wind, earth']
+  luck int
+  resistance int
+}
+
+Table STRUCT_CURRENT_RESOURCES [headercolor: #D5F5E3] {
+  hp_current float
+  hp_max float
+  mp_current float
+  mp_max float
+  stamina_current float
+}
+
+Table STRUCT_POSITION_DATA [headercolor: #D5F5E3] {
+  map_id string
+  pos_x float
+  pos_y float
+  pos_z float
+  rot_y float
+}
+
+Table STRUCT_APPEARANCE [headercolor: #D5F5E3] {
+  hair_model_id string
+  hair_color_hex string
+  skin_color_hex string
+  face_model_id string
+}
+
+Table STRUCT_CHARACTER_CREATION_META [headercolor: #D5F5E3] {
+  appearance_randomized boolean [note: 'Default: true']
+  appearance_roll_seed int
+  appearance_reroll_count int
+  allow_manual_appearance_edit boolean [note: 'Default: false']
+}
+
+Table STRUCT_COMBAT_KIT [headercolor: #D5F5E3] {
+  dash_unlocked boolean [note: 'Default: true']
+  basic_attack_unlocked boolean [note: 'Default: true']
+  basic_attack_weapon_type string
+}
+
+Table STRUCT_CHARACTER_SKILL [headercolor: #D5F5E3] {
+  skill_id string [note: 'Ref CONFIG_SKILL.id']
+  skill_level int
+  source enum [note: 'default, skill_book']
+  learned_by_book_id string [note: 'Optional: Ref CONFIG_SKILL_BOOK.id']
+  unlocked boolean
+  learned_at date
+}
+
+Table STRUCT_SKILL_SLOTS [headercolor: #D5F5E3] {
+  max_active_slots int
+  max_combo_slots int
+  equipped_active_skill_ids array
+  equipped_combo_skill_ids array
+}
+
+Table INVENTORY [headercolor: #FCF3CF] {
+  _id ObjectId [pk]
+  character_id ObjectId [ref: - CHARACTER._id]
+  max_slots int
+  used_slots int
+  currency_gold double
+  currency_gem double
+  items array [note: 'List: STRUCT_INVENTORY_ITEM']
+}
+
+Table STRUCT_INVENTORY_ITEM [headercolor: #FCF3CF] {
+  item_ref_id string [note: 'Ref CONFIG_ITEM.id']
+  quantity int
+  slot_index int
+  enhancement_level int
+  durability_current float
+  unique_uid string
+}
+
+Table CONFIG_ITEM [headercolor: #EAECEE] {
+  id string [pk]
+  name string
+  type enum [note: 'weapon, armor, accessory, consumable, material, skill_book']
+  max_stack int
+}
+
+Table PERSONAL_ISLAND [headercolor: #FADBD8] {
+  _id ObjectId [pk]
+  profile_id ObjectId [ref: - GAME_PROFILE._id]
+  island_name string
+  town_hall_level int
+  last_collected_at date
+  resources object [note: 'Embed: STRUCT_ISLAND_RESOURCES']
+  buildings array [note: 'List: STRUCT_BUILDING']
+}
+
+Table STRUCT_ISLAND_RESOURCES [headercolor: #FADBD8] {
+  wood_storage long
+  stone_storage long
+  food_storage long
+  iron_storage long
+}
+
+Table STRUCT_BUILDING [headercolor: #FADBD8] {
+  building_uid string
+  type enum [note: 'Ref: CONFIG_BUILDING (by design intent)']
+  level int
+  status enum
+  finish_time timestamp
+  pos_grid_x int
+  pos_grid_y int
+}
+
+Table CONFIG_BUILDING [headercolor: #EAECEE] {
+  id string [pk]
+  name string
+  build_time_seconds long
+  cost_requirements object
+}
+
+Table HERO_ROSTER [headercolor: #FADBD8] {
+  _id ObjectId [pk]
+  profile_id ObjectId [ref: - GAME_PROFILE._id]
+  total_heroes int
+  heroes array [note: 'List: STRUCT_OWNED_HERO']
+}
+
+Table STRUCT_OWNED_HERO [headercolor: #FADBD8] {
+  hero_uid string
+  hero_config_id string [note: 'Ref CONFIG_HERO.id']
+  level int
+  current_exp long
+  class enum
+  limit_break int
+  summoned_at date
+  random_skill_roll_count int [note: 'Number of skills rolled on gacha']
+  combat_stats object [note: 'Embed: STRUCT_BASE_STATS']
+  derived_stats object [note: 'Embed: STRUCT_DERIVED_STATS']
+  special_traits object [note: 'Embed: STRUCT_SPECIAL_TRAITS']
+  resources object [note: 'Embed: STRUCT_CURRENT_RESOURCES']
+  appearance object [note: 'Embed: STRUCT_APPEARANCE']
+  summon_roll object [note: 'Embed: STRUCT_HERO_SUMMON_ROLL']
+  skills array [note: 'List: STRUCT_HERO_SKILL']
+  equipment object [note: 'Embed: STRUCT_HERO_EQUIPMENT']
+}
+
+Table STRUCT_HERO_SUMMON_ROLL [headercolor: #FADBD8] {
+  stat_roll_seed int
+  appearance_roll_seed int
+  rolled_at date
+}
+
+Table STRUCT_HERO_SKILL [headercolor: #FADBD8] {
+  skill_id string [note: 'Ref CONFIG_SKILL.id']
+  skill_level int
+  skill_type enum [note: 'normal, chain, special, passive']
+  source enum [note: 'default, gacha_random, skill_book']
+  learned_by_book_id string [note: 'Optional: Ref CONFIG_SKILL_BOOK.id']
+  is_initial_roll boolean [note: 'True if rolled at summon']
+  slot_index int
+  unlocked boolean
+  learned_at date
+}
+
+Table STRUCT_HERO_EQUIPMENT [headercolor: #FADBD8] {
+  weapon_item_uid string
+  armor_item_uid string
+  accessory_item_uid string
+  relic_item_uid string [note: 'Optional']
+}
+
+Table HERO_TEAM [headercolor: #FADBD8] {
+  _id ObjectId [pk]
+  profile_id ObjectId [ref: > GAME_PROFILE._id]
+  team_name string
+  team_power int
+  is_active boolean
+  slots array [note: 'List: STRUCT_TEAM_SLOT']
+}
+
+Table STRUCT_TEAM_SLOT [headercolor: #FADBD8] {
+  slot_index int
+  hero_uid string
+  role enum [note: 'leader, sub, support']
+}
+
+Table CONFIG_HERO [headercolor: #EAECEE] {
+  id string [pk]
+  name string
+  class enum
+  element_affinity enum [note: 'none, water, fire, wind, earth']
+  weapon_type string
+}
+
+Table CONFIG_HERO_RANDOM_RULE [headercolor: #EAECEE] {
+  id string [pk]
+  hero_config_id string [ref: - CONFIG_HERO.id]
+  STR_min int
+  STR_max int
+  DEX_min int
+  DEX_max int
+  CON_min int
+  CON_max int
+  INT_min int
+  INT_max int
+  WIS_min int
+  WIS_max int
+  CHA_min int
+  CHA_max int
+  hair_model_pool array
+  face_model_pool array
+  hair_color_pool array
+  skin_color_pool array
+}
+
+Table CONFIG_HERO_GACHA_SKILL_POOL [headercolor: #EAECEE] {
+  id string [pk]
+  hero_config_id string [ref: > CONFIG_HERO.id]
+  skill_id string [ref: > CONFIG_SKILL.id]
+  weight int
+  summon_roll_enabled boolean
+}
+
+Table CONFIG_SKILL [headercolor: #EAECEE] {
+  id string [pk]
+  name string
+  category enum [note: 'basic_attack, movement, active, combo, passive']
+  skill_type enum
+  base_cooldown_sec int
+  learned_from_book boolean
+  is_default_unlocked boolean
+  effect_summary string
+}
+
+Table CONFIG_SKILL_BOOK [headercolor: #EAECEE] {
+  id string [pk]
+  item_ref_id string [ref: > CONFIG_ITEM.id]
+  skill_id string [ref: > CONFIG_SKILL.id]
+  consume_on_use boolean
+}
+
+TableGroup IDENTITY_MODULE {
+  USER
+  OBJECT_USER_SETTINGS
+  GAME_PROFILE
+  SESSION_RUNTIME
+}
+
+TableGroup CHARACTER_MODULE {
+  CHARACTER
+  STRUCT_BASE_STATS
+  STRUCT_DERIVED_STATS
+  STRUCT_SPECIAL_TRAITS
+  STRUCT_CURRENT_RESOURCES
+  STRUCT_POSITION_DATA
+  STRUCT_APPEARANCE
+  STRUCT_CHARACTER_CREATION_META
+  STRUCT_COMBAT_KIT
+  STRUCT_CHARACTER_SKILL
+  STRUCT_SKILL_SLOTS
+}
+
+TableGroup INVENTORY_MODULE {
+  INVENTORY
+  STRUCT_INVENTORY_ITEM
+  CONFIG_ITEM
+}
+
+TableGroup ADVANCED_GAMEPLAY_MODULE {
+  PERSONAL_ISLAND
+  STRUCT_ISLAND_RESOURCES
+  STRUCT_BUILDING
+  CONFIG_BUILDING
+  HERO_ROSTER
+  STRUCT_OWNED_HERO
+  STRUCT_HERO_SUMMON_ROLL
+  STRUCT_HERO_SKILL
+  STRUCT_HERO_EQUIPMENT
+  HERO_TEAM
+  STRUCT_TEAM_SLOT
+  CONFIG_HERO
+  CONFIG_HERO_RANDOM_RULE
+  CONFIG_HERO_GACHA_SKILL_POOL
+  CONFIG_SKILL
+  CONFIG_SKILL_BOOK
+}
+
+Ref: GAME_PROFILE._id < SESSION_RUNTIME.profile_id
+Ref: CONFIG_SKILL.id < STRUCT_CHARACTER_SKILL.skill_id
+Ref: CONFIG_SKILL_BOOK.id < STRUCT_CHARACTER_SKILL.learned_by_book_id
+Ref: CONFIG_ITEM.id < STRUCT_INVENTORY_ITEM.item_ref_id
+Ref: CONFIG_HERO.id < STRUCT_OWNED_HERO.hero_config_id
+Ref: CONFIG_SKILL.id < STRUCT_HERO_SKILL.skill_id
+Ref: CONFIG_SKILL_BOOK.id < STRUCT_HERO_SKILL.learned_by_book_id
+Ref: STRUCT_OWNED_HERO.hero_uid < STRUCT_TEAM_SLOT.hero_uid
+Ref: STRUCT_INVENTORY_ITEM.unique_uid < STRUCT_HERO_EQUIPMENT.weapon_item_uid
+Ref: STRUCT_INVENTORY_ITEM.unique_uid < STRUCT_HERO_EQUIPMENT.armor_item_uid
+Ref: STRUCT_INVENTORY_ITEM.unique_uid < STRUCT_HERO_EQUIPMENT.accessory_item_uid
+Ref: STRUCT_INVENTORY_ITEM.unique_uid < STRUCT_HERO_EQUIPMENT.relic_item_uid
