@@ -1,0 +1,418 @@
+erDiagram
+    %% ==========================================
+    %% 1. IDENTITY MODULE
+    %% ==========================================
+    USER {
+        ObjectId _id PK
+        string username
+        string email
+        string password_hash
+        string role
+        enum status
+        date created_at
+        date last_login
+        object settings "Embed: OBJECT_USER_SETTINGS"
+    }
+
+    OBJECT_USER_SETTINGS {
+        float master_volume
+        float sfx_volume
+        string language_code
+        boolean notifications_enabled
+    }
+
+    %% --- NEW ENTITY: GAME PROFILE ---
+    GAME_PROFILE {
+        ObjectId _id PK
+        ObjectId user_id FK
+        string profile_name
+        string server_id "Optional: Asia, NA..."
+        date created_at
+        date last_played
+        object preferences "Embed: Local Game Settings"
+    }
+
+    SESSION_RUNTIME {
+        string token PK
+        string socket_id
+        string user_id
+        string profile_id "Current Active Profile"
+        string character_id
+        string current_room_id
+        timestamp expires_at
+    }
+
+    %% ==========================================
+    %% 2. CHARACTER MODULE
+    %% ==========================================
+    CHARACTER {
+        ObjectId _id PK
+        ObjectId profile_id FK "Ref: GAME_PROFILE"
+        string name "User input at profile creation"
+        enum gender "User selected at profile creation"
+        enum race "Human, Elf, Orc (User selected at profile creation)"
+        enum class "Warrior, Mage, Archer"
+        int level
+        long current_exp
+        date created_at
+        object base_stats "Embed: STRUCT_BASE_STATS"
+        object derived_stats "Embed: STRUCT_DERIVED_STATS"
+        object special_traits "Embed: STRUCT_SPECIAL_TRAITS"
+        object resources "Embed: STRUCT_CURRENT_RESOURCES"
+        object position "Embed: STRUCT_POSITION_DATA"
+        object appearance "Embed: STRUCT_APPEARANCE"
+        object creation_meta "Embed: STRUCT_CHARACTER_CREATION_META"
+        object combat_kit "Embed: STRUCT_COMBAT_KIT"
+        array learned_skills "List: STRUCT_CHARACTER_SKILL"
+        object skill_slots "Embed: STRUCT_SKILL_SLOTS"
+    }
+
+    %% --- Shared Structs ---
+    STRUCT_BASE_STATS {
+        int STR
+        int DEX
+        int CON
+        int INT
+        int WIS
+        int CHA
+    }
+
+    STRUCT_DERIVED_STATS {
+        float HP "Depend: CON, STR"
+        float MP "Depend: WIS, INT"
+        float PATK "Depend: STR, DEX, CON"
+        float DATK "Depend: STR, DEX, CON"
+        float MATK "Depend: INT, WIS"
+        float MDEF "Depend: INT, WIS"
+        float SPD "Depend: DEX"
+        float CRIT "Depend: DEX"
+        float ACC "Depend: DEX, INT"
+        float EVA "Depend: DEX, CON"
+    }
+
+    STRUCT_SPECIAL_TRAITS {
+        int karma
+        enum affinity "none, water, fire, wind, earth"
+        int luck
+        int resistance
+    }
+
+    STRUCT_CURRENT_RESOURCES {
+        float hp_current
+        float hp_max
+        float mp_current
+        float mp_max
+        float stamina_current
+    }
+
+    STRUCT_POSITION_DATA {
+        string map_id
+        float pos_x
+        float pos_y
+        float pos_z
+        float rot_y
+    }
+
+    STRUCT_APPEARANCE {
+        string hair_model_id
+        string hair_color_hex
+        string skin_color_hex
+        string face_model_id
+    }
+
+    STRUCT_CHARACTER_CREATION_META {
+        boolean appearance_randomized "Default: true"
+        int appearance_roll_seed
+        int appearance_reroll_count
+        boolean allow_manual_appearance_edit "Default: false"
+    }
+
+    STRUCT_COMBAT_KIT {
+        boolean dash_unlocked "Default: true"
+        boolean basic_attack_unlocked "Default: true"
+        string basic_attack_weapon_type
+    }
+
+    STRUCT_CHARACTER_SKILL {
+        string skill_id
+        int skill_level
+        enum source "default, skill_book"
+        string learned_by_book_id "Optional: Ref CONFIG_SKILL_BOOK"
+        boolean unlocked
+        date learned_at
+    }
+
+    STRUCT_SKILL_SLOTS {
+        int max_active_slots
+        int max_combo_slots
+        array equipped_active_skill_ids
+        array equipped_combo_skill_ids
+    }
+
+    %% ==========================================
+    %% 3. INVENTORY MODULE
+    %% ==========================================
+    INVENTORY {
+        ObjectId _id PK
+        ObjectId character_id FK
+        int max_slots
+        int used_slots
+        double currency_gold
+        double currency_gem
+        array items "List: STRUCT_INVENTORY_ITEM"
+    }
+
+    STRUCT_INVENTORY_ITEM {
+        string item_ref_id
+        int quantity
+        int slot_index
+        int enhancement_level
+        float durability_current
+        string unique_uid
+    }
+
+    CONFIG_ITEM {
+        string id PK
+        string name
+        enum type "weapon, armor, accessory, consumable, material, skill_book"
+        int max_stack
+    }
+
+    %% ==========================================
+    %% 4. ADVANCED GAMEPLAY (ISLAND & HERO GACHA)
+    %% ==========================================
+    PERSONAL_ISLAND {
+        ObjectId _id PK
+        ObjectId profile_id FK "Ref: GAME_PROFILE"
+        string island_name
+        int town_hall_level
+        date last_collected_at
+        object resources "Embed: STRUCT_ISLAND_RESOURCES"
+        array buildings "List: STRUCT_BUILDING"
+    }
+
+    STRUCT_ISLAND_RESOURCES {
+        long wood_storage
+        long stone_storage
+        long food_storage
+        long iron_storage
+    }
+
+    STRUCT_BUILDING {
+        string building_uid
+        enum type
+        int level
+        enum status
+        timestamp finish_time
+        int pos_grid_x
+        int pos_grid_y
+    }
+
+    CONFIG_BUILDING {
+        string id PK
+        string name
+        long build_time_seconds
+        object cost_requirements
+    }
+
+    HERO_ROSTER {
+        ObjectId _id PK
+        ObjectId profile_id FK "Ref: GAME_PROFILE"
+        int total_heroes
+        array heroes "List: STRUCT_OWNED_HERO"
+    }
+
+    STRUCT_OWNED_HERO {
+        string hero_uid
+        string hero_config_id
+        int level
+        long current_exp
+        enum class
+        int limit_break
+        date summoned_at
+        int random_skill_roll_count "Number of skills rolled on gacha"
+
+        %% Hero Combat, Traits, Skills, Equipment
+        object combat_stats "Embed: STRUCT_BASE_STATS"
+        object derived_stats "Embed: STRUCT_DERIVED_STATS"
+        object special_traits "Embed: STRUCT_SPECIAL_TRAITS"
+        object resources "Embed: STRUCT_CURRENT_RESOURCES"
+        object appearance "Embed: STRUCT_APPEARANCE"
+        object summon_roll "Embed: STRUCT_HERO_SUMMON_ROLL"
+        array skills "List: STRUCT_HERO_SKILL"
+        object equipment "Embed: STRUCT_HERO_EQUIPMENT"
+    }
+
+    STRUCT_HERO_SUMMON_ROLL {
+        int stat_roll_seed
+        int appearance_roll_seed
+        date rolled_at
+    }
+
+    STRUCT_HERO_SKILL {
+        string skill_id
+        int skill_level
+        enum skill_type "normal, chain, special, passive"
+        enum source "default, gacha_random, skill_book"
+        string learned_by_book_id "Optional: Ref CONFIG_SKILL_BOOK"
+        boolean is_initial_roll "True if rolled at summon"
+        int slot_index
+        boolean unlocked
+        date learned_at
+    }
+
+    STRUCT_HERO_EQUIPMENT {
+        string weapon_item_uid
+        string armor_item_uid
+        string accessory_item_uid
+        string relic_item_uid "Optional"
+    }
+
+    HERO_TEAM {
+        ObjectId _id PK
+        ObjectId profile_id FK "Ref: GAME_PROFILE"
+        string team_name
+        int team_power
+        boolean is_active
+        array slots "List: STRUCT_TEAM_SLOT"
+    }
+
+    STRUCT_TEAM_SLOT {
+        int slot_index
+        string hero_uid
+        enum role "leader, sub, support"
+    }
+
+    CONFIG_HERO {
+        string id PK
+        string name
+        enum class
+        enum element_affinity "none, water, fire, wind, earth"
+        string weapon_type
+    }
+
+    CONFIG_HERO_RANDOM_RULE {
+        string id PK
+        string hero_config_id FK "Ref: CONFIG_HERO"
+        int STR_min
+        int STR_max
+        int DEX_min
+        int DEX_max
+        int CON_min
+        int CON_max
+        int INT_min
+        int INT_max
+        int WIS_min
+        int WIS_max
+        int CHA_min
+        int CHA_max
+        array hair_model_pool
+        array face_model_pool
+        array hair_color_pool
+        array skin_color_pool
+    }
+
+    CONFIG_HERO_GACHA_SKILL_POOL {
+        string id PK
+        string hero_config_id FK "Ref: CONFIG_HERO"
+        string skill_id FK "Ref: CONFIG_SKILL"
+        int weight
+        boolean summon_roll_enabled
+    }
+
+    CONFIG_SKILL {
+        string id PK
+        string name
+        enum category "basic_attack, movement, active, combo, passive"
+        enum skill_type
+        int base_cooldown_sec
+        boolean learned_from_book
+        boolean is_default_unlocked
+        string effect_summary
+    }
+
+    CONFIG_SKILL_BOOK {
+        string id PK
+        string item_ref_id FK "Ref: CONFIG_ITEM"
+        string skill_id FK "Ref: CONFIG_SKILL"
+        boolean consume_on_use
+    }
+
+    %% ==========================================
+    %% RELATIONSHIPS
+    %% ==========================================
+
+    %% User -> Game Profiles
+    USER ||--|| OBJECT_USER_SETTINGS : "embeds (1:1)"
+    USER ||--|{ GAME_PROFILE : "has multiple (1:N)"
+    
+    %% Game Profile -> Game Assets
+    GAME_PROFILE ||--|{ CHARACTER : "owns (1:N)"
+    GAME_PROFILE ||--|| PERSONAL_ISLAND : "owns (1:1)"
+    GAME_PROFILE ||--|| HERO_ROSTER : "owns (1:1)"
+    GAME_PROFILE ||--|{ HERO_TEAM : "builds combat teams (1:N)"
+    
+    %% Session references Profile
+    SESSION_RUNTIME }|..|| GAME_PROFILE : "active in"
+
+    %% Character Internals
+    CHARACTER ||--|| STRUCT_BASE_STATS : "embeds"
+    CHARACTER ||--|| STRUCT_DERIVED_STATS : "embeds"
+    CHARACTER ||--|| STRUCT_SPECIAL_TRAITS : "embeds"
+    CHARACTER ||--|| STRUCT_CURRENT_RESOURCES : "embeds"
+    CHARACTER ||--|| STRUCT_POSITION_DATA : "embeds"
+    CHARACTER ||--|| STRUCT_APPEARANCE : "embeds"
+    CHARACTER ||--|| STRUCT_CHARACTER_CREATION_META : "embeds"
+    CHARACTER ||--|| STRUCT_COMBAT_KIT : "embeds"
+    CHARACTER ||--|{ STRUCT_CHARACTER_SKILL : "learns"
+    CHARACTER ||--|| STRUCT_SKILL_SLOTS : "uses"
+    CHARACTER ||--|| INVENTORY : "has (1:1)"
+    STRUCT_CHARACTER_SKILL }|..|| CONFIG_SKILL : "ref skill config"
+    STRUCT_CHARACTER_SKILL }|..o| CONFIG_SKILL_BOOK : "learned via book"
+    
+    %% Inventory
+    INVENTORY ||--|{ STRUCT_INVENTORY_ITEM : "contains"
+    STRUCT_INVENTORY_ITEM }|..|| CONFIG_ITEM : "ref config"
+
+    %% Island
+    PERSONAL_ISLAND ||--|| STRUCT_ISLAND_RESOURCES : "embeds"
+    PERSONAL_ISLAND ||--|{ STRUCT_BUILDING : "contains"
+    STRUCT_BUILDING }|..|| CONFIG_BUILDING : "ref config"
+
+    %% Hero Gacha
+    HERO_ROSTER ||--|{ STRUCT_OWNED_HERO : "contains"
+    STRUCT_OWNED_HERO }|..|| CONFIG_HERO : "ref hero config"
+    STRUCT_OWNED_HERO ||--|| STRUCT_BASE_STATS : "embeds (Reuse)"
+    STRUCT_OWNED_HERO ||--|| STRUCT_DERIVED_STATS : "embeds (Reuse)"
+    STRUCT_OWNED_HERO ||--|| STRUCT_SPECIAL_TRAITS : "embeds (Reuse)"
+    STRUCT_OWNED_HERO ||--|| STRUCT_CURRENT_RESOURCES : "embeds (Reuse)"
+    STRUCT_OWNED_HERO ||--|| STRUCT_APPEARANCE : "embeds (Randomized)"
+    STRUCT_OWNED_HERO ||--|| STRUCT_HERO_SUMMON_ROLL : "stores summon roll"
+    STRUCT_OWNED_HERO ||--|{ STRUCT_HERO_SKILL : "has skills"
+    STRUCT_HERO_SKILL }|..|| CONFIG_SKILL : "ref skill config"
+    STRUCT_HERO_SKILL }|..o| CONFIG_SKILL_BOOK : "learned via book"
+    STRUCT_OWNED_HERO ||--|| STRUCT_HERO_EQUIPMENT : "equips"
+    STRUCT_HERO_EQUIPMENT }|..|| STRUCT_INVENTORY_ITEM : "uses item uid"
+    HERO_TEAM ||--|{ STRUCT_TEAM_SLOT : "contains"
+    STRUCT_TEAM_SLOT }|..|| STRUCT_OWNED_HERO : "selects"
+    CONFIG_HERO ||--|| CONFIG_HERO_RANDOM_RULE : "defines stat/appearance roll"
+    CONFIG_HERO ||--|{ CONFIG_HERO_GACHA_SKILL_POOL : "defines random skill pool"
+    CONFIG_HERO_GACHA_SKILL_POOL }|..|| CONFIG_SKILL : "roll candidate skill"
+    CONFIG_SKILL_BOOK }|..|| CONFIG_ITEM : "extends skill book item"
+    CONFIG_SKILL_BOOK }|..|| CONFIG_SKILL : "teaches skill"
+
+    %% ==========================================
+    %% STYLING
+    %% ==========================================
+    classDef auth fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef char fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef inv fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    classDef adv fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef cfg fill:#f5f5f5,stroke:#616161,stroke-dasharray: 5 5
+
+    class USER,GAME_PROFILE,SESSION_RUNTIME,OBJECT_USER_SETTINGS auth
+    class CHARACTER,STRUCT_BASE_STATS,STRUCT_DERIVED_STATS,STRUCT_SPECIAL_TRAITS,STRUCT_CURRENT_RESOURCES,STRUCT_POSITION_DATA,STRUCT_APPEARANCE,STRUCT_CHARACTER_CREATION_META,STRUCT_COMBAT_KIT,STRUCT_CHARACTER_SKILL,STRUCT_SKILL_SLOTS char
+    class INVENTORY,STRUCT_INVENTORY_ITEM inv
+    class PERSONAL_ISLAND,STRUCT_ISLAND_RESOURCES,STRUCT_BUILDING,HERO_ROSTER,STRUCT_OWNED_HERO,STRUCT_HERO_SUMMON_ROLL,STRUCT_HERO_SKILL,STRUCT_HERO_EQUIPMENT,HERO_TEAM,STRUCT_TEAM_SLOT adv
+    class CONFIG_ITEM,CONFIG_BUILDING,CONFIG_HERO,CONFIG_HERO_RANDOM_RULE,CONFIG_HERO_GACHA_SKILL_POOL,CONFIG_SKILL,CONFIG_SKILL_BOOK cfg
+ 
