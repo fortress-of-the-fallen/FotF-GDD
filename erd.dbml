@@ -16,9 +16,11 @@ Table USER [headercolor: #D6EAF8] {
   created_at date
   last_login date
   settings object [note: 'Embed: OBJECT_USER_SETTINGS']
+  settings_diagram_id int [ref: > OBJECT_USER_SETTINGS._diagram_id, note: 'Virtual FK for diagram only']
 }
 
 Table OBJECT_USER_SETTINGS [headercolor: #D6EAF8] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   master_volume float
   sfx_volume float
   language_code string
@@ -56,18 +58,28 @@ Table CHARACTER [headercolor: #D5F5E3] {
   current_exp long
   created_at date
   base_stats object [note: 'Embed: STRUCT_BASE_STATS']
+  base_stats_diagram_id int [ref: > STRUCT_BASE_STATS._diagram_id, note: 'Virtual FK for diagram only']
   derived_stats object [note: 'Embed: STRUCT_DERIVED_STATS']
+  derived_stats_diagram_id int [ref: > STRUCT_DERIVED_STATS._diagram_id, note: 'Virtual FK for diagram only']
   special_traits object [note: 'Embed: STRUCT_SPECIAL_TRAITS']
+  special_traits_diagram_id int [ref: > STRUCT_SPECIAL_TRAITS._diagram_id, note: 'Virtual FK for diagram only']
   resources object [note: 'Embed: STRUCT_CURRENT_RESOURCES']
+  resources_diagram_id int [ref: > STRUCT_CURRENT_RESOURCES._diagram_id, note: 'Virtual FK for diagram only']
   position object [note: 'Embed: STRUCT_POSITION_DATA']
+  position_diagram_id int [ref: > STRUCT_POSITION_DATA._diagram_id, note: 'Virtual FK for diagram only']
   appearance object [note: 'Embed: STRUCT_APPEARANCE']
+  appearance_diagram_id int [ref: > STRUCT_APPEARANCE._diagram_id, note: 'Virtual FK for diagram only']
   creation_meta object [note: 'Embed: STRUCT_CHARACTER_CREATION_META']
+  creation_meta_diagram_id int [ref: > STRUCT_CHARACTER_CREATION_META._diagram_id, note: 'Virtual FK for diagram only']
   combat_kit object [note: 'Embed: STRUCT_COMBAT_KIT']
+  combat_kit_diagram_id int [ref: > STRUCT_COMBAT_KIT._diagram_id, note: 'Virtual FK for diagram only']
   learned_skills array [note: 'List: STRUCT_CHARACTER_SKILL']
   skill_slots object [note: 'Embed: STRUCT_SKILL_SLOTS']
+  skill_slots_diagram_id int [ref: > STRUCT_SKILL_SLOTS._diagram_id, note: 'Virtual FK for diagram only']
 }
 
 Table STRUCT_BASE_STATS [headercolor: #D5F5E3] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   STR int
   DEX int
   CON int
@@ -77,6 +89,7 @@ Table STRUCT_BASE_STATS [headercolor: #D5F5E3] {
 }
 
 Table STRUCT_DERIVED_STATS [headercolor: #D5F5E3] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   HP float [note: 'Depend: CON, STR']
   MP float [note: 'Depend: WIS, INT']
   PATK float [note: 'Depend: STR, DEX, CON']
@@ -90,6 +103,7 @@ Table STRUCT_DERIVED_STATS [headercolor: #D5F5E3] {
 }
 
 Table STRUCT_SPECIAL_TRAITS [headercolor: #D5F5E3] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   karma int
   affinity enum [note: 'none, water, fire, wind, earth']
   luck int
@@ -97,6 +111,7 @@ Table STRUCT_SPECIAL_TRAITS [headercolor: #D5F5E3] {
 }
 
 Table STRUCT_CURRENT_RESOURCES [headercolor: #D5F5E3] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   hp_current float
   hp_max float
   mp_current float
@@ -105,6 +120,7 @@ Table STRUCT_CURRENT_RESOURCES [headercolor: #D5F5E3] {
 }
 
 Table STRUCT_POSITION_DATA [headercolor: #D5F5E3] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   map_id string
   pos_x float
   pos_y float
@@ -113,6 +129,7 @@ Table STRUCT_POSITION_DATA [headercolor: #D5F5E3] {
 }
 
 Table STRUCT_APPEARANCE [headercolor: #D5F5E3] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   hair_model_id string
   hair_color_hex string
   skin_color_hex string
@@ -120,6 +137,7 @@ Table STRUCT_APPEARANCE [headercolor: #D5F5E3] {
 }
 
 Table STRUCT_CHARACTER_CREATION_META [headercolor: #D5F5E3] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   appearance_randomized boolean [note: 'Default: true']
   appearance_roll_seed int
   appearance_reroll_count int
@@ -127,6 +145,7 @@ Table STRUCT_CHARACTER_CREATION_META [headercolor: #D5F5E3] {
 }
 
 Table STRUCT_COMBAT_KIT [headercolor: #D5F5E3] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   dash_unlocked boolean [note: 'Default: true']
   basic_attack_unlocked boolean [note: 'Default: true']
   basic_attack_weapon_type string
@@ -142,6 +161,7 @@ Table STRUCT_CHARACTER_SKILL [headercolor: #D5F5E3] {
 }
 
 Table STRUCT_SKILL_SLOTS [headercolor: #D5F5E3] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   max_active_slots int
   max_combo_slots int
   equipped_active_skill_ids array
@@ -181,10 +201,12 @@ Table PERSONAL_ISLAND [headercolor: #FADBD8] {
   town_hall_level int
   last_collected_at date
   resources object [note: 'Embed: STRUCT_ISLAND_RESOURCES']
+  resources_diagram_id int [ref: > STRUCT_ISLAND_RESOURCES._diagram_id, note: 'Virtual FK for diagram only']
   buildings array [note: 'List: STRUCT_BUILDING']
 }
 
 Table STRUCT_ISLAND_RESOURCES [headercolor: #FADBD8] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   wood_storage long
   stone_storage long
   food_storage long
@@ -225,16 +247,24 @@ Table STRUCT_OWNED_HERO [headercolor: #FADBD8] {
   summoned_at date
   random_skill_roll_count int [note: 'Number of skills rolled on gacha']
   combat_stats object [note: 'Embed: STRUCT_BASE_STATS']
+  combat_stats_diagram_id int [ref: > STRUCT_BASE_STATS._diagram_id, note: 'Virtual FK for diagram only']
   derived_stats object [note: 'Embed: STRUCT_DERIVED_STATS']
+  derived_stats_diagram_id int [ref: > STRUCT_DERIVED_STATS._diagram_id, note: 'Virtual FK for diagram only']
   special_traits object [note: 'Embed: STRUCT_SPECIAL_TRAITS']
+  special_traits_diagram_id int [ref: > STRUCT_SPECIAL_TRAITS._diagram_id, note: 'Virtual FK for diagram only']
   resources object [note: 'Embed: STRUCT_CURRENT_RESOURCES']
+  resources_diagram_id int [ref: > STRUCT_CURRENT_RESOURCES._diagram_id, note: 'Virtual FK for diagram only']
   appearance object [note: 'Embed: STRUCT_APPEARANCE']
+  appearance_diagram_id int [ref: > STRUCT_APPEARANCE._diagram_id, note: 'Virtual FK for diagram only']
   summon_roll object [note: 'Embed: STRUCT_HERO_SUMMON_ROLL']
+  summon_roll_diagram_id int [ref: > STRUCT_HERO_SUMMON_ROLL._diagram_id, note: 'Virtual FK for diagram only']
   skills array [note: 'List: STRUCT_HERO_SKILL']
   equipment object [note: 'Embed: STRUCT_HERO_EQUIPMENT']
+  equipment_diagram_id int [ref: > STRUCT_HERO_EQUIPMENT._diagram_id, note: 'Virtual FK for diagram only']
 }
 
 Table STRUCT_HERO_SUMMON_ROLL [headercolor: #FADBD8] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   stat_roll_seed int
   appearance_roll_seed int
   rolled_at date
@@ -253,6 +283,7 @@ Table STRUCT_HERO_SKILL [headercolor: #FADBD8] {
 }
 
 Table STRUCT_HERO_EQUIPMENT [headercolor: #FADBD8] {
+  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
   weapon_item_uid string
   armor_item_uid string
   accessory_item_uid string
