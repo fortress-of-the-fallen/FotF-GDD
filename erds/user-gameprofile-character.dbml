@@ -1,48 +1,44 @@
 //////////////////////////////////////////////////////////////
-// Scope: USER -> GAME_PROFILE -> CHARACTER
-// Extracted from: game-design-docs/erd.dbml
+// Scope (MVP Phase 1): Login + Create Profile + Create Character
+// Keep only core fields. Stats/skills/combat data will be added in Phase 2.
 //////////////////////////////////////////////////////////////
 
 Table USER [headercolor: #D6EAF8] {
   _id ObjectId [pk]
-  username string
-  email string
+  username string [not null, unique]
+  email string [not null, unique]
   password_hash string
   role string
   status enum
-  created_at date
+  created_at datetime
   last_login date
-  settings object [note: 'Embed: OBJECT_USER_SETTINGS']
 }
 
 Table GAME_PROFILE [headercolor: #D6EAF8] {
   _id ObjectId [pk]
-  user_id ObjectId [ref: > USER._id]
-  profile_name string
+  user_id ObjectId [not null, ref: > USER._id]
+  profile_name string [not null]
   server_id string [note: 'Optional: Asia, NA...']
-  created_at date
+  created_at datetime
   last_played date
-  preferences object [note: 'Embed: Local Game Settings']
+
+  indexes {
+    (user_id)
+    (user_id, profile_name) [unique]
+  }
 }
 
 Table CHARACTER [headercolor: #D5F5E3] {
   _id ObjectId [pk]
-  profile_id ObjectId [ref: > GAME_PROFILE._id]
-  name string [note: 'User input at profile creation']
-  gender enum [note: 'User selected at profile creation']
-  race enum [note: 'Human, Elf, Orc (User selected at profile creation)']
-  class enum [note: 'Warrior, Mage, Archer']
-  level int
-  current_exp long
-  created_at date
-  base_stats object [note: 'Embed: STRUCT_BASE_STATS']
-  derived_stats object [note: 'Embed: STRUCT_DERIVED_STATS']
-  special_traits object [note: 'Embed: STRUCT_SPECIAL_TRAITS']
-  resources object [note: 'Embed: STRUCT_CURRENT_RESOURCES']
-  position object [note: 'Embed: STRUCT_POSITION_DATA']
-  appearance object [note: 'Embed: STRUCT_APPEARANCE']
-  creation_meta object [note: 'Embed: STRUCT_CHARACTER_CREATION_META']
-  combat_kit object [note: 'Embed: STRUCT_COMBAT_KIT']
-  learned_skills array [note: 'List: STRUCT_CHARACTER_SKILL']
-  skill_slots object [note: 'Embed: STRUCT_SKILL_SLOTS']
+  profile_id ObjectId [not null, ref: > GAME_PROFILE._id]
+  name string [not null, note: 'User input at character creation']
+  gender enum [not null, note: 'User selected at character creation']
+  race enum [not null, note: 'User selected at character creation']
+  appearance object [note: 'Random by server at character creation']
+  creation_meta object [note: 'appearance_randomized=true, roll_seed, reroll_count']
+  created_at datetime
+
+  indexes {
+    (profile_id) [unique]
+  }
 }

@@ -272,3 +272,9 @@
 \contentsline {section}{Phân công nhiệm vụ và đóng góp của các thành viên}{96}{section*.685}%
 \contentsline {section}{Kế hoạch giai đoạn tiếp theo}{97}{section*.687}%
 \contentsline {section}{Tài liệu tham khảo}{99}{table.caption.688}%
+\contentsline {section}{\numberline {A}Phụ lục hình ảnh cần bổ sung}{101}{appendix.690}%
+\contentsline {subsection}{\numberline {A.1}Nhóm màn hình xác thực và khởi động}{101}{subsection.691}%
+\contentsline {subsection}{\numberline {A.2}Nhóm màn hình chính và tiến trình người chơi}{102}{subsection.696}%
+\contentsline {subsection}{\numberline {A.3}Nhóm hero, formation, upgrade và evolve}{104}{subsection.703}%
+\contentsline {subsection}{\numberline {A.4}Nhóm tutorial và campaign battle}{106}{subsection.710}%
+\contentsline {subsection}{\numberline {A.5}Nhóm backend API và dữ liệu}{108}{subsection.716}%

@@ -3,8 +3,58 @@
   "darkMode": true,
   "gridEnabling": false,
   "detailLevel": "All",
-  "tablePositions": [],
+  "tablePositions": [
+    {
+      "name": "USER",
+      "schemaName": "public",
+      "x": 360,
+      "y": 736
+    },
+    {
+      "name": "GAME_PROFILE",
+      "schemaName": "public",
+      "x": 48,
+      "y": 528
+    },
+    {
+      "name": "CHARACTER",
+      "schemaName": "public",
+      "x": 504,
+      "y": 48
+    }
+  ],
   "tableGroupCollapseStates": [],
   "stickyNoteLayouts": [],
-  "referencePaths": []
+  "referencePaths": [
+    {
+      "firstFieldNames": [
+        "_id"
+      ],
+      "firstTableName": "USER",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "user_id"
+      ],
+      "secondTableName": "GAME_PROFILE",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "_id"
+      ],
+      "firstTableName": "GAME_PROFILE",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "profile_id"
+      ],
+      "secondTableName": "CHARACTER",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    }
+  ]
 }

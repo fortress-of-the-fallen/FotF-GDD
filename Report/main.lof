@@ -16,3 +16,31 @@
 \contentsline {figure}{\numberline {15}{\ignorespaces Màn hình tạo profile/\allowbreak nhân vật (Create Profile/\allowbreak Character)}}{76}{figure.caption.593}%
 \contentsline {figure}{\numberline {16}{\ignorespaces UI Hub: điều hướng Inventory/\allowbreak Heroes/\allowbreak Battle/\allowbreak Gacha/\allowbreak Quests}}{77}{figure.caption.595}%
 \contentsline {figure}{\numberline {17}{\ignorespaces UI Inventory: phân loại item, thao tác Use/\allowbreak Equip và hiển thị currency}}{78}{figure.caption.597}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Màn hình đăng nhập với username và password}}{101}{figure.caption.692}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Màn hình đăng ký với display name, username, password và confirm password}}{101}{figure.caption.693}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Thanh loading sau khi đăng nhập hoặc đăng ký thành công}}{102}{figure.caption.694}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Thông báo lỗi khi đăng nhập hoặc đăng ký sai dữ liệu}}{102}{figure.caption.695}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Màn hình setup battle sau khi tải profile người chơi}}{102}{figure.caption.697}%
+\contentsline {figure}{\numberline {23}{\ignorespaces HUD tài nguyên hiển thị gold, gem, level và EXP}}{103}{figure.caption.698}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Màn hình quest trước khi claim reward}}{103}{figure.caption.699}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Màn hình quest sau khi claim reward và tài nguyên được cập nhật}}{103}{figure.caption.700}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Màn hình reward sau khi kết thúc campaign battle}}{104}{figure.caption.701}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Màn hình level up sau khi người chơi nhận EXP}}{104}{figure.caption.702}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Màn hình danh sách hero với bộ lọc All, Normal và Elite}}{104}{figure.caption.704}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Màn hình đội hình hiện tại trước khi vào trận}}{105}{figure.caption.705}%
+\contentsline {figure}{\numberline {30}{\ignorespaces Màn hình chi tiết hero và thông số cơ bản}}{105}{figure.caption.706}%
+\contentsline {figure}{\numberline {31}{\ignorespaces Màn hình upgrade hero trước khi nâng cấp}}{105}{figure.caption.707}%
+\contentsline {figure}{\numberline {32}{\ignorespaces Màn hình upgrade hero sau khi nâng cấp thành công}}{106}{figure.caption.708}%
+\contentsline {figure}{\numberline {33}{\ignorespaces Màn hình evolve hero với điều kiện shard và currency}}{106}{figure.caption.709}%
+\contentsline {figure}{\numberline {34}{\ignorespaces Tutorial màn đầu hướng dẫn bấm Play}}{106}{figure.caption.711}%
+\contentsline {figure}{\numberline {35}{\ignorespaces Tutorial deploy unit trong trận campaign đầu tiên}}{107}{figure.caption.712}%
+\contentsline {figure}{\numberline {36}{\ignorespaces Tutorial chơi màn 2 sau khi hoàn thành onboarding ban đầu}}{107}{figure.caption.713}%
+\contentsline {figure}{\numberline {37}{\ignorespaces Tutorial chỉ vào tab Cards để nâng cấp hero}}{107}{figure.caption.714}%
+\contentsline {figure}{\numberline {38}{\ignorespaces Gameplay campaign battle đang diễn ra}}{108}{figure.caption.715}%
+\contentsline {figure}{\numberline {39}{\ignorespaces Log gọi API \texttt {GET /api/v1/configs/manifest} thành công}}{108}{figure.caption.717}%
+\contentsline {figure}{\numberline {40}{\ignorespaces Log gọi API đăng nhập hoặc đăng ký thành công}}{108}{figure.caption.718}%
+\contentsline {figure}{\numberline {41}{\ignorespaces Log gọi API \texttt {GET /api/v1/me} tải profile người chơi}}{109}{figure.caption.719}%
+\contentsline {figure}{\numberline {42}{\ignorespaces Log cập nhật tutorial progress lên backend}}{109}{figure.caption.720}%
+\contentsline {figure}{\numberline {43}{\ignorespaces Log claim quest reward và phản hồi từ backend}}{109}{figure.caption.721}%
+\contentsline {figure}{\numberline {44}{\ignorespaces Log upgrade hoặc evolve hero qua backend}}{110}{figure.caption.722}%
+\contentsline {figure}{\numberline {45}{\ignorespaces Ảnh MongoDB collection chính của player profile hoặc inventory}}{110}{figure.caption.723}%
