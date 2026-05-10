@@ -1,0 +1,14 @@
+sequenceDiagram
+  autonumber
+  actor Player
+  participant API as AuthController
+  participant Service as AuthApplicationService
+  participant SessionRepo as Session(refresh_tokens)
+
+  Player->>API: POST /v1/auth/refresh (refreshToken)
+  API->>Service: refresh(refreshToken, request)
+  Service->>SessionRepo: validate tokenHash + expiry
+  SessionRepo-->>Service: valid session
+  Service->>SessionRepo: rotate session token
+  Service-->>API: new accessToken + refreshToken
+  API-->>Player: 200 success envelope

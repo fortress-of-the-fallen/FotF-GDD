@@ -1,0 +1,57 @@
+@startuml
+left to right direction
+
+skinparam backgroundColor #0b1220
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontColor #e5e7eb
+skinparam ArrowColor #cbd5e1
+skinparam packageStyle rectangle
+skinparam rectangle {
+  BorderColor #64748b
+  FontColor #e2e8f0
+}
+skinparam actor {
+  BorderColor #93c5fd
+  FontColor #dbeafe
+}
+skinparam usecase {
+  BorderColor #f8fafc
+  FontColor #f8fafc
+  BackgroundColor #1f2937
+}
+
+actor Player as player
+rectangle "Character & Formation Module" #0f3d2e {
+  usecase "Create Character" as UC_CreateChar #166b4f
+  usecase "List Characters" as UC_ListChar #166b4f
+  usecase "Delete Character" as UC_DeleteChar #166b4f
+  usecase "Update Base Stats" as UC_UpdateStats #166b4f
+  usecase "Get Formation" as UC_GetFormation #166b4f
+  usecase "Update Formation" as UC_UpdateFormation #166b4f
+  usecase "Find Opponents" as UC_FindOpp #166b4f
+}
+rectangle "Persistence" #3f1d2e {
+  usecase "characters" as DB_CH #5b233f
+  usecase "character_appearances" as DB_CA #5b233f
+  usecase "character_stats" as DB_CS #5b233f
+  usecase "player_formations" as DB_PF #5b233f
+  usecase "players" as DB_P #5b233f
+}
+player --> UC_CreateChar
+player --> UC_ListChar
+player --> UC_DeleteChar
+player --> UC_UpdateStats
+player --> UC_GetFormation
+player --> UC_UpdateFormation
+player --> UC_FindOpp
+UC_CreateChar --> DB_CH
+UC_CreateChar --> DB_CA
+UC_CreateChar --> DB_CS
+UC_ListChar --> DB_CH
+UC_DeleteChar --> DB_CH
+UC_UpdateStats --> DB_CS
+UC_GetFormation --> DB_PF
+UC_UpdateFormation --> DB_PF
+UC_FindOpp --> DB_P
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+
+skinparam backgroundColor #0b1220
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontColor #e5e7eb
+skinparam ArrowColor #cbd5e1
+skinparam packageStyle rectangle
+skinparam rectangle {
+  BorderColor #64748b
+  FontColor #e2e8f0
+}
+skinparam actor {
+  BorderColor #93c5fd
+  FontColor #dbeafe
+}
+skinparam usecase {
+  BorderColor #f8fafc
+  FontColor #f8fafc
+  BackgroundColor #1f2937
+}
+
+actor "Admin / LiveOps" as admin
+rectangle "Config Module" #312e81 {
+  usecase "Get Config Manifest" as UC_Manifest #4338ca
+  usecase "Get Config by Name" as UC_GetCfg #4338ca
+}
+rectangle "Data Sources" #0f3b3b {
+  usecase "configs" as DB_CFG #115e59
+  usecase "redis cache" as DB_Redis #115e59
+}
+admin --> UC_Manifest
+admin --> UC_GetCfg
+UC_Manifest --> DB_CFG
+UC_Manifest --> DB_Redis
+UC_GetCfg --> DB_CFG
+UC_GetCfg --> DB_Redis
+@enduml

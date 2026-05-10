@@ -1,0 +1,23 @@
+sequenceDiagram
+  autonumber
+  actor Player
+  participant API as BattleController
+  participant Battle as BattleService
+  participant BRepo as BattleSession(battle_sessions)
+  participant Reward as RewardService
+  participant LRepo as Leaderboard(leaderboard_scores)
+
+  Player->>API: POST /v1/battles/start
+  API->>Battle: startBattle(auth, payload)
+  Battle->>BRepo: create session(status=active)
+  BRepo-->>Battle: battleId + seed
+  Battle-->>API: battle state
+  API-->>Player: 200 start response
+
+  Player->>API: POST /v1/battles/:battleId/finish
+  API->>Battle: finishBattle(auth, battleId, result)
+  Battle->>BRepo: update status + summary + rewards
+  Battle->>Reward: grant rewards (if win)
+  Battle->>LRepo: update score/rank
+  Battle-->>API: final summary
+  API-->>Player: 200 finish response

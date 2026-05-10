@@ -1,420 +1,256 @@
 //////////////////////////////////////////////////////////////
-// Source: game-design-docs/erd.mmd
-// Target: dbdiagram.io (DBML)
-// Notes:
-// - Names are kept close to Mermaid ERD for easy diff.
-// - Embedded/list structs are represented as tables for readability.
+// Synced with backend schema at prisma/schema.prisma
 //////////////////////////////////////////////////////////////
 
 Table USER [headercolor: #D6EAF8] {
-  _id ObjectId [pk]
-  username string
-  email string
-  password_hash string
+  id string [pk]
+  username string [unique]
+  passwordHash string
+  playerId string
+  status string
   role string
-  status enum
-  created_at date
-  last_login date
-  settings object [note: 'Embed: OBJECT_USER_SETTINGS']
-  settings_diagram_id int [ref: > OBJECT_USER_SETTINGS._diagram_id, note: 'Virtual FK for diagram only']
+  maxSession int
+  max_game_user int
+  createdAt datetime
+  updatedAt datetime
+  lastLoginAt datetime
 }
 
-Table OBJECT_USER_SETTINGS [headercolor: #D6EAF8] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  master_volume float
-  sfx_volume float
-  language_code string
-  notifications_enabled boolean
+Table SESSION [headercolor: #D6EAF8] {
+  id string [pk]
+  accountId string [ref: > USER.id]
+  playerId string
+  tokenHash string [unique]
+  expiresAt datetime
+  revokedAt datetime
+  createdAt datetime
+  userAgent string
+  ip string
+
+  indexes {
+    (accountId)
+    (playerId)
+    (expiresAt)
+  }
 }
 
-Table GAME_PROFILE [headercolor: #D6EAF8] {
-  _id ObjectId [pk]
-  user_id ObjectId [ref: > USER._id]
-  profile_name string
-  server_id string [note: 'Optional: Asia, NA...']
-  created_at date
-  last_played date
-  preferences object [note: 'Embed: Local Game Settings']
+Table PLAYER [headercolor: #D5F5E3] {
+  id string [pk]
+  accountId string [unique, ref: > USER.id]
+  profile json
+  statistics json
+  tutorialProgress json
+  currency json
+  configVersion string
+  createdAt datetime
+  updatedAt datetime
 }
 
-Table SESSION_RUNTIME [headercolor: #D6EAF8] {
-  token string [pk]
-  socket_id string
-  user_id string
-  profile_id string [note: 'Current Active Profile']
-  character_id string
-  current_room_id string
-  expires_at timestamp
+Table PLAYER_INVENTORY_ITEM [headercolor: #FCF3CF] {
+  id string [pk]
+  playerId string [ref: > PLAYER.id]
+  itemId string
+  itemType string
+  itemClass string
+  remainingUses int
+  customData json
+  createdAt datetime
+  updatedAt datetime
+
+  indexes {
+    (playerId, itemType)
+    (playerId, itemId)
+  }
+}
+
+Table PLAYER_FORMATION [headercolor: #FCF3CF] {
+  id string [pk]
+  playerId string [ref: > PLAYER.id]
+  name string
+  slots json
+  createdAt datetime
+  updatedAt datetime
+
+  indexes {
+    (playerId, name) [unique]
+  }
+}
+
+Table PLAYER_QUEST [headercolor: #FCF3CF] {
+  id string [pk]
+  playerId string [ref: > PLAYER.id]
+  questId int
+  type string
+  actionId string
+  progress int
+  required int
+  claimed boolean
+  periodKey string
+  createdAt datetime
+  updatedAt datetime
+
+  indexes {
+    (playerId, questId, periodKey) [unique]
+    (playerId, type, periodKey)
+  }
+}
+
+Table PLAYER_QUEST_PROGRESS_REWARD [headercolor: #FCF3CF] {
+  id string [pk]
+  playerId string [ref: > PLAYER.id]
+  track string
+  stage int
+  points int
+  periodKey string
+  reward json
+  claimed boolean
+  createdAt datetime
+  updatedAt datetime
+
+  indexes {
+    (playerId, track, stage, periodKey) [unique]
+    (playerId, track, periodKey)
+  }
+}
+
+Table BATTLE_SESSION [headercolor: #FADBD8] {
+  id string [pk]
+  playerId string [ref: > PLAYER.id]
+  opponentPlayerId string
+  mode string
+  seed int
+  status string
+  startedAt datetime
+  expiresAt datetime
+  finishedAt datetime
+  result string
+  summary json
+  rewards json
+  configVersion string
+
+  indexes {
+    (playerId, startedAt)
+    (status, expiresAt)
+    (opponentPlayerId)
+  }
+}
+
+Table REWARD_TRANSACTION [headercolor: #FADBD8] {
+  id string [pk]
+  playerId string [ref: > PLAYER.id]
+  sourceType string
+  sourceId string
+  idempotencyKey string
+  changes json
+  balanceAfter json
+  createdAt datetime
+
+  indexes {
+    (playerId, createdAt)
+    (sourceType, sourceId)
+  }
+}
+
+Table LEADERBOARD_SCORE [headercolor: #FADBD8] {
+  id string [pk]
+  playerId string [ref: > PLAYER.id]
+  type string
+  score int
+  displayName string
+  avatar string
+  country string
+  updatedAt datetime
+
+  indexes {
+    (playerId, type) [unique]
+    (type, score)
+  }
+}
+
+Table IDEMPOTENCY_RECORD [headercolor: #FADBD8] {
+  id string [pk]
+  playerId string [ref: > PLAYER.id]
+  idempotencyKey string
+  action string
+  requestHash string
+  response json
+  createdAt datetime
+
+  indexes {
+    (playerId, idempotencyKey) [unique]
+    (playerId, createdAt)
+  }
+}
+
+Table CONFIG [headercolor: #EAECEE] {
+  id string [pk]
+  name string
+  version string
+  isActive boolean
+  records json
+  createdAt datetime
+  activatedAt datetime
+
+  indexes {
+    (name, version) [unique]
+    (name, isActive)
+  }
 }
 
 Table CHARACTER [headercolor: #D5F5E3] {
-  _id ObjectId [pk]
-  profile_id ObjectId [ref: > GAME_PROFILE._id]
-  name string [note: 'User input at profile creation']
-  gender enum [note: 'User selected at profile creation']
-  race enum [note: 'Human, Elf, Orc (User selected at profile creation)']
-  class enum [note: 'Warrior, Mage, Archer']
-  level int
-  current_exp long
-  created_at date
-  base_stats object [note: 'Embed: STRUCT_BASE_STATS']
-  base_stats_diagram_id int [ref: > STRUCT_BASE_STATS._diagram_id, note: 'Virtual FK for diagram only']
-  derived_stats object [note: 'Embed: STRUCT_DERIVED_STATS']
-  derived_stats_diagram_id int [ref: > STRUCT_DERIVED_STATS._diagram_id, note: 'Virtual FK for diagram only']
-  special_traits object [note: 'Embed: STRUCT_SPECIAL_TRAITS']
-  special_traits_diagram_id int [ref: > STRUCT_SPECIAL_TRAITS._diagram_id, note: 'Virtual FK for diagram only']
-  resources object [note: 'Embed: STRUCT_CURRENT_RESOURCES']
-  resources_diagram_id int [ref: > STRUCT_CURRENT_RESOURCES._diagram_id, note: 'Virtual FK for diagram only']
-  position object [note: 'Embed: STRUCT_POSITION_DATA']
-  position_diagram_id int [ref: > STRUCT_POSITION_DATA._diagram_id, note: 'Virtual FK for diagram only']
-  appearance object [note: 'Embed: STRUCT_APPEARANCE']
-  appearance_diagram_id int [ref: > STRUCT_APPEARANCE._diagram_id, note: 'Virtual FK for diagram only']
-  creation_meta object [note: 'Embed: STRUCT_CHARACTER_CREATION_META']
-  creation_meta_diagram_id int [ref: > STRUCT_CHARACTER_CREATION_META._diagram_id, note: 'Virtual FK for diagram only']
-  combat_kit object [note: 'Embed: STRUCT_COMBAT_KIT']
-  combat_kit_diagram_id int [ref: > STRUCT_COMBAT_KIT._diagram_id, note: 'Virtual FK for diagram only']
-  learned_skills array [note: 'List: STRUCT_CHARACTER_SKILL']
-  skill_slots object [note: 'Embed: STRUCT_SKILL_SLOTS']
-  skill_slots_diagram_id int [ref: > STRUCT_SKILL_SLOTS._diagram_id, note: 'Virtual FK for diagram only']
-}
-
-Table STRUCT_BASE_STATS [headercolor: #D5F5E3] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  STR int
-  DEX int
-  CON int
-  INT int
-  WIS int
-  CHA int
-}
-
-Table STRUCT_DERIVED_STATS [headercolor: #D5F5E3] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  HP float [note: 'Depend: CON, STR']
-  MP float [note: 'Depend: WIS, INT']
-  PATK float [note: 'Depend: STR, DEX, CON']
-  DATK float [note: 'Depend: STR, DEX, CON']
-  MATK float [note: 'Depend: INT, WIS']
-  MDEF float [note: 'Depend: INT, WIS']
-  SPD float [note: 'Depend: DEX']
-  CRIT float [note: 'Depend: DEX']
-  ACC float [note: 'Depend: DEX, INT']
-  EVA float [note: 'Depend: DEX, CON']
-}
-
-Table STRUCT_SPECIAL_TRAITS [headercolor: #D5F5E3] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  karma int
-  affinity enum [note: 'none, water, fire, wind, earth']
-  luck int
-  resistance int
-}
-
-Table STRUCT_CURRENT_RESOURCES [headercolor: #D5F5E3] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  hp_current float
-  hp_max float
-  mp_current float
-  mp_max float
-  stamina_current float
-}
-
-Table STRUCT_POSITION_DATA [headercolor: #D5F5E3] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  map_id string
-  pos_x float
-  pos_y float
-  pos_z float
-  rot_y float
-}
-
-Table STRUCT_APPEARANCE [headercolor: #D5F5E3] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  hair_model_id string
-  hair_color_hex string
-  skin_color_hex string
-  face_model_id string
-}
-
-Table STRUCT_CHARACTER_CREATION_META [headercolor: #D5F5E3] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  appearance_randomized boolean [note: 'Default: true']
-  appearance_roll_seed int
-  appearance_reroll_count int
-  allow_manual_appearance_edit boolean [note: 'Default: false']
-}
-
-Table STRUCT_COMBAT_KIT [headercolor: #D5F5E3] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  dash_unlocked boolean [note: 'Default: true']
-  basic_attack_unlocked boolean [note: 'Default: true']
-  basic_attack_weapon_type string
-}
-
-Table STRUCT_CHARACTER_SKILL [headercolor: #D5F5E3] {
-  skill_id string [note: 'Ref CONFIG_SKILL.id']
-  skill_level int
-  source enum [note: 'default, skill_book']
-  learned_by_book_id string [note: 'Optional: Ref CONFIG_SKILL_BOOK.id']
-  unlocked boolean
-  learned_at date
-}
-
-Table STRUCT_SKILL_SLOTS [headercolor: #D5F5E3] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  max_active_slots int
-  max_combo_slots int
-  equipped_active_skill_ids array
-  equipped_combo_skill_ids array
-}
-
-Table INVENTORY [headercolor: #FCF3CF] {
-  _id ObjectId [pk]
-  character_id ObjectId [ref: - CHARACTER._id]
-  max_slots int
-  used_slots int
-  currency_gold double
-  currency_gem double
-  items array [note: 'List: STRUCT_INVENTORY_ITEM']
-}
-
-Table STRUCT_INVENTORY_ITEM [headercolor: #FCF3CF] {
-  item_ref_id string [note: 'Ref CONFIG_ITEM.id']
-  quantity int
-  slot_index int
-  enhancement_level int
-  durability_current float
-  unique_uid string
-}
-
-Table CONFIG_ITEM [headercolor: #EAECEE] {
   id string [pk]
-  name string
-  type enum [note: 'weapon, armor, accessory, consumable, material, skill_book']
-  max_stack int
+  character_name string
+  race string
+  gender string
+  userId string [ref: > USER.id]
+  isDeleted boolean
+  isLocked boolean
 }
 
-Table PERSONAL_ISLAND [headercolor: #FADBD8] {
-  _id ObjectId [pk]
-  profile_id ObjectId [ref: - GAME_PROFILE._id]
-  island_name string
-  town_hall_level int
-  last_collected_at date
-  resources object [note: 'Embed: STRUCT_ISLAND_RESOURCES']
-  resources_diagram_id int [ref: > STRUCT_ISLAND_RESOURCES._diagram_id, note: 'Virtual FK for diagram only']
-  buildings array [note: 'List: STRUCT_BUILDING']
-}
-
-Table STRUCT_ISLAND_RESOURCES [headercolor: #FADBD8] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  wood_storage long
-  stone_storage long
-  food_storage long
-  iron_storage long
-}
-
-Table STRUCT_BUILDING [headercolor: #FADBD8] {
-  building_uid string
-  type enum [note: 'Ref: CONFIG_BUILDING (by design intent)']
-  level int
-  status enum
-  finish_time timestamp
-  pos_grid_x int
-  pos_grid_y int
-}
-
-Table CONFIG_BUILDING [headercolor: #EAECEE] {
+Table CHARACTER_APPEARANCE [headercolor: #D5F5E3] {
   id string [pk]
-  name string
-  build_time_seconds long
-  cost_requirements object
+  characterId string [unique, ref: > CHARACTER.id]
+  hair string
+  beard string
+  eye string
+  hairColor string
+  beardColor string
+  eyeColor string
 }
 
-Table HERO_ROSTER [headercolor: #FADBD8] {
-  _id ObjectId [pk]
-  profile_id ObjectId [ref: - GAME_PROFILE._id]
-  total_heroes int
-  heroes array [note: 'List: STRUCT_OWNED_HERO']
-}
-
-Table STRUCT_OWNED_HERO [headercolor: #FADBD8] {
-  hero_uid string
-  hero_config_id string [note: 'Ref CONFIG_HERO.id']
-  level int
-  current_exp long
-  class enum
-  limit_break int
-  summoned_at date
-  random_skill_roll_count int [note: 'Number of skills rolled on gacha']
-  combat_stats object [note: 'Embed: STRUCT_BASE_STATS']
-  combat_stats_diagram_id int [ref: > STRUCT_BASE_STATS._diagram_id, note: 'Virtual FK for diagram only']
-  derived_stats object [note: 'Embed: STRUCT_DERIVED_STATS']
-  derived_stats_diagram_id int [ref: > STRUCT_DERIVED_STATS._diagram_id, note: 'Virtual FK for diagram only']
-  special_traits object [note: 'Embed: STRUCT_SPECIAL_TRAITS']
-  special_traits_diagram_id int [ref: > STRUCT_SPECIAL_TRAITS._diagram_id, note: 'Virtual FK for diagram only']
-  resources object [note: 'Embed: STRUCT_CURRENT_RESOURCES']
-  resources_diagram_id int [ref: > STRUCT_CURRENT_RESOURCES._diagram_id, note: 'Virtual FK for diagram only']
-  appearance object [note: 'Embed: STRUCT_APPEARANCE']
-  appearance_diagram_id int [ref: > STRUCT_APPEARANCE._diagram_id, note: 'Virtual FK for diagram only']
-  summon_roll object [note: 'Embed: STRUCT_HERO_SUMMON_ROLL']
-  summon_roll_diagram_id int [ref: > STRUCT_HERO_SUMMON_ROLL._diagram_id, note: 'Virtual FK for diagram only']
-  skills array [note: 'List: STRUCT_HERO_SKILL']
-  equipment object [note: 'Embed: STRUCT_HERO_EQUIPMENT']
-  equipment_diagram_id int [ref: > STRUCT_HERO_EQUIPMENT._diagram_id, note: 'Virtual FK for diagram only']
-}
-
-Table STRUCT_HERO_SUMMON_ROLL [headercolor: #FADBD8] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  stat_roll_seed int
-  appearance_roll_seed int
-  rolled_at date
-}
-
-Table STRUCT_HERO_SKILL [headercolor: #FADBD8] {
-  skill_id string [note: 'Ref CONFIG_SKILL.id']
-  skill_level int
-  skill_type enum [note: 'normal, chain, special, passive']
-  source enum [note: 'default, gacha_random, skill_book']
-  learned_by_book_id string [note: 'Optional: Ref CONFIG_SKILL_BOOK.id']
-  is_initial_roll boolean [note: 'True if rolled at summon']
-  slot_index int
-  unlocked boolean
-  learned_at date
-}
-
-Table STRUCT_HERO_EQUIPMENT [headercolor: #FADBD8] {
-  _diagram_id int [pk, note: 'Virtual key for dbdiagram relations only']
-  weapon_item_uid string
-  armor_item_uid string
-  accessory_item_uid string
-  relic_item_uid string [note: 'Optional']
-}
-
-Table HERO_TEAM [headercolor: #FADBD8] {
-  _id ObjectId [pk]
-  profile_id ObjectId [ref: > GAME_PROFILE._id]
-  team_name string
-  team_power int
-  is_active boolean
-  slots array [note: 'List: STRUCT_TEAM_SLOT']
-}
-
-Table STRUCT_TEAM_SLOT [headercolor: #FADBD8] {
-  slot_index int
-  hero_uid string
-  role enum [note: 'leader, sub, support']
-}
-
-Table CONFIG_HERO [headercolor: #EAECEE] {
+Table CHARACTER_STATS [headercolor: #D5F5E3] {
   id string [pk]
-  name string
-  class enum
-  element_affinity enum [note: 'none, water, fire, wind, earth']
-  weapon_type string
+  characterId string [unique, ref: > CHARACTER.id]
+  str int
+  dex int
+  con int
+  int int
+  wis int
+  cha int
+  unspentPoints int
+  hp int
+  mp int
+  patk int
+  datk int
+  matk int
+  mdef int
+  spd int
+  crit int
+  acc int
+  eva int
+  formulaVersion int
+  updatedAt datetime
 }
 
-Table CONFIG_HERO_RANDOM_RULE [headercolor: #EAECEE] {
+Table BACKUP [headercolor: #EAECEE] {
   id string [pk]
-  hero_config_id string [ref: - CONFIG_HERO.id]
-  STR_min int
-  STR_max int
-  DEX_min int
-  DEX_max int
-  CON_min int
-  CON_max int
-  INT_min int
-  INT_max int
-  WIS_min int
-  WIS_max int
-  CHA_min int
-  CHA_max int
-  hair_model_pool array
-  face_model_pool array
-  hair_color_pool array
-  skin_color_pool array
-}
+  backUpType string
+  filePath string
+  createAt datetime
+  isDeleted boolean
+  isLocked boolean
 
-Table CONFIG_HERO_GACHA_SKILL_POOL [headercolor: #EAECEE] {
-  id string [pk]
-  hero_config_id string [ref: > CONFIG_HERO.id]
-  skill_id string [ref: > CONFIG_SKILL.id]
-  weight int
-  summon_roll_enabled boolean
+  indexes {
+    (backUpType, createAt)
+  }
 }
-
-Table CONFIG_SKILL [headercolor: #EAECEE] {
-  id string [pk]
-  name string
-  category enum [note: 'basic_attack, movement, active, combo, passive']
-  skill_type enum
-  base_cooldown_sec int
-  learned_from_book boolean
-  is_default_unlocked boolean
-  effect_summary string
-}
-
-Table CONFIG_SKILL_BOOK [headercolor: #EAECEE] {
-  id string [pk]
-  item_ref_id string [ref: > CONFIG_ITEM.id]
-  skill_id string [ref: > CONFIG_SKILL.id]
-  consume_on_use boolean
-}
-
-TableGroup IDENTITY_MODULE {
-  USER
-  OBJECT_USER_SETTINGS
-  GAME_PROFILE
-  SESSION_RUNTIME
-}
-
-TableGroup CHARACTER_MODULE {
-  CHARACTER
-  STRUCT_BASE_STATS
-  STRUCT_DERIVED_STATS
-  STRUCT_SPECIAL_TRAITS
-  STRUCT_CURRENT_RESOURCES
-  STRUCT_POSITION_DATA
-  STRUCT_APPEARANCE
-  STRUCT_CHARACTER_CREATION_META
-  STRUCT_COMBAT_KIT
-  STRUCT_CHARACTER_SKILL
-  STRUCT_SKILL_SLOTS
-}
-
-TableGroup INVENTORY_MODULE {
-  INVENTORY
-  STRUCT_INVENTORY_ITEM
-  CONFIG_ITEM
-}
-
-TableGroup ADVANCED_GAMEPLAY_MODULE {
-  PERSONAL_ISLAND
-  STRUCT_ISLAND_RESOURCES
-  STRUCT_BUILDING
-  CONFIG_BUILDING
-  HERO_ROSTER
-  STRUCT_OWNED_HERO
-  STRUCT_HERO_SUMMON_ROLL
-  STRUCT_HERO_SKILL
-  STRUCT_HERO_EQUIPMENT
-  HERO_TEAM
-  STRUCT_TEAM_SLOT
-  CONFIG_HERO
-  CONFIG_HERO_RANDOM_RULE
-  CONFIG_HERO_GACHA_SKILL_POOL
-  CONFIG_SKILL
-  CONFIG_SKILL_BOOK
-}
-
-Ref: GAME_PROFILE._id < SESSION_RUNTIME.profile_id
-Ref: CONFIG_SKILL.id < STRUCT_CHARACTER_SKILL.skill_id
-Ref: CONFIG_SKILL_BOOK.id < STRUCT_CHARACTER_SKILL.learned_by_book_id
-Ref: CONFIG_ITEM.id < STRUCT_INVENTORY_ITEM.item_ref_id
-Ref: CONFIG_HERO.id < STRUCT_OWNED_HERO.hero_config_id
-Ref: CONFIG_SKILL.id < STRUCT_HERO_SKILL.skill_id
-Ref: CONFIG_SKILL_BOOK.id < STRUCT_HERO_SKILL.learned_by_book_id
-Ref: STRUCT_OWNED_HERO.hero_uid < STRUCT_TEAM_SLOT.hero_uid
-Ref: STRUCT_INVENTORY_ITEM.unique_uid < STRUCT_HERO_EQUIPMENT.weapon_item_uid
-Ref: STRUCT_INVENTORY_ITEM.unique_uid < STRUCT_HERO_EQUIPMENT.armor_item_uid
-Ref: STRUCT_INVENTORY_ITEM.unique_uid < STRUCT_HERO_EQUIPMENT.accessory_item_uid
-Ref: STRUCT_INVENTORY_ITEM.unique_uid < STRUCT_HERO_EQUIPMENT.relic_item_uid

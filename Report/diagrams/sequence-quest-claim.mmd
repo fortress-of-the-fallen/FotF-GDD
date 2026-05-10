@@ -1,0 +1,20 @@
+sequenceDiagram
+  autonumber
+  actor Player
+  participant API as QuestController
+  participant Quest as QuestService
+  participant Reward as RewardService
+  participant QRepo as PlayerQuest(player_quests)
+  participant RRepo as RewardTransaction(reward_transactions)
+  participant PRepo as Player(players)
+
+  Player->>API: POST /v1/quests/:questId/claim
+  API->>Quest: claimQuest(auth, questId)
+  Quest->>QRepo: load quest by player + period
+  QRepo-->>Quest: progress + claimed=false
+  Quest->>Reward: grant rewards
+  Reward->>PRepo: update currency/items
+  Reward->>RRepo: insert transaction log
+  Quest->>QRepo: mark claimed=true
+  Quest-->>API: updated quest + rewards
+  API-->>Player: 200 success envelope

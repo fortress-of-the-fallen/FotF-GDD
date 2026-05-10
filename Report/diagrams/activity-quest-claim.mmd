@@ -1,0 +1,13 @@
+flowchart TD
+  A([Start]) --> B[POST /v1/quests/:questId/claim]
+  B --> C[Resolve player context]
+  C --> D[Load quest progress]
+  D --> E{Completed and not claimed?}
+  E -->|No| X[Return cannot claim]
+  E -->|Yes| F[Compute reward]
+  F --> G[Apply reward to player state]
+  G --> H[Insert reward transaction]
+  H --> I[Mark quest as claimed]
+  I --> J[Return updated quest + reward]
+  X --> Z([End])
+  J --> Z

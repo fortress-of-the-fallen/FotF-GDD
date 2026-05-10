@@ -1,0 +1,59 @@
+@startuml
+left to right direction
+hide circle
+skinparam backgroundColor #0b1020
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontColor #e5e7eb
+skinparam ArrowColor #94a3b8
+skinparam ArrowThickness 1
+skinparam nodesep 90
+skinparam ranksep 110
+skinparam class {
+  BackgroundColor #111827
+  BorderColor #60a5fa
+  FontColor #e5e7eb
+}
+skinparam stereotype {
+  CBackgroundColor #1f2937
+  CBorderColor #93c5fd
+  CFontColor #dbeafe
+}
+
+entity "PLAYER" as PLAYER <<table>> {
+  * id : string <<PK>>
+}
+entity "INVENTORY_ITEM" as PII <<table>> {
+  * id : string <<PK>>
+  --
+  playerId : string <<FK>>
+  itemId : string
+  itemType : string
+  remainingUses : int
+}
+entity "BATTLE_SESSION" as BS <<table>> {
+  * id : string <<PK>>
+  --
+  playerId : string <<FK>>
+  mode : string
+  status : string
+  startedAt : datetime
+  finishedAt : datetime?
+}
+entity "REWARD_TRANSACTION" as RT <<table>> {
+  * id : string <<PK>>
+  --
+  playerId : string <<FK>>
+  sourceType : string
+  sourceId : string
+  createdAt : datetime
+}
+
+PLAYER ||--o{ PII : inventory
+PLAYER ||--o{ BS : battles
+PLAYER ||--o{ RT : rewards
+PII -[hidden]- BS
+BS -[hidden]- RT
+
+@enduml

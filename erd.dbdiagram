@@ -7,206 +7,98 @@
     {
       "name": "USER",
       "schemaName": "public",
-      "x": 2592,
-      "y": 2520
+      "x": 80,
+      "y": 80
     },
     {
-      "name": "OBJECT_USER_SETTINGS",
+      "name": "SESSION",
       "schemaName": "public",
-      "x": 2496,
-      "y": 3368
+      "x": 500,
+      "y": 80
     },
     {
-      "name": "GAME_PROFILE",
+      "name": "PLAYER",
       "schemaName": "public",
-      "x": 2216,
-      "y": 1496
+      "x": 920,
+      "y": 80
     },
     {
-      "name": "SESSION_RUNTIME",
+      "name": "PLAYER_INVENTORY_ITEM",
       "schemaName": "public",
-      "x": 2792,
-      "y": 904
+      "x": 1340,
+      "y": 80
+    },
+    {
+      "name": "PLAYER_FORMATION",
+      "schemaName": "public",
+      "x": 80,
+      "y": 380
+    },
+    {
+      "name": "PLAYER_QUEST",
+      "schemaName": "public",
+      "x": 500,
+      "y": 380
+    },
+    {
+      "name": "PLAYER_QUEST_PROGRESS_REWARD",
+      "schemaName": "public",
+      "x": 920,
+      "y": 380
+    },
+    {
+      "name": "BATTLE_SESSION",
+      "schemaName": "public",
+      "x": 1340,
+      "y": 380
+    },
+    {
+      "name": "REWARD_TRANSACTION",
+      "schemaName": "public",
+      "x": 80,
+      "y": 680
+    },
+    {
+      "name": "LEADERBOARD_SCORE",
+      "schemaName": "public",
+      "x": 500,
+      "y": 680
+    },
+    {
+      "name": "IDEMPOTENCY_RECORD",
+      "schemaName": "public",
+      "x": 920,
+      "y": 680
+    },
+    {
+      "name": "CONFIG",
+      "schemaName": "public",
+      "x": 1340,
+      "y": 680
     },
     {
       "name": "CHARACTER",
       "schemaName": "public",
-      "x": 2712,
-      "y": 1536
+      "x": 80,
+      "y": 980
     },
     {
-      "name": "STRUCT_BASE_STATS",
+      "name": "CHARACTER_APPEARANCE",
       "schemaName": "public",
-      "x": 2232,
-      "y": 2336
+      "x": 500,
+      "y": 980
     },
     {
-      "name": "STRUCT_DERIVED_STATS",
+      "name": "CHARACTER_STATS",
       "schemaName": "public",
-      "x": 1832,
-      "y": 2280
+      "x": 920,
+      "y": 980
     },
     {
-      "name": "STRUCT_SPECIAL_TRAITS",
+      "name": "BACKUP",
       "schemaName": "public",
-      "x": 2088,
-      "y": 2656
-    },
-    {
-      "name": "STRUCT_CURRENT_RESOURCES",
-      "schemaName": "public",
-      "x": 2208,
-      "y": 1152
-    },
-    {
-      "name": "STRUCT_POSITION_DATA",
-      "schemaName": "public",
-      "x": 2088,
-      "y": 1928
-    },
-    {
-      "name": "STRUCT_APPEARANCE",
-      "schemaName": "public",
-      "x": 1928,
-      "y": 1008
-    },
-    {
-      "name": "STRUCT_CHARACTER_CREATION_META",
-      "schemaName": "public",
-      "x": 1360,
-      "y": 2448
-    },
-    {
-      "name": "STRUCT_COMBAT_KIT",
-      "schemaName": "public",
-      "x": 3840,
-      "y": 1840
-    },
-    {
-      "name": "STRUCT_CHARACTER_SKILL",
-      "schemaName": "public",
-      "x": 608,
-      "y": 248
-    },
-    {
-      "name": "STRUCT_SKILL_SLOTS",
-      "schemaName": "public",
-      "x": 2616,
-      "y": 1240
-    },
-    {
-      "name": "INVENTORY",
-      "schemaName": "public",
-      "x": 3320,
-      "y": 2632
-    },
-    {
-      "name": "STRUCT_INVENTORY_ITEM",
-      "schemaName": "public",
-      "x": 1728,
-      "y": 1952
-    },
-    {
-      "name": "CONFIG_ITEM",
-      "schemaName": "public",
-      "x": 1712,
-      "y": 1160
-    },
-    {
-      "name": "PERSONAL_ISLAND",
-      "schemaName": "public",
-      "x": 1752,
-      "y": 1544
-    },
-    {
-      "name": "STRUCT_ISLAND_RESOURCES",
-      "schemaName": "public",
-      "x": 1776,
-      "y": 2768
-    },
-    {
-      "name": "STRUCT_BUILDING",
-      "schemaName": "public",
-      "x": 4368,
-      "y": 48
-    },
-    {
-      "name": "CONFIG_BUILDING",
-      "schemaName": "public",
-      "x": 4128,
-      "y": 48
-    },
-    {
-      "name": "HERO_ROSTER",
-      "schemaName": "public",
-      "x": 1688,
-      "y": 808
-    },
-    {
-      "name": "STRUCT_OWNED_HERO",
-      "schemaName": "public",
-      "x": 1128,
-      "y": 1576
-    },
-    {
-      "name": "STRUCT_HERO_SUMMON_ROLL",
-      "schemaName": "public",
-      "x": 48,
-      "y": 1536
-    },
-    {
-      "name": "STRUCT_HERO_SKILL",
-      "schemaName": "public",
-      "x": 960,
-      "y": 48
-    },
-    {
-      "name": "STRUCT_HERO_EQUIPMENT",
-      "schemaName": "public",
-      "x": 1440,
-      "y": 1376
-    },
-    {
-      "name": "HERO_TEAM",
-      "schemaName": "public",
-      "x": 2320,
-      "y": 744
-    },
-    {
-      "name": "STRUCT_TEAM_SLOT",
-      "schemaName": "public",
-      "x": 1392,
-      "y": 1016
-    },
-    {
-      "name": "CONFIG_HERO",
-      "schemaName": "public",
-      "x": 672,
-      "y": 2240
-    },
-    {
-      "name": "CONFIG_HERO_RANDOM_RULE",
-      "schemaName": "public",
-      "x": 648,
-      "y": 1016
-    },
-    {
-      "name": "CONFIG_HERO_GACHA_SKILL_POOL",
-      "schemaName": "public",
-      "x": 352,
-      "y": 1656
-    },
-    {
-      "name": "CONFIG_SKILL",
-      "schemaName": "public",
-      "x": 408,
-      "y": 664
-    },
-    {
-      "name": "CONFIG_SKILL_BOOK",
-      "schemaName": "public",
-      "x": 1072,
-      "y": 624
+      "x": 1340,
+      "y": 980
     }
   ],
   "tableGroupCollapseStates": [],
@@ -214,43 +106,163 @@
   "referencePaths": [
     {
       "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "OBJECT_USER_SETTINGS",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "settings_diagram_id"
-      ],
-      "secondTableName": "USER",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_id"
+        "id"
       ],
       "firstTableName": "USER",
       "firstSchemaName": "public",
       "firstRelation": "1",
       "secondFieldNames": [
-        "user_id"
+        "accountId"
       ],
-      "secondTableName": "GAME_PROFILE",
+      "secondTableName": "SESSION",
       "secondSchemaName": "public",
       "secondRelation": "*",
       "checkPoints": []
     },
     {
       "firstFieldNames": [
-        "_id"
+        "id"
       ],
-      "firstTableName": "GAME_PROFILE",
+      "firstTableName": "USER",
       "firstSchemaName": "public",
       "firstRelation": "1",
       "secondFieldNames": [
-        "profile_id"
+        "accountId"
+      ],
+      "secondTableName": "PLAYER",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "PLAYER",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "playerId"
+      ],
+      "secondTableName": "PLAYER_INVENTORY_ITEM",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "PLAYER",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "playerId"
+      ],
+      "secondTableName": "PLAYER_FORMATION",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "PLAYER",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "playerId"
+      ],
+      "secondTableName": "PLAYER_QUEST",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "PLAYER",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "playerId"
+      ],
+      "secondTableName": "PLAYER_QUEST_PROGRESS_REWARD",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "PLAYER",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "playerId"
+      ],
+      "secondTableName": "BATTLE_SESSION",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "PLAYER",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "playerId"
+      ],
+      "secondTableName": "REWARD_TRANSACTION",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "PLAYER",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "playerId"
+      ],
+      "secondTableName": "LEADERBOARD_SCORE",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "PLAYER",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "playerId"
+      ],
+      "secondTableName": "IDEMPOTENCY_RECORD",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "USER",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "userId"
       ],
       "secondTableName": "CHARACTER",
       "secondSchemaName": "public",
@@ -259,315 +271,15 @@
     },
     {
       "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_BASE_STATS",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "base_stats_diagram_id"
-      ],
-      "secondTableName": "CHARACTER",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_DERIVED_STATS",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "derived_stats_diagram_id"
-      ],
-      "secondTableName": "CHARACTER",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_SPECIAL_TRAITS",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "special_traits_diagram_id"
-      ],
-      "secondTableName": "CHARACTER",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_CURRENT_RESOURCES",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "resources_diagram_id"
-      ],
-      "secondTableName": "CHARACTER",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_POSITION_DATA",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "position_diagram_id"
-      ],
-      "secondTableName": "CHARACTER",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_APPEARANCE",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "appearance_diagram_id"
-      ],
-      "secondTableName": "CHARACTER",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_CHARACTER_CREATION_META",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "creation_meta_diagram_id"
-      ],
-      "secondTableName": "CHARACTER",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_COMBAT_KIT",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "combat_kit_diagram_id"
-      ],
-      "secondTableName": "CHARACTER",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_SKILL_SLOTS",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "skill_slots_diagram_id"
-      ],
-      "secondTableName": "CHARACTER",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_id"
+        "id"
       ],
       "firstTableName": "CHARACTER",
       "firstSchemaName": "public",
       "firstRelation": "1",
       "secondFieldNames": [
-        "character_id"
+        "characterId"
       ],
-      "secondTableName": "INVENTORY",
-      "secondSchemaName": "public",
-      "secondRelation": "1",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_id"
-      ],
-      "firstTableName": "GAME_PROFILE",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "profile_id"
-      ],
-      "secondTableName": "PERSONAL_ISLAND",
-      "secondSchemaName": "public",
-      "secondRelation": "1",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_ISLAND_RESOURCES",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "resources_diagram_id"
-      ],
-      "secondTableName": "PERSONAL_ISLAND",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_id"
-      ],
-      "firstTableName": "GAME_PROFILE",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "profile_id"
-      ],
-      "secondTableName": "HERO_ROSTER",
-      "secondSchemaName": "public",
-      "secondRelation": "1",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_BASE_STATS",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "combat_stats_diagram_id"
-      ],
-      "secondTableName": "STRUCT_OWNED_HERO",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_DERIVED_STATS",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "derived_stats_diagram_id"
-      ],
-      "secondTableName": "STRUCT_OWNED_HERO",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_SPECIAL_TRAITS",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "special_traits_diagram_id"
-      ],
-      "secondTableName": "STRUCT_OWNED_HERO",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_CURRENT_RESOURCES",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "resources_diagram_id"
-      ],
-      "secondTableName": "STRUCT_OWNED_HERO",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_APPEARANCE",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "appearance_diagram_id"
-      ],
-      "secondTableName": "STRUCT_OWNED_HERO",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_HERO_SUMMON_ROLL",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "summon_roll_diagram_id"
-      ],
-      "secondTableName": "STRUCT_OWNED_HERO",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_diagram_id"
-      ],
-      "firstTableName": "STRUCT_HERO_EQUIPMENT",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "equipment_diagram_id"
-      ],
-      "secondTableName": "STRUCT_OWNED_HERO",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_id"
-      ],
-      "firstTableName": "GAME_PROFILE",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "profile_id"
-      ],
-      "secondTableName": "HERO_TEAM",
+      "secondTableName": "CHARACTER_APPEARANCE",
       "secondSchemaName": "public",
       "secondRelation": "*",
       "checkPoints": []
@@ -576,253 +288,13 @@
       "firstFieldNames": [
         "id"
       ],
-      "firstTableName": "CONFIG_HERO",
+      "firstTableName": "CHARACTER",
       "firstSchemaName": "public",
       "firstRelation": "1",
       "secondFieldNames": [
-        "hero_config_id"
+        "characterId"
       ],
-      "secondTableName": "CONFIG_HERO_RANDOM_RULE",
-      "secondSchemaName": "public",
-      "secondRelation": "1",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "id"
-      ],
-      "firstTableName": "CONFIG_HERO",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "hero_config_id"
-      ],
-      "secondTableName": "CONFIG_HERO_GACHA_SKILL_POOL",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "id"
-      ],
-      "firstTableName": "CONFIG_SKILL",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "skill_id"
-      ],
-      "secondTableName": "CONFIG_HERO_GACHA_SKILL_POOL",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "id"
-      ],
-      "firstTableName": "CONFIG_ITEM",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "item_ref_id"
-      ],
-      "secondTableName": "CONFIG_SKILL_BOOK",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "id"
-      ],
-      "firstTableName": "CONFIG_SKILL",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "skill_id"
-      ],
-      "secondTableName": "CONFIG_SKILL_BOOK",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "_id"
-      ],
-      "firstTableName": "GAME_PROFILE",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "profile_id"
-      ],
-      "secondTableName": "SESSION_RUNTIME",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "id"
-      ],
-      "firstTableName": "CONFIG_SKILL",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "skill_id"
-      ],
-      "secondTableName": "STRUCT_CHARACTER_SKILL",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "id"
-      ],
-      "firstTableName": "CONFIG_SKILL_BOOK",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "learned_by_book_id"
-      ],
-      "secondTableName": "STRUCT_CHARACTER_SKILL",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "id"
-      ],
-      "firstTableName": "CONFIG_ITEM",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "item_ref_id"
-      ],
-      "secondTableName": "STRUCT_INVENTORY_ITEM",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "id"
-      ],
-      "firstTableName": "CONFIG_HERO",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "hero_config_id"
-      ],
-      "secondTableName": "STRUCT_OWNED_HERO",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "id"
-      ],
-      "firstTableName": "CONFIG_SKILL",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "skill_id"
-      ],
-      "secondTableName": "STRUCT_HERO_SKILL",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "id"
-      ],
-      "firstTableName": "CONFIG_SKILL_BOOK",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "learned_by_book_id"
-      ],
-      "secondTableName": "STRUCT_HERO_SKILL",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "hero_uid"
-      ],
-      "firstTableName": "STRUCT_OWNED_HERO",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "hero_uid"
-      ],
-      "secondTableName": "STRUCT_TEAM_SLOT",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "unique_uid"
-      ],
-      "firstTableName": "STRUCT_INVENTORY_ITEM",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "weapon_item_uid"
-      ],
-      "secondTableName": "STRUCT_HERO_EQUIPMENT",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "unique_uid"
-      ],
-      "firstTableName": "STRUCT_INVENTORY_ITEM",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "armor_item_uid"
-      ],
-      "secondTableName": "STRUCT_HERO_EQUIPMENT",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "unique_uid"
-      ],
-      "firstTableName": "STRUCT_INVENTORY_ITEM",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "accessory_item_uid"
-      ],
-      "secondTableName": "STRUCT_HERO_EQUIPMENT",
-      "secondSchemaName": "public",
-      "secondRelation": "*",
-      "checkPoints": []
-    },
-    {
-      "firstFieldNames": [
-        "unique_uid"
-      ],
-      "firstTableName": "STRUCT_INVENTORY_ITEM",
-      "firstSchemaName": "public",
-      "firstRelation": "1",
-      "secondFieldNames": [
-        "relic_item_uid"
-      ],
-      "secondTableName": "STRUCT_HERO_EQUIPMENT",
+      "secondTableName": "CHARACTER_STATS",
       "secondSchemaName": "public",
       "secondRelation": "*",
       "checkPoints": []

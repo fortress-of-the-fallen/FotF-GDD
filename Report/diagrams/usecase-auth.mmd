@@ -1,0 +1,47 @@
+flowchart LR
+  classDef actor fill:#0b1f3a,stroke:#60a5fa,stroke-width:2px,color:#e6f0ff;
+  classDef endpoint fill:#102a43,stroke:#93c5fd,stroke-width:1px,color:#f8fbff;
+  classDef service fill:#1f2937,stroke:#34d399,stroke-width:1px,color:#f3fff9;
+  classDef db fill:#3f1d2e,stroke:#f9a8d4,stroke-width:1px,color:#fff1f7;
+  classDef security fill:#3a2e12,stroke:#fbbf24,stroke-width:1px,color:#fff8e6;
+
+  A([Player])
+
+  subgraph API[Auth API]
+    direction TB
+    R[POST /v1/auth/register]
+    L[POST /v1/auth/login]
+    F[POST /v1/auth/refresh]
+    O[POST /v1/auth/logout]
+  end
+
+  subgraph APP[Application Layer]
+    AS[AuthApplicationService]
+    G[JWT Guard + Roles]
+  end
+
+  subgraph DATA[Persistence]
+    U[(accounts / User)]
+    S[(refresh_tokens / Session)]
+    P[(players / Player)]
+  end
+
+  A --> R
+  A --> L
+  A --> F
+  A --> O
+
+  R --> AS
+  L --> AS
+  F --> AS
+  O --> G --> AS
+
+  AS --> U
+  AS --> S
+  AS --> P
+
+  class A actor;
+  class R,L,F,O endpoint;
+  class AS service;
+  class U,S,P db;
+  class G security;

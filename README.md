@@ -167,5 +167,11 @@ Mỗi **chủng tộc** sẽ có:
 
     - Có thể ra lệnh sơ đồ chiến thuật (AI Pattern), nhưng vẫn giữ sự ngẫu nhiên để tạo cảm giác “sống thật”.
 
-## ERD
-[`Link`](https://fortress-of-the-fallen.github.io/.github/erd/)
+## ERD & UML
+- ERD source: [`erd.mmd`](./erd.mmd)
+- ERD DBML: [`erd.dbml`](./erd.dbml)
+- ERD dbdiagram layout: [`erd.dbdiagram`](./erd.dbdiagram)
+- UML overview (Use Case + Sequence + Deployment): [`Report/uml.md`](./Report/uml.md)
+- Diagram sources for UML: [`Report/diagrams`](./Report/diagrams)
+  - Use Case: `usecase-*.puml` (PlantUML)
+  - Sequence/Deployment/ERD support diagrams: `*.mmd` (Mermaid)
