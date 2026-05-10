@@ -1,5 +1,5 @@
 flowchart TD
-  A([Start]) --> B[POST /v1/characters]
+  A([Start]) --> B[POST /v1/character]
   B --> C[Validate auth + payload]
   C --> D{Has existing active character constraints?}
   D -->|Fail| X[Return validation error]
