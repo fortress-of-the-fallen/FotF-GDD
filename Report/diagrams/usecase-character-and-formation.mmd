@@ -8,12 +8,12 @@ flowchart LR
 
   subgraph API[Character and Formation API]
     direction TB
-    C1[POST /v1/characters]
-    C2[GET /v1/characters]
-    C3[DELETE /v1/characters/:characterId]
-    C4[PATCH /v1/characters/:characterId/stats/base]
-    F1[GET /v1/formations]
-    F2[PUT /v1/formations]
+    C1[POST /v1/character]
+    C2[GET /v1/character]
+    C3[DELETE /v1/character/:characterId]
+    C4[PATCH /v1/character/:characterId/stats/base]
+    F1[GET /v1/formation]
+    F2[PUT /v1/formation]
     MM[GET /v1/matchmaking/opponents]
   end
 

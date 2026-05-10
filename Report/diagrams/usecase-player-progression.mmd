@@ -8,14 +8,14 @@ flowchart LR
 
   subgraph API[Progress API]
     direction TB
-    GP[GET /v1/player]
-    UP[PATCH /v1/player/profile]
-    TP[PATCH /v1/player/tutorial-progress]
+    GP[GET /v1/me]
+    UP[PATCH /v1/me/profile]
+    TP[PATCH /v1/me/tutorial-progress]
     Q1[GET /v1/quests]
     Q2[POST /v1/quests/:questId/claim]
     Q3[POST /v1/quests/progress-rewards/:track/:stage/claim]
-    LB1[GET /v1/leaderboard/:type]
-    LB2[GET /v1/leaderboard/:type/me]
+    LB1[GET /v1/leaderboards/:type]
+    LB2[GET /v1/leaderboards/:type/me]
   end
 
   subgraph APP[Domain Services]

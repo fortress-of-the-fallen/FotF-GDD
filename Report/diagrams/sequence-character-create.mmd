@@ -7,7 +7,7 @@ sequenceDiagram
   participant ARepo as CharacterAppearance
   participant SRepo as CharacterStats
 
-  Player->>API: POST /v1/characters
+  Player->>API: POST /v1/character
   API->>Char: createCharacter(auth, body)
   Char->>CRepo: create core character
   Char->>ARepo: create appearance
