@@ -1,0 +1,64 @@
+%%{init: {"theme": "base", "themeVariables": {"background": "#0b1220", "primaryColor": "#1f2937", "primaryTextColor": "#e5e7eb", "primaryBorderColor": "#60a5fa", "lineColor": "#93c5fd", "secondaryColor": "#111827", "tertiaryColor": "#0f172a", "fontFamily": "Trebuchet MS"}} }%%
+erDiagram
+    USER {
+        string id PK
+        string username
+    }
+
+    CHARACTER {
+        string id PK
+        string userId FK
+        string character_name
+        string race
+        string gender
+        boolean isDeleted
+        boolean isLocked
+    }
+
+    CHARACTER_APPEARANCE {
+        string id PK
+        string characterId FK
+        string hair
+        string beard
+        string eye
+        string hairColor
+        string beardColor
+        string eyeColor
+    }
+
+    CHARACTER_STATS {
+        string id PK
+        string characterId FK
+        int str
+        int dex
+        int con
+        int int
+        int wis
+        int cha
+        int unspentPoints
+        int hp
+        int mp
+        int patk
+        int datk
+        int matk
+        int mdef
+        int spd
+        int crit
+        int acc
+        int eva
+        int formulaVersion
+        datetime updatedAt
+    }
+
+    BACKUP {
+        string id PK
+        string backUpType
+        string filePath
+        datetime createAt
+        boolean isDeleted
+        boolean isLocked
+    }
+
+    USER ||--o{ CHARACTER : owns
+    CHARACTER ||--o| CHARACTER_APPEARANCE : has
+    CHARACTER ||--o| CHARACTER_STATS : has

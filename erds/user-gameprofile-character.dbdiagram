@@ -7,20 +7,20 @@
     {
       "name": "USER",
       "schemaName": "public",
-      "x": 360,
-      "y": 736
+      "x": 80,
+      "y": 80
     },
     {
       "name": "GAME_PROFILE",
       "schemaName": "public",
-      "x": 48,
-      "y": 528
+      "x": 500,
+      "y": 80
     },
     {
       "name": "CHARACTER",
       "schemaName": "public",
-      "x": 504,
-      "y": 48
+      "x": 920,
+      "y": 80
     }
   ],
   "tableGroupCollapseStates": [],

@@ -1,0 +1,68 @@
+@startuml
+left to right direction
+hide circle
+skinparam backgroundColor #0b1020
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontColor #e5e7eb
+skinparam ArrowColor #94a3b8
+skinparam ArrowThickness 1
+skinparam nodesep 90
+skinparam ranksep 110
+skinparam class {
+  BackgroundColor #111827
+  BorderColor #60a5fa
+  FontColor #e5e7eb
+}
+skinparam stereotype {
+  CBackgroundColor #1f2937
+  CBorderColor #93c5fd
+  CFontColor #dbeafe
+}
+
+entity "USER" as USER <<table>> {
+  * id : string <<PK>>
+  --
+  username : string
+}
+entity "CHARACTER" as CH <<table>> {
+  * id : string <<PK>>
+  --
+  userId : string <<FK>>
+  character_name : string
+  race : string
+  gender : string
+}
+entity "CHARACTER_APPEARANCE" as CA <<table>> {
+  * id : string <<PK>>
+  --
+  characterId : string <<FK>>
+  hair : string
+  beard : string
+  eye : string
+}
+entity "CHARACTER_STATS" as CS <<table>> {
+  * id : string <<PK>>
+  --
+  characterId : string <<FK>>
+  str : int
+  dex : int
+  con : int
+  int : int
+  wis : int
+  cha : int
+}
+entity "BACKUP" as BK <<table>> {
+  * id : string <<PK>>
+  --
+  backUpType : string
+  filePath : string
+}
+
+USER ||--o{ CH : owns
+CH ||--o| CA : appearance
+CH ||--o| CS : stats
+CA -[hidden]- BK
+
+@enduml

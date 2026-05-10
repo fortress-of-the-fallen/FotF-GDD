@@ -1,0 +1,20 @@
+flowchart TD
+  A([Start]) --> B{Endpoint}
+  B -->|GET /inventory| C[Load inventory projection]
+  C --> D[Return inventory]
+
+  B -->|Hero upgrade/evolve| E[Validate hero state and costs]
+  E --> F{Enough resources?}
+  F -->|No| X[Return insufficient resources]
+  F -->|Yes| G[Apply stat or tier mutation]
+  G --> H[Persist inventory and player state]
+  H --> I[Log reward or cost transaction]
+  I --> J[Return updated hero]
+
+  B -->|Skill purchase/upgrade| K[Validate config and ownership]
+  K --> L[Apply purchase or level up]
+  L --> H
+
+  D --> Z([End])
+  J --> Z
+  X --> Z

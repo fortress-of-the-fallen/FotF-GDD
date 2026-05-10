@@ -1,36 +1,94 @@
+# ERD (Split Views)
+
+## Auth and Player Core
+
+![ERD - Auth and Player](./Images/erd-auth-player.png)
+
+## Character Progression
+
+![ERD - Character Progression](./Images/erd-character-progression.png)
+
+## Inventory and Battle
+
+![ERD - Inventory and Battle](./Images/erd-inventory-battle.png)
+
+## Character Customization
+
+![ERD - Character Customization](./Images/erd-character-customization.png)
+
 # Deployment
 
-<img width="4270" height="3770" alt="image" src="https://github.com/user-attachments/assets/658e9f55-ef55-476c-9769-2e813750b26f" />
+![Deployment](./Images/deployment.png)
 
 # Use Case
 
+> Note: Use Case diagrams are rendered from PlantUML sources in `./diagrams/usecase-*.puml`.
+
+
 ## Auth
 
-<img width="6105" height="2451" alt="image" src="https://github.com/user-attachments/assets/22f0be4d-5c77-40b2-b0a4-3a91c4d3db64" />
+![Use Case - Auth](./Images/usecase-auth.png)
 
-## Player Island
+## Player Progression
 
-<img width="4767" height="4815" alt="image" src="https://github.com/user-attachments/assets/da7bd5c9-ed9d-41df-a943-a8efe7af1609" />
+![Use Case - Player Progression](./Images/usecase-player-progression.png)
 
-## Gacha & Recruitment
+## Character & Formation
 
-<img width="3292" height="4591" alt="image" src="https://github.com/user-attachments/assets/ba22e550-2ebc-4d45-aa80-7c04be370490" />
+![Use Case - Character and Formation](./Images/usecase-character-and-formation.png)
 
-## Wepond Gacha System
+## Inventory, Gacha, Skill Upgrade
 
-<img width="7689" height="4414" alt="image" src="https://github.com/user-attachments/assets/5d6c470a-cee8-4b9d-af82-243008985bb0" />
+![Use Case - Inventory and Gacha](./Images/usecase-inventory-gacha.png)
 
-## Progression
-<img width="3286" height="5430" alt="image" src="https://github.com/user-attachments/assets/c6cf7cb6-0f43-4242-b585-13fd4059fc40" />
+## Combat
 
-## Combat & Tower
+![Use Case - Combat](./Images/usecase-combat.png)
 
-<img width="6549" height="5020" alt="image" src="https://github.com/user-attachments/assets/46a805c5-c34a-4ade-b986-1018e4efd843" />
+## Admin Config
 
-## Admin
+![Use Case - Admin Config](./Images/usecase-admin-config.png)
 
-<img width="3776" height="2280" alt="image" src="https://github.com/user-attachments/assets/6fc8d228-70ce-4299-8660-83d7f0d8a294" />
+# Sequence
 
+## Auth Login
 
+![Sequence - Auth Login](./Images/sequence-auth-login.png)
 
+## Auth Refresh
 
+![Sequence - Auth Refresh](./Images/sequence-auth-refresh.png)
+
+## Character Create
+
+![Sequence - Character Create](./Images/sequence-character-create.png)
+
+## Quest Claim
+
+![Sequence - Quest Claim](./Images/sequence-quest-claim.png)
+
+## Battle Start / Finish
+
+![Sequence - Battle Start Finish](./Images/sequence-battle-start-finish.png)
+
+# Activity
+
+## Auth
+
+![Activity - Auth](./Images/activity-auth.png)
+
+## Character Create
+
+![Activity - Character Create](./Images/activity-character-create.png)
+
+## Quest Claim
+
+![Activity - Quest Claim](./Images/activity-quest-claim.png)
+
+## Battle
+
+![Activity - Battle](./Images/activity-battle.png)
+
+## Inventory
+
+![Activity - Inventory](./Images/activity-inventory.png)

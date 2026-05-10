@@ -1,0 +1,75 @@
+@startuml
+left to right direction
+hide circle
+skinparam backgroundColor #0b1020
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontColor #e5e7eb
+skinparam ArrowColor #94a3b8
+skinparam ArrowThickness 1
+skinparam nodesep 90
+skinparam ranksep 110
+skinparam class {
+  BackgroundColor #111827
+  BorderColor #60a5fa
+  FontColor #e5e7eb
+}
+skinparam stereotype {
+  CBackgroundColor #1f2937
+  CBorderColor #93c5fd
+  CFontColor #dbeafe
+}
+
+entity "PLAYER" as PLAYER <<table>> {
+  * id : string <<PK>>
+}
+entity "PLAYER_FORMATION" as PF <<table>> {
+  * id : string <<PK>>
+  --
+  playerId : string <<FK>>
+  name : string
+  slots : json
+}
+entity "PLAYER_QUEST" as PQ <<table>> {
+  * id : string <<PK>>
+  --
+  playerId : string <<FK>>
+  questId : int
+  progress : int
+  claimed : boolean
+}
+entity "QUEST_PROGRESS_REWARD" as PQR <<table>> {
+  * id : string <<PK>>
+  --
+  playerId : string <<FK>>
+  track : string
+  stage : int
+  claimed : boolean
+}
+entity "LEADERBOARD_SCORE" as LBS <<table>> {
+  * id : string <<PK>>
+  --
+  playerId : string <<FK>>
+  type : string
+  score : int
+}
+entity "IDEMPOTENCY_RECORD" as IR <<table>> {
+  * id : string <<PK>>
+  --
+  playerId : string <<FK>>
+  idempotencyKey : string
+  action : string
+}
+
+PLAYER ||--o{ PF : formations
+PLAYER ||--o{ PQ : quests
+PLAYER ||--o{ PQR : rewards
+PLAYER ||--o{ LBS : rank
+PLAYER ||--o{ IR : idempotency
+
+PF -[hidden]- PQ
+PQR -[hidden]- LBS
+LBS -[hidden]- IR
+
+@enduml

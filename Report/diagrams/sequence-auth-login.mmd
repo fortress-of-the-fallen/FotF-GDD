@@ -1,0 +1,18 @@
+sequenceDiagram
+  autonumber
+  actor Player
+  participant API as AuthController
+  participant Service as AuthApplicationService
+  participant UserRepo as User(accounts)
+  participant SessionRepo as Session(refresh_tokens)
+  participant PlayerRepo as Player(players)
+
+  Player->>API: POST /v1/auth/login (username,password)
+  API->>Service: login(dto, request)
+  Service->>UserRepo: find by username
+  UserRepo-->>Service: user + passwordHash
+  Service->>Service: verify password
+  Service->>SessionRepo: create refresh session
+  Service->>PlayerRepo: load player by accountId
+  Service-->>API: accessToken + refreshToken + player info
+  API-->>Player: 200 success envelope

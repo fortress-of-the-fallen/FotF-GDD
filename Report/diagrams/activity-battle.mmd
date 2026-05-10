@@ -1,0 +1,18 @@
+flowchart TD
+  A([Start]) --> B{Endpoint}
+  B -->|POST /battles/start| C[Validate team and mode]
+  C --> D[Generate seed and create battle session]
+  D --> E[Return battle snapshot]
+
+  B -->|POST /battles/:id/finish| F[Validate battle ownership and status]
+  F --> G[Resolve result and summary]
+  G --> H[Update session finished state]
+  H --> I{Has rewards?}
+  I -->|Yes| J[Grant rewards + write transactions]
+  I -->|No| K[Skip reward grant]
+  J --> L[Update leaderboard if needed]
+  K --> L
+  L --> M[Return final battle summary]
+
+  E --> Z([End])
+  M --> Z

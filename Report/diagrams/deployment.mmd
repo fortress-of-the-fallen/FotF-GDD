@@ -1,0 +1,19 @@
+flowchart TB
+  Client[Game Client / Tooling] --> NG[Ngrok Tunnel]
+  NG --> API[NestJS API Container :3000]
+
+  API --> M[(MongoDB rs0)]
+  API --> R[(Redis Stack)]
+  API --> S3[(MinIO Bucket)]
+
+  Init1[mongo-rs-init job] --> M
+  Init2[mc-init job] --> S3
+
+  subgraph Docker Compose
+    API
+    M
+    R
+    S3
+    Init1
+    Init2
+  end

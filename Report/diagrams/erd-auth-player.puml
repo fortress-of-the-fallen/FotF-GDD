@@ -1,0 +1,64 @@
+@startuml
+left to right direction
+hide circle
+skinparam backgroundColor #0b1020
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontColor #e5e7eb
+skinparam ArrowColor #94a3b8
+skinparam ArrowThickness 1
+skinparam nodesep 90
+skinparam ranksep 110
+skinparam class {
+  BackgroundColor #111827
+  BorderColor #60a5fa
+  FontColor #e5e7eb
+}
+skinparam stereotype {
+  CBackgroundColor #1f2937
+  CBorderColor #93c5fd
+  CFontColor #dbeafe
+}
+
+entity "USER" as USER <<table>> {
+  * id : string <<PK>>
+  --
+  username : string
+  passwordHash : string
+  status : string
+  role : string[]
+  createdAt : datetime
+  lastLoginAt : datetime?
+}
+entity "SESSION" as SESSION <<table>> {
+  * id : string <<PK>>
+  --
+  accountId : string <<FK>>
+  tokenHash : string
+  expiresAt : datetime
+  revokedAt : datetime?
+}
+entity "PLAYER" as PLAYER <<table>> {
+  * id : string <<PK>>
+  --
+  accountId : string <<FK>>
+  profile : json
+  statistics : json
+  currency : json
+  updatedAt : datetime
+}
+entity "CONFIG" as CONFIG <<table>> {
+  * id : string <<PK>>
+  --
+  name : string
+  version : string
+  isActive : boolean
+}
+
+USER ||--o{ SESSION : has
+USER ||--o| PLAYER : owns
+USER -[hidden]- CONFIG
+SESSION -[hidden]- PLAYER
+
+@enduml

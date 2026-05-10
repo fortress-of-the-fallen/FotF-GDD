@@ -1,0 +1,69 @@
+%%{init: {"theme": "base", "themeVariables": {"background": "#0b1220", "primaryColor": "#1f2937", "primaryTextColor": "#e5e7eb", "primaryBorderColor": "#60a5fa", "lineColor": "#93c5fd", "secondaryColor": "#111827", "tertiaryColor": "#0f172a", "fontFamily": "Trebuchet MS"}} }%%
+erDiagram
+    PLAYER {
+        string id PK
+        string accountId FK
+    }
+
+    PLAYER_FORMATION {
+        string id PK
+        string playerId FK
+        string name
+        json slots
+        datetime createdAt
+        datetime updatedAt
+    }
+
+    PLAYER_QUEST {
+        string id PK
+        string playerId FK
+        int questId
+        string type
+        string actionId
+        int progress
+        int required
+        boolean claimed
+        string periodKey
+        datetime createdAt
+        datetime updatedAt
+    }
+
+    PLAYER_QUEST_PROGRESS_REWARD {
+        string id PK
+        string playerId FK
+        string track
+        int stage
+        int points
+        string periodKey
+        json reward
+        boolean claimed
+        datetime createdAt
+        datetime updatedAt
+    }
+
+    LEADERBOARD_SCORE {
+        string id PK
+        string playerId FK
+        string type
+        int score
+        string displayName
+        string avatar
+        string country
+        datetime updatedAt
+    }
+
+    IDEMPOTENCY_RECORD {
+        string id PK
+        string playerId FK
+        string idempotencyKey
+        string action
+        string requestHash
+        json response
+        datetime createdAt
+    }
+
+    PLAYER ||--o{ PLAYER_FORMATION : has
+    PLAYER ||--o{ PLAYER_QUEST : tracks
+    PLAYER ||--o{ PLAYER_QUEST_PROGRESS_REWARD : tracks
+    PLAYER ||--o{ LEADERBOARD_SCORE : ranks
+    PLAYER ||--o{ IDEMPOTENCY_RECORD : stores

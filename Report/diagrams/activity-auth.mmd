@@ -1,0 +1,18 @@
+flowchart TD
+  A([Start]) --> B[Receive auth request]
+  B --> C{Endpoint type}
+  C -->|register/login| D[Validate payload]
+  C -->|refresh| E[Validate refresh token]
+  C -->|logout| F[Validate access token + roles]
+
+  D --> G[AuthApplicationService]
+  E --> G
+  F --> G
+
+  G --> H{Credential or token valid?}
+  H -->|No| X[Return 401 or 400]
+  H -->|Yes| I[Create or rotate session]
+  I --> J[Load player context]
+  J --> K[Return success envelope]
+  X --> Z([End])
+  K --> Z
