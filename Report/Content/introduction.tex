@@ -8,24 +8,24 @@ Trong những năm gần đây, thị trường game trực tuyến tiếp tục
 \begin{itemize}
     \item Quản lý phiên chơi và xử lý nhiều kết nối đồng thời.
     \item Đồng bộ trạng thái theo mô hình phù hợp để giảm sai lệch giữa client và server, đồng thời hạn chế gian lận ở mức kiến trúc\cite{moriarty-networked}.
-    \item Thiết kế dữ liệu tiến trình người chơi (profile/\allowbreak character/\allowbreak inventory/\allowbreak island/\allowbreak npc) sao cho có thể mở rộng và truy vết.
-    \item Tổ chức nhiều phân hệ nghiệp vụ (combat, progression, gacha, base-building, admin) trong một kiến trúc nhất quán, giảm phụ thuộc chéo và thuận lợi bảo trì\cite{gregory-engine}.
+    \item Thiết kế dữ liệu tiến trình người chơi (profile/\allowbreak statistics/\allowbreak tutorial/\allowbreak inventory/\allowbreak formation/\allowbreak quest/\allowbreak battle history) sao cho có thể mở rộng và truy vết.
+    \item Tổ chức các phân hệ nghiệp vụ cốt lõi (auth, player state, quest, battle, reward, progression, admin) trong một kiến trúc nhất quán, giảm phụ thuộc chéo và thuận lợi bảo trì\cite{gregory-engine}.
 \end{itemize}
 
 Ngoài ra, một thách thức quan trọng trong thiết kế game là quản trị \textbf{game configuration} (dữ liệu tĩnh) như định nghĩa vật phẩm, công trình, tham số cân bằng, bảng tỉ lệ và cấu hình sự kiện. Nếu cấu hình bị gắn chặt vào mã nguồn, việc điều chỉnh nội dung và cân bằng sẽ phụ thuộc vào chu kỳ build và phát hành. Do đó, hướng tiếp cận \textit{data-driven} thường được áp dụng để tách cấu hình khỏi code, giúp quy trình cập nhật linh hoạt hơn và giảm rủi ro ``hard-code'' tham số\cite{adams-game-design,schell-art}.
 
-Trong bối cảnh đó, đề tài \textit{Fortress of the Fallen} được thực hiện với trọng tâm là phân tích và thiết kế hệ thống cho một game Online Action RPG. Báo cáo hướng đến mô tả đầy đủ các phân hệ cốt lõi ở mức đồ án tốt nghiệp, làm nền tảng cho các giai đoạn hiện thực tiếp theo.
+Trong bối cảnh đó, đề tài \textit{Fortress of the Fallen} được triển khai theo hướng \textbf{vừa thiết kế vừa hiện thực} hệ thống client--server. Báo cáo không chỉ mô tả kiến trúc và mô hình dữ liệu, mà còn phản ánh các luồng đã chạy thực tế trong bản hiện tại.
 
 \subsection{Mục tiêu}
 
-Mục tiêu tổng quát của đề tài là xây dựng \textbf{bản thiết kế hệ thống} cho trò chơi Online Action RPG \textit{Fortress of the Fallen}, bao gồm kiến trúc, mô hình dữ liệu, luồng nghiệp vụ và hợp đồng giao tiếp giữa các thành phần.
+Mục tiêu tổng quát của đề tài là xây dựng và vận hành \textbf{nền tảng hệ thống client--server} cho trò chơi Online Action RPG \textit{Fortress of the Fallen}, bao gồm kiến trúc, mô hình dữ liệu, luồng nghiệp vụ, hợp đồng giao tiếp và các màn hình UI trọng yếu.
 
-Trong \textbf{giai đoạn 1}, đề tài tập trung vào các mục tiêu cụ thể:
+Trong phạm vi hiện tại, đề tài tập trung vào các mục tiêu cụ thể:
 \begin{itemize}
-    \item Xác định phạm vi và mô tả tập tính năng ở mức hệ thống theo các phân hệ: Authentication \& Profile, Combat \& Gameplay, Character Progression, Recruitment (Gacha), Personal Island, và Administration.
-    \item Phân tích yêu cầu chức năng, phi chức năng và yêu cầu dữ liệu; làm rõ ranh giới giữa dữ liệu tiến trình người chơi và dữ liệu cấu hình tĩnh.
+    \item Chuẩn hoá và vận hành các phân hệ cốt lõi: Authentication, Player State, Tutorial Progress, Quest, Battle Session (start/\allowbreak finish), Reward, Progression, và Castle Upgrade.
+    \item Đồng bộ contract giữa Unity client và backend API cho các luồng chính: đăng nhập/\allowbreak đăng ký/\allowbreak refresh/\allowbreak logout, tải \texttt{/me}, đồng bộ/\allowbreak claim quest, vào trận, kết trận, cập nhật tutorial progress, nâng cấp hero/\allowbreak skill, nâng cấp castle.
     \item Thiết kế kiến trúc triển khai tổng thể theo mô hình client--server, bao gồm các thành phần backend và hạ tầng dữ liệu; xác định cơ chế giao tiếp phù hợp cho tác vụ request--response và real-time\cite{moriarty-networked,gregory-engine}.
-    \item Thiết kế mô hình dữ liệu mức logic cho các thực thể chính: user, profile, session, character, inventory, island, npc và quan hệ giữa chúng, phục vụ truy vấn và mở rộng tính năng về sau.
+    \item Thiết kế mô hình dữ liệu mức logic cho các thực thể chính: user, session, profile, statistics, tutorial progress, inventory, formation, quest state và battle history.
     \item Thiết kế pipeline quản trị \textbf{game configuration (tĩnh)} theo hướng data-driven:
     \begin{center}
         Google Sheets $\rightarrow$ TSV $\rightarrow$ Import vào DB (collections cấu hình) $\rightarrow$ Load vào \textit{Config Manager} khi khởi động.
@@ -36,45 +36,51 @@ Trong \textbf{giai đoạn 1}, đề tài tập trung vào các mục tiêu cụ
 
 \subsection{Phạm vi}
 
-\subsubsection{Phạm vi trong giai đoạn 1}
+\subsubsection{Phạm vi hiện tại}
 
-Giai đoạn 1 tập trung hoàn toàn vào \textbf{phân tích và thiết kế}, bao gồm:
+Phạm vi hiện tại bao gồm \textbf{phân tích, thiết kế và triển khai vận hành} cho các luồng gameplay/lobby cốt lõi:
 
 \begin{itemize}
-    \item \textbf{Thiết kế phân hệ và luồng nghiệp vụ:}
-    mô tả actors, use case, luồng tổng quát cho các tác vụ chính (đăng nhập/\allowbreak chọn profile/\allowbreak chọn nhân vật; tham gia tower/\allowbreak dungeon/\allowbreak arena; loot và cập nhật inventory; nâng cấp/\allowbreak equip; gacha và pity; island xây dựng và worker; thao tác admin).
-    \item \textbf{Thiết kế kiến trúc triển khai:}
-    phân tách vai trò client và server; tổ chức backend thành các thành phần (API server, WebSocket gateway, worker) và tích hợp hạ tầng dữ liệu (DB, cache, object storage) ở mức kiến trúc.
-    \item \textbf{Thiết kế kiến trúc phần mềm theo module:}
+    \item \textbf{Luồng xác thực và state người chơi:}
+    đăng nhập/\allowbreak đăng ký/\allowbreak refresh token, tải player state từ \texttt{/me}, áp dụng profile/\allowbreak statistics/\allowbreak currency/\allowbreak inventory/\allowbreak formation/\allowbreak tutorial progress.
+    \item \textbf{Luồng quest và reward:}
+    đồng bộ daily/\allowbreak weekly/\allowbreak achievement, claim quest, claim milestone reward và cập nhật tiến trình sau battle.
+    \item \textbf{Luồng battle và hậu battle:}
+    tạo battle session, xử lý kết trận, nhận reward/\allowbreak exp/\allowbreak currency/\allowbreak quest updates, đồng bộ lại UI lobby.
+    \item \textbf{Luồng progression và unit management:}
+    nâng cấp/\allowbreak evolve hero, cập nhật chỉ số và tutorial step liên quan đến nâng cấp.
+    \item \textbf{Kiến trúc triển khai đang sử dụng:}
+    phân tách vai trò client và server; backend vận hành theo API server mô-đun hoá và hạ tầng dữ liệu chính; các thành phần mở rộng realtime sâu/\allowbreak multi-instance được giữ ở roadmap.
+    \item \textbf{Thiết kế kiến trúc phần mềm theo mô-đun:}
     phân rã module theo phân hệ, xác định dịch vụ dùng chung (validation, resource, RNG, inventory rules, sync/\allowbreak audit) nhằm giảm trùng lặp và đảm bảo nhất quán nghiệp vụ.
     \item \textbf{Thiết kế dữ liệu mức logic:}
-    xây dựng mô hình dữ liệu cho tiến trình người chơi (dynamic) và mô hình cho cấu hình game (static), làm rõ điểm tham chiếu giữa item instance và item definition, giữa building instance và building definition.
-    \item \textbf{Thiết kế hợp đồng giao tiếp:}
-    định hướng nhóm REST API cho các thao tác không real-time và nhóm WebSocket events cho các hành vi trong phiên chơi.
+    xây dựng mô hình dữ liệu cho tiến trình người chơi (dynamic) và mô hình cho cấu hình game (static), làm rõ điểm tham chiếu giữa instance gameplay và definition trong config.
+    \item \textbf{Hợp đồng giao tiếp:}
+    REST API đã dùng cho các luồng cốt lõi; WebSocket events ở mức định hướng mở rộng cho đồng bộ realtime sâu hơn.
     \item \textbf{Thiết kế pipeline cấu hình tĩnh:}
     mô tả quy trình export/\allowbreak import TSV và cơ chế nạp cấu hình vào Config Manager khi khởi động để phục vụ truy xuất thống nhất.
 \end{itemize}
 
-\subsubsection{Ngoài phạm vi giai đoạn 1}
+\subsubsection{Ngoài phạm vi hiện tại}
 
-Các nội dung sau \textbf{không thuộc phạm vi giai đoạn 1} do không phù hợp mục tiêu thiết kế ở mức đồ án:
+Các nội dung sau \textbf{chưa thuộc phạm vi hiện tại}:
 
 \begin{itemize}
-    \item Hiện thực gameplay hoàn chỉnh (combat runtime đầy đủ, tối ưu điều khiển, animation/\allowbreak FX pipeline).
-    \item Hoàn thiện PvP ở mức sản phẩm (matchmaking nâng cao, chống gian lận toàn diện, xếp hạng theo mùa với hệ thống phần thưởng vận hành dài hạn).
-    \item Live-ops và monetization thương mại; cân bằng kinh tế game ở quy mô lớn.
-    \item Benchmark tải lớn, tối ưu hiệu năng production, và triển khai đa vùng (multi-region) ở mức vận hành thực tế.
+    \item Hoàn thiện gameplay ở mức production (độ sâu content, animation/\allowbreak FX hoàn chỉnh, tuning cảm giác điều khiển trên nhiều thiết bị).
+    \item Hệ PvP đầy đủ cho vận hành thực tế (matchmaking nâng cao, anti-cheat toàn diện, mùa giải và phần thưởng dài hạn).
+    \item Live-ops thương mại và cân bằng kinh tế ở quy mô lớn (event vận hành định kỳ, monetization, A/\allowbreak B tuning).
+    \item Benchmark tải lớn, tối ưu production và triển khai multi-region ở mức SRE/\allowbreak DevOps hoàn chỉnh.
 \end{itemize}
 
 \subsection{Ý nghĩa của đề tài}
 
 \subsubsection{Ý nghĩa thực tiễn}
 
-Đề tài cung cấp một bản thiết kế hệ thống có tính mô-đun cho game Online Action RPG, làm rõ cách tổ chức các phân hệ gameplay và cách quản trị dữ liệu nhất quán trong một sản phẩm. Đặc biệt, cơ chế quản trị \textit{game configuration} theo hướng data-driven tạo nền tảng cho việc mở rộng nội dung và cân bằng ở các giai đoạn sau mà không phụ thuộc hoàn toàn vào chỉnh sửa mã nguồn\cite{adams-game-design,gregory-engine}.
+Đề tài cung cấp một hệ thống client--server đã tích hợp các luồng gameplay/\allowbreak lobby cốt lõi cho game Online Action RPG, đồng thời làm rõ cách tổ chức các phân hệ và quản trị dữ liệu nhất quán trong sản phẩm. Đặc biệt, cơ chế quản trị \textit{game configuration} theo hướng data-driven tạo nền tảng cho mở rộng nội dung và cân bằng ở các giai đoạn sau mà không phụ thuộc hoàn toàn vào chỉnh sửa mã nguồn\cite{adams-game-design,gregory-engine}.
 
 \subsubsection{Ý nghĩa khoa học và học thuật}
 
-Đề tài tạo môi trường để vận dụng tổng hợp kiến thức về kiến trúc phần mềm, hệ thống phân tán, cơ sở dữ liệu, và nguyên lý đồng bộ trạng thái trong game online. Việc mô hình hoá nghiệp vụ và dữ liệu ở mức logic giúp tăng tính hệ thống, đồng thời cung cấp cơ sở để đánh giá tính khả thi và rủi ro khi chuyển sang giai đoạn triển khai\cite{moriarty-networked,gregory-engine}.
+Đề tài tạo môi trường để vận dụng tổng hợp kiến thức về kiến trúc phần mềm, hệ thống phân tán, cơ sở dữ liệu, và nguyên lý đồng bộ trạng thái trong game online. Việc mô hình hoá nghiệp vụ và dữ liệu ở mức logic, sau đó đối chiếu với luồng đã chạy thực tế, giúp tăng tính hệ thống và khả năng đánh giá rủi ro kỹ thuật\cite{moriarty-networked,gregory-engine}.
 
 \subsection{Cấu trúc báo cáo}
 
@@ -82,12 +88,12 @@ Báo cáo được tổ chức như sau:
 
 \begin{itemize}
     \item \textbf{Chương 2 -- Kiến thức nền tảng:} Trình bày các khái niệm nền tảng về Action RPG online, core loop/\allowbreak meta loop, nguyên tắc client--server và hướng tiếp cận data-driven cho cấu hình\cite{adams-game-design,schell-art}.
-    \item \textbf{Chương 3 -- Công nghệ sử dụng:} Giới thiệu các công nghệ dự kiến sử dụng và lý do lựa chọn trong bối cảnh kiến trúc hệ thống (engine, backend, networking, database, công cụ quản lý)\cite{unity-manual,nest-docs,mongodb-guide,redis-in-action}.
+    \item \textbf{Chương 3 -- Công nghệ sử dụng:} Giới thiệu các công nghệ đang sử dụng trong bản hiện tại và các hạng mục mở rộng đã tách riêng thành roadmap\cite{unity-manual,nest-docs,mongodb-guide,redis-in-action}.
     \item \textbf{Chương 4 -- Các công trình liên quan:} Tổng hợp tham khảo theo nhóm phân hệ và bảng đối chiếu để rút ra các điểm áp dụng vào thiết kế.
-    \item \textbf{Chương 5 -- Phân tích yêu cầu:} Xác định yêu cầu chức năng, phi chức năng, dữ liệu và phạm vi giai đoạn 1.
+    \item \textbf{Chương 5 -- Phân tích yêu cầu:} Xác định yêu cầu chức năng, phi chức năng, dữ liệu và phạm vi hiện tại của hệ thống.
     \item \textbf{Chương 6 -- Phân tích hệ thống:} Phân tích actors, use case, luồng nghiệp vụ và dữ liệu mức logic phục vụ thiết kế.
     \item \textbf{Chương 7 -- Thiết kế hệ thống:} Trình bày kiến trúc triển khai, kiến trúc module, mô hình dữ liệu và hợp đồng giao tiếp; mô tả pipeline quản trị game configuration.
-    \item \textbf{Chương 8 -- Định hướng hiện thực:} Đề xuất lộ trình triển khai theo module, chiến lược tích hợp pipeline cấu hình và các điểm cần ưu tiên giảm rủi ro.
-    \item \textbf{Chương 9 -- Đánh giá hệ thống:} Đánh giá mức độ bao phủ yêu cầu, tính nhất quán của thiết kế và các rủi ro còn tồn tại.
-    \item \textbf{Chương 10 -- Kết luận:} Tổng kết kết quả thiết kế đạt được và định hướng phát triển cho các giai đoạn tiếp theo.
+    \item \textbf{Chương 8 -- Hiện thực hệ thống:} Trình bày phần đã tích hợp thực tế giữa client và backend, cùng các hạng mục còn lại trong backlog kỹ thuật.
+    \item \textbf{Chương 9 -- Đánh giá hệ thống:} Đánh giá mức độ bao phủ yêu cầu dựa trên trạng thái triển khai hiện tại, tính nhất quán dữ liệu và các rủi ro còn tồn tại.
+    \item \textbf{Chương 10 -- Kết luận:} Tổng kết kết quả đã triển khai và định hướng phát triển cho các giai đoạn tiếp theo.
 \end{itemize}

@@ -2450,65 +2450,40 @@
     <bcf:citekey order="48" intorder="3">latex-companion</bcf:citekey>
     <bcf:citekey order="49" intorder="1">schell-art</bcf:citekey>
     <bcf:citekey order="49" intorder="2">adams-game-design</bcf:citekey>
-    <bcf:citekey order="50" intorder="1">gregory-engine</bcf:citekey>
-    <bcf:citekey order="51" intorder="1">gaffer-networking</bcf:citekey>
-    <bcf:citekey order="51" intorder="2">moriarty-networked</bcf:citekey>
-    <bcf:citekey order="52" intorder="1">unity-manual</bcf:citekey>
-    <bcf:citekey order="52" intorder="2">nest-docs</bcf:citekey>
-    <bcf:citekey order="52" intorder="3">mongodb-guide</bcf:citekey>
-    <bcf:citekey order="52" intorder="4">redis-in-action</bcf:citekey>
-    <bcf:citekey order="52" intorder="5">nodejs-docs</bcf:citekey>
-    <bcf:citekey order="53" intorder="1">sao-aincrad</bcf:citekey>
-    <bcf:citekey order="54" intorder="1">overlord-novel</bcf:citekey>
-    <bcf:citekey order="55" intorder="1">pickmeup-webtoon</bcf:citekey>
-    <bcf:citekey order="56" intorder="1">arcane-odyssey</bcf:citekey>
-    <bcf:citekey order="57" intorder="1">gaffer-networking</bcf:citekey>
-    <bcf:citekey order="57" intorder="2">moriarty-networked</bcf:citekey>
-    <bcf:citekey order="58" intorder="1">soulknight-prequel</bcf:citekey>
-    <bcf:citekey order="59" intorder="1">clashofclans</bcf:citekey>
-    <bcf:citekey order="60" intorder="1">sao-aincrad</bcf:citekey>
-    <bcf:citekey order="61" intorder="1">overlord-novel</bcf:citekey>
-    <bcf:citekey order="62" intorder="1">pickmeup-webtoon</bcf:citekey>
-    <bcf:citekey order="63" intorder="1">arcane-odyssey</bcf:citekey>
-    <bcf:citekey order="64" intorder="1">soulknight-prequel</bcf:citekey>
-    <bcf:citekey order="65" intorder="1">clashofclans</bcf:citekey>
-    <bcf:citekey order="66" intorder="1">schell-art</bcf:citekey>
-    <bcf:citekey order="66" intorder="2">adams-game-design</bcf:citekey>
-    <bcf:citekey order="67" intorder="1">gregory-engine</bcf:citekey>
-    <bcf:citekey order="68" intorder="1">gaffer-networking</bcf:citekey>
+    <bcf:citekey order="49" intorder="3">gregory-engine</bcf:citekey>
+    <bcf:citekey order="49" intorder="4">gaffer-networking</bcf:citekey>
+    <bcf:citekey order="49" intorder="5">moriarty-networked</bcf:citekey>
+    <bcf:citekey order="49" intorder="6">unity-manual</bcf:citekey>
+    <bcf:citekey order="49" intorder="7">nest-docs</bcf:citekey>
+    <bcf:citekey order="49" intorder="8">nodejs-docs</bcf:citekey>
+    <bcf:citekey order="49" intorder="9">mongodb-guide</bcf:citekey>
+    <bcf:citekey order="49" intorder="10">redis-in-action</bcf:citekey>
+    <bcf:citekey order="62" intorder="1">sao-aincrad</bcf:citekey>
+    <bcf:citekey order="63" intorder="1">overlord-novel</bcf:citekey>
+    <bcf:citekey order="64" intorder="1">pickmeup-webtoon</bcf:citekey>
+    <bcf:citekey order="65" intorder="1">arcane-odyssey</bcf:citekey>
+    <bcf:citekey order="66" intorder="1">soulknight-prequel</bcf:citekey>
+    <bcf:citekey order="67" intorder="1">clashofclans</bcf:citekey>
+    <bcf:citekey order="68" intorder="1">gregory-engine</bcf:citekey>
     <bcf:citekey order="68" intorder="2">moriarty-networked</bcf:citekey>
+    <bcf:citekey order="68" intorder="3">gaffer-networking</bcf:citekey>
     <bcf:citekey order="69" intorder="1">unity-manual</bcf:citekey>
     <bcf:citekey order="69" intorder="2">nest-docs</bcf:citekey>
     <bcf:citekey order="69" intorder="3">nodejs-docs</bcf:citekey>
     <bcf:citekey order="69" intorder="4">mongodb-guide</bcf:citekey>
     <bcf:citekey order="69" intorder="5">redis-in-action</bcf:citekey>
-    <bcf:citekey order="70" intorder="1">sao-aincrad</bcf:citekey>
-    <bcf:citekey order="70" intorder="2">overlord-novel</bcf:citekey>
-    <bcf:citekey order="70" intorder="3">pickmeup-webtoon</bcf:citekey>
-    <bcf:citekey order="70" intorder="4">arcane-odyssey</bcf:citekey>
-    <bcf:citekey order="70" intorder="5">soulknight-prequel</bcf:citekey>
-    <bcf:citekey order="70" intorder="6">clashofclans</bcf:citekey>
-    <bcf:citekey order="71" intorder="1">schell-art</bcf:citekey>
-    <bcf:citekey order="71" intorder="2">adams-game-design</bcf:citekey>
-    <bcf:citekey order="71" intorder="3">gregory-engine</bcf:citekey>
-    <bcf:citekey order="71" intorder="4">gaffer-networking</bcf:citekey>
-    <bcf:citekey order="71" intorder="5">moriarty-networked</bcf:citekey>
-    <bcf:citekey order="71" intorder="6">unity-manual</bcf:citekey>
-    <bcf:citekey order="71" intorder="7">nest-docs</bcf:citekey>
-    <bcf:citekey order="71" intorder="8">mongodb-guide</bcf:citekey>
-    <bcf:citekey order="71" intorder="9">redis-in-action</bcf:citekey>
-    <bcf:citekey order="72" intorder="1">gaffer-networking</bcf:citekey>
-    <bcf:citekey order="72" intorder="2">moriarty-networked</bcf:citekey>
-    <bcf:citekey order="73" intorder="1">nest-docs</bcf:citekey>
-    <bcf:citekey order="74" intorder="1">gaffer-networking</bcf:citekey>
-    <bcf:citekey order="74" intorder="2">moriarty-networked</bcf:citekey>
-    <bcf:citekey order="75" intorder="1">nest-docs</bcf:citekey>
-    <bcf:citekey order="75" intorder="2">mongodb-guide</bcf:citekey>
-    <bcf:citekey order="75" intorder="3">redis-in-action</bcf:citekey>
-    <bcf:citekey order="75" intorder="4">gaffer-networking</bcf:citekey>
-    <bcf:citekey order="75" intorder="5">moriarty-networked</bcf:citekey>
-    <bcf:citekey order="76" intorder="1">nest-docs</bcf:citekey>
-    <bcf:citekey order="77" intorder="1">moriarty-networked</bcf:citekey>
+    <bcf:citekey order="70" intorder="1">schell-art</bcf:citekey>
+    <bcf:citekey order="70" intorder="2">adams-game-design</bcf:citekey>
+    <bcf:citekey order="71" intorder="1">gaffer-networking</bcf:citekey>
+    <bcf:citekey order="71" intorder="2">moriarty-networked</bcf:citekey>
+    <bcf:citekey order="72" intorder="1">nest-docs</bcf:citekey>
+    <bcf:citekey order="73" intorder="1">gaffer-networking</bcf:citekey>
+    <bcf:citekey order="73" intorder="2">moriarty-networked</bcf:citekey>
+    <bcf:citekey order="74" intorder="1">nest-docs</bcf:citekey>
+    <bcf:citekey order="74" intorder="2">mongodb-guide</bcf:citekey>
+    <bcf:citekey order="74" intorder="3">redis-in-action</bcf:citekey>
+    <bcf:citekey order="74" intorder="4">gaffer-networking</bcf:citekey>
+    <bcf:citekey order="74" intorder="5">moriarty-networked</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

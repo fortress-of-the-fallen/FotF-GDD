@@ -12,7 +12,7 @@ Mục tiêu của chương này là chuyển hoá kết quả phân tích ở Ch
 (v) thiết kế các cơ chế đảm bảo nhất quán, bảo mật và quan sát hệ thống;
 (vi) thiết kế giao diện UI/\allowbreak UX ở mức tham chiếu để đối chiếu với luồng nghiệp vụ và API.
 
-Trong giai đoạn 1, thiết kế ưu tiên:
+Trong baseline hiện tại, thiết kế ưu tiên:
 \begin{itemize}
     \item \textbf{Tính đúng đắn và nhất quán}: các thay đổi ảnh hưởng tiến trình (reward/\allowbreak currency/\allowbreak gacha/\allowbreak checkpoint, nâng cấp, tiêu hao vật phẩm) phải được server xác nhận.
     \item \textbf{Tính mô-đun}: phân tách rõ theo phân hệ (auth, profile, character, inventory, equipment, skills, combat, gacha, island, admin).
@@ -205,7 +205,6 @@ erDiagram
         ObjectId profile_id FK
         string name
         enum gender
-        enum race
         enum class
         int level
         long current_exp
@@ -384,7 +383,6 @@ erDiagram
         int star_grade
         int friendship_point
         string current_job
-        enum race
         enum class
         object combat_stats "Embed: STRUCT_BASE_STATS"
         object resources "Embed: STRUCT_CURRENT_RESOURCES"
@@ -472,8 +470,8 @@ Phần này phân tích cách các thực thể liên kết với nhau (1:1, 1:N
 \begin{itemize}
     \item CHARACTER\_SKILLS là collection 1:1 theo \texttt{character\_id}, lưu tổng thể tiến trình kỹ năng: điểm kỹ năng, danh sách kỹ năng đã học và hotbar.
     \item \texttt{STRUCT\_\allowbreak LEARNED\_\allowbreak SKILL.skill\_ref\_id} tham chiếu CONFIG\_SKILL.\texttt{id}. Các thuộc tính \texttt{current\_level/\allowbreak is\_unlocked/\allowbreak current\_exp} mô tả tiến trình.
-    \item \texttt{cooldown\_end} được xem là runtime; trong giai đoạn 1 có thể không lưu bền vững (hoặc lưu tạm theo policy), tránh ghi DB liên tục.
-    \item \texttt{STRUCT\_\allowbreak HOTBAR\_\allowbreak SLOT} gắn layout phím/\allowbreak slot với skill (hoặc item). Nếu \texttt{type=Item}, có thể mở rộng tham chiếu inventory theo policy (không bắt buộc ở giai đoạn 1).
+    \item \texttt{cooldown\_end} được xem là runtime; ở baseline hiện tại có thể không lưu bền vững (hoặc lưu tạm theo policy), tránh ghi DB liên tục.
+    \item \texttt{STRUCT\_\allowbreak HOTBAR\_\allowbreak SLOT} gắn layout phím/\allowbreak slot với skill (hoặc item). Nếu \texttt{type=Item}, có thể mở rộng tham chiếu inventory theo policy (không bắt buộc ở baseline hiện tại).
 \end{itemize}
 
 \paragraph{(7) GAME\_PROFILE $\leftrightarrow$ PERSONAL\_ISLAND và quan hệ building instance $\rightarrow$ CONFIG\_BUILDING}
@@ -652,8 +650,6 @@ Phần này mô tả các collection chính ở mức thuộc tính, mục đíc
 \texttt{name} & string & Yes & Tên nhân vật; có thể unique theo (profile\_id, name). \\
 \hline
 \texttt{gender} & enum & No & Thông tin hiển thị; không bắt buộc ảnh hưởng logic. \\
-\hline
-\texttt{race} & enum & Yes & Race; ảnh hưởng chỉ số/\allowbreak trait theo thiết kế. \\
 \hline
 \texttt{class} & enum & Yes & Class hiện tại; ảnh hưởng bộ skill/\allowbreak role. \\
 \hline
@@ -1042,7 +1038,7 @@ Thiết kế tách rõ:
     \begin{itemize}
         \item player phân bổ điểm;
         \item thay đổi trang bị;
-        \item thay đổi class/\allowbreak race có modifier;
+        \item thay đổi class có modifier;
         \item nâng cấp kỹ năng passive/\allowbreak buff có modifier (nếu áp dụng).
     \end{itemize}
 \end{itemize}
@@ -1080,7 +1076,7 @@ Config Manager là lớp truy xuất cấu hình thống nhất cho toàn bộ s
     \item \textbf{Validation khi nạp}: kiểm tra dữ liệu sau import (schema, khoá trùng, tham chiếu hợp lệ).
 \end{itemize}
 
-Ở giai đoạn 1, cơ chế reload có thể ở mức đơn giản (restart server để nạp lại). Khi mở rộng, có thể bổ sung endpoint admin ``reload config'' có xác thực và đồng bộ đa instance qua pub/\allowbreak sub.
+Ở baseline hiện tại, cơ chế reload có thể ở mức đơn giản (restart server để nạp lại). Khi mở rộng, có thể bổ sung endpoint admin ``reload config'' có xác thực và đồng bộ đa instance qua pub/\allowbreak sub.
 
 % ==============================================================
 \subsection{Thiết kế giao tiếp client--server}
@@ -1142,102 +1138,261 @@ Vòng đời phiên:
 \subsection{Thiết kế giao diện người dùng (UI/\allowbreak UX) mức tham chiếu}
 \label{subsec:design-ui}
 
-Mục này chèn các màn hình UI tham chiếu theo phong cách pixel art để:
-(i) minh hoạ luồng người dùng (auth $\rightarrow$ profile $\rightarrow$ gameplay hub);
-(ii) đối chiếu state UI với dữ liệu/\allowbreak endpoint;
-(iii) làm rõ các ``điểm chạm'' giữa UI và các mô-đun backend.
-
-\subsubsection{UI nền/\allowbreak bối cảnh (mood \& style)}
-\label{subsubsec:design-ui-mood}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Images/background.png}
-    \caption{Minh hoạ bối cảnh/\allowbreak pixel art mood của game}
-    \label{fig:ui-background-mood}
-\end{figure}
+Mục này tổng hợp các màn hình UI mới được chụp trực tiếp từ bản Unity hiện tại. Các hình được dùng để minh hoạ luồng người dùng thực tế (xác thực $\rightarrow$ lobby $\rightarrow$ nhiệm vụ/\allowbreak nâng cấp $\rightarrow$ vào trận $\rightarrow$ nhận thưởng), đồng thời đối chiếu trạng thái UI với dữ liệu backend đang đồng bộ qua REST API.
 
 \subsubsection{Luồng UI xác thực: Login/\allowbreak Register}
 \label{subsubsec:design-ui-auth}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.78\textwidth]{Images/login.jpeg}
-    \caption{Màn hình đăng nhập (Login)}
-    \label{fig:ui-login}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.78\textwidth]{Images/register.jpeg}
-    \caption{Màn hình đăng ký (Register)}
-    \label{fig:ui-register}
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/login.png}
+        \caption{Đăng nhập}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/register.png}
+        \caption{Đăng ký}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/loading_scene.png}
+        \caption{Loading}
+    \end{subfigure}
+    \caption{Luồng UI xác thực và tải dữ liệu ban đầu}
+    \label{fig:ui-auth-flow}
 \end{figure}
 
 Mapping nghiệp vụ và API:
 \begin{itemize}
     \item \textbf{Input validation}: username/\allowbreak password không rỗng; hiển thị lỗi theo mã lỗi chuẩn hoá.
-    \item \textbf{Endpoint}: \texttt{/auth/\allowbreak login}, \texttt{/auth/\allowbreak register}; (tuỳ chọn) \texttt{/auth/\allowbreak recover}.
-    \item \textbf{Trạng thái UI}: loading khi submit; disable nút khi request đang chạy; thông báo lỗi khi sai mật khẩu/\allowbreak tài khoản bị ban.
+    \item \textbf{Endpoint}: \texttt{/auth/\allowbreak login}, \texttt{/auth/\allowbreak register}, \texttt{/auth/\allowbreak refresh}, \texttt{/me}.
+    \item \textbf{Trạng thái UI}: loading khi submit; disable nút khi request đang chạy; chuyển scene sau khi token và player state được tải thành công.
 \end{itemize}
 
-\subsubsection{Luồng UI profile: Select/\allowbreak Create/\allowbreak Delete}
-\label{subsubsec:design-ui-profile}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\textwidth]{Images/select_profile.png}
-    \caption{Màn hình chọn profile (Select Profile)}
-    \label{fig:ui-select-profile}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\textwidth]{Images/create_profile.png}
-    \caption{Màn hình tạo profile/\allowbreak nhân vật (Create Profile/\allowbreak Character)}
-    \label{fig:ui-create-profile}
-\end{figure}
-
-Mapping nghiệp vụ và API:
-\begin{itemize}
-    \item \textbf{Endpoint}: \texttt{/profiles} (list/\allowbreak create/\allowbreak select/\allowbreak delete), \texttt{/characters} (create/\allowbreak select/\allowbreak delete).
-    \item \textbf{Ràng buộc}: giới hạn số profile/\allowbreak slot; xác nhận trước khi xoá; kiểm tra trùng tên theo policy.
-    \item \textbf{Dữ liệu hiển thị}: level/\allowbreak class/\allowbreak race; thông tin preview ngoại hình lấy từ \texttt{CHARACTER.appearance}.
-\end{itemize}
-
-\subsubsection{UI Hub và điều hướng phân hệ}
+\subsubsection{UI lobby và điều hướng phân hệ}
 \label{subsubsec:design-ui-hub}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Images/main_UI.png}
-    \caption{UI Hub: điều hướng Inventory/\allowbreak Heroes/\allowbreak Battle/\allowbreak Gacha/\allowbreak Quests}
-    \label{fig:ui-main-hub}
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/main_scene.png}
+        \caption{Lobby chính}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/upgrade_castle.png}
+        \caption{Nâng cấp castle}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/leaderBoard.png}
+        \caption{Bảng xếp hạng}
+    \end{subfigure}
+    \caption{UI lobby, nâng cấp castle và leaderboard}
+    \label{fig:ui-lobby-flow}
 \end{figure}
 
 Mapping nghiệp vụ và API:
 \begin{itemize}
-    \item \textbf{Inventory}: REST tải \texttt{INVENTORY} + \texttt{CHARACTER\_EQUIPMENT} để render chỉ số và item/\allowbreak slot.
-    \item \textbf{Heroes}: REST tải \texttt{NPC\_COLLECTION}.
-    \item \textbf{Battle}: bắt đầu bằng REST (chuẩn bị data/\allowbreak kiểm tra điều kiện), sau đó chuyển sang WebSocket để realtime.
-    \item \textbf{Gacha}: REST tải banner/\allowbreak rates, thực hiện summon, nhận kết quả và cập nhật NPC collection.
+    \item \textbf{Player state}: lobby đọc \texttt{profile}, \texttt{statistics}, \texttt{currency}, \texttt{formation}, \texttt{tutorialProgress} từ \texttt{/me}.
+    \item \textbf{Castle upgrade}: UI sử dụng \texttt{levelCastle} và \texttt{lobbyUpgradeSpent}; thao tác nâng cấp cần endpoint backend riêng để tránh mất tiến trình sau khi đồng bộ lại.
+    \item \textbf{Leaderboard}: hiển thị điểm/\allowbreak trophy và thứ hạng theo dữ liệu rank hoặc leaderboard từ backend.
 \end{itemize}
 
-\subsubsection{UI Inventory/\allowbreak Equipment}
+\subsubsection{UI quest và milestone reward}
+\label{subsubsec:design-ui-quest}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/daily_task.png}
+        \caption{Daily quest}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/weekly_task.png}
+        \caption{Weekly quest}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/achievements.png}
+        \caption{Achievement}
+    \end{subfigure}
+    \caption{UI nhiệm vụ ngày, tuần và thành tựu}
+    \label{fig:ui-quest-flow}
+\end{figure}
+
+Mapping nghiệp vụ và API:
+\begin{itemize}
+    \item \textbf{Endpoint}: \texttt{/quests}, \texttt{/quests/\allowbreak \{questId\}/claim}, \texttt{/quests/\allowbreak progress-rewards/\allowbreak \{track\}/\{stage\}/claim}.
+    \item \textbf{Dữ liệu}: daily/\allowbreak weekly/\allowbreak achievement gồm progress, required, trạng thái completed/\allowbreak claimed và reward.
+    \item \textbf{Milestone}: thanh mốc phía trên đọc \texttt{points} và \texttt{progressRewards}; icon reward lấy từ item id do backend trả.
+\end{itemize}
+
+\subsubsection{UI hero inventory, upgrade và evolve}
 \label{subsubsec:design-ui-inventory}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Images/inventory.jpg}
-    \caption{UI Inventory: phân loại item, thao tác Use/\allowbreak Equip và hiển thị currency}
-    \label{fig:ui-inventory}
+    \begin{subfigure}[t]{0.19\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/inventory.png}
+        \caption{Hero inventory}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.19\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/UI_Unit.png}
+        \caption{UIUnit}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.19\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/UI_descUnit.png}
+        \caption{Chi tiết unit}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.19\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/UI_upgrade.png}
+        \caption{Upgrade}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.19\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/UI_evolution.png}
+        \caption{Evolve}
+    \end{subfigure}
+    \caption{UI quản lý hero/\allowbreak unit: danh sách, UIUnit, chi tiết, nâng cấp và tiến hoá}
+    \label{fig:ui-unit-upgrade-flow}
 \end{figure}
 
 Mapping nghiệp vụ và API:
 \begin{itemize}
-    \item \textbf{Inventory tabs}: All/\allowbreak Equip/\allowbreak Use/\allowbreak Mat tương ứng filter theo \texttt{CONFIG\_ITEM.type}.
-    \item \textbf{Endpoint}: \texttt{/inventory} (get/\allowbreak use), \texttt{/equipment} (get/\allowbreak equip/\allowbreak unequip), (tuỳ chọn) \texttt{/equipment/\allowbreak enhance}, \texttt{/equipment/\allowbreak repair}.
-    \item \textbf{Ràng buộc}: kiểm tra slot trống; kiểm tra \texttt{max\_stack}; thao tác equip/\allowbreak unequip phải nhất quán giữa INVENTORY và CHARACTER\_EQUIPMENT.
+    \item \textbf{Endpoint}: \texttt{/inventory/\allowbreak heroes/\allowbreak \{instanceId\}/upgrade}, \texttt{/inventory/\allowbreak heroes/\allowbreak \{instanceId\}/evolve}.
+    \item \textbf{Dữ liệu}: danh sách hero instance (màn UIUnit), \texttt{customData.lv}, \texttt{customData.evlove\_lv}, shard và gold hiện có.
+    \item \textbf{Ràng buộc}: backend kiểm tra chi phí, config version và idempotency; client chỉ cập nhật UI sau khi nhận state mới.
+\end{itemize}
+
+\subsubsection{UI tutorial và onboarding}
+\label{subsubsec:design-ui-tutorial}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/tutorial1_1.png}
+        \caption{Bước hướng dẫn 1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/tutorial1_2.png}
+        \caption{Bước hướng dẫn 2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/tutorial1_3.png}
+        \caption{Bước hướng dẫn 3}
+    \end{subfigure}
+    \caption{UI tutorial điều hướng người chơi mới}
+    \label{fig:ui-tutorial-flow}
+\end{figure}
+
+Mapping nghiệp vụ và API:
+\begin{itemize}
+    \item \textbf{Tutorial progress}: \texttt{finishOnboarding}, \texttt{finishFirstDeploy}, \texttt{isDoneUpgradeUnitTutorial}.
+    \item \textbf{Endpoint}: \texttt{PATCH /me/tutorial-progress}; battle finish cũng trả tutorial state mới để client đồng bộ.
+    \item \textbf{Ràng buộc UI}: chỉ hiển thị hand/\allowbreak dim khi bước trước đã hoàn tất và không có popup reward hoặc level-up đang mở.
+\end{itemize}
+
+\subsubsection{UI vào trận và gameplay battle}
+\label{subsubsec:design-ui-battle}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/finding_match.png}
+        \caption{Finding match}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/matching_scene.png}
+        \caption{Matching}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/roulette.png}
+        \caption{Roulette}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/battle_scene.png}
+        \caption{Battle}
+    \end{subfigure}
+    \caption{UI chuẩn bị trận và gameplay battle}
+    \label{fig:ui-battle-flow}
+\end{figure}
+
+Mapping nghiệp vụ và API:
+\begin{itemize}
+    \item \textbf{Start battle}: \texttt{POST /battles/start} trả \texttt{battleId}, seed, mode và config version.
+    \item \textbf{Gameplay}: client render battle, territory, unit deployment và hiệu ứng; backend lưu session phục vụ reward/\allowbreak state authoritative.
+    \item \textbf{Finish battle}: \texttt{POST /battles/\allowbreak \{battleId\}/finish} trả reward, statistics, currency, tutorial progress và quest updates.
+\end{itemize}
+
+\subsubsection{UI kết quả trận và reward}
+\label{subsubsec:design-ui-reward}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/end_match.png}
+        \caption{End match}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/victory_reward.png}
+        \caption{Victory reward}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/defeat_reward.png}
+        \caption{Defeat reward}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/level_up.png}
+        \caption{Level up}
+    \end{subfigure}
+    \caption{UI kết quả trận, reward và level-up}
+    \label{fig:ui-battle-result-flow}
+\end{figure}
+
+Mapping nghiệp vụ và API:
+\begin{itemize}
+    \item \textbf{Reward}: client hiển thị đúng danh sách \texttt{grantedRewards}/\texttt{rewards} do backend trả.
+    \item \textbf{Level-up}: \texttt{statistics.level} và \texttt{statistics.exp} là nguồn sự thật; client không tự suy diễn level nếu backend chưa tăng level.
+    \item \textbf{Quest update}: battle finish trả \texttt{questUpdates} để cập nhật daily/\allowbreak weekly/\allowbreak achievement progress ngay sau trận.
 \end{itemize}
 
 % ==============================================================
@@ -1265,7 +1420,7 @@ Thiết kế loop ở mức khái niệm:
     \item Phát snapshot định kỳ và phát event khi có thay đổi quan trọng (hit/\allowbreak loot/\allowbreak death).
 \end{enumerate}
 
-Trong giai đoạn 1, cơ chế snapshot có thể thiết kế theo hướng \textbf{đơn giản và rõ ràng}:
+Trong baseline hiện tại, cơ chế snapshot có thể thiết kế theo hướng \textbf{đơn giản và rõ ràng}:
 \begin{itemize}
     \item snapshot theo tick rate cố định (ví dụ 10--20 tick/\allowbreak s tuỳ mục tiêu kiểm thử);
     \item payload snapshot ưu tiên các giá trị tối thiểu để render (pos, hp/\allowbreak mp, state flags, cast state);

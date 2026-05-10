@@ -1,262 +1,158 @@
-﻿\section{Kế hoạch hiện thực prototype}
+\section{Hiện thực và tích hợp hệ thống}
 \label{sec:implementation}
 
-\subsection{Mục tiêu và phạm vi}
+\subsection{Mục tiêu chương}
 \label{subsec:impl-goals}
 
-Chương này mô tả kế hoạch hiện thực một \textbf{prototype} nhằm kiểm chứng các quyết định thiết kế đã trình bày ở Chương~\ref{sec:design}. Prototype được định hướng như một ``bản chạy được'' để xác thực:
+Chương này mô tả trạng thái hiện thực đang vận hành của hệ thống \textit{Fortress of the Fallen}, tập trung vào các luồng đã chạy thực tế giữa Unity client và backend API. Mục tiêu là đối chiếu trực tiếp giữa thiết kế ở Chương~\ref{sec:design} và hành vi runtime hiện tại, đồng thời tách rõ phần mở rộng chưa triển khai đầy đủ.
+
+\subsection{Baseline triển khai hiện tại}
+\label{subsec:impl-baseline}
+
+Tại thời điểm viết báo cáo, các luồng cốt lõi đã tích hợp gồm:
 \begin{itemize}
-    \item Luồng \textbf{Identity \& Profile}: đăng ký/\allowbreak đăng nhập, chọn profile/\allowbreak nhân vật, thiết lập phiên.
-    \item Luồng \textbf{real-time}: client gửi input, server xử lý authoritative và trả snapshot/\allowbreak event.
-    \item Các mô-đun meta-progression có dữ liệu bền vững: \textbf{Inventory}, \textbf{Gacha}, \textbf{Personal Island \& NPC}.
-    \item Pipeline \textbf{game configuration} theo hướng data-driven: Google Sheets $\rightarrow$ TSV $\rightarrow$ DB $\rightarrow$ Config Manager.
+    \item Authentication: register/\allowbreak login/\allowbreak refresh/\allowbreak logout.
+    \item Đồng bộ player state qua \texttt{GET /me}.
+    \item Quest: tải quest, claim quest, claim progress reward.
+    \item Battle session: \texttt{battles/start} và \texttt{battles/\{id\}/finish}.
+    \item Tutorial progress sync: \texttt{PATCH /me/tutorial-progress}.
+    \item Progression thao tác trực tiếp: nâng cấp hero/\allowbreak skill, evolve hero.
+    \item Castle progression: nâng cấp castle qua endpoint backend chuyên biệt.
 \end{itemize}
 
-Trong phạm vi prototype, các nội dung (map, quái, AI phức tạp, PvP hoàn chỉnh) không phải trọng tâm; ưu tiên là \textbf{đúng luồng}, \textbf{đúng dữ liệu} và \textbf{đúng ranh giới client--server}.
+Các luồng trên là nguồn sự thật chính cho dữ liệu người chơi (level, exp, currency, quest progress, tutorial flags, castle state).
 
-%------------------------------------------------
+\subsection{Hiện thực phía client (Unity)}
+\label{subsec:impl-client}
 
-\subsection{Kế hoạch triển khai theo mốc}
-\label{subsec:impl-plan}
+\subsubsection{Tổ chức lớp giao tiếp backend}
+\label{subsubsec:impl-client-api}
 
-Kế hoạch triển khai được tổ chức theo các mốc tăng dần độ phức tạp: trước tiên dựng khung kết nối và xác thực, sau đó bổ sung hệ thống dữ liệu bền vững và cuối cùng là tích hợp các mô-đun meta.
+Client tổ chức lớp API theo mô hình:
+\begin{itemize}
+    \item \textbf{BackendApiClient}: gửi request HTTP, parse response chuẩn, xử lý lỗi mạng/\allowbreak timeout.
+    \item \textbf{APIManager}: điều phối luồng nghiệp vụ mức game (auth success, load \texttt{/me}, sync quest, battle start/\allowbreak finish, tutorial update, upgrade actions).
+    \item \textbf{UI layer}: các màn hình \texttt{UILoginAuth}, \texttt{UISetupBattle}, \texttt{UITask}, \texttt{UIUnits}, \texttt{UIReward}, \texttt{UILevelUp} đọc dữ liệu đã chuẩn hoá từ APIManager.
+\end{itemize}
+
+\subsubsection{Nguyên tắc đồng bộ dữ liệu}
+\label{subsubsec:impl-client-sync}
+
+Client áp dụng nguyên tắc:
+\begin{itemize}
+    \item Backend là nguồn sự thật cho statistics/\allowbreak currency/\allowbreak quest/\allowbreak tutorial/\allowbreak castle.
+    \item UI chỉ hiển thị theo dữ liệu phản hồi; không tự ``chốt'' reward, level hay quest state nếu backend chưa xác nhận.
+    \item Sau các thao tác nhạy cảm (battle finish, quest claim, upgrade), client thực hiện cập nhật lại state theo payload backend.
+\end{itemize}
+
+\subsection{Hiện thực phía backend theo contract}
+\label{subsec:impl-server}
+
+\subsubsection{Nhóm endpoint đã tích hợp}
+\label{subsubsec:impl-server-endpoints}
+
+Các nhóm endpoint được client gọi trong runtime hiện tại:
+\begin{itemize}
+    \item \textbf{Auth}: \texttt{/auth/register}, \texttt{/auth/login}, \texttt{/auth/refresh}, \texttt{/auth/logout}.
+    \item \textbf{Player state}: \texttt{/me}.
+    \item \textbf{Tutorial}: \texttt{/me/tutorial-progress}.
+    \item \textbf{Quest}: \texttt{/quests}, claim quest, claim progress reward.
+    \item \textbf{Battle}: \texttt{/battles/start}, \texttt{/battles/\{battleId\}/finish}.
+    \item \textbf{Inventory progression}: upgrade/\allowbreak evolve hero, purchase/\allowbreak upgrade skill.
+    \item \textbf{Castle}: \texttt{/lobby/castle/upgrade}.
+\end{itemize}
+
+\subsubsection{Quy tắc dữ liệu quan trọng}
+\label{subsubsec:impl-server-rules}
+
+\begin{itemize}
+    \item Battle finish trả đồng thời reward, statistics, currency, tutorialProgress và questUpdates để giảm lệch state giữa màn battle và lobby.
+    \item Tutorial flags được cập nhật qua hai đường: payload battle finish và endpoint patch riêng; client hợp nhất theo trạng thái mới nhất từ backend.
+    \item Các thao tác có khả năng retry dùng idempotency key theo contract để tránh cấp trùng.
+    \item Castle upgrade dùng endpoint riêng để không phụ thuộc vào biến cục bộ client.
+\end{itemize}
+
+\subsection{Luồng tích hợp đã kiểm chứng}
+\label{subsec:impl-flows}
+
+\subsubsection{Luồng xác thực và vào lobby}
+\label{subsubsec:impl-flow-auth}
+
+\begin{enumerate}
+    \item Người chơi login/\allowbreak register thành công, nhận access/\allowbreak refresh token.
+    \item Client gọi \texttt{/me}, nhận đầy đủ profile, statistics, tutorial, currency, inventory, formation, quests.
+    \item APIManager áp dụng state vào dữ liệu local và mở lobby.
+\end{enumerate}
+
+\subsubsection{Luồng quest và reward}
+\label{subsubsec:impl-flow-quest}
+
+\begin{enumerate}
+    \item Client đồng bộ \texttt{/quests} khi vào game và khi cần refresh.
+    \item Người chơi claim quest/progress reward qua endpoint tương ứng.
+    \item UI quest cập nhật tiến độ và trạng thái claim theo dữ liệu backend.
+\end{enumerate}
+
+\subsubsection{Luồng battle và hậu battle}
+\label{subsubsec:impl-flow-battle}
+
+\begin{enumerate}
+    \item Trước trận: client gọi \texttt{/battles/start}, nhận \texttt{battleId}, seed và config version.
+    \item Sau trận: client gọi \texttt{/battles/\{battleId\}/finish} với idempotency key.
+    \item Backend trả reward/\allowbreak statistics/\allowbreak tutorial/\allowbreak quest updates; client cập nhật lobby UI theo payload mới.
+\end{enumerate}
+
+\subsubsection{Luồng level-up, tutorial và castle}
+\label{subsubsec:impl-flow-progression}
+
+\begin{itemize}
+    \item Màn \texttt{UILevelUp} hiển thị theo delta trước/\allowbreak sau do backend trả; level thực tế lấy từ \texttt{statistics.level}.
+    \item \texttt{finishFirstDeploy} và các tutorial flag được sync về backend để tránh lệch khi đổi thiết bị/\allowbreak phiên.
+    \item Nâng cấp castle đi qua API riêng, cập nhật lại state hiển thị sau phản hồi thành công.
+\end{itemize}
+
+\subsection{Claim va Evidence}
+\label{subsec:impl-traceability}
 
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{6pt}
-\begin{tabularx}{\textwidth}{|L{2.3cm}|Y|L{4.2cm}|}
+\begin{tabularx}{\textwidth}{|L{4.5cm}|Y|L{3.8cm}|}
 \hline
-\textbf{Mốc} & \textbf{Mục tiêu kỹ thuật} & \textbf{Tính năng kiểm chứng} \\
+\textbf{Claim kỹ thuật} & \textbf{Evidence triển khai} & \textbf{Trạng thái} \\
 \hline
-M1 & Dựng backend, DB, auth và kết nối client & Register/\allowbreak Login, token, chọn profile \\
+Auth đầy đủ vòng đời phiên & Client gọi register/\allowbreak login/\allowbreak refresh/\allowbreak logout, nhận và xoay token theo API contract & Đã triển khai \\
 \hline
-M2 & Dựng kênh real-time và room/\allowbreak instance runtime cơ bản & Join room, gửi input, nhận snapshot (di chuyển) \\
+Lobby lấy state tập trung từ backend & \texttt{GET /me} trả profile, statistics, tutorial, inventory, formation, quest; client apply một lần vào state local & Đã triển khai \\
 \hline
-M3 & Tích hợp dữ liệu bền vững và mô-đun meta tối thiểu & Inventory/\allowbreak currency, gacha NPC, island resources, worker assignment \\
+Quest sync và claim theo backend & \texttt{/quests} + claim endpoints; UI daily/\allowbreak weekly/\allowbreak achievement cập nhật từ payload backend & Đã triển khai \\
 \hline
-M4 & Hoàn thiện pipeline cấu hình và logging/\allowbreak audit tối thiểu & TSV import, config versioning, business logs \\
+Battle reward là server-authoritative & \texttt{battles/start} + \texttt{battles/\{id\}/finish}; reward/\allowbreak currency/\allowbreak quest update trả từ backend & Đã triển khai \\
+\hline
+Tutorial progress đồng bộ liên phiên & \texttt{PATCH /me/tutorial-progress} + tutorial payload từ battle finish & Đã triển khai \\
+\hline
+Upgrade hero/\allowbreak skill theo API & Client gọi endpoint nâng cấp, sau đó đồng bộ lại trạng thái từ phản hồi backend & Đã triển khai \\
+\hline
+Castle upgrade có backend source-of-truth & Luồng nâng cấp castle dùng endpoint chuyên biệt, không xử lý local-only & Đã triển khai \\
+\hline
+Realtime WebSocket tick-level authoritative PvP production & Mới ở mức kiến trúc/\allowbreak roadmap, chưa là trọng tâm vận hành hiện tại & Mở rộng \\
 \hline
 \end{tabularx}
-\caption{Kế hoạch hiện thực prototype theo mốc}
-\label{tab:impl-milestones}
+\caption{Bảng traceability claim kỹ thuật và bằng chứng triển khai}
+\label{tab:claim-evidence}
 \end{table}
 
-%------------------------------------------------
+\subsection{Các hạng mục mở rộng chưa hoàn tất}
+\label{subsec:impl-open-items}
 
-\subsection{Hiện thực phía client (Unity)}
-\label{subsec:impl-client}
-
-\subsubsection{Tổ chức project và nguyên tắc phân lớp}
-\label{subsubsec:impl-client-structure}
-
-Client được tổ chức theo hướng tách biệt rõ ràng:
 \begin{itemize}
-    \item \textbf{Presentation/\allowbreak UI}: màn hình login, profile/\allowbreak character select, HUD cơ bản, panel inventory/\allowbreak gacha/\allowbreak island.
-    \item \textbf{Gameplay}: điều khiển nhân vật, state machine animation, xử lý tương tác cơ bản.
-    \item \textbf{Networking}: lớp HTTP client (REST) và WebSocket client (real-time), quản lý token, retry và timeout.
-    \item \textbf{Data binding}: model dữ liệu để bind ra UI, tránh UI đọc trực tiếp dữ liệu thô từ network.
+    \item Chuẩn hoá sâu cơ chế realtime authoritative theo tick cho PvP production.
+    \item Bổ sung bộ benchmark tải và dashboard observability đầy đủ.
+    \item Mở rộng nội dung gameplay và cân bằng kinh tế ở mức live-ops.
 \end{itemize}
-
-Nguyên tắc chính:
-\begin{itemize}
-    \item Client không tự ý ``xác nhận'' các thay đổi tiến trình (reward/\allowbreak currency/\allowbreak gacha).
-    \item Client hiển thị trạng thái dựa trên phản hồi server; với realtime, ưu tiên snapshot/\allowbreak event authoritative.
-\end{itemize}
-
-\subsubsection{Luồng màn hình đề xuất}
-\label{subsubsec:impl-client-flow}
-
-Luồng điều hướng UI tối thiểu cho prototype:
-\begin{enumerate}
-    \item \textbf{Login/\allowbreak Register}: nhập thông tin, gọi API, lưu token.
-    \item \textbf{Profile Select}: liệt kê profile, tạo/\allowbreak chọn profile.
-    \item \textbf{Character Select/\allowbreak Create}: liệt kê nhân vật theo profile, tạo/\allowbreak chọn nhân vật.
-    \item \textbf{Main Hub (Island)}: load scene, hiển thị HUD, mở các panel inventory/\allowbreak gacha/\allowbreak NPC/\allowbreak island.
-    \item \textbf{Join Instance (tuỳ mốc)}: tham gia room realtime để kiểm chứng đồng bộ di chuyển/\allowbreak combat đơn giản.
-\end{enumerate}
-
-\subsubsection{Networking client: REST + WebSocket}
-\label{subsubsec:impl-client-network}
-
-Client duy trì 2 kênh:
-\begin{itemize}
-    \item \textbf{REST}: các thao tác quản lý (auth/\allowbreak profile/\allowbreak character/\allowbreak inventory/\allowbreak island/\allowbreak gacha).
-    \item \textbf{WebSocket}: join room, gửi input, nhận snapshot/\allowbreak event.
-\end{itemize}
-
-Quy ước xử lý lỗi UI:
-\begin{itemize}
-    \item \textbf{401/\allowbreak 403}: token hết hạn hoặc sai quyền $\rightarrow$ điều hướng về login.
-    \item \textbf{5xx}: lỗi hệ thống $\rightarrow$ hiển thị trạng thái retry.
-    \item \textbf{network timeout}: hiển thị offline/\allowbreak reconnect và không cho thao tác tiến trình.
-\end{itemize}
-
-%------------------------------------------------
-
-\subsection{Hiện thực phía server (NestJS)}
-\label{subsec:impl-server}
-
-\subsubsection{Cấu trúc module và luồng request}
-\label{subsubsec:impl-server-modules}
-
-Backend triển khai theo module hoá để bám sát ranh giới nghiệp vụ:
-\begin{itemize}
-    \item \textbf{AuthModule}: register/\allowbreak login, issue token, guard/\allowbreak role.
-    \item \textbf{ProfileModule}: CRUD profile, chọn profile, cập nhật last\_played.
-    \item \textbf{CharacterModule}: CRUD character, load character summary.
-    \item \textbf{InventoryModule}: get inventory, apply delta (reward, currency), equip/\allowbreak enhance (tuỳ mốc).
-    \item \textbf{GachaModule}: banner/\allowbreak rate/\allowbreak summon, update pity, duplicate handling.
-    \item \textbf{IslandModule}: get island, build/\allowbreak upgrade, resource sync.
-    \item \textbf{NpcModule}: list NPC, assign worker, update job state.
-    \item \textbf{RealtimeGateway}: websocket auth, join room, input handling, snapshot broadcasting.
-    \item \textbf{ConfigModule}: load config collections, provide lookup service, expose config version.
-\end{itemize}
-
-Luồng xử lý chuẩn cho REST:
-\begin{enumerate}
-    \item Guard xác thực token và gắn context (userId/\allowbreak profileId/\allowbreak characterId nếu có).
-    \item Validate DTO và kiểm tra ràng buộc nghiệp vụ.
-    \item Thực hiện cập nhật DB theo hướng atomic ở mức tài liệu (document update).
-    \item Ghi business log/\allowbreak audit log nếu là giao dịch quan trọng.
-\end{enumerate}
-
-\subsubsection{Realtime: room runtime và tick loop tối thiểu}
-\label{subsubsec:impl-server-realtime}
-
-Room runtime được lưu trong bộ nhớ server (in-memory) trong phạm vi prototype:
-\begin{itemize}
-    \item \texttt{roomId}, \texttt{mode} (island/\allowbreak tower/\allowbreak dungeon/\allowbreak arena), danh sách player trong room.
-    \item Runtime state: position, HP/\allowbreak MP, flags trạng thái, cooldown state tối thiểu.
-    \item Input queue theo socket.
-\end{itemize}
-
-Tick loop tối thiểu (không tối ưu hoá) theo các bước:
-\begin{enumerate}
-    \item Nhận input và đưa vào queue theo \texttt{seq}.
-    \item Validate input (rate limit, trạng thái hợp lệ, không vượt tốc độ).
-    \item Cập nhật state và tạo snapshot.
-    \item Broadcast snapshot theo nhịp (tick rate cấu hình).
-\end{enumerate}
-
-Trong mốc đầu, snapshot chỉ cần chứa thông tin đủ để render:
-\[
-\{\;entityId,\;pos,\;rot,\;hp,\;mp,\;stateFlags\;\}
-\]
-Các kỹ thuật nâng cao (prediction/\allowbreak reconciliation) được xem là hướng mở rộng sau khi luồng cơ bản ổn định.
-
-%------------------------------------------------
-
-\subsection{Thiết kế hiện thực dữ liệu và truy xuất}
-\label{subsec:impl-data}
-
-\subsubsection{Schema collections và nguyên tắc embed/\allowbreak reference}
-\label{subsubsec:impl-data-schema}
-
-Các collections động (progression/\allowbreak state) ưu tiên embed khi dữ liệu gắn chặt vòng đời:
-\begin{itemize}
-    \item \textbf{CHARACTER}: nhúng base\_stats/\allowbreak resources/\allowbreak position/\allowbreak appearance.
-    \item \textbf{INVENTORY}: nhúng danh sách item instance.
-    \item \textbf{PERSONAL\_ISLAND}: nhúng island resources và danh sách buildings.
-    \item \textbf{NPC\_COLLECTION}: nhúng danh sách owned NPC.
-\end{itemize}
-
-Các collections cấu hình (static) dùng reference qua khoá \texttt{id}:
-\begin{itemize}
-    \item \textbf{CONFIG\_ITEM}: định nghĩa item.
-    \item \textbf{CONFIG\_BUILDING}: định nghĩa building và cost/\allowbreak time.
-    \item (mở rộng) \textbf{CONFIG\_SKILL}, \textbf{CONFIG\_RATES}, \textbf{CONFIG\_FORMULAS}, \ldots
-\end{itemize}
-
-\subsubsection{Nguyên tắc cập nhật an toàn cho giao dịch tiến trình}
-\label{subsubsec:impl-data-safety}
-
-Các thao tác nhạy cảm (reward/\allowbreak currency/\allowbreak gacha/\allowbreak build upgrade) cần:
-\begin{itemize}
-    \item \textbf{Idempotency key}: mỗi request có mã định danh giao dịch để tránh cấp trùng khi retry.
-    \item \textbf{Business log}: ghi lại delta trước/\allowbreak sau (hoặc sự kiện) để đối soát.
-    \item \textbf{Atomic update}: với dữ liệu trong một document, ưu tiên update trong một thao tác DB.
-\end{itemize}
-
-%------------------------------------------------
-
-\subsection{Hiện thực pipeline game configuration}
-\label{subsec:impl-config}
-
-\subsubsection{Định dạng TSV và quy ước}
-\label{subsubsec:impl-config-tsv}
-
-Mỗi TSV đại diện một bảng cấu hình, có cột \texttt{id} làm khoá chính. Quy ước:
-\begin{itemize}
-    \item Header dòng đầu tiên; encoding UTF-8.
-    \item Kiểu dữ liệu rõ ràng (int/\allowbreak float/\allowbreak string/\allowbreak bool) theo template.
-    \item Các tham chiếu chéo dùng khoá \texttt{id} (ví dụ itemRefId, buildingId).
-\end{itemize}
-
-\subsubsection{Import script: upsert và log phiên bản}
-\label{subsubsec:impl-config-import}
-
-Script import thực hiện:
-\begin{enumerate}
-    \item Parse TSV theo schema (validate required fields, type).
-    \item Upsert theo \texttt{id} vào collection tương ứng.
-    \item Tạo bản ghi \texttt{CONFIG\_IMPORT\_LOG} gồm: thời gian import, bảng, số dòng, checksum, người thực hiện.
-    \item Cập nhật \texttt{config\_version} (tăng dần) để runtime biết phiên bản đang chạy.
-\end{enumerate}
-
-\subsubsection{Config Manager runtime}
-\label{subsubsec:impl-config-manager}
-
-Config Manager nạp dữ liệu cấu hình từ DB vào bộ nhớ khi server khởi động:
-\begin{itemize}
-    \item Lưu theo map: \texttt{(tableName, id) $\rightarrow$ object}.
-    \item Cung cấp API nội bộ: \texttt{getItem(id)}, \texttt{getBuilding(id)}, \texttt{getFormula(key)}.
-    \item Khi trả dữ liệu về client, có thể kèm \texttt{config\_version} để debug nhất quán.
-\end{itemize}
-
-%------------------------------------------------
-
-\subsection{Kế hoạch kiểm thử và tiêu chí nghiệm thu}
-\label{subsec:impl-testing}
-
-\subsubsection{Kiểm thử theo use case}
-\label{subsubsec:impl-uc-test}
-
-Kiểm thử ưu tiên theo các use case trọng yếu (Chương~\ref{sec:analysis}):
-\begin{itemize}
-    \item Auth: register/\allowbreak login, token expiry.
-    \item Profile/\allowbreak Character: create/\allowbreak select, load summary.
-    \item Realtime: join room, move input, snapshot update, disconnect handling.
-    \item Gacha: summon 1x/\allowbreak 10x, pity update, duplicate handling, history.
-    \item Island/\allowbreak NPC: build/\allowbreak upgrade timer (mock), assign worker, resource tick (mô phỏng).
-\end{itemize}
-
-\subsubsection{Kiểm thử dữ liệu và tính nhất quán}
-\label{subsubsec:impl-consistency-test}
-
-Các kịch bản cần kiểm chứng:
-\begin{itemize}
-    \item Retry request (gacha/\allowbreak reward) không làm nhân đôi kết quả.
-    \item Inventory stack và slot không vượt giới hạn.
-    \item Worker assignment không tạo trạng thái treo (NPC vừa ``rảnh'' vừa ``đang làm'').
-    \item Import TSV sai schema bị từ chối và không làm ``bẩn'' config.
-\end{itemize}
-
-\subsubsection{Tiêu chí nghiệm thu prototype}
-\label{subsubsec:impl-acceptance}
-
-Prototype đạt yêu cầu khi thoả tối thiểu:
-\begin{itemize}
-    \item Có thể đăng nhập, chọn profile/\allowbreak nhân vật và vào scene hub.
-    \item Có thể tham gia room realtime và đồng bộ di chuyển ổn định.
-    \item Gacha trả kết quả hợp lệ, lưu DB, cập nhật pity và xử lý trùng lặp.
-    \item Island/\allowbreak NPC có luồng dữ liệu bền vững (lưu và tải lại đúng).
-    \item Pipeline TSV import tạo được config version và runtime truy xuất đúng theo version.
-\end{itemize}
-
-%------------------------------------------------
 
 \subsection{Tổng kết chương}
 \label{subsec:impl-summary}
 
-Chương này đã trình bày kế hoạch hiện thực prototype nhằm kiểm chứng thiết kế hệ thống: tổ chức client và server, luồng REST/\allowbreak WebSocket, room realtime tối thiểu, chiến lược lưu trữ dữ liệu, pipeline game configuration theo TSV và kế hoạch kiểm thử theo use case. Kết quả của chương là cơ sở để thực hiện đánh giá/\allowbreak đối chiếu trong chương tiếp theo khi prototype được triển khai và chạy thử.
+Hệ thống hiện đã vượt mức ``prototype thiết kế'' và có tích hợp runtime cho các luồng cốt lõi: auth, player state, quest, battle, tutorial sync, progression và castle upgrade. Phần còn lại được tách rõ thành roadmap mở rộng để tránh nhầm lẫn giữa tính năng đã chạy và định hướng tương lai.

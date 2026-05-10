@@ -1,240 +1,100 @@
-﻿\section{Đánh giá hệ thống}
+\section{Đánh giá hệ thống}
 \label{sec:evaluation}
 
 \subsection{Mục tiêu và phương pháp đánh giá}
 \label{subsec:eval-method}
 
-Mục tiêu của chương này là đánh giá mức độ phù hợp của bản thiết kế hệ thống (Chương~\ref{sec:design}) so với yêu cầu đã phân tích (Chương~\ref{sec:requirements}), đồng thời chỉ ra các điểm mạnh, hạn chế và rủi ro còn tồn tại. Do giai đoạn 1 tập trung vào thiết kế, phương pháp đánh giá được thực hiện theo các hướng:
+Mục tiêu của chương này là đánh giá mức độ đáp ứng các yêu cầu đã chuẩn hóa ở Chương~\ref{sec:requirements} theo phạm vi triển khai thực tế. Phương pháp gồm:
 \begin{itemize}
-    \item \textbf{Đối chiếu bao phủ yêu cầu (Requirement Coverage)}: kiểm tra các yêu cầu chức năng/\allowbreak phi chức năng đã được ánh xạ tới mô-đun, dữ liệu và luồng giao tiếp hay chưa.
-    \item \textbf{Đánh giá kiến trúc theo thuộc tính chất lượng (Quality Attributes)}: nhất quán dữ liệu, bảo mật, khả năng mở rộng, tính bảo trì, khả năng quan sát.
-    \item \textbf{Đánh giá tính khả thi triển khai (Feasibility)}: dựa trên kế hoạch prototype ở Chương~\ref{sec:implementation} và các kịch bản use case trọng yếu ở Chương~\ref{sec:analysis}.
-    \item \textbf{Phân tích rủi ro và hướng giảm thiểu}: xác định các rủi ro kỹ thuật/\allowbreak thiết kế, mức ảnh hưởng và biện pháp kiểm soát.
+    \item đối chiếu trực tiếp FR--NFR với luồng runtime và API contract;
+    \item kiểm tra tính nhất quán dữ liệu sau các thao tác hậu battle, quest claim, tutorial sync và upgrade;
+    \item xác định rủi ro vận hành còn lại và biện pháp giảm thiểu.
 \end{itemize}
 
-\subsection{Đối chiếu bao phủ yêu cầu chức năng}
+\subsection{Bao phủ yêu cầu chức năng}
 \label{subsec:eval-functional}
 
-\subsubsection{Ma trận bao phủ yêu cầu theo mô-đun}
-\label{subsubsec:eval-functional-matrix}
-
-Bảng~\ref{tab:req-coverage} tổng hợp ánh xạ giữa các nhóm yêu cầu chức năng (FR) và mô-đun thiết kế ở Chương~\ref{sec:design}. Mục tiêu là đảm bảo mọi nhóm yêu cầu đều có ``điểm đặt'' rõ ràng trong kiến trúc.
-
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{6pt}
-\begin{tabularx}{\textwidth}{|L{2.6cm}|L{4.1cm}|Y|}
+\begin{tabularx}{\textwidth}{|L{2.1cm}|L{4.4cm}|Y|}
 \hline
-\textbf{Nhóm FR} & \textbf{Phân hệ} & \textbf{Mô-đun/\allowbreak Thiết kế đáp ứng} \\
+\textbf{FR} & \textbf{Phân hệ} & \textbf{Đánh giá trạng thái} \\
 \hline
-FR-A & Auth \& Profile & AuthModule, ProfileModule, SessionRuntime (token, profile\_id, socket\_id) \\
+FR-01, FR-02 & Auth và vòng đời phiên & Register/\allowbreak login/\allowbreak refresh/\allowbreak logout đã chạy ổn định theo contract \\
 \hline
-FR-B & Character & CharacterModule (create/\allowbreak select/\allowbreak delete), dữ liệu nhúng appearance/\allowbreak base\_stats/\allowbreak resources \\
+FR-03 & Đồng bộ player state & \texttt{/me} trả đầy đủ profile, statistics, tutorial, currency, inventory, formation, quests \\
 \hline
-FR-C & Stats/\allowbreak Level/\allowbreak Slots & CharacterModule + ConfigModule (milestone slots, công thức chỉ số data-driven) \\
+FR-04 & Quest sync và claim reward & Daily/\allowbreak weekly/\allowbreak achievement và trạng thái claim được cập nhật theo backend source-of-truth \\
 \hline
-FR-D & Class System & CharacterModule/\allowbreak Progression service (unlock/\allowbreak switch), điều kiện theo stat/\allowbreak trait/\allowbreak achievement \\
+FR-05, FR-06 & Battle session start/finish & \texttt{battles/start} + \texttt{battles/\{id\}/finish} trả reward, currency, statistics, tutorialProgress, questUpdates \\
 \hline
-FR-E & Inventory/\allowbreak Economy & InventoryModule (stack, capacity, currency, equip/\allowbreak enhance), tham chiếu CONFIG\_ITEM \\
+FR-07 & Tutorial progress sync & \texttt{PATCH /me/tutorial-progress} và payload battle finish giữ tutorial flags nhất quán \\
 \hline
-FR-F & Combat/\allowbreak Modes & CombatModule + RealtimeGateway (join instance, tick, snapshot, end-session reward/\allowbreak checkpoint) \\
+FR-08, FR-09 & Hero/skill progression & Luồng nâng cấp đã tích hợp API và phản ánh về UI Units theo response backend \\
 \hline
-FR-G & Gacha & GachaModule (banner/\allowbreak rate/\allowbreak pity/\allowbreak duplicate/\allowbreak history), NPC\_COLLECTION cập nhật bền vững \\
-\hline
-FR-H & Island \& NPC & IslandModule (build/\allowbreak upgrade/\allowbreak timer/\allowbreak resources), NpcModule (assign worker, job state) \\
-\hline
-FR-I & Admin & AdminModule (ban/\allowbreak unban, mail, logs, event config), audit log \\
+FR-10 & Castle progression & Nâng cấp castle đi qua endpoint backend riêng, không phụ thuộc local-only \\
 \hline
 \end{tabularx}
-\caption{Ma trận bao phủ yêu cầu chức năng theo mô-đun}
-\label{tab:req-coverage}
+\caption{Đối chiếu mức bao phủ FR theo trạng thái triển khai hiện tại}
+\label{tab:req-coverage-current}
 \end{table}
 
-Kết quả đối chiếu cho thấy các nhóm tính năng chính đều đã được gắn với mô-đun và dữ liệu tương ứng, phù hợp hướng module hoá theo phân hệ của backend \cite{nest-docs}.
+\subsection{Đánh giá nhất quán dữ liệu}
+\label{subsec:eval-consistency}
 
-\subsubsection{Đánh giá luồng nghiệp vụ trọng yếu}
-\label{subsubsec:eval-critical-flows}
-
-Các luồng nghiệp vụ được xem là trọng yếu vì ảnh hưởng trực tiếp tới tiến trình hoặc tính công bằng:
-
-\paragraph{(1) Auth $\rightarrow$ Profile $\rightarrow$ Character $\rightarrow$ Session}
-Luồng này có trạng thái phụ thuộc theo chuỗi (USER $\rightarrow$ GAME\_PROFILE $\rightarrow$ CHARACTER) và có yêu cầu nhất quán ở session runtime. Thiết kế đáp ứng bằng:
+\subsubsection{Điểm đã đạt}
 \begin{itemize}
-    \item REST dùng để xác thực và chọn profile/\allowbreak character;
-    \item session runtime lưu \texttt{profile\_id}/\texttt{character\_id} để WebSocket có thể xác định bối cảnh phiên;
-    \item token có hạn và có thể revoke khi cần (ban/\allowbreak unban).
+    \item Battle finish trả gói hậu trận đầy đủ, giảm sai lệch giữa battle scene và lobby state.
+    \item Quest progress/reward claim hiển thị theo dữ liệu backend, không chốt theo suy diễn local.
+    \item Tutorial flags được đồng bộ theo cả luồng patch riêng và payload hậu battle.
+    \item Castle upgrade đã có backend source-of-truth nên ổn định hơn khi đổi scene hoặc reload.
 \end{itemize}
 
-\paragraph{(2) Reward delivery và cập nhật inventory}
-Luồng thưởng sau phiên (tower/\allowbreak dungeon) dễ phát sinh lỗi cấp trùng nếu người chơi retry hoặc mất kết nối. Thiết kế giảm rủi ro bằng:
+\subsubsection{Điểm cần kiểm soát}
 \begin{itemize}
-    \item server-authoritative: client không tự ghi reward;
-    \item cập nhật inventory theo quy tắc stack/\allowbreak capacity và tham chiếu config item;
-    \item đề xuất idempotency và business log để đối soát.
+    \item Cần tránh áp dụng response cũ đè lên state mới trong các request bất đồng bộ.
+    \item Các thao tác retry phải duy trì idempotency key thống nhất giữa client và backend.
+    \item Thứ tự cập nhật UI hậu battle phải luôn đi theo dữ liệu mới nhất từ backend.
 \end{itemize}
 
-\paragraph{(3) Gacha: rate/\allowbreak pity/\allowbreak duplicate}
-Luồng gacha có yêu cầu “đúng xác suất theo cấu hình” và “không cấp trùng”. Thiết kế đáp ứng bằng:
-\begin{itemize}
-    \item rates/\allowbreak banners là game configuration (tĩnh) và có thể quản trị bằng pipeline;
-    \item pity là state (động) lưu bền vững theo banner hoặc nhóm banner;
-    \item duplicate handling chuyển đổi theo rule, giảm cảm giác ``mất giá trị''.
-\end{itemize}
-
-\paragraph{(4) Island build/\allowbreak upgrade và worker assignment}
-Luồng island có rủi ro trạng thái treo (worker vừa rảnh vừa bận, hoặc building có worker nhưng worker không trỏ về building). Thiết kế đáp ứng bằng:
-\begin{itemize}
-    \item cập nhật liên kết hai chiều khi assign worker;
-    \item timer (\texttt{finish\_time}) và trạng thái building rõ ràng;
-    \item island/\allowbreak resources và buildings nhúng trong cùng thực thể để truy xuất nhất quán.
-\end{itemize}
-
-\subsection{Đánh giá yêu cầu phi chức năng}
+\subsection{Đánh giá phi chức năng}
 \label{subsec:eval-nfr}
 
-\subsubsection{Bảo mật và phân quyền}
-\label{subsubsec:eval-security}
-
-Thiết kế đáp ứng các yêu cầu bảo mật nền tảng:
 \begin{itemize}
-    \item mật khẩu lưu hash (không plaintext);
-    \item token có thời hạn; WebSocket handshake phải xác thực token;
-    \item phân quyền admin theo role; thao tác admin có audit log;
-    \item giới hạn tần suất thao tác nhạy cảm (login/\allowbreak gacha) và kiểm soát spam input realtime.
-\end{itemize}
-Hướng tiếp cận này phù hợp nguyên tắc hệ thống online: hạn chế tin tưởng client và đặt kiểm tra luật ở server \cite{moriarty-networked}.
-
-\subsubsection{Nhất quán dữ liệu và khả năng chống cấp trùng}
-\label{subsubsec:eval-consistency}
-
-Đối với game online, nhất quán dữ liệu quan trọng hơn tối ưu sớm. Thiết kế thể hiện các điểm tích cực:
-\begin{itemize}
-    \item tách rõ dữ liệu động và tĩnh; dữ liệu tĩnh được nạp qua Config Manager để đồng bộ cách tính;
-    \item cập nhật tiến trình (inventory/\allowbreak gacha/\allowbreak island) định hướng atomic ở mức document;
-    \item đề xuất idempotency key cho các giao dịch dễ retry (reward/\allowbreak gacha/\allowbreak build upgrade).
+    \item \textbf{NFR-01, NFR-02}: vòng đời token và ranh giới server-authoritative đang bám đúng baseline.
+    \item \textbf{NFR-03, NFR-04}: đã có idempotency contract cho thao tác nhạy cảm; còn cần siết thêm xử lý stale response ở một số nhánh UI.
+    \item \textbf{NFR-05}: log runtime hiện đủ cho trace luồng chính; nên tăng metric dashboard trước production scale.
+    \item \textbf{NFR-06, NFR-07}: cấu trúc APIManager + UI layer giúp tách luồng rõ; trạng thái loading/error đã được thể hiện trong các màn chính.
+    \item \textbf{NFR-08}: configVersion đã đi cùng luồng battle/config manifest để giảm lệch cấu hình.
 \end{itemize}
 
-Hạn chế còn lại: ở mức thiết kế, cơ chế idempotency và transaction log mới dừng ở nguyên tắc, chưa có đặc tả schema log/\allowbreak delta chi tiết cho từng giao dịch. Đây là phần cần đặc tả thêm khi chuyển sang hiện thực.
-
-\subsubsection{Hiệu năng và khả năng mở rộng}
-\label{subsubsec:eval-performance}
-
-Thiết kế ưu tiên chạy ổn định ở mức đồ án, nhưng vẫn có hướng mở rộng:
-\begin{itemize}
-    \item realtime tách riêng bằng WebSocket gateway và mô hình room runtime in-memory để giảm độ trễ;
-    \item Redis được định hướng dùng cho cache/\allowbreak pub-sub khi scale ngang nhiều instance;
-    \item Config Manager nạp config vào bộ nhớ giúp giảm truy vấn DB cho dữ liệu tĩnh.
-\end{itemize}
-
-Hạn chế:
-\begin{itemize}
-    \item room runtime in-memory khiến việc scale ngang cần thêm cơ chế phân vùng room (room sharding) hoặc session affinity;
-    \item chưa có tiêu chí tick-rate/\allowbreak bandwidth cụ thể theo mục tiêu tải.
-\end{itemize}
-Các hạn chế này phù hợp với phạm vi giai đoạn 1 (thiết kế), và sẽ được xử lý khi nâng mức triển khai/\allowbreak benchmark.
-
-\subsubsection{Tính bảo trì và khả năng mở rộng tính năng}
-\label{subsubsec:eval-maintainability}
-
-Tính bảo trì được hỗ trợ bởi:
-\begin{itemize}
-    \item module hoá theo phân hệ rõ ràng (Auth/\allowbreak Profile/\allowbreak Character/\allowbreak Inventory/\allowbreak Combat/\allowbreak Gacha/\allowbreak Island/\allowbreak Admin);
-    \item cross-cutting service cho validation, error handling, logging;
-    \item cấu hình data-driven giúp thay đổi nội dung/\allowbreak thông số mà không sửa code lõi.
-\end{itemize}
-
-Điểm cần chú ý: khi số lượng phân hệ tăng, cần kiểm soát phụ thuộc chéo (đặc biệt giữa Progression/\allowbreak Inventory/\allowbreak Gacha) bằng cách chuẩn hoá service interface và event nội bộ.
-
-\subsubsection{Khả năng quan sát (Observability)}
-\label{subsubsec:eval-observability}
-
-Thiết kế đã nêu các lớp log tối thiểu:
-\begin{itemize}
-    \item request log (latency/\allowbreak status/\allowbreak user context);
-    \item business log (reward/\allowbreak currency/\allowbreak gacha/\allowbreak admin actions);
-    \item realtime log (join/\allowbreak leave room/\allowbreak disconnect).
-\end{itemize}
-
-Đánh giá: hướng này đủ cho giai đoạn prototype và debug nghiệp vụ. Để nâng lên vận hành thực tế, cần bổ sung thêm metric (tick time, snapshot size, error rate), tracing và cảnh báo.
-
-\subsection{Đánh giá pipeline cấu hình game (data-driven config)}
-\label{subsec:eval-config}
-
-Pipeline cấu hình: Google Sheets $\rightarrow$ TSV $\rightarrow$ DB $\rightarrow$ Config Manager, chỉ áp dụng cho \textbf{game configuration}.
-
-\subsubsection{Ưu điểm}
-\begin{itemize}
-    \item \textbf{Giảm hard-code}: các thông số (item/\allowbreak building/\allowbreak rate/\allowbreak formula) được thay đổi qua TSV.
-    \item \textbf{Dễ kiểm soát phiên bản}: TSV có thể quản lý qua version control; import log giúp truy vết.
-    \item \textbf{Tối ưu truy xuất runtime}: Config Manager nạp in-memory, phù hợp với các phép tra cứu thường xuyên.
-\end{itemize}
-
-\subsubsection{Rủi ro và kiểm soát}
-\begin{itemize}
-    \item \textbf{Sai schema/\allowbreak kiểu dữ liệu}: cần validation khi import và báo lỗi rõ ràng theo dòng/\allowbreak cột.
-    \item \textbf{Tham chiếu chéo sai}: cần kiểm tra referential integrity (itemRefId/\allowbreak buildingId/\allowbreak skillId).
-    \item \textbf{Không đồng bộ phiên bản giữa instance}: nếu chạy nhiều server, cần cơ chế reload đồng bộ hoặc restart theo chiến lược triển khai.
-\end{itemize}
-
-\subsection{Đánh giá UI/\allowbreak UX theo định hướng pixel art ở mức hệ thống}
-\label{subsec:eval-ui}
-
-Do UI theo phong cách pixel art nhấn mạnh readability và phản hồi nhanh, thiết kế hệ thống hỗ trợ UX bằng:
-\begin{itemize}
-    \item chuẩn hoá trạng thái UI (loading/\allowbreak error/\allowbreak disabled) thông qua mã lỗi nhất quán;
-    \item ưu tiên payload ``delta'' hoặc snapshot nhỏ gọn cho HUD combat;
-    \item phân tách màn hình meta (inventory/\allowbreak gacha/\allowbreak island) khỏi HUD combat để không làm gián đoạn nhịp chơi.
-\end{itemize}
-
-Hạn chế: chưa có đặc tả UI state machine chi tiết cho từng màn (ví dụ: trường hợp disconnect khi đang ở gacha hoặc đang xây building). Đây là phần có thể mở rộng ở giai đoạn hiện thực prototype.
-
-\subsection{Phân tích rủi ro và hướng giảm thiểu}
+\subsection{Rủi ro còn lại và hướng giảm thiểu}
 \label{subsec:eval-risks}
-
-Bảng~\ref{tab:risk-register} liệt kê các rủi ro kỹ thuật chính và hướng giảm thiểu trong phạm vi đồ án.
 
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{6pt}
-\begin{tabularx}{\textwidth}{|L{3.3cm}|L{2.0cm}|Y|L{4.2cm}|}
+\begin{tabularx}{\textwidth}{|L{3.6cm}|L{2.0cm}|Y|L{3.8cm}|}
 \hline
 \textbf{Rủi ro} & \textbf{Mức} & \textbf{Mô tả} & \textbf{Giảm thiểu} \\
 \hline
-Cấp trùng reward/\allowbreak gacha & Cao &
-Retry do mạng/\allowbreak mất kết nối có thể tạo giao dịch lặp &
-Idempotency key, business log, kiểm thử retry, chốt trạng thái bằng server-authoritative \\
+Stale state hậu battle & Trung bình & UI nhận response chậm và có thể hiển thị lại state cũ & So sánh timestamp/\allowbreak version trước khi apply state \\
 \hline
-Trạng thái treo worker assignment & Trung bình &
-NPC và building lệch trạng thái (một chiều) &
-Cập nhật hai chiều, validate trước khi assign/\allowbreak unassign, kịch bản kiểm thử nhất quán \\
+Retry gây thao tác lặp & Cao & Request finish/\allowbreak claim/\allowbreak upgrade bị gửi lại do mạng & Bắt buộc idempotency key và kiểm tra duplicate phía backend \\
 \hline
-Sai config gây mất cân bằng/\allowbreak lỗi runtime & Cao &
-TSV sai kiểu hoặc tham chiếu chéo sai gây crash hoặc lệch gameplay &
-Validation import, schema strict, referential checks, config version + rollback \\
+Drift tài liệu so với runtime & Trung bình & Tài liệu thay đổi chậm hơn code/API & Duy trì bảng đối chiếu FR định kỳ theo mỗi release \\
 \hline
-Realtime latency/\allowbreak jitter làm mất cảm giác combat & Trung bình &
-Snapshot không ổn định gây giật/\allowbreak khó điều khiển &
-Tick-rate hợp lý, snapshot tối thiểu, client interpolation; chừa chỗ mở rộng prediction/\allowbreak reconciliation \\
-\hline
-Phụ thuộc chéo giữa mô-đun tăng dần & Trung bình &
-Feature mới kéo theo gọi chéo nhiều service khó bảo trì &
-Chuẩn hoá interface, domain services rõ ràng, event nội bộ, review dependency định kỳ \\
+Thiếu benchmark tải & Trung bình & Chưa có bộ số liệu tải định lượng khi scale production & Bổ sung kịch bản load test và theo dõi metric nền \\
 \hline
 \end{tabularx}
-\caption{Bảng rủi ro và hướng giảm thiểu}
+\caption{Rủi ro hiện tại và biện pháp giảm thiểu}
 \label{tab:risk-register}
 \end{table}
 
 \subsection{Tổng kết chương}
 \label{subsec:eval-summary}
 
-Kết quả đánh giá cho thấy bản thiết kế đã:
-\begin{itemize}
-    \item bao phủ các nhóm yêu cầu chức năng chính thông qua mô-đun hoá rõ ràng và mô hình dữ liệu nhất quán;
-    \item đáp ứng các yêu cầu phi chức năng nền tảng (bảo mật, nhất quán, bảo trì, quan sát) ở mức phù hợp với phạm vi giai đoạn 1;
-    \item đưa ra pipeline quản trị game configuration theo hướng data-driven, giúp giảm phụ thuộc vào hard-code và tạo nền tảng cân bằng nội dung.
-\end{itemize}
-
-Các điểm còn cần đặc tả sâu hơn khi chuyển sang hiện thực gồm: cơ chế idempotency/\allowbreak log cho từng giao dịch, chính sách xử lý overflow inventory, tiêu chí tick-rate/\allowbreak bandwidth cho realtime và đặc tả UI state chi tiết cho các tình huống lỗi mạng.
+Kết quả đánh giá cho thấy hệ thống đã đáp ứng đầy đủ baseline implemented-only của Chương~\ref{sec:requirements}, đặc biệt ở các luồng auth, player state, quest, battle, tutorial sync, upgrade và castle progression. Các rủi ro còn lại chủ yếu thuộc nhóm đồng bộ bất đồng bộ và vận hành khi mở rộng tải.
