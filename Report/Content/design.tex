@@ -8,7 +8,7 @@ Mục tiêu của chương này là chuyển hoá kết quả phân tích ở Ch
 (i) kiến trúc tổng thể client--server và triển khai;
 (ii) thiết kế mô-đun backend và ranh giới trách nhiệm;
 (iii) thiết kế dữ liệu (progression/\allowbreak state và game configuration);
-(iv) thiết kế giao tiếp (HTTP/\allowbreak WebSocket) và quy ước dữ liệu;
+(iv) thiết kế giao tiếp (HTTP đang vận hành/\allowbreak WebSocket định hướng mở rộng) và quy ước dữ liệu;
 (v) thiết kế các cơ chế đảm bảo nhất quán, bảo mật và quan sát hệ thống;
 (vi) thiết kế giao diện UI/\allowbreak UX ở mức tham chiếu để đối chiếu với luồng nghiệp vụ và API.
 
@@ -38,8 +38,8 @@ Hệ thống được tổ chức thành 3 lớp chính: \textit{Client Devices}
 
 Các thành phần cốt lõi:
 \begin{itemize}
-    \item \textbf{Game Client (Unity)}: hiển thị đồ hoạ, UI, thu thập input; giao tiếp với server qua HTTPS và WebSocket.
-    \item \textbf{API Server (NestJS)}: lớp ứng dụng xử lý REST API, đồng thời cung cấp kênh real-time (WebSocket gateway) cho phiên chơi.
+    \item \textbf{Game Client (Unity)}: hiển thị đồ hoạ, UI, thu thập input; hiện giao tiếp với server qua HTTPS cho các luồng cốt lõi.
+    \item \textbf{API Server (NestJS)}: lớp ứng dụng xử lý REST API; thiết kế chừa khả năng mở rộng kênh real-time (WebSocket gateway) cho các giai đoạn sau.
     \item \textbf{Job Worker}: xử lý tác vụ nền theo lịch (ví dụ: mail hệ thống, sự kiện, tổng hợp log, dọn dẹp dữ liệu runtime).
     \item \textbf{MongoDB (Primary DB)}: lưu dữ liệu tiến trình bền vững và các collections cấu hình.
     \item \textbf{Redis (Cache \& Pub/\allowbreak Sub)}: lưu cache/\allowbreak session runtime hoặc pub-sub khi mở rộng nhiều instance.
@@ -57,7 +57,7 @@ Thiết kế áp dụng nguyên tắc \textbf{server-authoritative} cho các tá
 \end{itemize}
 Các quyết định này giúp giảm rủi ro gian lận và tăng tính nhất quán trong môi trường online \cite{gaffer-networking,moriarty-networked}.
 
-\subsubsection{Phân tách giao tiếp: HTTP và WebSocket}
+\subsubsection{Phân tách giao tiếp: HTTP và WebSocket (định hướng)}
 \label{subsubsec:design-protocols}
 
 \paragraph{HTTP/\allowbreak REST} được dùng cho:
@@ -68,7 +68,7 @@ Các quyết định này giúp giảm rủi ro gian lận và tăng tính nhấ
     \item thao tác quản trị (admin) và các tác vụ không yêu cầu độ trễ thấp.
 \end{itemize}
 
-\paragraph{WebSocket} được dùng cho:
+\paragraph{WebSocket} được thiết kế cho giai đoạn mở rộng:
 \begin{itemize}
     \item tham gia instance/\allowbreak room và vòng lặp chiến đấu real-time;
     \item gửi input (move/\allowbreak attack/\allowbreak cast/\allowbreak dodge) theo nhịp;
@@ -123,10 +123,10 @@ Config Module & Nạp và cung cấp truy xuất cấu hình; versioning; cache 
 
 Để giảm trùng lặp và tăng tính nhất quán, hệ thống dùng các thành phần dùng chung:
 \begin{itemize}
-    \item \textbf{Validation}: kiểm tra input cho REST và WebSocket (schema/\allowbreak DTO) để chặn dữ liệu sai từ đầu.
+    \item \textbf{Validation}: kiểm tra input cho REST và (khi mở rộng) WebSocket (schema/\allowbreak DTO) để chặn dữ liệu sai từ đầu.
     \item \textbf{Error handling}: chuẩn hoá mã lỗi và thông điệp lỗi; đảm bảo client có thể hiển thị đúng trạng thái UI (loading/\allowbreak error/\allowbreak disabled).
     \item \textbf{Logging \& audit}: log request, log nghiệp vụ (reward/\allowbreak gacha/\allowbreak equip/\allowbreak skill-up/\allowbreak admin action), kèm correlation id.
-    \item \textbf{Rate limit / anti-spam}: giới hạn tần suất với endpoint nhạy cảm (login, gacha) và message real-time (input spam).
+    \item \textbf{Rate limit / anti-spam}: giới hạn tần suất với endpoint nhạy cảm (login, gacha) và message real-time khi mở rộng (input spam).
 \end{itemize}
 
 % ==============================================================
@@ -369,7 +369,7 @@ Phần này mô tả các collection chính ở mức thuộc tính, mục đíc
 \endlastfoot
 \texttt{token} & string & Yes & PK; token phiên. \\
 \hline
-\texttt{socket\_id} & string & No & Socket hiện tại; cập nhật khi handshake WS. \\
+\texttt{socket\_id} & string & No & Trường dự phòng cho mở rộng WS; cập nhật khi bật handshake WS. \\
 \hline
 \texttt{user\_id} & string & Yes & Tham chiếu user; dùng kiểm tra nhanh. \\
 \hline
@@ -868,10 +868,10 @@ Ví dụ nhóm endpoint (mức thiết kế):
     \item \texttt{/admin} (users/\allowbreak ban/\allowbreak mail/\allowbreak logs/\allowbreak events/\allowbreak config)
 \end{itemize}
 
-\subsubsection{WebSocket: định dạng message và vòng đời phiên}
+\subsubsection{WebSocket (định hướng): định dạng message và vòng đời phiên}
 \label{subsubsec:design-ws}
 
-Thiết kế message theo dạng envelope để dễ mở rộng:
+Mục này mô tả thiết kế dự phòng cho giai đoạn mở rộng realtime; chưa là luồng runtime chính ở baseline hiện tại. Thiết kế message theo dạng envelope để dễ mở rộng:
 \begin{lstlisting}[language=json]
 {
   "type": "combat.input",

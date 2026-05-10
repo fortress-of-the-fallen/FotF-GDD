@@ -22,9 +22,9 @@ Client và UI/UX & Thiết kế luồng màn hình (login/register, profile, cre
 \hline
 Đề xuất tính năng và đánh giá khả thi & Đề xuất các tính năng trọng tâm theo phạm vi đồ án; đánh giá rủi ro/độ phức tạp; chốt các chức năng phải server-authoritative và các điểm cần audit/log. & Trần Minh Khang & Hà Thái Toàn \\
 \hline
-Hiện thực hệ thống server & Thiết kế/hiện thực backend theo mô-đun; tổ chức REST API và WebSocket; xác thực, phân quyền, xử lý lỗi; chuẩn hoá payload; quản lý session runtime và luồng nghiệp vụ chính. & Trần Minh Khang & Hà Thái Toàn \\
+Hiện thực hệ thống server & Thiết kế/hiện thực backend theo mô-đun; tổ chức REST API cho các luồng cốt lõi; xác thực, phân quyền, xử lý lỗi; chuẩn hoá payload; quản lý session runtime và luồng nghiệp vụ chính; chuẩn bị thiết kế mở rộng WebSocket. & Trần Minh Khang & Hà Thái Toàn \\
 \hline
-Đồng bộ client--server & Thống nhất contract dữ liệu giữa UI và API (endpoint, request/response, message envelope realtime), rà soát mismatch, điều chỉnh luồng để đảm bảo trải nghiệm mượt và dữ liệu nhất quán. & Cả hai & Cả hai \\
+Đồng bộ client--server & Thống nhất contract dữ liệu giữa UI và API (endpoint, request/response), rà soát mismatch, điều chỉnh luồng để đảm bảo trải nghiệm mượt và dữ liệu nhất quán; định nghĩa trước message envelope cho hướng realtime mở rộng. & Cả hai & Cả hai \\
 \hline
 \end{tabularx}
 \caption{Phân công nhiệm vụ và đóng góp của các thành viên}

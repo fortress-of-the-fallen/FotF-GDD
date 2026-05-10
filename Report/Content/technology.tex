@@ -60,7 +60,7 @@ NestJS cung cấp kiến trúc rõ ràng theo hướng module + dependency injec
 Các lý do lựa chọn:
 \begin{itemize}
     \item \textbf{Tổ chức mã nguồn}: module hoá tự nhiên, dễ quản lý ranh giới nghiệp vụ và tái sử dụng service dùng chung.
-    \item \textbf{Hỗ trợ đa giao thức}: REST là kênh chính cho các luồng đã vận hành; WebSocket gateway là hướng mở rộng cho đồng bộ realtime sâu\cite{nest-docs}.
+    \item \textbf{Hỗ trợ đa giao thức}: REST là kênh đang vận hành; WebSocket gateway ở mức định hướng mở rộng cho đồng bộ realtime sâu\cite{nest-docs}.
     \item \textbf{Khả năng mở rộng}: có thể bắt đầu theo kiểu monolithic-module để giảm độ phức tạp, và có cơ sở để tách dịch vụ khi hệ thống tăng quy mô.
 \end{itemize}
 
@@ -81,14 +81,14 @@ HTTP phù hợp với các tác vụ không yêu cầu độ trễ thấp hoặc
     \item Tải dữ liệu cấu hình và các thao tác quản trị/\allowbreak truy vấn lịch sử\cite{nest-docs}.
 \end{itemize}
 
-\subsubsection{WebSocket}
+\subsubsection{WebSocket (định hướng mở rộng)}
 
-WebSocket phù hợp cho các tương tác realtime trong phiên chơi:
+WebSocket phù hợp cho các tương tác realtime trong phiên chơi khi mở rộng:
 \begin{itemize}
     \item Cập nhật trạng thái chiến đấu, sự kiện tức thời trong instance.
     \item Thông báo thay đổi trạng thái (loot, revive, buff/\allowbreak debuff) và đồng bộ theo nhịp tick.
 \end{itemize}
-Trong bản hiện tại, các luồng nghiệp vụ cốt lõi đang được kiểm chứng chủ yếu qua REST API; WebSocket được giữ như lớp mở rộng cho các chế độ realtime sâu hơn (ví dụ đồng bộ room/\allowbreak PvP theo tick). Với mô hình server authoritative, WebSocket là kênh phù hợp để truyền nhận input/\allowbreak snapshot khi mở rộng\cite{moriarty-networked,gaffer-networking}.
+Trong bản hiện tại, các luồng nghiệp vụ cốt lõi đang được kiểm chứng chủ yếu qua REST API; WebSocket chưa là kênh runtime chính thức và được giữ như lớp mở rộng cho các chế độ realtime sâu hơn (ví dụ đồng bộ room/\allowbreak PvP theo tick). Với mô hình server authoritative, WebSocket là kênh phù hợp để truyền nhận input/\allowbreak snapshot khi mở rộng\cite{moriarty-networked,gaffer-networking}.
 
 % ===============================================================
 \subsection{Công nghệ lưu trữ dữ liệu}

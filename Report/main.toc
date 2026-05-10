@@ -50,7 +50,7 @@
 \contentsline {subsubsection}{\numberline {3.2.3}Tác vụ nền (background jobs)}{15}{subsubsection.60}%
 \contentsline {subsection}{\numberline {3.3}Công nghệ giao tiếp mạng}{15}{subsection.61}%
 \contentsline {subsubsection}{\numberline {3.3.1}HTTP/\allowbreak REST}{15}{subsubsection.62}%
-\contentsline {subsubsection}{\numberline {3.3.2}WebSocket}{16}{subsubsection.63}%
+\contentsline {subsubsection}{\numberline {3.3.2}WebSocket (định hướng mở rộng)}{16}{subsubsection.63}%
 \contentsline {subsection}{\numberline {3.4}Công nghệ lưu trữ dữ liệu}{16}{subsection.64}%
 \contentsline {subsubsection}{\numberline {3.4.1}MongoDB}{16}{subsubsection.65}%
 \contentsline {subsubsection}{\numberline {3.4.2}Redis}{16}{subsubsection.66}%
@@ -125,7 +125,7 @@
 \contentsline {subsection}{\numberline {7.2}Kiến trúc tổng thể và triển khai}{39}{subsection.177}%
 \contentsline {subsubsection}{\numberline {7.2.1}Tổng quan triển khai}{39}{subsubsection.178}%
 \contentsline {subsubsection}{\numberline {7.2.2}Nguyên tắc server-authoritative}{40}{subsubsection.180}%
-\contentsline {subsubsection}{\numberline {7.2.3}Phân tách giao tiếp: HTTP và WebSocket}{40}{subsubsection.181}%
+\contentsline {subsubsection}{\numberline {7.2.3}Phân tách giao tiếp: HTTP và WebSocket (định hướng)}{40}{subsubsection.181}%
 \contentsline {paragraph}{HTTP/\allowbreak REST}{40}{section*.182}%
 \contentsline {paragraph}{WebSocket}{40}{section*.183}%
 \contentsline {subsection}{\numberline {7.3}Thiết kế mô-đun backend}{41}{subsection.184}%
@@ -159,7 +159,7 @@
 \contentsline {subsubsection}{\numberline {7.6.2}Thiết kế Config Manager}{55}{subsubsection.220}%
 \contentsline {subsection}{\numberline {7.7}Thiết kế giao tiếp client--server}{55}{subsection.221}%
 \contentsline {subsubsection}{\numberline {7.7.1}REST API: nhóm endpoint và quy ước}{55}{subsubsection.222}%
-\contentsline {subsubsection}{\numberline {7.7.2}WebSocket: định dạng message và vòng đời phiên}{56}{subsubsection.223}%
+\contentsline {subsubsection}{\numberline {7.7.2}WebSocket (định hướng): định dạng message và vòng đời phiên}{56}{subsubsection.223}%
 \contentsline {subsection}{\numberline {7.8}Thiết kế giao diện người dùng (UI/\allowbreak UX) mức tham chiếu}{56}{subsection.236}%
 \contentsline {subsubsection}{\numberline {7.8.1}Luồng UI xác thực: Login/\allowbreak Register}{57}{subsubsection.237}%
 \contentsline {subsubsection}{\numberline {7.8.2}UI lobby và điều hướng phân hệ}{58}{subsubsection.239}%
@@ -210,5 +210,5 @@
 \contentsline {subsection}{\numberline {10.4}Hướng phát triển tiếp theo}{72}{subsection.306}%
 \contentsline {subsection}{\numberline {10.5}Kết luận}{72}{subsection.307}%
 \contentsline {section}{Phân công nhiệm vụ và đóng góp của các thành viên}{73}{section*.308}%
-\contentsline {section}{Roadmap giai đoạn tiếp theo}{74}{section*.310}%
-\contentsline {section}{Tài liệu tham khảo}{75}{table.caption.311}%
+\contentsline {section}{Roadmap giai đoạn tiếp theo}{75}{section*.310}%
+\contentsline {section}{Tài liệu tham khảo}{76}{table.caption.311}%
