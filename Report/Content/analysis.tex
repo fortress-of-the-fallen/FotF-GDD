@@ -62,6 +62,20 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
     \item Đăng xuất và revoke refresh token.
 \end{itemize}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/newDiagram/usecase-auth.png}
+    \caption{Use case cho phân hệ xác thực và phiên}
+    \label{fig:new-usecase-auth}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\textwidth]{Images/newDiagram/activity-auth.png}
+    \caption{Activity flow cho phân hệ xác thực}
+    \label{fig:new-activity-auth}
+\end{figure}
+
 \subsubsection{Nhóm đồng bộ trạng thái người chơi}
 \label{subsec:analysis_uc_state}
 \begin{itemize}
@@ -84,6 +98,13 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
     \item Đồng bộ hậu trận: reward, statistics, currency, tutorialProgress, questUpdates.
 \end{itemize}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/newDiagram/usecase-combat.png}
+    \caption{Use case cho phân hệ battle session}
+    \label{fig:new-usecase-combat}
+\end{figure}
+
 \subsubsection{Nhóm tutorial progress}
 \label{subsec:analysis_uc_tutorial}
 \begin{itemize}
@@ -98,6 +119,20 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
     \item Mua và nâng cấp skill.
     \item Nâng cấp castle qua endpoint backend chuyên biệt.
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/newDiagram/usecase-player-progression.png}
+    \caption{Use case cho phân hệ progression người chơi}
+    \label{fig:new-usecase-progression}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/newDiagram/usecase-character-and-formation.png}
+    \caption{Use case cho phân hệ character và formation}
+    \label{fig:new-usecase-character-formation}
+\end{figure}
 
 % ===============================================================
 \subsection{Đặc tả use case trọng yếu}
@@ -126,6 +161,20 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
 \begin{itemize}
     \item Sai thông tin đăng nhập $\rightarrow$ trả lỗi xác thực.
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/newDiagram/sequence-auth-login.png}
+    \caption{Sequence đăng nhập và thiết lập phiên}
+    \label{fig:new-sequence-auth-login}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/newDiagram/sequence-auth-refresh.png}
+    \caption{Sequence làm mới access token}
+    \label{fig:new-sequence-auth-refresh}
+\end{figure}
 
 \subsubsection{UC-02 -- Đồng bộ player state}
 \label{subsubsec:uc-02}
@@ -163,6 +212,20 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
     \item Server validate, cập nhật dữ liệu và trả trạng thái mới.
     \item Client cập nhật UI quest theo payload trả về.
 \end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/newDiagram/sequence-quest-claim.png}
+    \caption{Sequence đồng bộ và claim quest}
+    \label{fig:new-sequence-quest-claim}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.72\textheight,keepaspectratio]{Images/newDiagram/activity-quest-claim.png}
+    \caption{Activity flow cho luồng claim quest}
+    \label{fig:new-activity-quest-claim}
+\end{figure}
 
 \subsubsection{UC-04 -- Khởi tạo battle session}
 \label{subsubsec:uc-04}
@@ -205,6 +268,20 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
 \begin{itemize}
     \item Retry cùng idempotency key $\rightarrow$ backend không cấp trùng kết quả.
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/newDiagram/sequence-battle-start-finish.png}
+    \caption{Sequence khởi tạo và kết thúc battle session}
+    \label{fig:new-sequence-battle}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\textwidth]{Images/newDiagram/activity-battle.png}
+    \caption{Activity flow cho vòng đời battle session}
+    \label{fig:new-activity-battle}
+\end{figure}
 
 \subsubsection{UC-06 -- Đồng bộ tutorial progress}
 \label{subsubsec:uc-06}

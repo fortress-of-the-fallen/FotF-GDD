@@ -31,8 +31,8 @@ Hệ thống được tổ chức thành 3 lớp chính: \textit{Client Devices}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth]{Images/DeployDiagram.png}
-    \caption{Sơ đồ triển khai tổng quan hệ thống}
+    \includegraphics[width=0.95\textwidth]{Images/newDiagram/deployment.png}
+    \caption{Sơ đồ triển khai tổng quan hệ thống (bản cập nhật)}
     \label{fig:deploy-diagram}
 \end{figure}
 
@@ -153,341 +153,104 @@ Với MongoDB, thiết kế ưu tiên:
 
 Trong phạm vi báo cáo, ERD được trình bày ở mức logic để làm rõ quan hệ 1:1, 1:N và các liên kết tham chiếu tới cấu hình. Các ``STRUCT\_*'' trong ERD đại diện cho \textbf{embedded document} (struct nhúng), không phải collection độc lập.
 
-\begin{lstlisting}
-erDiagram
-    %% ==========================================
-    %% 1. IDENTITY MODULE
-    %% ==========================================
-    USER {
-        ObjectId _id PK
-        string username
-        string email
-        string password_hash
-        string role
-        enum status
-        date created_at
-        date last_login
-        object settings "Embed: OBJECT_USER_SETTINGS"
-    }
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newDiagram/erd-auth-player.png}
+        \caption{ERD auth \& player}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newDiagram/erd-character-progression.png}
+        \caption{ERD character progression}
+    \end{subfigure}
 
-    OBJECT_USER_SETTINGS {
-        float master_volume
-        float sfx_volume
-        string language_code
-        boolean notifications_enabled
-    }
+    \vspace{0.4cm}
 
-    GAME_PROFILE {
-        ObjectId _id PK
-        ObjectId user_id FK
-        string profile_name
-        string server_id
-        date created_at
-        date last_played
-        object preferences "Embed: Local Game Settings"
-    }
-
-    SESSION_RUNTIME {
-        string token PK
-        string socket_id
-        string user_id
-        string profile_id
-        string character_id
-        string current_room_id
-        timestamp expires_at
-    }
-
-    %% ==========================================
-    %% 2. CHARACTER MODULE
-    %% ==========================================
-    CHARACTER {
-        ObjectId _id PK
-        ObjectId profile_id FK
-        string name
-        enum gender
-        enum class
-        int level
-        long current_exp
-        date created_at
-        object base_stats "Embed: STRUCT_BASE_STATS"
-        object resources "Embed: STRUCT_CURRENT_RESOURCES"
-        object position "Embed: STRUCT_POSITION_DATA"
-        object appearance "Embed: STRUCT_APPEARANCE"
-    }
-
-    STRUCT_BASE_STATS {
-        int strength
-        int agility
-        int intelligence
-        int vitality
-        int luck
-    }
-
-    STRUCT_CURRENT_RESOURCES {
-        float hp_current
-        float hp_max
-        float mp_current
-        float mp_max
-        float stamina_current
-    }
-
-    STRUCT_POSITION_DATA {
-        string map_id
-        float pos_x
-        float pos_y
-        float pos_z
-        float rot_y
-    }
-
-    STRUCT_APPEARANCE {
-        string hair_model_id
-        string hair_color_hex
-        string skin_color_hex
-        string face_model_id
-    }
-
-    %% ==========================================
-    %% 3. INVENTORY & EQUIPMENT MODULE
-    %% ==========================================
-    INVENTORY {
-        ObjectId _id PK
-        ObjectId character_id FK
-        int max_slots
-        int used_slots
-        double currency_gold
-        double currency_gem
-        array items "List: STRUCT_INVENTORY_ITEM"
-    }
-
-    STRUCT_INVENTORY_ITEM {
-        string item_ref_id
-        int quantity
-        int slot_index
-        int enhancement_level
-        float durability_current
-        string unique_uid
-    }
-
-    CHARACTER_EQUIPMENT {
-        ObjectId _id PK
-        ObjectId character_id FK
-        object helmet "Embed: STRUCT_EQUIPPED_ITEM"
-        object chestplate "Embed: STRUCT_EQUIPPED_ITEM"
-        object leggings "Embed: STRUCT_EQUIPPED_ITEM"
-        object boots "Embed: STRUCT_EQUIPPED_ITEM"
-        object necklace "Embed: STRUCT_EQUIPPED_ITEM"
-        object ring "Embed: STRUCT_EQUIPPED_ITEM"
-        object weapon "Embed: STRUCT_EQUIPPED_ITEM"
-    }
-
-    STRUCT_EQUIPPED_ITEM {
-        string item_ref_id "Ref: CONFIG_ITEM"
-        string unique_uid
-        int enhancement_level
-        float durability_current
-        array sockets "Optional"
-    }
-
-    CONFIG_ITEM {
-        string id PK
-        string name
-        string type
-        int max_stack
-    }
-
-    %% ==========================================
-    %% 4. SKILL MODULE
-    %% ==========================================
-    CHARACTER_SKILLS {
-        ObjectId _id PK
-        ObjectId character_id FK
-        int skill_points_available
-        array learned_skills "List: STRUCT_LEARNED_SKILL"
-        array hotbar_loadout "List: STRUCT_HOTBAR_SLOT"
-    }
-
-    STRUCT_LEARNED_SKILL {
-        string skill_ref_id "Ref: CONFIG_SKILL"
-        int current_level
-        float current_exp "Optional"
-        boolean is_unlocked
-        timestamp cooldown_end "Runtime only"
-    }
-
-    STRUCT_HOTBAR_SLOT {
-        int slot_index
-        string skill_ref_id
-        enum type "Active / Item"
-    }
-
-    CONFIG_SKILL {
-        string id PK
-        string name
-        enum type "Active, Passive, Buff"
-        int max_level
-        float base_cooldown
-        float base_mana_cost
-        string description
-    }
-
-    %% ==========================================
-    %% 5. ADVANCED GAMEPLAY (ISLAND & NPC)
-    %% ==========================================
-    PERSONAL_ISLAND {
-        ObjectId _id PK
-        ObjectId profile_id FK
-        string island_name
-        int town_hall_level
-        date last_collected_at
-        object resources "Embed: STRUCT_ISLAND_RESOURCES"
-        array buildings "List: STRUCT_BUILDING"
-    }
-
-    STRUCT_ISLAND_RESOURCES {
-        long wood_storage
-        long stone_storage
-        long food_storage
-        long iron_storage
-    }
-
-    STRUCT_BUILDING {
-        string building_uid
-        enum type
-        int level
-        enum status
-        timestamp finish_time
-        int pos_grid_x
-        int pos_grid_y
-        string assigned_worker_id
-    }
-
-    CONFIG_BUILDING {
-        string id PK
-        string name
-        long build_time_seconds
-        object cost_requirements
-    }
-
-    NPC_COLLECTION {
-        ObjectId _id PK
-        ObjectId profile_id FK
-        int total_npcs
-        array npcs "List: STRUCT_OWNED_NPC"
-    }
-
-    STRUCT_OWNED_NPC {
-        string npc_uid
-        string npc_config_id
-        enum rarity
-        int level
-        int star_grade
-        int friendship_point
-        string current_job
-        enum class
-        object combat_stats "Embed: STRUCT_BASE_STATS"
-        object resources "Embed: STRUCT_CURRENT_RESOURCES"
-    }
-
-    %% ==========================================
-    %% RELATIONSHIPS
-    %% ==========================================
-    USER ||--|| OBJECT_USER_SETTINGS : "embeds"
-    USER ||--|{ GAME_PROFILE : "has"
-    GAME_PROFILE ||--|{ CHARACTER : "owns"
-    GAME_PROFILE ||--|| PERSONAL_ISLAND : "owns"
-    GAME_PROFILE ||--|| NPC_COLLECTION : "owns"
-    SESSION_RUNTIME }|..|| GAME_PROFILE : "active"
-
-    CHARACTER ||--|| STRUCT_BASE_STATS : "embeds"
-    CHARACTER ||--|| STRUCT_CURRENT_RESOURCES : "embeds"
-    CHARACTER ||--|| STRUCT_POSITION_DATA : "embeds"
-    CHARACTER ||--|| STRUCT_APPEARANCE : "embeds"
-
-    CHARACTER ||--|| INVENTORY : "has"
-    INVENTORY ||--|{ STRUCT_INVENTORY_ITEM : "contains"
-    STRUCT_INVENTORY_ITEM }|..|| CONFIG_ITEM : "ref"
-
-    CHARACTER ||--|| CHARACTER_EQUIPMENT : "wears"
-    CHARACTER_EQUIPMENT ||--|| STRUCT_EQUIPPED_ITEM : "embeds"
-    STRUCT_EQUIPPED_ITEM }|..|| CONFIG_ITEM : "ref"
-
-    CHARACTER ||--|| CHARACTER_SKILLS : "masters (1:1)"
-    CHARACTER_SKILLS ||--|{ STRUCT_LEARNED_SKILL : "knows"
-    CHARACTER_SKILLS ||--|{ STRUCT_HOTBAR_SLOT : "equips"
-    STRUCT_LEARNED_SKILL }|..|| CONFIG_SKILL : "ref config"
-    STRUCT_HOTBAR_SLOT }|..|| CONFIG_SKILL : "ref config"
-
-    PERSONAL_ISLAND ||--|| STRUCT_ISLAND_RESOURCES : "embeds"
-    PERSONAL_ISLAND ||--|{ STRUCT_BUILDING : "contains"
-    STRUCT_BUILDING }|..|| CONFIG_BUILDING : "ref"
-
-    NPC_COLLECTION ||--|{ STRUCT_OWNED_NPC : "contains"
-    STRUCT_OWNED_NPC }|..|| STRUCT_BUILDING : "works at"
-    STRUCT_OWNED_NPC ||--|| STRUCT_BASE_STATS : "embeds"
-    STRUCT_OWNED_NPC ||--|| STRUCT_CURRENT_RESOURCES : "embeds"
-\end{lstlisting}
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newDiagram/erd-inventory-battle.png}
+        \caption{ERD inventory \& battle}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newDiagram/erd-character-customization.png}
+        \caption{ERD character customization}
+    \end{subfigure}
+    \caption{Bộ sơ đồ ERD mức logic theo phân hệ (trình bày bằng hình)}
+    \label{fig:new-erd-set}
+\end{figure}
 
 \subsubsection{Phân tích quan hệ và phụ thuộc thuộc tính}
 \label{subsubsec:design-erd-analysis}
 
-Phần này phân tích cách các thực thể liên kết với nhau (1:1, 1:N) và ý nghĩa của các thuộc tính khoá/\allowbreak tham chiếu trong luồng nghiệp vụ.
+Phần này phân tích ERD theo nhóm để làm rõ mục đích dữ liệu, quan hệ chính, khóa/\allowbreak tham chiếu và các ràng buộc cần giữ nhất quán.
 
-\paragraph{(1) USER $\rightarrow$ GAME\_PROFILE và OBJECT\_USER\_SETTINGS}
+\paragraph{Nhóm danh tính và phiên (USER, GAME\_PROFILE, SESSION\_RUNTIME)}
+\textbf{Mục đích dữ liệu:} quản lý tài khoản, profile chơi và trạng thái phiên runtime.
 \begin{itemize}
-    \item \textbf{USER} là thực thể định danh tài khoản. \texttt{username} và \texttt{email} là khoá tự nhiên cần unique index.
-    \item \textbf{OBJECT\_USER\_SETTINGS} là struct nhúng 1:1 trong USER (\texttt{USER.settings}) vì kích thước nhỏ, vòng đời gắn chặt với USER và thường được đọc cùng khi vào game.
-    \item \textbf{GAME\_PROFILE} tham chiếu USER qua \texttt{GAME\_PROFILE.user\_id} (1:N): một tài khoản có thể có nhiều profile theo slot hoặc theo server/\allowbreak realm.
+    \item \textbf{Quan hệ chính:} USER (1:N) GAME\_PROFILE; USER (1:1) OBJECT\_USER\_SETTINGS (nhúng); SESSION\_RUNTIME tham chiếu GAME\_PROFILE.
+    \item \textbf{Khóa/\allowbreak Ref quan trọng:} \texttt{USER.\_id}, \texttt{GAME\_PROFILE.user\_id}, \texttt{SESSION\_RUNTIME.profile\_id}.
+    \item \textbf{Ràng buộc nhất quán:} \texttt{username}/\texttt{email} cần unique; session chỉ hợp lệ khi profile còn tồn tại; \texttt{expires\_at} dùng TTL để tự dọn phiên hết hạn.
 \end{itemize}
 
-\paragraph{(2) SESSION\_RUNTIME như ``trạng thái phiên''}
+\paragraph{Nhóm nhân vật và tiến trình (CHARACTER + stats/resources/appearance)}
+\textbf{Mục đích dữ liệu:} lưu trạng thái phát triển nhân vật và dữ liệu hiển thị/\allowbreak vận hành trong gameplay.
 \begin{itemize}
-    \item \textbf{SESSION\_RUNTIME} lưu trạng thái runtime: \texttt{token}, \texttt{socket\_id}, \texttt{profile\_id}, \texttt{character\_id}, \texttt{current\_room\_id}, \texttt{expires\_at}.
-    \item \texttt{profile\_id} tham chiếu GAME\_PROFILE để xác định ``bối cảnh phiên''; \texttt{character\_id} phục vụ điều phối gameplay.
-    \item \texttt{expires\_at} hỗ trợ TTL (tự xoá session hết hạn), giảm dữ liệu rác runtime.
+    \item \textbf{Quan hệ chính:} GAME\_PROFILE (1:N) CHARACTER; CHARACTER (1:1) với các struct nhúng \texttt{base\_stats}, \texttt{resources}, \texttt{position}, \texttt{appearance}.
+    \item \textbf{Khóa/\allowbreak Ref quan trọng:} \texttt{CHARACTER.\_id}, \texttt{CHARACTER.profile\_id}.
+    \item \textbf{Ràng buộc nhất quán:} các struct nhúng phải theo cùng vòng đời với CHARACTER; cập nhật level/\allowbreak EXP phải đồng bộ với các ngưỡng progression.
 \end{itemize}
 
-\paragraph{(3) GAME\_PROFILE $\rightarrow$ CHARACTER và các struct nhúng trong CHARACTER}
+\paragraph{Nhóm inventory/equipment/skill (instance state vs config reference)}
+\textbf{Mục đích dữ liệu:} lưu toàn bộ tài sản và năng lực tác chiến của nhân vật.
 \begin{itemize}
-    \item \textbf{CHARACTER.profile\_id} tham chiếu GAME\_PROFILE (1:N): một profile có nhiều nhân vật.
-    \item CHARACTER nhúng \texttt{base\_stats/\allowbreak resources/\allowbreak position/\allowbreak appearance} để tối ưu truy xuất vì các nhóm thuộc tính này thường được tải cùng khi vào game.
+    \item \textbf{Quan hệ chính:} CHARACTER (1:1) INVENTORY; CHARACTER (1:1) CHARACTER\_EQUIPMENT; CHARACTER (1:1) CHARACTER\_SKILLS.
+    \item \textbf{Khóa/\allowbreak Ref quan trọng:} \texttt{character\_id} (unique trong từng collection 1:1), \texttt{item\_ref\_id} $\rightarrow$ CONFIG\_ITEM, \texttt{skill\_ref\_id} $\rightarrow$ CONFIG\_SKILL, \texttt{unique\_uid} cho item instance.
+    \item \textbf{Ràng buộc nhất quán:} item đã equip phải tồn tại hợp lệ trong inventory; hotbar chỉ tham chiếu skill đã học; dữ liệu động (durability, cooldown, skill level) không được lệch khỏi config tĩnh.
 \end{itemize}
 
-\paragraph{(4) CHARACTER $\leftrightarrow$ INVENTORY và quan hệ item instance $\rightarrow$ CONFIG\_ITEM}
+\paragraph{Nhóm battle/runtime linkage}
+\textbf{Mục đích dữ liệu:} nối danh tính phiên với trạng thái chiến đấu và kết quả hậu trận.
 \begin{itemize}
-    \item INVENTORY có \texttt{character\_id} (unique) để đảm bảo quan hệ 1:1 với CHARACTER.
-    \item \textbf{STRUCT\_INVENTORY\_ITEM} là item instance; \texttt{unique\_uid} định danh từng item (quan trọng cho enhance/\allowbreak durability).
-    \item \texttt{item\_ref\_id} tham chiếu \textbf{CONFIG\_ITEM.id} nhằm tách phần ``định nghĩa tĩnh'' khỏi ``trạng thái động''.
+    \item \textbf{Quan hệ chính:} SESSION\_RUNTIME liên kết profile/\allowbreak character/\allowbreak room để điều phối runtime.
+    \item \textbf{Khóa/\allowbreak Ref quan trọng:} \texttt{token}, \texttt{character\_id}, \texttt{current\_room\_id}.
+    \item \textbf{Ràng buộc nhất quán:} một phiên runtime chỉ ánh xạ một ngữ cảnh hoạt động tại một thời điểm; dữ liệu hậu trận phải commit về các thực thể progression theo thứ tự giao dịch.
 \end{itemize}
 
-\paragraph{(5) CHARACTER $\leftrightarrow$ CHARACTER\_EQUIPMENT và phụ thuộc đồng bộ với inventory}
+\paragraph{Nhóm mở rộng full scope theo ERD (customization/island/NPC)}
+\textbf{Mục đích dữ liệu:} mở rộng gameplay dài hạn theo base-building và collection.
 \begin{itemize}
-    \item CHARACTER\_EQUIPMENT là collection 1:1 theo \texttt{character\_id} để lưu trang bị theo slot (helmet, chestplate, weapon, ...).
-    \item Mỗi slot là \textbf{STRUCT\_EQUIPPED\_ITEM} nhúng, tham chiếu \texttt{item\_ref\_id} tới CONFIG\_ITEM và giữ \texttt{unique\_uid/\allowbreak enhancement\_level/\allowbreak durability\_current}.
-    \item Khi thực hiện thao tác Equip/\allowbreak Unequip: server cần đảm bảo \textbf{tính nhất quán} giữa INVENTORY (danh sách items) và CHARACTER\_EQUIPMENT (slot trang bị), tránh trạng thái ``equip nhưng item không tồn tại''.
+    \item \textbf{Quan hệ chính:} GAME\_PROFILE (1:1) PERSONAL\_ISLAND; GAME\_PROFILE (1:1) NPC\_COLLECTION; PERSONAL\_ISLAND (1:N) STRUCT\_BUILDING; NPC\_COLLECTION (1:N) STRUCT\_OWNED\_NPC.
+    \item \textbf{Khóa/\allowbreak Ref quan trọng:} \texttt{profile\_id}, \texttt{building\_uid}, \texttt{npc\_uid}, \texttt{building/config ref} tới CONFIG\_BUILDING.
+    \item \textbf{Ràng buộc nhất quán:} worker assignment phải tham chiếu NPC còn tồn tại; timer build/\allowbreak upgrade và trạng thái resource phải được cập nhật đồng bộ để tránh trạng thái treo.
 \end{itemize}
 
-\paragraph{(6) CHARACTER $\leftrightarrow$ CHARACTER\_SKILLS và quan hệ tới CONFIG\_SKILL}
-\begin{itemize}
-    \item CHARACTER\_SKILLS là collection 1:1 theo \texttt{character\_id}, lưu tổng thể tiến trình kỹ năng: điểm kỹ năng, danh sách kỹ năng đã học và hotbar.
-    \item \texttt{STRUCT\_\allowbreak LEARNED\_\allowbreak SKILL.skill\_ref\_id} tham chiếu CONFIG\_SKILL.\texttt{id}. Các thuộc tính \texttt{current\_level/\allowbreak is\_unlocked/\allowbreak current\_exp} mô tả tiến trình.
-    \item \texttt{cooldown\_end} được xem là runtime; ở baseline hiện tại có thể không lưu bền vững (hoặc lưu tạm theo policy), tránh ghi DB liên tục.
-    \item \texttt{STRUCT\_\allowbreak HOTBAR\_\allowbreak SLOT} gắn layout phím/\allowbreak slot với skill (hoặc item). Nếu \texttt{type=Item}, có thể mở rộng tham chiếu inventory theo policy (không bắt buộc ở baseline hiện tại).
-\end{itemize}
-
-\paragraph{(7) GAME\_PROFILE $\leftrightarrow$ PERSONAL\_ISLAND và quan hệ building instance $\rightarrow$ CONFIG\_BUILDING}
-\begin{itemize}
-    \item PERSONAL\_ISLAND tham chiếu GAME\_PROFILE theo \texttt{profile\_id} và là quan hệ 1:1.
-    \item \textbf{STRUCT\_BUILDING} là building instance, có \texttt{building\_uid} và vị trí grid.
-    \item \texttt{type} (hoặc tách thành \texttt{building\_config\_id}) tham chiếu \textbf{CONFIG\_BUILDING.id} để lấy thời gian xây và chi phí.
-\end{itemize}
-
-\paragraph{(8) GAME\_PROFILE $\leftrightarrow$ NPC\_COLLECTION và quan hệ worker assignment}
-\begin{itemize}
-    \item NPC\_COLLECTION tham chiếu GAME\_PROFILE theo \texttt{profile\_id} và là quan hệ 1:1.
-    \item \textbf{STRUCT\_OWNED\_NPC} là NPC instance, có \texttt{npc\_uid} và trạng thái tiến trình (level/\allowbreak star/\allowbreak friendship/\allowbreak current\_job).
-    \item Worker assignment được biểu diễn bởi \texttt{STRUCT\_BUILDING.assigned\_worker\_id} tham chiếu \texttt{STRUCT\_OWNED\_NPC.npc\_uid}.
-    Để tránh trạng thái treo, khi gán worker cần cập nhật đồng thời trạng thái job của NPC theo cùng một luật nhất quán.
-\end{itemize}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|L{4.0cm}|L{3.8cm}|Y|}
+\hline
+\textbf{Nhóm thực thể} & \textbf{Quan hệ chính} & \textbf{Ràng buộc cốt lõi} \\
+\hline
+Identity \& Session & USER (1:N) GAME\_PROFILE; SESSION\_RUNTIME $\rightarrow$ GAME\_PROFILE & Unique account identity; session TTL; không orphan profile trong phiên. \\
+\hline
+Character \& Progression & GAME\_PROFILE (1:N) CHARACTER; CHARACTER nhúng stats/\allowbreak resources/\allowbreak appearance & Tiến trình level/\allowbreak EXP nhất quán; struct nhúng cùng vòng đời CHARACTER. \\
+\hline
+Inventory/\allowbreak Equipment/\allowbreak Skill & CHARACTER (1:1) INVENTORY/\allowbreak EQUIPMENT/\allowbreak SKILLS; ref sang CONFIG\_ITEM/\allowbreak CONFIG\_SKILL & Đồng bộ item equip và inventory; hotbar hợp lệ; state động không lệch config tĩnh. \\
+\hline
+Battle Runtime/\allowbreak Linkage & SESSION\_RUNTIME nối profile/\allowbreak character/\allowbreak room & Một phiên một ngữ cảnh; commit hậu trận theo giao dịch chuẩn. \\
+\hline
+Island \& NPC/\allowbreak Extension & GAME\_PROFILE (1:1) PERSONAL\_ISLAND/\allowbreak NPC\_COLLECTION; island (1:N) building; npc (1:N) owned NPC & Worker assignment hợp lệ; timer và tài nguyên cập nhật đồng bộ. \\
+\hline
+\end{tabularx}
+\caption{Tóm tắt Entity--Relation--Constraint theo nhóm ERD}
+\label{tab:erd-erc-summary}
+\end{table}
 
 % --------------------------------------------------------------
 \subsubsection{Từ điển dữ liệu (Data Dictionary) ở mức collection}

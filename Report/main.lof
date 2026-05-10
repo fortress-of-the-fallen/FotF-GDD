@@ -1,40 +1,24 @@
 \babel@toc {vietnamese}{}\relax 
 \contentsline {figure}{\numberline {1}{\ignorespaces Ví dụ mô hình hoá Core Loop trong Action RPG}}{7}{figure.caption.31}%
 \contentsline {figure}{\numberline {2}{\ignorespaces Mô hình hoá thuộc tính nền, chỉ số suy diễn và nhóm trait đặc biệt}}{8}{figure.caption.36}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Sơ đồ triển khai tổng quan hệ thống}}{32}{figure.caption.168}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Mô hình thuộc tính nền và chỉ số suy diễn}}{52}{figure.caption.474}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Luồng UI xác thực và tải dữ liệu ban đầu}}{56}{figure.caption.500}%
-\contentsline {figure}{\numberline {6}{\ignorespaces UI lobby, nâng cấp castle và leaderboard}}{57}{figure.caption.502}%
-\contentsline {figure}{\numberline {7}{\ignorespaces UI nhiệm vụ ngày, tuần và thành tựu}}{58}{figure.caption.504}%
-\contentsline {figure}{\numberline {8}{\ignorespaces UI quản lý hero/\allowbreak unit: danh sách, UIUnit, chi tiết, nâng cấp và tiến hoá}}{59}{figure.caption.506}%
-\contentsline {figure}{\numberline {9}{\ignorespaces UI tutorial điều hướng người chơi mới}}{60}{figure.caption.508}%
-\contentsline {figure}{\numberline {10}{\ignorespaces UI chuẩn bị trận và gameplay battle}}{61}{figure.caption.510}%
-\contentsline {figure}{\numberline {11}{\ignorespaces UI kết quả trận, reward và level-up}}{62}{figure.caption.512}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Màn hình đăng nhập với username và password}}{76}{figure.caption.577}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Màn hình đăng ký với display name, username, password và confirm password}}{76}{figure.caption.578}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Thanh loading sau khi đăng nhập hoặc đăng ký thành công}}{77}{figure.caption.579}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Thông báo lỗi khi đăng nhập hoặc đăng ký sai dữ liệu}}{77}{figure.caption.580}%
-\contentsline {figure}{\numberline {16}{\ignorespaces Màn hình setup battle sau khi tải profile người chơi}}{77}{figure.caption.582}%
-\contentsline {figure}{\numberline {17}{\ignorespaces HUD tài nguyên hiển thị gold, gem, level và EXP}}{78}{figure.caption.583}%
-\contentsline {figure}{\numberline {18}{\ignorespaces Màn hình quest trước khi claim reward}}{78}{figure.caption.584}%
-\contentsline {figure}{\numberline {19}{\ignorespaces Màn hình quest sau khi claim reward và tài nguyên được cập nhật}}{78}{figure.caption.585}%
-\contentsline {figure}{\numberline {20}{\ignorespaces Màn hình reward sau khi kết thúc campaign battle}}{79}{figure.caption.586}%
-\contentsline {figure}{\numberline {21}{\ignorespaces Màn hình level up sau khi người chơi nhận EXP}}{79}{figure.caption.587}%
-\contentsline {figure}{\numberline {22}{\ignorespaces Màn hình danh sách hero với bộ lọc All, Normal và Elite}}{79}{figure.caption.589}%
-\contentsline {figure}{\numberline {23}{\ignorespaces Màn hình đội hình hiện tại trước khi vào trận}}{80}{figure.caption.590}%
-\contentsline {figure}{\numberline {24}{\ignorespaces Màn hình chi tiết hero và thông số cơ bản}}{80}{figure.caption.591}%
-\contentsline {figure}{\numberline {25}{\ignorespaces Màn hình upgrade hero trước khi nâng cấp}}{80}{figure.caption.592}%
-\contentsline {figure}{\numberline {26}{\ignorespaces Màn hình upgrade hero sau khi nâng cấp thành công}}{81}{figure.caption.593}%
-\contentsline {figure}{\numberline {27}{\ignorespaces Màn hình evolve hero với điều kiện shard và currency}}{81}{figure.caption.594}%
-\contentsline {figure}{\numberline {28}{\ignorespaces Tutorial màn đầu hướng dẫn bấm Play}}{81}{figure.caption.596}%
-\contentsline {figure}{\numberline {29}{\ignorespaces Tutorial deploy unit trong trận campaign đầu tiên}}{82}{figure.caption.597}%
-\contentsline {figure}{\numberline {30}{\ignorespaces Tutorial chơi màn 2 sau khi hoàn thành onboarding ban đầu}}{82}{figure.caption.598}%
-\contentsline {figure}{\numberline {31}{\ignorespaces Tutorial chỉ vào tab Cards để nâng cấp hero}}{82}{figure.caption.599}%
-\contentsline {figure}{\numberline {32}{\ignorespaces Gameplay campaign battle đang diễn ra}}{83}{figure.caption.600}%
-\contentsline {figure}{\numberline {33}{\ignorespaces Log gọi API \texttt {GET /api/v1/configs/manifest} thành công}}{83}{figure.caption.602}%
-\contentsline {figure}{\numberline {34}{\ignorespaces Log gọi API đăng nhập hoặc đăng ký thành công}}{83}{figure.caption.603}%
-\contentsline {figure}{\numberline {35}{\ignorespaces Log gọi API \texttt {GET /api/v1/me} tải profile người chơi}}{84}{figure.caption.604}%
-\contentsline {figure}{\numberline {36}{\ignorespaces Log cập nhật tutorial progress lên backend}}{84}{figure.caption.605}%
-\contentsline {figure}{\numberline {37}{\ignorespaces Log claim quest reward và phản hồi từ backend}}{84}{figure.caption.606}%
-\contentsline {figure}{\numberline {38}{\ignorespaces Log upgrade hoặc evolve hero qua backend}}{85}{figure.caption.607}%
-\contentsline {figure}{\numberline {39}{\ignorespaces Ảnh MongoDB collection chính của player profile hoặc inventory}}{85}{figure.caption.608}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Use case cho phân hệ xác thực và phiên}}{26}{figure.caption.111}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Activity flow cho phân hệ xác thực}}{27}{figure.caption.112}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Use case cho phân hệ battle session}}{28}{figure.caption.116}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Use case cho phân hệ progression người chơi}}{29}{figure.caption.119}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Use case cho phân hệ character và formation}}{30}{figure.caption.120}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Sequence đăng nhập và thiết lập phiên}}{31}{figure.caption.127}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Sequence làm mới access token}}{31}{figure.caption.128}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Sequence đồng bộ và claim quest}}{32}{figure.caption.138}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Activity flow cho luồng claim quest}}{33}{figure.caption.139}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Sequence khởi tạo và kết thúc battle session}}{34}{figure.caption.149}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Activity flow cho vòng đời battle session}}{35}{figure.caption.150}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Sơ đồ triển khai tổng quan hệ thống (bản cập nhật)}}{39}{figure.caption.179}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Bộ sơ đồ ERD mức logic theo phân hệ (trình bày bằng hình)}}{43}{figure.caption.190}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Mô hình thuộc tính nền và chỉ số suy diễn}}{53}{figure.caption.212}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Luồng UI xác thực và tải dữ liệu ban đầu}}{57}{figure.caption.238}%
+\contentsline {figure}{\numberline {18}{\ignorespaces UI lobby, nâng cấp castle và leaderboard}}{58}{figure.caption.240}%
+\contentsline {figure}{\numberline {19}{\ignorespaces UI nhiệm vụ ngày, tuần và thành tựu}}{59}{figure.caption.242}%
+\contentsline {figure}{\numberline {20}{\ignorespaces UI quản lý hero/\allowbreak unit: danh sách, UIUnit, chi tiết, nâng cấp và tiến hoá}}{60}{figure.caption.244}%
+\contentsline {figure}{\numberline {21}{\ignorespaces UI tutorial điều hướng người chơi mới}}{61}{figure.caption.246}%
+\contentsline {figure}{\numberline {22}{\ignorespaces UI chuẩn bị trận và gameplay battle}}{62}{figure.caption.248}%
+\contentsline {figure}{\numberline {23}{\ignorespaces UI kết quả trận, reward và level-up}}{63}{figure.caption.250}%

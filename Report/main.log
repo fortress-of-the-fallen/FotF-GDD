@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  10 MAY 2026 11:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  10 MAY 2026 13:33
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**main.tex
-(./main.tex
+**d:/Github/FotF-GDD/Report/main.tex
+(d:/Github/FotF-GDD/Report/main.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-14>
 (c:/texlive/texmf-dist/tex/latex/base/article.cls
@@ -22,27 +23,21 @@ File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen148
-)
-(c:/texlive/texmf-dist/tex/latex/base/inputenc.sty
+) (c:/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
-)
-(c:/texlive/texmf-dist/tex/latex/vntex/vntex.sty
+) (c:/texlive/texmf-dist/tex/latex/vntex/vntex.sty
 Package: vntex 2009/07/12 v1.1 support for Vietnamese
-
-(c:/texlive/texmf-dist/tex/latex/base/ifthen.sty
+ (c:/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
-)
-(c:/texlive/texmf-dist/tex/latex/base/fontenc.sty
+) (c:/texlive/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
-
-(c:/texlive/texmf-dist/tex/latex/vntex/t5enc.def
+ (c:/texlive/texmf-dist/tex/latex/vntex/t5enc.def
 File: t5enc.def 2006/11/21 v1.4 Vietnamese T5 encoding
 Now handling font encoding T5 ...
 ... processing UTF-8 mapping file for font encoding T5
-
-(c:/texlive/texmf-dist/tex/latex/vntex/t5enc.dfu
+ (c:/texlive/texmf-dist/tex/latex/vntex/t5enc.dfu
 File: t5enc.dfu 2006/08/19 v1.1 UTF8 support for Vietnamese
    defining Unicode char U+00AB (decimal 171)
    defining Unicode char U+00BB (decimal 187)
@@ -196,188 +191,105 @@ File: t5enc.dfu 2006/08/19 v1.1 UTF8 support for Vietnamese
    defining Unicode char U+203A (decimal 8250)
    defining Unicode char U+2423 (decimal 9251)
 ))
-LaTeX Font Info:    Trying to load font information for T5+cmr on input line 11
-6.
-
-(c:/texlive/texmf-dist/tex/latex/vntex/t5cmr.fd
+LaTeX Font Info:    Trying to load font information for T5+cmr on input line 116.
+ (c:/texlive/texmf-dist/tex/latex/vntex/t5cmr.fd
 File: t5cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-))
-(c:/texlive/texmf-dist/tex/latex/vntex/vncaps.tex
+)) (c:/texlive/texmf-dist/tex/latex/vntex/vncaps.tex
 File: vncaps.tex 2006/06/07 v1.1 Captions in Vietnamese
-))
-(c:/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2025/11/23 v25.16 The multilingual framework for LuaLaTeX, pdfLa
-TeX and XeLaTeX
+)) (c:/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2025/11/23 v25.16 The multilingual framework for LuaLaTeX, pdfLaTeX and XeLaTeX
 \babel@savecnt=\count283
-LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
-ne 2050.
-LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
-ne 2052.
-LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
-e 2054.
-LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
-e 2055.
-LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
-on input line 2056.
-LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
-on input line 2058.
-LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
-on input line 2083.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input line 2050.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input line 2052.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input line 2054.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input line 2055.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) on input line 2056.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) on input line 2058.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) on input line 2083.
 \U@D=\dimen149
 \l@unhyphenated=\language90
-
-(c:/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+ (c:/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count284
-
-(c:/texlive/texmf-dist/tex/generic/babel/locale/en/babel-english.tex)
-(c:/texlive/texmf-dist/tex/generic/babel/locale/vi/babel-vietnamese.tex)
+ (c:/texlive/texmf-dist/tex/generic/babel/locale/en/babel-english.tex) (c:/texlive/texmf-dist/tex/generic/babel/locale/vi/babel-vietnamese.tex)
 Package babel Info: Importing font and identification data for english
 (babel)             from babel-en.ini. Reported on input line 4298.
-
-(c:/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+ (c:/texlive/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 )
 Package babel Info: Importing font and identification data for vietnamese
 (babel)             from babel-vi.ini. Reported on input line 4298.
-
-(c:/texlive/texmf-dist/tex/generic/babel-vietnamese/vietnamese.ldf
+ (c:/texlive/texmf-dist/tex/generic/babel-vietnamese/vietnamese.ldf
 Language: vietnamese 
-
-Loading definitions for the Vietnamese font encoding
-(c:/texlive/texmf-dist/tex/latex/vntex/t5enc.def
+ Loading definitions for the Vietnamese font encoding (c:/texlive/texmf-dist/tex/latex/vntex/t5enc.def
 File: t5enc.def 2006/11/21 v1.4 Vietnamese T5 encoding
 LaTeX Font Info:    Redeclaring font encoding T5 on input line 75.
-LaTeX Encoding Info:    Redeclaring text command \` (encoding T5) on input line
- 79.
-LaTeX Encoding Info:    Redeclaring text command \' (encoding T5) on input line
- 80.
-LaTeX Encoding Info:    Redeclaring text command \^ (encoding T5) on input line
- 81.
-LaTeX Encoding Info:    Redeclaring text command \~ (encoding T5) on input line
- 82.
-LaTeX Encoding Info:    Redeclaring text command \" (encoding T5) on input line
- 83.
-LaTeX Encoding Info:    Redeclaring text command \r (encoding T5) on input line
- 84.
-LaTeX Encoding Info:    Redeclaring text command \v (encoding T5) on input line
- 85.
-LaTeX Encoding Info:    Redeclaring text command \u (encoding T5) on input line
- 86.
-LaTeX Encoding Info:    Redeclaring text command \= (encoding T5) on input line
- 87.
-LaTeX Encoding Info:    Redeclaring text command \. (encoding T5) on input line
- 88.
-LaTeX Encoding Info:    Redeclaring text command \b (encoding T5) on input line
- 90.
-LaTeX Encoding Info:    Redeclaring text command \c (encoding T5) on input line
- 94.
-LaTeX Encoding Info:    Redeclaring text command \d (encoding T5) on input line
- 98.
-LaTeX Encoding Info:    Redeclaring text command \h (encoding T5) on input line
- 103.
-LaTeX Encoding Info:    Redeclaring text symbol \quotesinglbase (encoding T5) o
-n input line 105.
-LaTeX Encoding Info:    Redeclaring text symbol \guilsinglleft (encoding T5) on
- input line 106.
-LaTeX Encoding Info:    Redeclaring text symbol \guilsinglright (encoding T5) o
-n input line 107.
-LaTeX Encoding Info:    Redeclaring text symbol \textquotedblleft (encoding T5)
- on input line 108.
-LaTeX Encoding Info:    Redeclaring text symbol \textquotedblright (encoding T5
-) on input line 109.
-LaTeX Encoding Info:    Redeclaring text symbol \quotedblbase (encoding T5) on 
-input line 110.
-LaTeX Encoding Info:    Redeclaring text symbol \guillemotleft (encoding T5) on
- input line 111.
-LaTeX Encoding Info:    Redeclaring text symbol \guillemotright (encoding T5) o
-n input line 112.
-LaTeX Encoding Info:    Redeclaring text symbol \textendash (encoding T5) on in
-put line 113.
-LaTeX Encoding Info:    Redeclaring text symbol \textemdash (encoding T5) on in
-put line 114.
-LaTeX Encoding Info:    Redeclaring text symbol \textcompwordmark (encoding T5)
- on input line 115.
-LaTeX Encoding Info:    Redeclaring text command \textperthousand (encoding T5)
- on input line 117.
-LaTeX Encoding Info:    Redeclaring text command \textpertenthousand (encoding 
-T5) on input line 118.
-LaTeX Encoding Info:    Redeclaring text symbol \i (encoding T5) on input line 
-119.
-LaTeX Encoding Info:    Redeclaring text symbol \textvisiblespace (encoding T5)
- on input line 121.
-LaTeX Encoding Info:    Redeclaring text symbol \textquotedbl (encoding T5) on 
-input line 122.
-LaTeX Encoding Info:    Redeclaring text symbol \textdollar (encoding T5) on in
-put line 123.
-LaTeX Encoding Info:    Redeclaring text symbol \textquoteright (encoding T5) o
-n input line 124.
-LaTeX Encoding Info:    Redeclaring text symbol \textless (encoding T5) on inpu
-t line 125.
-LaTeX Encoding Info:    Redeclaring text symbol \textgreater (encoding T5) on i
-nput line 126.
-LaTeX Encoding Info:    Redeclaring text symbol \textbackslash (encoding T5) on
- input line 127.
-LaTeX Encoding Info:    Redeclaring text symbol \textasciicircum (encoding T5) 
-on input line 128.
-LaTeX Encoding Info:    Redeclaring text symbol \textunderscore (encoding T5) o
-n input line 129.
-LaTeX Encoding Info:    Redeclaring text symbol \textquoteleft (encoding T5) on
- input line 130.
-LaTeX Encoding Info:    Redeclaring text symbol \textbraceleft (encoding T5) on
- input line 131.
-LaTeX Encoding Info:    Redeclaring text symbol \textbar (encoding T5) on input
- line 132.
-LaTeX Encoding Info:    Redeclaring text symbol \textbraceright (encoding T5) o
-n input line 133.
-LaTeX Encoding Info:    Redeclaring text symbol \textasciitilde (encoding T5) o
-n input line 134.
-LaTeX Encoding Info:    Redeclaring text command \horn (encoding T5) on input l
-ine 137.
-LaTeX Encoding Info:    Redeclaring text symbol \DJ (encoding T5) on input line
- 306.
-LaTeX Encoding Info:    Redeclaring text symbol \dj (encoding T5) on input line
- 307.
-LaTeX Encoding Info:    Redeclaring text symbol \Acircumflex (encoding T5) on i
-nput line 312.
-LaTeX Encoding Info:    Redeclaring text symbol \Abreve (encoding T5) on input 
-line 319.
-LaTeX Encoding Info:    Redeclaring text symbol \Ecircumflex (encoding T5) on i
-nput line 326.
-LaTeX Encoding Info:    Redeclaring text symbol \Ocircumflex (encoding T5) on i
-nput line 333.
-LaTeX Encoding Info:    Redeclaring text symbol \Ohorn (encoding T5) on input l
-ine 340.
-LaTeX Encoding Info:    Redeclaring text symbol \Uhorn (encoding T5) on input l
-ine 347.
-LaTeX Encoding Info:    Redeclaring text symbol \acircumflex (encoding T5) on i
-nput line 354.
-LaTeX Encoding Info:    Redeclaring text symbol \abreve (encoding T5) on input 
-line 361.
-LaTeX Encoding Info:    Redeclaring text symbol \ecircumflex (encoding T5) on i
-nput line 368.
-LaTeX Encoding Info:    Redeclaring text symbol \ocircumflex (encoding T5) on i
-nput line 375.
-LaTeX Encoding Info:    Redeclaring text symbol \ohorn (encoding T5) on input l
-ine 382.
-LaTeX Encoding Info:    Redeclaring text symbol \uhorn (encoding T5) on input l
-ine 389.
-LaTeX Encoding Info:    Redeclaring text symbol \ACIRCUMFLEX (encoding T5) on i
-nput line 397.
-LaTeX Encoding Info:    Redeclaring text symbol \ABREVE (encoding T5) on input 
-line 404.
-LaTeX Encoding Info:    Redeclaring text symbol \ECIRCUMFLEX (encoding T5) on i
-nput line 411.
-LaTeX Encoding Info:    Redeclaring text symbol \OCIRCUMFLEX (encoding T5) on i
-nput line 418.
-LaTeX Encoding Info:    Redeclaring text symbol \OHORN (encoding T5) on input l
-ine 425.
-LaTeX Encoding Info:    Redeclaring text symbol \UHORN (encoding T5) on input l
-ine 432.
+LaTeX Encoding Info:    Redeclaring text command \` (encoding T5) on input line 79.
+LaTeX Encoding Info:    Redeclaring text command \' (encoding T5) on input line 80.
+LaTeX Encoding Info:    Redeclaring text command \^ (encoding T5) on input line 81.
+LaTeX Encoding Info:    Redeclaring text command \~ (encoding T5) on input line 82.
+LaTeX Encoding Info:    Redeclaring text command \" (encoding T5) on input line 83.
+LaTeX Encoding Info:    Redeclaring text command \r (encoding T5) on input line 84.
+LaTeX Encoding Info:    Redeclaring text command \v (encoding T5) on input line 85.
+LaTeX Encoding Info:    Redeclaring text command \u (encoding T5) on input line 86.
+LaTeX Encoding Info:    Redeclaring text command \= (encoding T5) on input line 87.
+LaTeX Encoding Info:    Redeclaring text command \. (encoding T5) on input line 88.
+LaTeX Encoding Info:    Redeclaring text command \b (encoding T5) on input line 90.
+LaTeX Encoding Info:    Redeclaring text command \c (encoding T5) on input line 94.
+LaTeX Encoding Info:    Redeclaring text command \d (encoding T5) on input line 98.
+LaTeX Encoding Info:    Redeclaring text command \h (encoding T5) on input line 103.
+LaTeX Encoding Info:    Redeclaring text symbol \quotesinglbase (encoding T5) on input line 105.
+LaTeX Encoding Info:    Redeclaring text symbol \guilsinglleft (encoding T5) on input line 106.
+LaTeX Encoding Info:    Redeclaring text symbol \guilsinglright (encoding T5) on input line 107.
+LaTeX Encoding Info:    Redeclaring text symbol \textquotedblleft (encoding T5) on input line 108.
+LaTeX Encoding Info:    Redeclaring text symbol \textquotedblright (encoding T5) on input line 109.
+LaTeX Encoding Info:    Redeclaring text symbol \quotedblbase (encoding T5) on input line 110.
+LaTeX Encoding Info:    Redeclaring text symbol \guillemotleft (encoding T5) on input line 111.
+LaTeX Encoding Info:    Redeclaring text symbol \guillemotright (encoding T5) on input line 112.
+LaTeX Encoding Info:    Redeclaring text symbol \textendash (encoding T5) on input line 113.
+LaTeX Encoding Info:    Redeclaring text symbol \textemdash (encoding T5) on input line 114.
+LaTeX Encoding Info:    Redeclaring text symbol \textcompwordmark (encoding T5) on input line 115.
+LaTeX Encoding Info:    Redeclaring text command \textperthousand (encoding T5) on input line 117.
+LaTeX Encoding Info:    Redeclaring text command \textpertenthousand (encoding T5) on input line 118.
+LaTeX Encoding Info:    Redeclaring text symbol \i (encoding T5) on input line 119.
+LaTeX Encoding Info:    Redeclaring text symbol \textvisiblespace (encoding T5) on input line 121.
+LaTeX Encoding Info:    Redeclaring text symbol \textquotedbl (encoding T5) on input line 122.
+LaTeX Encoding Info:    Redeclaring text symbol \textdollar (encoding T5) on input line 123.
+LaTeX Encoding Info:    Redeclaring text symbol \textquoteright (encoding T5) on input line 124.
+LaTeX Encoding Info:    Redeclaring text symbol \textless (encoding T5) on input line 125.
+LaTeX Encoding Info:    Redeclaring text symbol \textgreater (encoding T5) on input line 126.
+LaTeX Encoding Info:    Redeclaring text symbol \textbackslash (encoding T5) on input line 127.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciicircum (encoding T5) on input line 128.
+LaTeX Encoding Info:    Redeclaring text symbol \textunderscore (encoding T5) on input line 129.
+LaTeX Encoding Info:    Redeclaring text symbol \textquoteleft (encoding T5) on input line 130.
+LaTeX Encoding Info:    Redeclaring text symbol \textbraceleft (encoding T5) on input line 131.
+LaTeX Encoding Info:    Redeclaring text symbol \textbar (encoding T5) on input line 132.
+LaTeX Encoding Info:    Redeclaring text symbol \textbraceright (encoding T5) on input line 133.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciitilde (encoding T5) on input line 134.
+LaTeX Encoding Info:    Redeclaring text command \horn (encoding T5) on input line 137.
+LaTeX Encoding Info:    Redeclaring text symbol \DJ (encoding T5) on input line 306.
+LaTeX Encoding Info:    Redeclaring text symbol \dj (encoding T5) on input line 307.
+LaTeX Encoding Info:    Redeclaring text symbol \Acircumflex (encoding T5) on input line 312.
+LaTeX Encoding Info:    Redeclaring text symbol \Abreve (encoding T5) on input line 319.
+LaTeX Encoding Info:    Redeclaring text symbol \Ecircumflex (encoding T5) on input line 326.
+LaTeX Encoding Info:    Redeclaring text symbol \Ocircumflex (encoding T5) on input line 333.
+LaTeX Encoding Info:    Redeclaring text symbol \Ohorn (encoding T5) on input line 340.
+LaTeX Encoding Info:    Redeclaring text symbol \Uhorn (encoding T5) on input line 347.
+LaTeX Encoding Info:    Redeclaring text symbol \acircumflex (encoding T5) on input line 354.
+LaTeX Encoding Info:    Redeclaring text symbol \abreve (encoding T5) on input line 361.
+LaTeX Encoding Info:    Redeclaring text symbol \ecircumflex (encoding T5) on input line 368.
+LaTeX Encoding Info:    Redeclaring text symbol \ocircumflex (encoding T5) on input line 375.
+LaTeX Encoding Info:    Redeclaring text symbol \ohorn (encoding T5) on input line 382.
+LaTeX Encoding Info:    Redeclaring text symbol \uhorn (encoding T5) on input line 389.
+LaTeX Encoding Info:    Redeclaring text symbol \ACIRCUMFLEX (encoding T5) on input line 397.
+LaTeX Encoding Info:    Redeclaring text symbol \ABREVE (encoding T5) on input line 404.
+LaTeX Encoding Info:    Redeclaring text symbol \ECIRCUMFLEX (encoding T5) on input line 411.
+LaTeX Encoding Info:    Redeclaring text symbol \OCIRCUMFLEX (encoding T5) on input line 418.
+LaTeX Encoding Info:    Redeclaring text symbol \OHORN (encoding T5) on input line 425.
+LaTeX Encoding Info:    Redeclaring text symbol \UHORN (encoding T5) on input line 432.
 )
 Package babel Info: Making " an active character on input line 147.
-))
-(c:/texlive/texmf-dist/tex/latex/lm/lmodern.sty
+)) (c:/texlive/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -411,8 +323,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
-)
-(c:/texlive/texmf-dist/tex/latex/tools/array.sty
+) (c:/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \col@sep=\dimen150
 \ar@mcellbox=\box53
@@ -421,11 +332,9 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \extratabsurround=\skip51
 \backup@length=\skip52
 \ar@cellbox=\box54
-)
-(c:/texlive/texmf-dist/tex/latex/blindtext/blindtext.sty
+) (c:/texlive/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
-
-(c:/texlive/texmf-dist/tex/latex/tools/xspace.sty
+ (c:/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 \c@blindtext=\count285
@@ -446,19 +355,16 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \c@blind@randommax=\count300
 \c@blind@pangramcount=\count301
 \c@blind@pangrammax=\count302
-)
-(c:/texlive/texmf-dist/tex/latex/float/float.sty
+) (c:/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count303
 \float@exts=\toks20
 \float@box=\box55
 \@float@everytoks=\toks21
 \@floatcapt=\box56
-)
-(c:/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+) (c:/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
 Package: pdfpages 2025/07/23 v0.6g Insert pages of external PDF documents (AM)
-
-(c:/texlive/texmf-dist/tex/latex/tools/calc.sty
+ (c:/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
 \calc@Acount=\count304
 \calc@Bcount=\count305
@@ -470,28 +376,22 @@ LaTeX Info: Redefining \setlength on input line 86.
 LaTeX Info: Redefining \addtolength on input line 87.
 \calc@Ccount=\count306
 \calc@Cskip=\skip55
-)
-(c:/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+) (c:/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
 \ESO@tempdima=\dimen154
 \ESO@tempdimb=\dimen155
-
-(c:/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+ (c:/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks22
-)
-(c:/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+) (c:/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
-
-(c:/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+ (c:/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 274.
-
-(c:/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+ (c:/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
-)
-(c:/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+) (c:/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1365.
@@ -501,21 +401,16 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
-))
-(c:/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+)) (c:/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count307
-)
-(c:/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+) (c:/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
-
-(c:/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+ (c:/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
-
-(c:/texlive/texmf-dist/tex/latex/graphics/trig.sty
+ (c:/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
-)
-(c:/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (c:/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
@@ -526,8 +421,7 @@ Package graphics Info: Driver file: pdftex.def on input line 106.
 \AM@pagewidth=\dimen158
 \AM@pageheight=\dimen159
 \AM@fboxrule=\dimen160
-
-(c:/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+ (c:/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
 File: pppdftex.def 2025/07/23 v0.6g Pdfpages driver for pdfTeX (AM)
 )
 \pdfpages@includegraphics@status=\count308
@@ -538,8 +432,7 @@ File: pppdftex.def 2025/07/23 v0.6g Pdfpages driver for pdfTeX (AM)
 \AM@lof@heading=\toks25
 \c@AM@survey=\count310
 \AM@templatesizebox=\box58
-)
-(c:/texlive/texmf-dist/tex/latex/tools/longtable.sty
+) (c:/texlive/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
 \LTleft=\skip56
 \LTright=\skip57
@@ -557,17 +450,13 @@ Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
 \c@LT@tables=\count314
 \c@LT@chunks=\count315
 \LT@p@ftn=\toks26
-)
-(c:/texlive/texmf-dist/tex/latex/a4wide/a4wide.sty
+) (c:/texlive/texmf-dist/tex/latex/a4wide/a4wide.sty
 Package: a4wide 1994/08/30
-
-(c:/texlive/texmf-dist/tex/latex/ntgclass/a4.sty
+ (c:/texlive/texmf-dist/tex/latex/ntgclass/a4.sty
 Package: a4 2023/01/10 v1.2g A4 based page layout
-))
-(c:/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+)) (c:/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
-(c:/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+ (c:/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks27
 \symAMSa=\mathgroup4
@@ -575,19 +464,16 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(c:/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+)) (c:/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
 Package: epsfig 2024/01/14 v1.7b (e)psfig emulation (SPQR)
 \epsfxsize=\dimen162
 \epsfysize=\dimen163
-)
-(c:/texlive/texmf-dist/tex/latex/base/latexsym.sty
+) (c:/texlive/texmf-dist/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
-)
-(c:/texlive/texmf-dist/tex/latex/tools/multicol.sty
+) (c:/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2025/10/21 v2.0b multicolumn formatting (FMi)
 \c@tracingmulticols=\count316
 \mult@box=\box64
@@ -657,13 +543,10 @@ Package: multicol 2025/10/21 v2.0b multicolumn formatting (FMi)
 \colbreak@box=\box109
 \mc@col@check@num=\count325
 \g__mc_curr_col_int=\count326
-)
-(c:/texlive/texmf-dist/tex/latex/tools/hhline.sty
+) (c:/texlive/texmf-dist/tex/latex/tools/hhline.sty
 Package: hhline 2020/01/04 v2.04 Table rule package (DPC)
-)
-(c:/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+) (c:/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
-
 \f@nch@headwidth=\skip62
 \f@nch@offset@elh=\skip63
 \f@nch@offset@erh=\skip64
@@ -679,59 +562,42 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthC=\skip74
 \f@nch@widthR=\skip75
 \@temptokenb=\toks28
-)
-(c:/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+) (c:/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
-)
-(c:/texlive/texmf-dist/tex/latex/mdframed/mdframed.sty
+) (c:/texlive/texmf-dist/tex/latex/mdframed/mdframed.sty
 Package: mdframed 2013/07/01 1.9b: mdframed
-
-(c:/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+ (c:/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
-
-(c:/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+ (c:/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-)
-(c:/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+) (c:/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-))
-(c:/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(c:/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+)) (c:/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (c:/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2025-11-14 L3 programming layer (loader) 
-
-(c:/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+ (c:/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count327
 ))
 Package: xparse 2025-10-09 L3 Experimental document command parser
-)
-(c:/texlive/texmf-dist/tex/latex/zref/zref-abspage.sty
+) (c:/texlive/texmf-dist/tex/latex/zref/zref-abspage.sty
 Package: zref-abspage 2025-06-08 v2.36 Module abspage for zref (HO)
-
-(c:/texlive/texmf-dist/tex/latex/zref/zref-base.sty
+ (c:/texlive/texmf-dist/tex/latex/zref/zref-base.sty
 Package: zref-base 2025-06-08 v2.36 Module base for zref (HO)
-
-(c:/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+ (c:/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)
-(c:/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+) (c:/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-)
-(c:/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(c:/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+) (c:/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+ (c:/texlive/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-)
-(c:/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+) (c:/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
-)
-(c:/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+) (c:/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
 Package zref Info: New property list: main on input line 767.
@@ -740,8 +606,7 @@ Package zref Info: New property: page on input line 769.
 )
 \c@abspage=\count328
 Package zref Info: New property: abspage on input line 67.
-)
-(c:/texlive/texmf-dist/tex/latex/needspace/needspace.sty
+) (c:/texlive/texmf-dist/tex/latex/needspace/needspace.sty
 Package: needspace 2025/03/13 v1.3e reserve vertical space
 )
 \mdf@templength=\skip76
@@ -785,35 +650,22 @@ Package: needspace 2025/03/13 v1.3e reserve vertical space
 \mdf@subsubtitlebelowskip@length=\skip113
 \mdf@subsubtitleinneraboveskip@length=\skip114
 \mdf@subsubtitleinnerbelowskip@length=\skip115
-
-(c:/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-(c:/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(c:/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+ (c:/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (c:/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (c:/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks29
 \pgfutil@tempdima=\dimen173
 \pgfutil@tempdimb=\dimen174
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+) (c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box110
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-(c:/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+) (c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (c:/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)
 Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
 ))
 Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
-
-(c:/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(c:/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(c:/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+ (c:/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (c:/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (c:/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
-
-(c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+ (c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks30
 \pgfkeys@temptoks=\toks31
-
-(c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.te
-x
+ (c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
 \pgfkeys@tmptoks=\toks32
 ))
 \pgf@x=\dimen175
@@ -840,50 +692,28 @@ x
 File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
 )
 Driver file for pgf: pgfsys-pdftex.def
-
-(c:/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+ (c:/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
 File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
-
-(c:/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+ (c:/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
 File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
-)))
-(c:/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+))) (c:/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfsyssoftpath@smallbuffer@items=\count335
 \pgfsyssoftpath@bigbuffer@items=\count336
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+)) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
-
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+ (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen185
 \pgfmath@count=\count337
 \pgfmath@box=\box111
 \pgfmath@toks=\toks36
 \pgfmath@stack@operand=\toks37
 \pgfmath@stack@operation=\toks38
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code
-.tex)
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex)
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.te
-x) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics
-.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count338
-))
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+)) (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@picminx=\dimen186
 \pgf@picmaxx=\dimen187
@@ -899,8 +729,7 @@ File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@yy=\dimen197
 \pgf@zx=\dimen198
 \pgf@zy=\dimen199
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@path@lastx=\dimen256
 \pgf@path@lasty=\dimen257
@@ -908,93 +737,67 @@ File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@shorten@end@additional=\dimen258
 \pgf@shorten@start@additional=\dimen259
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfpic=\box112
 \pgf@hbox=\box113
 \pgf@layerbox@main=\box114
 \pgf@picture@serial@count=\count339
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgflinewidth=\dimen260
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.t
-ex
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@pt@x=\dimen261
 \pgf@pt@y=\dimen262
 \pgf@pt@temp=\dimen263
 ) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
 File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.te
-x
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
 File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfarrowsep=\dimen264
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@max=\dimen265
 \pgf@sys@shading@range@num=\count340
 \pgf@shadingcount=\count341
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfexternal@startupbox=\box115
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
 File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
 File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
 File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)))
-(c:/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+))) (c:/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfnodeparttextbox=\box116
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)
-(c:/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+) (c:/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@nodesepstart=\dimen266
 \pgf@nodesepend=\dimen267
-)
-(c:/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+) (c:/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
-))
-(c:/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(c:/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
-(c:/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-(c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+)) (c:/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (c:/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (c:/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty (c:/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (c:/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
 \pgffor@iter=\dimen268
 \pgffor@skip=\dimen269
 \pgffor@stack=\toks39
 \pgffor@toks=\toks40
-))
-(c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+)) (c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
-
-(c:/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.te
-x
+ (c:/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@plot@mark@count=\count342
 \pgfplotmarksize=\dimen270
@@ -1022,9 +825,7 @@ File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@matrix@numberofcolumns=\count349
 )
 \tikz@expandcount=\count350
-
-(c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
-topaths.code.tex
+ (c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))) (c:/texlive/texmf-dist/tex/latex/mdframed/md-frame-1.mdf
 File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
@@ -1072,15 +873,11 @@ File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
 \c@mdf@env@ii=\count354
 \c@mdf@zref@counter=\count355
 Package zref Info: New property: mdf@pagevalue on input line 895.
-)
-(c:/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
+) (c:/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2025/08/14 v2.1h lastpage: 2.09 or 2e? (HMM)
-
-(c:/texlive/texmf-dist/tex/latex/lastpage/lastpage2e.sty
-Package: lastpage2e 2025/08/14 v2.1h Decide which 2e lastpage version to use (H
-MM)
-
-(c:/texlive/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
+ (c:/texlive/texmf-dist/tex/latex/lastpage/lastpage2e.sty
+Package: lastpage2e 2025/08/14 v2.1h Decide which 2e lastpage version to use (HMM)
+ (c:/texlive/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
 Package: lastpagemodern 2025-08-14 v2.1h Refers to last page's name (HMM; JPG)
 \c@lastpagecount=\count356
 ) 
@@ -1088,12 +885,10 @@ Package: lastpagemodern 2025-08-14 v2.1h Refers to last page's name (HMM; JPG)
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
 \c@AlgoLine=\count357
 \algocf@hangindent=\skip143
-
-(c:/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+ (c:/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
 \c@checkoddpage=\count358
-)
-(c:/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+) (c:/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
 \skiptotal=\skip144
@@ -1131,15 +926,12 @@ Package: relsize 2013/03/29 ver 4.1
 \c@algocf=\count361
 \algocf@algoframe=\box132
 \algocf@algobox=\box133
-)
-(c:/texlive/texmf-dist/tex/latex/tools/enumerate.sty
+) (c:/texlive/texmf-dist/tex/latex/tools/enumerate.sty
 Package: enumerate 2023/07/04 v3.00 enumerate extensions (DPC)
 \@enLab=\toks41
-)
-(c:/texlive/texmf-dist/tex/latex/base/alltt.sty
+) (c:/texlive/texmf-dist/tex/latex/base/alltt.sty
 Package: alltt 2024/07/07 v2.0g defines alltt environment
-)
-(c:/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+) (c:/texlive/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
 \TX@col@width=\dimen285
 \TX@old@table=\dimen286
@@ -1148,8 +940,7 @@ Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
 \TX@delta=\dimen289
 \TX@cols=\count362
 \TX@ftn=\toks42
-)
-(c:/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+) (c:/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen290
 \lightrulewidth=\dimen291
@@ -1168,51 +959,39 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisruleclass=\count365
 \@lastruleclass=\count366
 \@thisrulewidth=\dimen302
-)
-(c:/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
-(c:/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+) (c:/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty (c:/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \g__lipsum_par_int=\count367
 \l__lipsum_a_int=\count368
 \l__lipsum_b_int=\count369
-
-(c:/texlive/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex))
-(c:/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+ (c:/texlive/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (c:/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2025-06-23 v0.14 Display of landscape pages in PDF
-
-(c:/texlive/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
-Package: pdflscape-nometadata 2025-06-23 v0.14 Display of landscape pages in PD
-F (HO)
-
-(c:/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+ (c:/texlive/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2025-06-23 v0.14 Display of landscape pages in PDF (HO)
+ (c:/texlive/texmf-dist/tex/latex/graphics/lscape.sty
 Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
-))
-(c:/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+)) (c:/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@colwidth=\skip162
 \multirow@cntb=\count370
 \multirow@dima=\skip163
 \bigstrutjot=\dimen303
-)
-(c:/texlive/texmf-dist/tex/latex/graphics/rotating.sty
+) (c:/texlive/texmf-dist/tex/latex/graphics/rotating.sty
 Package: rotating 2025/01/14 v2.16e rotated objects in LaTeX
 \c@r@tfl@t=\count371
 \rotFPtop=\skip164
 \rotFPbot=\skip165
 \rot@float@box=\box134
 \rot@mess@toks=\toks43
-)
-(c:/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+) (c:/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
-
-(c:/texlive/texmf-dist/tex/latex/caption/caption.sty
+ (c:/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
-
-(c:/texlive/texmf-dist/tex/latex/caption/caption3.sty
+ (c:/texlive/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@tempdima=\dimen304
 \captionmargin=\dimen305
@@ -1228,8 +1007,7 @@ Package caption Info: Standard document class detected.
 \c@continuedfloat=\count373
 Package caption Info: float package is loaded.
 Package caption Info: longtable package is loaded.
-
-(c:/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
+ (c:/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: rotating package is loaded.
@@ -1238,10 +1016,8 @@ Package caption Info: New subtype `subfigure' on input line 238.
 \c@subfigure=\count374
 Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count375
-)
-(c:/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
-Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
-les
+) (c:/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
+Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading styles
 
 
 LaTeX Warning: Command \underbar  has changed.
@@ -1253,8 +1029,7 @@ LaTeX Warning: Command \underline  has changed.
 
 ) (c:/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
-
-(c:/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+ (c:/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
 \Gm@cnth=\count376
@@ -1269,28 +1044,23 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layouthoffset=\dimen318
 \Gm@layoutvoffset=\dimen319
 \Gm@dimlist=\toks44
-)
-(c:/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+) (c:/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
-)
-(c:/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+) (c:/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip166
 
 For additional information on amsmath, use the `?' option.
 (c:/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
-
-(c:/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+ (c:/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks45
 \ex@=\dimen320
-))
-(c:/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (c:/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen321
-)
-(c:/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (c:/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count379
@@ -1340,8 +1110,7 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \mathdisplay@stack=\toks49
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
-)
-(c:/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+) (c:/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip169
 \enit@outerparindent=\dimen329
@@ -1349,32 +1118,20 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 \enit@inbox=\box137
 \enit@count@id=\count391
 \enitdp@description=\count392
-)
-(c:/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+) (c:/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 2023/07/02 v1.03 Indent first paragraph (DPC)
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
-arrows.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
 File: tikzlibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-
-(c:/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
+ (c:/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \arrowsize=\dimen330
-))
-(c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
-snakes.code.tex
+)) (c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarysnakes.code.tex
 File: tikzlibrarysnakes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 
-Package pgf Warning: Snakes have been superseded by decorations. Please use the
- decoration libraries instead of the snakes library on input line 14.
+Package pgf Warning: Snakes have been superseded by decorations. Please use the decoration libraries instead of the snakes library on input line 14.
 
-
-(c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
-decorations.pathmorphing.code.tex
-(c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
-decorations.code.tex
-(c:/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+(c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (c:/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen331
 \pgfdecoratedremainingdistance=\dimen332
 \pgfdecoratedinputsegmentcompleteddistance=\dimen333
@@ -1385,39 +1142,23 @@ decorations.code.tex
 \pgfdecorationsegmentlength=\dimen337
 )
 \tikz@lib@dec@box=\box138
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorati
-ons.pathmorphing.code.tex))
-(c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
-decorations.pathreplacing.code.tex
-(c:/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorati
-ons.pathreplacing.code.tex))
-(c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
-decorations.shapes.code.tex
-(c:/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorati
-ons.shapes.code.tex)))
-(c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
-backgrounds.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (c:/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex)) (c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.shapes.code.tex (c:/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.shapes.code.tex))) (c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybackgrounds.code.tex
 File: tikzlibrarybackgrounds.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@layerbox@background=\box139
 \pgf@layerboxsaved@background=\box140
-)
-(c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
-calc.code.tex
+) (c:/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
 File: tikzlibrarycalc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (c:/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
 \everycr=\toks51
 \minrowclearance=\skip170
 \rownum=\count394
-)
-(c:/texlive/texmf-dist/tex/latex/makecell/makecell.sty
+) (c:/texlive/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen338
 \c@nlinenum=\count395
 \TeXr@lab=\toks52
-)
-(c:/texlive/texmf-dist/tex/latex/listings/listings.sty
+) (c:/texlive/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count396
 \lst@gtempboxa=\box141
 \lst@token=\toks53
@@ -1430,17 +1171,14 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \lst@newlines=\count400
 \lst@lineno=\count401
 \lst@maxwidth=\dimen342
-
-(c:/texlive/texmf-dist/tex/latex/listings/lstpatch.sty
+ (c:/texlive/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
-)
-(c:/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+) (c:/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
 \c@lstnumber=\count402
 \lst@skipnumbers=\count403
 \lst@framebox=\box142
-)
-(c:/texlive/texmf-dist/tex/latex/listings/listings.cfg
+) (c:/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2025/11/14 1.11b listings configuration
 ))
 Package: listings 2025/11/14 1.11b (Carsten Heinz)
@@ -1453,15 +1191,12 @@ Package: listings 2025/11/14 1.11b (Carsten Heinz)
     so I'm assuming it got fixed.
 (c:/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2025/07/10 v3.21 programmable bibliographies (PK/MW)
-
-(c:/texlive/texmf-dist/tex/latex/logreq/logreq.sty
+ (c:/texlive/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
 \lrq@indent=\count404
-
-(c:/texlive/texmf-dist/tex/latex/logreq/logreq.def
+ (c:/texlive/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
-))
-(c:/texlive/texmf-dist/tex/latex/url/url.sty
+)) (c:/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -1524,8 +1259,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \c@mincompwidth=\count450
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
-
-(c:/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
+ (c:/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
 File: blx-dm.def 2025/07/10 v3.21 biblatex datamodel (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
@@ -1616,14 +1350,12 @@ Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \localshorteditorwidth=\skip192
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
-
-(c:/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
+ (c:/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
 File: blx-compat.def 2025/07/10 v3.21 biblatex compatibility (PK/MW)
 )
 Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
-
-(c:/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
+ (c:/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2025/07/10 v3.21 biblatex compatibility (PK/MW)
 \c@textcitecount=\count519
 \c@textcitetotal=\count520
@@ -1641,21 +1373,18 @@ File: biblatex.def 2025/07/10 v3.21 biblatex compatibility (PK/MW)
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
-
-(c:/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+ (c:/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
 File: numeric.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
-
-(c:/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+ (c:/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
 \c@bbx:relatedcount=\count528
 \c@bbx:relatedtotal=\count529
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
-
-(c:/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+ (c:/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
 File: numeric.cbx 2025/07/10 v3.21 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
@@ -1671,8 +1400,7 @@ Package biblatex Info: Redefining '\smartcites'.
 )
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
-
-(c:/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
+ (c:/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
 File: biblatex.cfg 
 )
 Package biblatex Info: Input encoding 'utf8' detected.
@@ -1681,49 +1409,37 @@ Package biblatex Info: ... and expl3
 (biblatex)             2025-11-14 L3 programming layer (loader) 
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
-
-(c:/texlive/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
+ (c:/texlive/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
 Package: blx-case-expl3 2025/07/10 v3.21 expl3 case changing code for biblatex
-))
-(c:/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+)) (c:/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
-
-(c:/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+ (c:/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-)
-(c:/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+) (c:/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-)
-(c:/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+) (c:/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
-
-(c:/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+ (c:/texlive/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-)
-(c:/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+) (c:/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count530
-)
-(c:/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty
-Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
-)
+) (c:/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
 \@linkdim=\dimen343
 \Hy@linkcounter=\count531
 \Hy@pagecounter=\count532
-
-(c:/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+ (c:/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-)
-(c:/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+) (c:/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count533
-
-(c:/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+ (c:/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
@@ -1740,13 +1456,10 @@ Package hyperref Info: Bookmarks ON on input line 4462.
 \c@Hy@tempcnt=\count534
 LaTeX Info: Redefining \url on input line 4801.
 \XeTeXLinkMargin=\dimen344
-
-(c:/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+ (c:/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
-
-(c:/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
-Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
-)
+ (c:/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count535
 \Field@Width=\dimen345
@@ -1763,21 +1476,17 @@ Package hyperref Info: PDF/A mode OFF on input line 6108.
 \c@Hfootnote=\count538
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
-
-(c:/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+ (c:/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
 \HyAnn@Count=\count539
 \Fld@listcount=\count540
 \c@bookmark@seq@number=\count541
-
-(c:/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+ (c:/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
-
-(c:/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+ (c:/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-84.
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
 )
 \Hy@SectionHShift=\skip193
 )
@@ -1789,8 +1498,7 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 
 \@quotelevel=\count542
 \@quotereset=\count543
-LaTeX Font Info:    Trying to load font information for T5+lmr on input line 16
-0.
+LaTeX Font Info:    Trying to load font information for T5+lmr on input line 160.
 (c:/texlive/texmf-dist/tex/latex/lm/t5lmr.fd
 File: t5lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (./main.aux
@@ -1819,8 +1527,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 160.
 LaTeX Font Info:    ... okay on input line 160.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 160.
 LaTeX Font Info:    ... okay on input line 160.
-
-(c:/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (c:/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count544
 \scratchdimen=\dimen347
@@ -1835,12 +1542,9 @@ LaTeX Font Info:    ... okay on input line 160.
 \everyMPtoPDFconversion=\toks55
 ) (c:/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(c:/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (c:/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
@@ -1904,40 +1608,31 @@ Package biblatex Info: ... file 'main.bbl' found.
 Package biblatex Info: Reference section=0 on input line 160.
 Package biblatex Info: Reference segment=0 on input line 160.
 Package hyperref Info: Link coloring OFF on input line 160.
-
-(./main.out) (./main.out)
+ (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
  (./Content/titlepage.tex
-<Images/hcmut.png, id=718, 514.3215pt x 491.9178pt>
+<Images/hcmut.png, id=694, 514.3215pt x 491.9178pt>
 File: Images/hcmut.png Graphic file (type png)
 <use Images/hcmut.png>
 Package pdftex.def Info: Images/hcmut.png  used on input line 24.
 (pdftex.def)             Requested size: 142.26378pt x 136.0622pt.
 LaTeX Font Info:    Calculating math sizes for size <12.5> on input line 53.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 5
-3.
-
-(c:/texlive/texmf-dist/tex/latex/lm/ot1lmr.fd
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 53.
+ (c:/texlive/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 5
-3.
-
-(c:/texlive/texmf-dist/tex/latex/lm/omllmm.fd
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 53.
+ (c:/texlive/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-53.
-
-(c:/texlive/texmf-dist/tex/latex/lm/omslmsy.fd
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 53.
+ (c:/texlive/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-53.
-
-(c:/texlive/texmf-dist/tex/latex/lm/omxlmex.fd
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 53.
+ (c:/texlive/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1947,21 +1642,15 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6.25> on input line 53.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
-
-
-(c:/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (c:/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
-
-
-(c:/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+ (c:/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 53
-.
-
-(c:/texlive/texmf-dist/tex/latex/base/ulasy.fd
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 53.
+ (c:/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 
@@ -1970,26 +1659,20 @@ LaTeX Font Warning: Font shape `U/lasy/m/n' in size <12.5> not available
 
 [1
 
-{c:/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/texmf-dist
-/fonts/enc/dvips/lm/lm-t5.enc} <./Images/hcmut.png>])
-(./Content/acknowledgements.tex
-LaTeX Font Info:    Trying to load font information for T5+lmss on input line 1
-8.
+{c:/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-t5.enc} <./Images/hcmut.png>]) (./Content/acknowledgements.tex
+LaTeX Font Info:    Trying to load font information for T5+lmss on input line 18.
  (c:/texlive/texmf-dist/tex/latex/lm/t5lmss.fd
 File: t5lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-[1
+) [1
 
 ]) [2] (./Content/protestation.tex) [3
 
 ] (./Content/abstract.tex) [4
 
-]
-(./Content/glossary.tex
-ignored error: Infinite glue shrinkage found in box being split [5
+] (./Content/glossary.tex
+./Content/glossary.tex:109: ignored error: Infinite glue shrinkage found in box being split [5
 
-]) [6]
-(./main.toc
+]) [6] (./main.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 7.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -2002,13 +1685,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
- [10] (./main.lof
-LaTeX Font Info:    Trying to load font information for T5+lmtt on input line 3
-4.
-
-(c:/texlive/texmf-dist/tex/latex/lm/t5lmtt.fd
-File: t5lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-))
+ [10] (./main.lof)
 \tf@lof=\write7
 \openout7 = `main.lof'.
 
@@ -2020,491 +1697,544 @@ File: t5lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
  [12
 
-]
-(./Content/introduction.tex
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
-.
+] (./Content/introduction.tex
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9.
  (c:/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Overfull \hbox (2.88087pt too wide) in paragraph at lines 12--13
-[]\T5/lmr/m/n/12 Tê chùc c¡c ph¥n h» nghi»p vö cèt lãi (auth, player state, que
-st, battle, reward, progression,
+[]\T5/lmr/m/n/12 Tê chùc c¡c ph¥n h» nghi»p vö cèt lãi (auth, player state, quest, battle, reward, progression,
  []
 
-[1
+LaTeX Font Info:    Trying to load font information for T5+lmtt on input line 26.
+(c:/texlive/texmf-dist/tex/latex/lm/t5lmtt.fd
+File: t5lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [1
 
 {c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
 Overfull \hbox (6.48238pt too wide) in paragraph at lines 46--48
-[]\T5/lmr/bx/n/12 Luçng quest v  reward: \T5/lmr/m/n/12 ^^_çng bë daily/weekly/
-achievement, claim quest, claim milestone
+[]\T5/lmr/bx/n/12 Luçng quest v  reward: \T5/lmr/m/n/12 ^^_çng bë daily/weekly/achievement, claim quest, claim milestone
  []
 
-[2{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [3])
-(./Content/background.tex [4] [5]
-<Images/CoreLoop.png, id=1174, 422.57875pt x 261.97874pt>
+[2{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [3]) (./Content/background.tex [4] [5]
+<Images/CoreLoop.png, id=1113, 422.57875pt x 261.97874pt>
 File: Images/CoreLoop.png Graphic file (type png)
 <use Images/CoreLoop.png>
 Package pdftex.def Info: Images/CoreLoop.png  used on input line 65.
 (pdftex.def)             Requested size: 386.95897pt x 239.90407pt.
  [6] [7 <./Images/CoreLoop.png>]
-<Images/stats-system.png, id=1197, 603.25375pt x 472.76625pt>
+<Images/stats-system.png, id=1137, 603.25375pt x 472.76625pt>
 File: Images/stats-system.png Graphic file (type png)
 <use Images/stats-system.png>
 Package pdftex.def Info: Images/stats-system.png  used on input line 92.
 (pdftex.def)             Requested size: 411.14528pt x 322.2126pt.
- [8 <./Images/stats-system.png>] [9{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm
--mathit.enc}{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}] [10] [11] [12
-])
-(./Content/technology.tex
+ [8 <./Images/stats-system.png>] [9{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}] [10] [11] [12]) (./Content/technology.tex
 Overfull \hbox (0.60866pt too wide) in paragraph at lines 7--8
-[]\T5/lmr/bx/n/12 Client/Game Engine\T5/lmr/m/n/12 : hiºn thà ^^_ç ho¤, nhªn in
-put, mæ phäng cöc bë (visual/animation),
+[]\T5/lmr/bx/n/12 Client/Game Engine\T5/lmr/m/n/12 : hiºn thà ^^_ç ho¤, nhªn input, mæ phäng cöc bë (visual/animation),
  []
 
 [13] [14] [15]
 Overfull \hbox (19.89615pt too wide) in paragraph at lines 100--101
-[]\T5/lmr/bx/n/12 Dú li»u ti¸n tr¼nh (dynamic)\T5/lmr/m/n/12 : user/session/pro
-file/statistics/tutorial/currency/inventory/
+[]\T5/lmr/bx/n/12 Dú li»u ti¸n tr¼nh (dynamic)\T5/lmr/m/n/12 : user/session/profile/statistics/tutorial/currency/inventory/
  []
 
-[16]) (./Content/relatedworks.tex [17] [18]) (./Content/requirements.tex
-[19] [20] [21]
+[16]) (./Content/relatedworks.tex [17] [18]) (./Content/requirements.tex [19] [20] [21]
 Overfull \hbox (6.94835pt too wide) in paragraph at lines 100--101
-[]\T5/lmr/bx/n/12 K¸t qu£ mong ^^_ñi: \T5/lmr/m/n/12 backend tr£ reward, player
-Delta, statistics, tutorialProgress, currency,
+[]\T5/lmr/bx/n/12 K¸t qu£ mong ^^_ñi: \T5/lmr/m/n/12 backend tr£ reward, playerDelta, statistics, tutorialProgress, currency,
  []
 
 [22]
 Overfull \hbox (99.97466pt too wide) in paragraph at lines 145--146
-[]\T5/lmr/bx/n/12 NFR-05 -- Observability: \T5/lmr/m/n/12 ph£i câ log request v
-  log nghi»p vö ^^_õ ^^_º truy v¸t battle/quest/tutorial/upgrade. 
+[]\T5/lmr/bx/n/12 NFR-05 -- Observability: \T5/lmr/m/n/12 ph£i câ log request v  log nghi»p vö ^^_õ ^^_º truy v¸t battle/quest/tutorial/upgrade. 
  []
 
 
 Overfull \hbox (7.0783pt too wide) in paragraph at lines 146--147
-[]\T5/lmr/bx/n/12 NFR-06 -- UX state clarity: \T5/lmr/m/n/12 UI c¦n thº hi»n rã
- tr¤ng th¡i loading/success/error/disabled
+[]\T5/lmr/bx/n/12 NFR-06 -- UX state clarity: \T5/lmr/m/n/12 UI c¦n thº hi»n rã tr¤ng th¡i loading/success/error/disabled
  []
 
 [23]
 Overfull \hbox (0.48486pt too wide) in paragraph at lines 148--149
-[]\T5/lmr/bx/n/12 NFR-08 -- Version compatibility: \T5/lmr/m/n/12 client gûi/^^
-_åc \T5/lmtt/m/n/12 configVersion \T5/lmr/m/n/12 ^^_º ^^_£m b£o gameplay
+[]\T5/lmr/bx/n/12 NFR-08 -- Version compatibility: \T5/lmr/m/n/12 client gûi/^^_åc \T5/lmtt/m/n/12 configVersion \T5/lmr/m/n/12 ^^_º ^^_£m b£o gameplay
  []
 
 
 Overfull \hbox (37.60738pt too wide) in paragraph at lines 158--159
- []\T5/lmr/bx/n/12 Dú li»u ^^_ëng (player state)[] \T5/lmr/m/n/12 Profile, stat
-istics, tutorial progress, currency, inventory (heroes/skills),
+ []\T5/lmr/bx/n/12 Dú li»u ^^_ëng (player state)[] \T5/lmr/m/n/12 Profile, statistics, tutorial progress, currency, inventory (heroes/skills),
  []
 
-[24]) (./Content/analysis.tex [25] [26] [27] [28] [29] [30])
-(./Content/design.tex [31]
-<Images/DeployDiagram.png, id=1472, 4286.0125pt x 3784.1375pt>
-File: Images/DeployDiagram.png Graphic file (type png)
-<use Images/DeployDiagram.png>
-Package pdftex.def Info: Images/DeployDiagram.png  used on input line 34.
-(pdftex.def)             Requested size: 459.51054pt x 405.68977pt.
- [32 <./Images/DeployDiagram.png (PNG copy)>]
-[33] [34]
+[24]) (./Content/analysis.tex [25]
+<Images/newDiagram/usecase-auth.png, id=1349, 579.16376pt x 361.35pt>
+File: Images/newDiagram/usecase-auth.png Graphic file (type png)
+<use Images/newDiagram/usecase-auth.png>
+Package pdftex.def Info: Images/newDiagram/usecase-auth.png  used on input line 67.
+(pdftex.def)             Requested size: 411.14528pt x 256.5217pt.
+<Images/newDiagram/activity-auth.png, id=1350, 1541.76pt x 2714.14pt>
+File: Images/newDiagram/activity-auth.png Graphic file (type png)
+<use Images/newDiagram/activity-auth.png>
+Package pdftex.def Info: Images/newDiagram/activity-auth.png  used on input line 74.
+(pdftex.def)             Requested size: 425.6556pt x 749.31053pt.
+ [26 <./Images/newDiagram/usecase-auth.png (PNG copy)>]
+Overfull \vbox (56.80106pt too high) has occurred while \output is active []
+
+ [27 <./Images/newDiagram/activity-auth.png (PNG copy)>]
+<Images/newDiagram/usecase-combat.png, id=1361, 494.84875pt x 315.1775pt>
+File: Images/newDiagram/usecase-combat.png Graphic file (type png)
+<use Images/newDiagram/usecase-combat.png>
+Package pdftex.def Info: Images/newDiagram/usecase-combat.png  used on input line 103.
+(pdftex.def)             Requested size: 435.32422pt x 277.26567pt.
+ [28 <./Images/newDiagram/usecase-combat.png (PNG copy)>]
+<Images/newDiagram/usecase-player-progression.png, id=1367, 640.3925pt x 603.25375pt>
+File: Images/newDiagram/usecase-player-progression.png Graphic file (type png)
+<use Images/newDiagram/usecase-player-progression.png>
+Package pdftex.def Info: Images/newDiagram/usecase-player-progression.png  used on input line 125.
+(pdftex.def)             Requested size: 435.32422pt x 410.08746pt.
+<Images/newDiagram/usecase-character-and-formation.png, id=1368, 614.295pt x 523.9575pt>
+File: Images/newDiagram/usecase-character-and-formation.png Graphic file (type png)
+<use Images/newDiagram/usecase-character-and-formation.png>
+Package pdftex.def Info: Images/newDiagram/usecase-character-and-formation.png  used on input line 132.
+(pdftex.def)             Requested size: 435.32422pt x 371.30887pt.
+ [29 <./Images/newDiagram/usecase-player-progression.png (PNG copy)>]
+<Images/newDiagram/sequence-auth-login.png, id=1374, 3149.7675pt x 1198.4775pt>
+File: Images/newDiagram/sequence-auth-login.png Graphic file (type png)
+<use Images/newDiagram/sequence-auth-login.png>
+Package pdftex.def Info: Images/newDiagram/sequence-auth-login.png  used on input line 167.
+(pdftex.def)             Requested size: 459.51054pt x 174.8263pt.
+ [30 <./Images/newDiagram/usecase-character-and-formation.png (PNG copy)>]
+<Images/newDiagram/sequence-auth-refresh.png, id=1385, 2224.31pt x 961.5925pt>
+File: Images/newDiagram/sequence-auth-refresh.png Graphic file (type png)
+<use Images/newDiagram/sequence-auth-refresh.png>
+Package pdftex.def Info: Images/newDiagram/sequence-auth-refresh.png  used on input line 174.
+(pdftex.def)             Requested size: 435.32422pt x 188.19206pt.
+ [31 <./Images/newDiagram/sequence-auth-login.png (PNG copy)> <./Images/newDiagram/sequence-auth-refresh.png (PNG copy)>]
+<Images/newDiagram/sequence-quest-claim.png, id=1394, 3495.0575pt x 1226.5825pt>
+File: Images/newDiagram/sequence-quest-claim.png Graphic file (type png)
+<use Images/newDiagram/sequence-quest-claim.png>
+Package pdftex.def Info: Images/newDiagram/sequence-quest-claim.png  used on input line 218.
+(pdftex.def)             Requested size: 459.51054pt x 161.25807pt.
+<Images/newDiagram/activity-quest-claim.png, id=1395, 1061.9675pt x 2810.5pt>
+File: Images/newDiagram/activity-quest-claim.png Graphic file (type png)
+<use Images/newDiagram/activity-quest-claim.png>
+Package pdftex.def Info: Images/newDiagram/activity-quest-claim.png  used on input line 225.
+(pdftex.def)             Requested size: 195.06734pt x 516.24768pt.
+ [32 <./Images/newDiagram/sequence-quest-claim.png (PNG copy)>] [33 <./Images/newDiagram/activity-quest-claim.png (PNG copy)>]
+<Images/newDiagram/sequence-battle-start-finish.png, id=1411, 3262.1875pt x 1491.5725pt>
+File: Images/newDiagram/sequence-battle-start-finish.png Graphic file (type png)
+<use Images/newDiagram/sequence-battle-start-finish.png>
+Package pdftex.def Info: Images/newDiagram/sequence-battle-start-finish.png  used on input line 274.
+(pdftex.def)             Requested size: 459.51054pt x 210.09326pt.
+<Images/newDiagram/activity-battle.png, id=1412, 1636.1125pt x 2669.975pt>
+File: Images/newDiagram/activity-battle.png Graphic file (type png)
+<use Images/newDiagram/activity-battle.png>
+Package pdftex.def Info: Images/newDiagram/activity-battle.png  used on input line 281.
+(pdftex.def)             Requested size: 425.6556pt x 694.62529pt.
+ [34 <./Images/newDiagram/sequence-battle-start-finish.png (PNG copy)>]
+Overfull \vbox (2.11581pt too high) has occurred while \output is active []
+
+ [35 <./Images/newDiagram/activity-battle.png (PNG copy)>] [36] [37]) (./Content/design.tex [38]
+<Images/newDiagram/deployment.png, id=1459, 1521.685pt x 909.3975pt>
+File: Images/newDiagram/deployment.png Graphic file (type png)
+<use Images/newDiagram/deployment.png>
+Package pdftex.def Info: Images/newDiagram/deployment.png  used on input line 34.
+(pdftex.def)             Requested size: 459.51054pt x 274.61139pt.
+ [39 <./Images/newDiagram/deployment.png (PNG copy)>] [40] [41]
 Overfull \hbox (6.09471pt too wide) in paragraph at lines 128--129
-[]\T5/lmr/bx/n/12 Logging & audit\T5/lmr/m/n/12 : log request, log nghi»p vö (r
-eward/gacha/equip/skill-up/admin action),
+[]\T5/lmr/bx/n/12 Logging & audit\T5/lmr/m/n/12 : log request, log nghi»p vö (reward/gacha/equip/skill-up/admin action),
  []
 
 
 Overfull \hbox (29.85489pt too wide) in paragraph at lines 147--148
-\T5/lmr/m/n/12 trong CHARACTER_SKILLS; tøng slot trang bà nhóng trong CHARACTER
-_EQUIPMENT). 
+\T5/lmr/m/n/12 trong CHARACTER_SKILLS; tøng slot trang bà nhóng trong CHARACTER_EQUIPMENT). 
  []
 
 
 Overfull \hbox (33.88525pt too wide) in paragraph at lines 148--149
-[]\T5/lmr/bx/n/12 Reference \T5/lmr/m/n/12 khi dú li»u l  ^^_ành ngh¾a t¾nh dòn
-g chung (CONFIG_ITEM/CONFIG_BUILDING/
+[]\T5/lmr/bx/n/12 Reference \T5/lmr/m/n/12 khi dú li»u l  ^^_ành ngh¾a t¾nh dòng chung (CONFIG_ITEM/CONFIG_BUILDING/
  []
 
-[35] [36] [37] [38] [39] [40] [41]
-Overfull \hbox (43.28813pt too wide) in paragraph at lines 444--445
-[]\T5/lmr/bx/n/12 SESSION_RUNTIME \T5/lmr/m/n/12 l÷u tr¤ng th¡i runtime: \T5/lm
-tt/m/n/12 token\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 socket_id\T5/lmr/m/n/12 , \T5/l
-mtt/m/n/12 profile_id\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 character_id\T5/lmr/m/n/1
-2 ,
- []
-
+<Images/newDiagram/erd-auth-player.png, id=1481, 764.8575pt x 554.07pt>
+File: Images/newDiagram/erd-auth-player.png Graphic file (type png)
+<use Images/newDiagram/erd-auth-player.png>
+Package pdftex.def Info: Images/newDiagram/erd-auth-player.png  used on input line 160.
+(pdftex.def)             Requested size: 232.17242pt x 168.1837pt.
+<Images/newDiagram/erd-character-progression.png, id=1482, 1071.00125pt x 836.12375pt>
+File: Images/newDiagram/erd-character-progression.png Graphic file (type png)
+<use Images/newDiagram/erd-character-progression.png>
+Package pdftex.def Info: Images/newDiagram/erd-character-progression.png  used on input line 166.
+(pdftex.def)             Requested size: 232.17242pt x 181.25581pt.
+<Images/newDiagram/erd-inventory-battle.png, id=1483, 990.70125pt x 440.64626pt>
+File: Images/newDiagram/erd-inventory-battle.png Graphic file (type png)
+<use Images/newDiagram/erd-inventory-battle.png>
+Package pdftex.def Info: Images/newDiagram/erd-inventory-battle.png  used on input line 174.
+(pdftex.def)             Requested size: 232.17242pt x 103.26276pt.
+<Images/newDiagram/erd-character-customization.png, id=1484, 1014.79124pt x 436.63126pt>
+File: Images/newDiagram/erd-character-customization.png Graphic file (type png)
+<use Images/newDiagram/erd-character-customization.png>
+Package pdftex.def Info: Images/newDiagram/erd-character-customization.png  used on input line 180.
+(pdftex.def)             Requested size: 232.17242pt x 99.89674pt.
 [42]
-Overfull \hbox (59.0043pt too wide) in paragraph at lines 465--466
-[]\T5/lmr/m/n/12 Méi slot l  \T5/lmr/bx/n/12 STRUCT_EQUIPPED_ITEM \T5/lmr/m/n/1
-2 nhóng, tham chi¸u \T5/lmtt/m/n/12 item_ref_id \T5/lmr/m/n/12 tîi CONFIG_ITEM
- []
-
-[43]
-Overfull \hbox (51.54019pt too wide) in paragraph at lines 505--506
-[]\T5/lmr/bx/n/12 Quan h»: \T5/lmr/m/n/12 USER (1) -- (N) GAME_PROFILE; USER (1
-) nhóng (1) OBJECT_USER_SETTINGS. 
+Overfull \hbox (23.42206pt too wide) in paragraph at lines 195--196
+[]\T5/lmr/bx/n/12 Quan h» ch½nh: \T5/lmr/m/n/12 USER (1:N) GAME_PROFILE; USER (1:1) OBJECT_USER_SETTINGS
  []
 
 
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 541--541
-[]|\T5/lmr/m/n/12 object(embed)|  
+Overfull \hbox (25.44115pt too wide) in paragraph at lines 196--197
+[]\T5/lmr/bx/n/12 Khâa/Ref quan trång: \T5/lmtt/m/n/12 USER._id\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 GAME_PROFILE.user_id\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 SESSION_RUNTIME.profile_id\T5/lmr/m/n/12 . 
+ []
+
+[43 <./Images/newDiagram/erd-auth-player.png> <./Images/newDiagram/erd-character-progression.png> <./Images/newDiagram/erd-inventory-battle.png> <./Images/newDiagram/erd-character-customization.png>]
+Overfull \hbox (89.49031pt too wide) in paragraph at lines 211--212
+[]\T5/lmr/bx/n/12 Quan h» ch½nh: \T5/lmr/m/n/12 CHARACTER (1:1) INVENTORY; CHARACTER (1:1) CHARACTER_EQUIPMENT;
+ []
+
+
+Overfull \hbox (80.24966pt too wide) in paragraph at lines 227--228
+\T5/lmr/m/n/12 (1:1) NPC_COLLECTION; PERSONAL_ISLAND (1:N) STRUCT_BUILDING; NPC_COLLECTION
+ []
+
+
+Overfull \hbox (7.87497pt too wide) in paragraph at lines 250--250
+\T5/lmr/m/n/12 SESSION_RUNTIME 
+ []
+
+
+Overfull \hbox (7.87497pt too wide) in paragraph at lines 250--250
+[]|\T5/lmr/m/n/12 SESSION_RUNTIME 
+ []
+
+
+Overfull \hbox (16.52142pt too wide) in paragraph at lines 250--250
+\T5/lmr/m/n/12 PERSONAL_ISLAND/ 
+ []
+
+
+Overfull \hbox (8.70038pt too wide) in paragraph at lines 250--250
+\T5/lmr/m/n/12 NPC_COLLECTION; 
  []
 
 [44]
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 580--580
-[]|\T5/lmr/m/n/12 object(embed)|  
+Overfull \hbox (51.54019pt too wide) in paragraph at lines 268--269
+[]\T5/lmr/bx/n/12 Quan h»: \T5/lmr/m/n/12 USER (1) -- (N) GAME_PROFILE; USER (1) nhóng (1) OBJECT_USER_SETTINGS. 
  []
 
 
-Overfull \hbox (7.26678pt too wide) in paragraph at lines 617--617
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 304--304
+[]|\T5/lmr/m/n/12 object(embed)|  
+ []
+
+[45]
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 343--343
+[]|\T5/lmr/m/n/12 object(embed)|  
+ []
+
+[46]
+Overfull \hbox (7.26678pt too wide) in paragraph at lines 380--380
 []|\T5/lmtt/m/n/12 current_room_id|  
  []
 
-ignored error: Infinite glue shrinkage found in box being split [45]
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 662--662
+
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 425--425
 []|\T5/lmr/m/n/12 object(embed)|  
  []
 
 
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 664--664
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 427--427
 []|\T5/lmr/m/n/12 object(embed)|  
  []
 
 
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 666--666
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 429--429
 []|\T5/lmr/m/n/12 object(embed)|  
  []
 
 
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 668--668
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 431--431
 []|\T5/lmr/m/n/12 object(embed)|  
  []
 
-ignored error: Infinite glue shrinkage found in box being split [46]
-Overfull \hbox (3.75293pt too wide) in paragraph at lines 707--707
-[]|\T5/lmr/m/n/12 array(embed)|  
- []
-
-
-Overfull \hbox (30.04504pt too wide) in paragraph at lines 722--723
-[]\T5/lmr/bx/n/12 Quan h»: \T5/lmr/m/n/12 tham chi¸u CHARACTER; tøng slot tham 
-chi¸u CONFIG_ITEM qua \T5/lmtt/m/n/12 item_ref_id\T5/lmr/m/n/12 . 
- []
-
-
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 746--746
-[]|\T5/lmr/m/n/12 object(embed)|  
- []
-
-
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 748--748
-[]|\T5/lmr/m/n/12 object(embed)|  
- []
-
-
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 750--750
-[]|\T5/lmr/m/n/12 object(embed)|  
- []
-
-
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 752--752
-[]|\T5/lmr/m/n/12 object(embed)|  
- []
-
-
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 754--754
-[]|\T5/lmr/m/n/12 object(embed)|  
- []
-
-
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 756--756
-[]|\T5/lmr/m/n/12 object(embed)|  
- []
-
-
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 758--758
-[]|\T5/lmr/m/n/12 object(embed)|  
- []
-
-[47]
-Overfull \hbox (50.4918pt too wide) in paragraph at lines 796--796
-[]|\T5/lmtt/m/n/12 skill_points_available|  
- []
-
-
-Overfull \hbox (1.09178pt too wide) in paragraph at lines 798--798
-[]|\T5/lmtt/m/n/12 learned_skills|  
- []
-
-
-Overfull \hbox (3.75293pt too wide) in paragraph at lines 798--798
-[]|\T5/lmr/m/n/12 array(embed)|  
- []
-
-
-Overfull \hbox (1.09178pt too wide) in paragraph at lines 800--800
-[]|\T5/lmtt/m/n/12 hotbar_loadout|  
- []
-
-
-Overfull \hbox (3.75293pt too wide) in paragraph at lines 800--800
+./Content/design.tex:433: ignored error: Infinite glue shrinkage found in box being split [47]
+Overfull \hbox (3.75293pt too wide) in paragraph at lines 470--470
 []|\T5/lmr/m/n/12 array(embed)|  
  []
 
 [48]
-Overfull \hbox (13.91307pt too wide) in paragraph at lines 815--816
-[]\T5/lmr/bx/n/12 Quan h»: \T5/lmr/m/n/12 PERSONAL_ISLAND (1:1) GAME_PROFILE; b
-uilding instance ref CONFIG_
+Overfull \hbox (30.04504pt too wide) in paragraph at lines 485--486
+[]\T5/lmr/bx/n/12 Quan h»: \T5/lmr/m/n/12 tham chi¸u CHARACTER; tøng slot tham chi¸u CONFIG_ITEM qua \T5/lmtt/m/n/12 item_ref_id\T5/lmr/m/n/12 . 
  []
 
 
-Overfull \hbox (7.26678pt too wide) in paragraph at lines 841--841
-[]|\T5/lmtt/m/n/12 town_hall_level|  
- []
-
-
-Overfull \hbox (19.61679pt too wide) in paragraph at lines 843--843
-[]|\T5/lmtt/m/n/12 last_collected_at|  
- []
-
-
-Overfull \hbox (8.32208pt too wide) in paragraph at lines 845--845
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 509--509
 []|\T5/lmr/m/n/12 object(embed)|  
  []
 
 
-Overfull \hbox (3.75293pt too wide) in paragraph at lines 847--847
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 511--511
+[]|\T5/lmr/m/n/12 object(embed)|  
+ []
+
+
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 513--513
+[]|\T5/lmr/m/n/12 object(embed)|  
+ []
+
+
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 515--515
+[]|\T5/lmr/m/n/12 object(embed)|  
+ []
+
+
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 517--517
+[]|\T5/lmr/m/n/12 object(embed)|  
+ []
+
+
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 519--519
+[]|\T5/lmr/m/n/12 object(embed)|  
+ []
+
+
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 521--521
+[]|\T5/lmr/m/n/12 object(embed)|  
+ []
+
+[49]
+Overfull \hbox (50.4918pt too wide) in paragraph at lines 559--559
+[]|\T5/lmtt/m/n/12 skill_points_available|  
+ []
+
+
+Overfull \hbox (1.09178pt too wide) in paragraph at lines 561--561
+[]|\T5/lmtt/m/n/12 learned_skills|  
+ []
+
+
+Overfull \hbox (3.75293pt too wide) in paragraph at lines 561--561
 []|\T5/lmr/m/n/12 array(embed)|  
  []
 
-ignored error: Infinite glue shrinkage found in box being split [49]
-Overfull \hbox (3.75293pt too wide) in paragraph at lines 889--889
+
+Overfull \hbox (1.09178pt too wide) in paragraph at lines 563--563
+[]|\T5/lmtt/m/n/12 hotbar_loadout|  
+ []
+
+
+Overfull \hbox (3.75293pt too wide) in paragraph at lines 563--563
 []|\T5/lmr/m/n/12 array(embed)|  
  []
 
-[50]
-Overfull \hbox (25.7918pt too wide) in paragraph at lines 952--952
+
+Overfull \hbox (13.91307pt too wide) in paragraph at lines 578--579
+[]\T5/lmr/bx/n/12 Quan h»: \T5/lmr/m/n/12 PERSONAL_ISLAND (1:1) GAME_PROFILE; building instance ref CONFIG_
+ []
+
+
+Overfull \hbox (7.26678pt too wide) in paragraph at lines 604--604
+[]|\T5/lmtt/m/n/12 town_hall_level|  
+ []
+
+
+Overfull \hbox (19.61679pt too wide) in paragraph at lines 606--606
+[]|\T5/lmtt/m/n/12 last_collected_at|  
+ []
+
+
+Overfull \hbox (8.32208pt too wide) in paragraph at lines 608--608
+[]|\T5/lmr/m/n/12 object(embed)|  
+ []
+
+
+Overfull \hbox (3.75293pt too wide) in paragraph at lines 610--610
+[]|\T5/lmr/m/n/12 array(embed)|  
+ []
+
+./Content/design.tex:612: ignored error: Infinite glue shrinkage found in box being split [50]
+Overfull \hbox (3.75293pt too wide) in paragraph at lines 652--652
+[]|\T5/lmr/m/n/12 array(embed)|  
+ []
+
+[51]
+Overfull \hbox (25.7918pt too wide) in paragraph at lines 715--715
 []|\T5/lmtt/m/n/12 build_time_seconds|  
  []
 
 
-Overfull \hbox (19.61679pt too wide) in paragraph at lines 954--954
+Overfull \hbox (19.61679pt too wide) in paragraph at lines 717--717
 []|\T5/lmtt/m/n/12 cost_requirements|  
  []
 
 
-Overfull \hbox (1.09178pt too wide) in paragraph at lines 985--985
+Overfull \hbox (1.09178pt too wide) in paragraph at lines 748--748
 []|\T5/lmtt/m/n/12 base_mana_cost|  
  []
 
-[51]
+[52]
 File: Images/stats-system.png Graphic file (type png)
 <use Images/stats-system.png>
-Package pdftex.def Info: Images/stats-system.png  used on input line 1019.
+Package pdftex.def Info: Images/stats-system.png  used on input line 782.
 (pdftex.def)             Requested size: 377.28296pt x 295.67294pt.
- [52] [53{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [54]
-<Images/newUI/login.png, id=1901, 344.78813pt x 629.35126pt>
+ [53] [54{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [55]
+<Images/newUI/login.png, id=1586, 344.78813pt x 629.35126pt>
 File: Images/newUI/login.png Graphic file (type png)
 <use Images/newUI/login.png>
-Package pdftex.def Info: Images/newUI/login.png  used on input line 1150.
+Package pdftex.def Info: Images/newUI/login.png  used on input line 913.
 (pdftex.def)             Requested size: 149.94484pt x 273.69836pt.
-<Images/newUI/register.png, id=1902, 346.29375pt x 627.09282pt>
+<Images/newUI/register.png, id=1587, 346.29375pt x 627.09282pt>
 File: Images/newUI/register.png Graphic file (type png)
 <use Images/newUI/register.png>
-Package pdftex.def Info: Images/newUI/register.png  used on input line 1156.
+Package pdftex.def Info: Images/newUI/register.png  used on input line 919.
 (pdftex.def)             Requested size: 149.94484pt x 271.53925pt.
-<Images/newUI/loading_scene.png, id=1903, 344.78813pt x 627.09282pt>
+<Images/newUI/loading_scene.png, id=1588, 344.78813pt x 627.09282pt>
 File: Images/newUI/loading_scene.png Graphic file (type png)
 <use Images/newUI/loading_scene.png>
-Package pdftex.def Info: Images/newUI/loading_scene.png  used on input line 116
-2.
+Package pdftex.def Info: Images/newUI/loading_scene.png  used on input line 925.
 (pdftex.def)             Requested size: 149.94484pt x 272.71619pt.
-
-[55]
-<Images/newUI/main_scene.png, id=1921, 346.29375pt x 630.85687pt>
+ [56]
+<Images/newUI/main_scene.png, id=1608, 346.29375pt x 630.85687pt>
 File: Images/newUI/main_scene.png Graphic file (type png)
 <use Images/newUI/main_scene.png>
-Package pdftex.def Info: Images/newUI/main_scene.png  used on input line 1183.
+Package pdftex.def Info: Images/newUI/main_scene.png  used on input line 946.
 (pdftex.def)             Requested size: 149.94484pt x 273.16913pt.
-<Images/newUI/upgrade_castle.png, id=1922, 346.29375pt x 629.35126pt>
+<Images/newUI/upgrade_castle.png, id=1609, 346.29375pt x 629.35126pt>
 File: Images/newUI/upgrade_castle.png Graphic file (type png)
 <use Images/newUI/upgrade_castle.png>
-Package pdftex.def Info: Images/newUI/upgrade_castle.png  used on input line 11
-89.
+Package pdftex.def Info: Images/newUI/upgrade_castle.png  used on input line 952.
 (pdftex.def)             Requested size: 149.94484pt x 272.51718pt.
-<Images/newUI/leaderBoard.png, id=1923, 345.54094pt x 627.84563pt>
+<Images/newUI/leaderBoard.png, id=1610, 345.54094pt x 627.84563pt>
 File: Images/newUI/leaderBoard.png Graphic file (type png)
 <use Images/newUI/leaderBoard.png>
-Package pdftex.def Info: Images/newUI/leaderBoard.png  used on input line 1195.
-
+Package pdftex.def Info: Images/newUI/leaderBoard.png  used on input line 958.
 (pdftex.def)             Requested size: 149.94484pt x 272.4496pt.
- [56 <./Images/newUI/login.png> <./Images/newUI/register.png> <./Images/newUI/l
-oading_scene.png>]
-Overfull \hbox (4.17776pt too wide) in paragraph at lines 1204--1205
-[]\T5/lmr/bx/n/12 Player state\T5/lmr/m/n/12 : lobby ^^_åc \T5/lmtt/m/n/12 prof
-ile\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 statistics\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 
-currency\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 formation\T5/lmr/m/n/12 , \T5/lmtt/m/n
-/12 tutorialProgress
+ [57 <./Images/newUI/login.png> <./Images/newUI/register.png> <./Images/newUI/loading_scene.png>]
+Overfull \hbox (4.17776pt too wide) in paragraph at lines 967--968
+[]\T5/lmr/bx/n/12 Player state\T5/lmr/m/n/12 : lobby ^^_åc \T5/lmtt/m/n/12 profile\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 statistics\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 currency\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 formation\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 tutorialProgress
  []
 
-<Images/newUI/daily_task.png, id=1933, 341.02406pt x 619.56468pt>
+<Images/newUI/daily_task.png, id=1620, 341.02406pt x 619.56468pt>
 File: Images/newUI/daily_task.png Graphic file (type png)
 <use Images/newUI/daily_task.png>
-Package pdftex.def Info: Images/newUI/daily_task.png  used on input line 1216.
+Package pdftex.def Info: Images/newUI/daily_task.png  used on input line 979.
 (pdftex.def)             Requested size: 149.94484pt x 272.42021pt.
-<Images/newUI/weekly_task.png, id=1934, 340.27126pt x 621.07031pt>
+<Images/newUI/weekly_task.png, id=1621, 340.27126pt x 621.07031pt>
 File: Images/newUI/weekly_task.png Graphic file (type png)
 <use Images/newUI/weekly_task.png>
-Package pdftex.def Info: Images/newUI/weekly_task.png  used on input line 1222.
-
+Package pdftex.def Info: Images/newUI/weekly_task.png  used on input line 985.
 (pdftex.def)             Requested size: 149.94484pt x 273.67928pt.
-<Images/newUI/achievements.png, id=1935, 344.03531pt x 627.09282pt>
+<Images/newUI/achievements.png, id=1622, 344.03531pt x 627.09282pt>
 File: Images/newUI/achievements.png Graphic file (type png)
 <use Images/newUI/achievements.png>
-Package pdftex.def Info: Images/newUI/achievements.png  used on input line 1228
-.
+Package pdftex.def Info: Images/newUI/achievements.png  used on input line 991.
 (pdftex.def)             Requested size: 149.94484pt x 273.30945pt.
-[57 <./Images/newUI/main_scene.png> <./Images/newUI/upgrade_castle.png> <./Imag
-es/newUI/leaderBoard.png>]
-Overfull \hbox (90.47821pt too wide) in paragraph at lines 1237--1238
-[]\T5/lmr/bx/n/12 Endpoint\T5/lmr/m/n/12 : \T5/lmtt/m/n/12 /quests\T5/lmr/m/n/1
-2 , \T5/lmtt/m/n/12 /quests/{questId}/claim\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 /qu
-ests/progress-rewards/{track}/{stage}/claim\T5/lmr/m/n/12 . 
+[58 <./Images/newUI/main_scene.png> <./Images/newUI/upgrade_castle.png> <./Images/newUI/leaderBoard.png>]
+Overfull \hbox (90.47821pt too wide) in paragraph at lines 1000--1001
+[]\T5/lmr/bx/n/12 Endpoint\T5/lmr/m/n/12 : \T5/lmtt/m/n/12 /quests\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 /quests/{questId}/claim\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 /quests/progress-rewards/{track}/{stage}/claim\T5/lmr/m/n/12 . 
  []
 
-<Images/newUI/inventory.png, id=1945, 347.04657pt x 629.35126pt>
+<Images/newUI/inventory.png, id=1631, 347.04657pt x 629.35126pt>
 File: Images/newUI/inventory.png Graphic file (type png)
 <use Images/newUI/inventory.png>
-Package pdftex.def Info: Images/newUI/inventory.png  used on input line 1249.
+Package pdftex.def Info: Images/newUI/inventory.png  used on input line 1012.
 (pdftex.def)             Requested size: 91.90358pt x 166.66205pt.
-<Images/newUI/UI_Unit.png, id=1946, 344.03531pt x 625.58719pt>
+<Images/newUI/UI_Unit.png, id=1632, 344.03531pt x 625.58719pt>
 File: Images/newUI/UI_Unit.png Graphic file (type png)
 <use Images/newUI/UI_Unit.png>
-Package pdftex.def Info: Images/newUI/UI_Unit.png  used on input line 1255.
+Package pdftex.def Info: Images/newUI/UI_Unit.png  used on input line 1018.
 (pdftex.def)             Requested size: 91.90358pt x 167.11621pt.
-<Images/newUI/UI_descUnit.png, id=1947, 344.03531pt x 631.60968pt>
+<Images/newUI/UI_descUnit.png, id=1633, 344.03531pt x 631.60968pt>
 File: Images/newUI/UI_descUnit.png Graphic file (type png)
 <use Images/newUI/UI_descUnit.png>
-Package pdftex.def Info: Images/newUI/UI_descUnit.png  used on input line 1261.
-
+Package pdftex.def Info: Images/newUI/UI_descUnit.png  used on input line 1024.
 (pdftex.def)             Requested size: 91.90358pt x 168.72502pt.
-<Images/newUI/UI_upgrade.png, id=1948, 347.79938pt x 630.10406pt>
+<Images/newUI/UI_upgrade.png, id=1634, 347.79938pt x 630.10406pt>
 File: Images/newUI/UI_upgrade.png Graphic file (type png)
 <use Images/newUI/UI_upgrade.png>
-Package pdftex.def Info: Images/newUI/UI_upgrade.png  used on input line 1267.
+Package pdftex.def Info: Images/newUI/UI_upgrade.png  used on input line 1030.
 (pdftex.def)             Requested size: 91.90358pt x 166.49605pt.
-<Images/newUI/UI_evolution.png, id=1949, 344.78813pt x 630.10406pt>
+<Images/newUI/UI_evolution.png, id=1635, 344.78813pt x 630.10406pt>
 File: Images/newUI/UI_evolution.png Graphic file (type png)
 <use Images/newUI/UI_evolution.png>
-Package pdftex.def Info: Images/newUI/UI_evolution.png  used on input line 1273
-.
+Package pdftex.def Info: Images/newUI/UI_evolution.png  used on input line 1036.
 (pdftex.def)             Requested size: 91.90358pt x 167.95746pt.
-[58 <./Images/newUI/daily_task.png> <./Images/newUI/weekly_task.png> <./Images/
-newUI/achievements.png>]
-Overfull \hbox (78.42815pt too wide) in paragraph at lines 1282--1283
-[]\T5/lmr/bx/n/12 Endpoint\T5/lmr/m/n/12 : \T5/lmtt/m/n/12 /inventory/heroes/{i
-nstanceId}/upgrade\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 /inventory/heroes/{instanceI
-d}/evolve\T5/lmr/m/n/12 . 
+[59 <./Images/newUI/daily_task.png> <./Images/newUI/weekly_task.png> <./Images/newUI/achievements.png>]
+Overfull \hbox (78.42815pt too wide) in paragraph at lines 1045--1046
+[]\T5/lmr/bx/n/12 Endpoint\T5/lmr/m/n/12 : \T5/lmtt/m/n/12 /inventory/heroes/{instanceId}/upgrade\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 /inventory/heroes/{instanceId}/evolve\T5/lmr/m/n/12 . 
  []
 
 
-Overfull \hbox (4.41507pt too wide) in paragraph at lines 1283--1284
-[]\T5/lmr/bx/n/12 Dú li»u\T5/lmr/m/n/12 : danh s¡ch hero instance (m n UIUnit),
- \T5/lmtt/m/n/12 customData.lv\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 customData.evlov
-e_lv\T5/lmr/m/n/12 ,
+Overfull \hbox (4.41507pt too wide) in paragraph at lines 1046--1047
+[]\T5/lmr/bx/n/12 Dú li»u\T5/lmr/m/n/12 : danh s¡ch hero instance (m n UIUnit), \T5/lmtt/m/n/12 customData.lv\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 customData.evlove_lv\T5/lmr/m/n/12 ,
  []
 
-<Images/newUI/tutorial1_1.png, id=1958, 347.04657pt x 627.84563pt>
+<Images/newUI/tutorial1_1.png, id=1644, 347.04657pt x 627.84563pt>
 File: Images/newUI/tutorial1_1.png Graphic file (type png)
 <use Images/newUI/tutorial1_1.png>
-Package pdftex.def Info: Images/newUI/tutorial1_1.png  used on input line 1294.
-
+Package pdftex.def Info: Images/newUI/tutorial1_1.png  used on input line 1057.
 (pdftex.def)             Requested size: 149.94484pt x 271.27126pt.
-<Images/newUI/tutorial1_2.png, id=1959, 346.29375pt x 630.10406pt>
+<Images/newUI/tutorial1_2.png, id=1645, 346.29375pt x 630.10406pt>
 File: Images/newUI/tutorial1_2.png Graphic file (type png)
 <use Images/newUI/tutorial1_2.png>
-Package pdftex.def Info: Images/newUI/tutorial1_2.png  used on input line 1300.
-
+Package pdftex.def Info: Images/newUI/tutorial1_2.png  used on input line 1063.
 (pdftex.def)             Requested size: 149.94484pt x 272.84315pt.
-<Images/newUI/tutorial1_3.png, id=1960, 343.2825pt x 627.84563pt>
+<Images/newUI/tutorial1_3.png, id=1646, 343.2825pt x 627.84563pt>
 File: Images/newUI/tutorial1_3.png Graphic file (type png)
 <use Images/newUI/tutorial1_3.png>
-Package pdftex.def Info: Images/newUI/tutorial1_3.png  used on input line 1306.
-
+Package pdftex.def Info: Images/newUI/tutorial1_3.png  used on input line 1069.
 (pdftex.def)             Requested size: 149.94484pt x 274.24109pt.
-[59 <./Images/newUI/inventory.png> <./Images/newUI/UI_Unit.png> <./Images/newUI
-/UI_descUnit.png> <./Images/newUI/UI_upgrade.png> <./Images/newUI/UI_evolution.
-png>]
-Overfull \hbox (23.89561pt too wide) in paragraph at lines 1315--1316
-[]\T5/lmr/bx/n/12 Tutorial progress\T5/lmr/m/n/12 : \T5/lmtt/m/n/12 finishOnboa
-rding\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 finishFirstDeploy\T5/lmr/m/n/12 , \T5/lmt
-t/m/n/12 isDoneUpgradeUnitTutorial\T5/lmr/m/n/12 . 
+[60 <./Images/newUI/inventory.png> <./Images/newUI/UI_Unit.png> <./Images/newUI/UI_descUnit.png> <./Images/newUI/UI_upgrade.png> <./Images/newUI/UI_evolution.png>]
+Overfull \hbox (23.89561pt too wide) in paragraph at lines 1078--1079
+[]\T5/lmr/bx/n/12 Tutorial progress\T5/lmr/m/n/12 : \T5/lmtt/m/n/12 finishOnboarding\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 finishFirstDeploy\T5/lmr/m/n/12 , \T5/lmtt/m/n/12 isDoneUpgradeUnitTutorial\T5/lmr/m/n/12 . 
  []
 
-<Images/newUI/finding_match.png, id=1971, 342.5297pt x 627.09282pt>
+<Images/newUI/finding_match.png, id=1658, 342.5297pt x 627.09282pt>
 File: Images/newUI/finding_match.png Graphic file (type png)
 <use Images/newUI/finding_match.png>
-Package pdftex.def Info: Images/newUI/finding_match.png  used on input line 132
-7.
+Package pdftex.def Info: Images/newUI/finding_match.png  used on input line 1090.
 (pdftex.def)             Requested size: 116.0899pt x 212.52936pt.
-<Images/newUI/matching_scene.png, id=1972, 347.04657pt x 626.34pt>
+<Images/newUI/matching_scene.png, id=1659, 347.04657pt x 626.34pt>
 File: Images/newUI/matching_scene.png Graphic file (type png)
 <use Images/newUI/matching_scene.png>
-Package pdftex.def Info: Images/newUI/matching_scene.png  used on input line 13
-33.
+Package pdftex.def Info: Images/newUI/matching_scene.png  used on input line 1096.
 (pdftex.def)             Requested size: 116.0899pt x 209.51219pt.
-<Images/newUI/roulette.png, id=1973, 346.29375pt x 629.35126pt>
+<Images/newUI/roulette.png, id=1660, 346.29375pt x 629.35126pt>
 File: Images/newUI/roulette.png Graphic file (type png)
 <use Images/newUI/roulette.png>
-Package pdftex.def Info: Images/newUI/roulette.png  used on input line 1339.
+Package pdftex.def Info: Images/newUI/roulette.png  used on input line 1102.
 (pdftex.def)             Requested size: 116.0899pt x 210.98042pt.
-<Images/newUI/battle_scene.png, id=1974, 350.05782pt x 631.60968pt>
+<Images/newUI/battle_scene.png, id=1661, 350.05782pt x 631.60968pt>
 File: Images/newUI/battle_scene.png Graphic file (type png)
 <use Images/newUI/battle_scene.png>
-Package pdftex.def Info: Images/newUI/battle_scene.png  used on input line 1345
-.
+Package pdftex.def Info: Images/newUI/battle_scene.png  used on input line 1108.
 (pdftex.def)             Requested size: 116.0899pt x 209.45341pt.
-[60 <./Images/newUI/tutorial1_1.png> <./Images/newUI/tutorial1_2.png> <./Images
-/newUI/tutorial1_3.png>]
-Overfull \hbox (16.37949pt too wide) in paragraph at lines 1356--1357
-[]\T5/lmr/bx/n/12 Finish battle\T5/lmr/m/n/12 : \T5/lmtt/m/n/12 POST /battles/{
-battleId}/finish \T5/lmr/m/n/12 tr£ reward, statistics, currency, tutorial
+[61 <./Images/newUI/tutorial1_1.png> <./Images/newUI/tutorial1_2.png> <./Images/newUI/tutorial1_3.png>]
+Overfull \hbox (16.37949pt too wide) in paragraph at lines 1119--1120
+[]\T5/lmr/bx/n/12 Finish battle\T5/lmr/m/n/12 : \T5/lmtt/m/n/12 POST /battles/{battleId}/finish \T5/lmr/m/n/12 tr£ reward, statistics, currency, tutorial
  []
 
-<Images/newUI/end_match.png, id=1984, 344.03531pt x 627.09282pt>
+<Images/newUI/end_match.png, id=1670, 344.03531pt x 627.09282pt>
 File: Images/newUI/end_match.png Graphic file (type png)
 <use Images/newUI/end_match.png>
-Package pdftex.def Info: Images/newUI/end_match.png  used on input line 1366.
+Package pdftex.def Info: Images/newUI/end_match.png  used on input line 1129.
 (pdftex.def)             Requested size: 116.0899pt x 211.6012pt.
-<Images/newUI/victory_reward.png, id=1985, 344.03531pt x 629.35126pt>
+<Images/newUI/victory_reward.png, id=1671, 344.03531pt x 629.35126pt>
 File: Images/newUI/victory_reward.png Graphic file (type png)
 <use Images/newUI/victory_reward.png>
-Package pdftex.def Info: Images/newUI/victory_reward.png  used on input line 13
-72.
+Package pdftex.def Info: Images/newUI/victory_reward.png  used on input line 1135.
 (pdftex.def)             Requested size: 116.0899pt x 212.36327pt.
-<Images/newUI/defeat_reward.png, id=1986, 348.55219pt x 627.84563pt>
+<Images/newUI/defeat_reward.png, id=1672, 348.55219pt x 627.84563pt>
 File: Images/newUI/defeat_reward.png Graphic file (type png)
 <use Images/newUI/defeat_reward.png>
-Package pdftex.def Info: Images/newUI/defeat_reward.png  used on input line 137
-8.
+Package pdftex.def Info: Images/newUI/defeat_reward.png  used on input line 1141.
 (pdftex.def)             Requested size: 116.0899pt x 209.10571pt.
-<Images/newUI/level_up.png, id=1987, 348.55219pt x 625.58719pt>
+<Images/newUI/level_up.png, id=1673, 348.55219pt x 625.58719pt>
 File: Images/newUI/level_up.png Graphic file (type png)
 <use Images/newUI/level_up.png>
-Package pdftex.def Info: Images/newUI/level_up.png  used on input line 1384.
+Package pdftex.def Info: Images/newUI/level_up.png  used on input line 1147.
 (pdftex.def)             Requested size: 116.0899pt x 208.35355pt.
-[61 <./Images/newUI/finding_match.png> <./Images/newUI/matching_scene.png> <./I
-mages/newUI/roulette.png> <./Images/newUI/battle_scene.png>] [62 <./Images/newU
-I/end_match.png> <./Images/newUI/victory_reward.png> <./Images/newUI/defeat_rew
-ard.png> <./Images/newUI/level_up.png>] [63]) (./Content/implementation.tex
-[64] [65] [66] [67]) (./Content/evaluation.tex [68] [69])
-(./Content/conclusion.tex [70]
+[62 <./Images/newUI/finding_match.png> <./Images/newUI/matching_scene.png> <./Images/newUI/roulette.png> <./Images/newUI/battle_scene.png>] [63 <./Images/newUI/end_match.png> <./Images/newUI/victory_reward.png> <./Images/newUI/defeat_reward.png> <./Images/newUI/level_up.png>] [64]) (./Content/implementation.tex [65] [66] [67] [68]) (./Content/evaluation.tex [69] [70]) (./Content/conclusion.tex [71]
 Overfull \hbox (2.87927pt too wide) in paragraph at lines 31--32
-[]\T5/lmr/m/n/12 Mët sè ph¥n h» mð rëng (live-ops quy mæ lîn, anti-cheat to n d
-i»n, dashboard observability
+[]\T5/lmr/m/n/12 Mët sè ph¥n h» mð rëng (live-ops quy mæ lîn, anti-cheat to n di»n, dashboard observability
  []
 
-) [71] (./Content/contributions.tex
+) [72] (./Content/contributions.tex
 Underfull \hbox (badness 10000) in paragraph at lines 29--29
 []|\T5/lmr/bx/n/12 Th nh vi¶n
  []
@@ -2619,7 +2349,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--29
 \T5/lmr/m/n/12 envelope realtime), r  so¡t
  []
 
-[72
+[73
 
 
 ]) (./Content/timeline_next_phase.tex
@@ -2647,7 +2377,7 @@ Underfull \hbox (badness 1132) in paragraph at lines 26--26
 []|\T5/lmr/m/n/12 Benchmark t£i v  tèi ÷u hi»u n«ng
  []
 
-) [73
+) [74
 
 
 ]
@@ -2803,9 +2533,7 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 
 
 Overfull \hbox (5.88791pt too wide) in paragraph at lines 231--231
-[]\T5/lmr/m/n/12 GitHub. \T5/lmr/m/it/12 GitHub Projects Documentation\T5/lmr/m
-/n/12 . []$\T5/lmtt/m/n/12 https : / / docs . github . com / issues / planning 
--[]
+[]\T5/lmr/m/n/12 GitHub. \T5/lmr/m/it/12 GitHub Projects Documentation\T5/lmr/m/n/12 . []$\T5/lmtt/m/n/12 https : / / docs . github . com / issues / planning -[]
  []
 
 
@@ -2817,8 +2545,7 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 
 
 Overfull \hbox (1.10149pt too wide) in paragraph at lines 231--231
-[]\T5/lmr/m/n/12 Thomas Allweyer. \T5/lmr/m/it/12 BPMN 2.0: Introduction to the
- Standard for Business Process Modeling\T5/lmr/m/n/12 .
+[]\T5/lmr/m/n/12 Thomas Allweyer. \T5/lmr/m/it/12 BPMN 2.0: Introduction to the Standard for Business Process Modeling\T5/lmr/m/n/12 .
  []
 
 
@@ -2850,7 +2577,7 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 (biblatex)                loaded, is faulty or does not contain a definition
 (biblatex)                for \mkbibdatelong.
 
-[74
+[75
 
 ]
 
@@ -2888,10 +2615,7 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 (biblatex)                loaded, is faulty or does not contain a definition
 (biblatex)                for \mkbibdatelong.
 
-[75] (./Content/appendices.tex [76
-
-] [77] [78] [79] [80] [81] [82] [83] [84])
-[85] 
+[76] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
@@ -2904,33 +2628,24 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 27D1BF4EBAE675AFF25A6CD2CD27386C;39375.
+(rerunfilecheck)             Checksum: 59A3E2C5686C303E79A0416FA0629DDD;37788.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 41351 strings out of 467538
- 780294 string characters out of 5426329
- 1790349 words of memory out of 5000000
- 68748 multiletter control sequences out of 15000+600000
+ 41120 strings out of 467538
+ 780842 string characters out of 5426329
+ 1701799 words of memory out of 5000000
+ 68824 multiletter control sequences out of 15000+600000
  766763 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 104i,12n,116p,1197b,2009s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/texmf-dis
-t/fonts/type1/public/lm/lmex10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm
-/lmmi12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/
-texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/texmf-dist/fonts/type1/p
-ublic/lm/lmr12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/te
-xlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/texmf-dist/fonts/ty
-pe1/public/lm/lmri12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmri8.pfb
-><c:/texlive/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:/texlive/texmf-dist/
-fonts/type1/public/lm/lmsy10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/l
-mtt10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on main.pdf (98 pages, 5858960 bytes).
+ 104i,12n,116p,1223b,1693s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on main.pdf (89 pages, 6397483 bytes).
 PDF statistics:
- 2389 PDF objects out of 2487 (max. 8388607)
- 2167 compressed objects within 22 object streams
- 742 named destinations out of 1000 (max. 500000)
- 1574 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1962 PDF objects out of 2073 (max. 8388607)
+ 1734 compressed objects within 18 object streams
+ 437 named destinations out of 1000 (max. 500000)
+ 1601 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -4,21 +4,22 @@
 \contentsline {table}{\numberline {3}{\ignorespaces Ví dụ mốc level và phần thưởng mở slot kỹ năng}}{10}{table.caption.41}%
 \contentsline {table}{\numberline {4}{\ignorespaces Mức tương đồng hiện tại giữa nguồn cảm hứng và sản phẩm}}{19}{table.caption.76}%
 \contentsline {table}{\numberline {5}{\ignorespaces Tác nhân và vai trò trong phạm vi triển khai hiện tại}}{26}{table.caption.108}%
-\contentsline {table}{\numberline {6}{\ignorespaces Bản đồ mô-đun backend và dữ liệu liên quan}}{34}{table.caption.174}%
-\contentsline {table}{\numberline {7}{\ignorespaces Từ điển dữ liệu -- Collection USER}}{44}{table.7}%
-\contentsline {table}{\numberline {8}{\ignorespaces Từ điển dữ liệu -- Collection GAME\_PROFILE}}{45}{table.8}%
-\contentsline {table}{\numberline {9}{\ignorespaces Từ điển dữ liệu -- Collection SESSION\_RUNTIME}}{45}{table.9}%
-\contentsline {table}{\numberline {10}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER}}{46}{table.10}%
-\contentsline {table}{\numberline {11}{\ignorespaces Từ điển dữ liệu -- Collection INVENTORY}}{47}{table.11}%
-\contentsline {table}{\numberline {12}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER\_EQUIPMENT}}{48}{table.12}%
-\contentsline {table}{\numberline {13}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER\_SKILLS}}{49}{table.13}%
-\contentsline {table}{\numberline {14}{\ignorespaces Từ điển dữ liệu -- Collection PERSONAL\_ISLAND}}{49}{table.14}%
-\contentsline {table}{\numberline {15}{\ignorespaces Từ điển dữ liệu -- Collection NPC\_COLLECTION}}{50}{table.15}%
-\contentsline {table}{\numberline {16}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_ITEM}}{51}{table.16}%
-\contentsline {table}{\numberline {17}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_BUILDING}}{51}{table.17}%
-\contentsline {table}{\numberline {18}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_SKILL}}{51}{table.18}%
-\contentsline {table}{\numberline {19}{\ignorespaces Bảng traceability claim kỹ thuật và bằng chứng triển khai}}{67}{table.caption.550}%
-\contentsline {table}{\numberline {20}{\ignorespaces Đối chiếu mức bao phủ FR theo trạng thái triển khai hiện tại}}{69}{table.caption.556}%
-\contentsline {table}{\numberline {21}{\ignorespaces Rủi ro hiện tại và biện pháp giảm thiểu}}{70}{table.caption.562}%
-\contentsline {table}{\numberline {22}{\ignorespaces Phân công nhiệm vụ và đóng góp của các thành viên}}{72}{table.caption.571}%
-\contentsline {table}{\numberline {23}{\ignorespaces Roadmap sau baseline triển khai (mốc thời gian tính từ 05/2026)}}{73}{table.caption.573}%
+\contentsline {table}{\numberline {6}{\ignorespaces Bản đồ mô-đun backend và dữ liệu liên quan}}{41}{table.caption.185}%
+\contentsline {table}{\numberline {7}{\ignorespaces Tóm tắt Entity--Relation--Constraint theo nhóm ERD}}{45}{table.caption.197}%
+\contentsline {table}{\numberline {8}{\ignorespaces Từ điển dữ liệu -- Collection USER}}{46}{table.8}%
+\contentsline {table}{\numberline {9}{\ignorespaces Từ điển dữ liệu -- Collection GAME\_PROFILE}}{46}{table.9}%
+\contentsline {table}{\numberline {10}{\ignorespaces Từ điển dữ liệu -- Collection SESSION\_RUNTIME}}{47}{table.10}%
+\contentsline {table}{\numberline {11}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER}}{47}{table.11}%
+\contentsline {table}{\numberline {12}{\ignorespaces Từ điển dữ liệu -- Collection INVENTORY}}{48}{table.12}%
+\contentsline {table}{\numberline {13}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER\_EQUIPMENT}}{49}{table.13}%
+\contentsline {table}{\numberline {14}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER\_SKILLS}}{50}{table.14}%
+\contentsline {table}{\numberline {15}{\ignorespaces Từ điển dữ liệu -- Collection PERSONAL\_ISLAND}}{50}{table.15}%
+\contentsline {table}{\numberline {16}{\ignorespaces Từ điển dữ liệu -- Collection NPC\_COLLECTION}}{51}{table.16}%
+\contentsline {table}{\numberline {17}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_ITEM}}{52}{table.17}%
+\contentsline {table}{\numberline {18}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_BUILDING}}{52}{table.18}%
+\contentsline {table}{\numberline {19}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_SKILL}}{52}{table.19}%
+\contentsline {table}{\numberline {20}{\ignorespaces Bảng traceability claim kỹ thuật và bằng chứng triển khai}}{68}{table.caption.288}%
+\contentsline {table}{\numberline {21}{\ignorespaces Đối chiếu mức bao phủ FR theo trạng thái triển khai hiện tại}}{70}{table.caption.294}%
+\contentsline {table}{\numberline {22}{\ignorespaces Rủi ro hiện tại và biện pháp giảm thiểu}}{71}{table.caption.300}%
+\contentsline {table}{\numberline {23}{\ignorespaces Phân công nhiệm vụ và đóng góp của các thành viên}}{73}{table.caption.309}%
+\contentsline {table}{\numberline {24}{\ignorespaces Roadmap sau baseline triển khai (mốc thời gian tính từ 05/2026)}}{74}{table.caption.311}%
