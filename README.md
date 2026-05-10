@@ -174,4 +174,5 @@ Mỗi **chủng tộc** sẽ có:
 - UML overview (Use Case + Sequence + Deployment): [`Report/uml.md`](./Report/uml.md)
 - Diagram sources for UML: [`Report/diagrams`](./Report/diagrams)
   - Use Case: `usecase-*.puml` (PlantUML)
-  - Sequence/Deployment/ERD support diagrams: `*.mmd` (Mermaid)
+  - ERD split views: `erd-*.puml` (PlantUML)
+  - Sequence/Activity/Deployment: `*.mmd` (Mermaid)
