@@ -9,7 +9,7 @@ Trong những năm gần đây, thị trường game trực tuyến tiếp tục
     \item Quản lý phiên chơi và xử lý nhiều kết nối đồng thời.
     \item Đồng bộ trạng thái theo mô hình phù hợp để giảm sai lệch giữa client và server, đồng thời hạn chế gian lận ở mức kiến trúc\cite{moriarty-networked}.
     \item Thiết kế dữ liệu tiến trình người chơi (profile/\allowbreak statistics/\allowbreak tutorial/\allowbreak inventory/\allowbreak formation/\allowbreak quest/\allowbreak battle history) sao cho có thể mở rộng và truy vết.
-    \item Tổ chức các phân hệ nghiệp vụ cốt lõi (auth, player state, quest, battle, reward, progression, admin) trong một kiến trúc nhất quán, giảm phụ thuộc chéo và thuận lợi bảo trì\cite{gregory-engine}.
+    \item Tổ chức các phân hệ nghiệp vụ cốt lõi (auth, player state, quest, battle, reward, progression, castle, shop) trong một kiến trúc nhất quán, giảm phụ thuộc chéo và thuận lợi bảo trì\cite{gregory-engine}.
 \end{itemize}
 
 Ngoài ra, một thách thức quan trọng trong thiết kế game là quản trị \textbf{game configuration} (dữ liệu tĩnh) như định nghĩa vật phẩm, công trình, tham số cân bằng, bảng tỉ lệ và cấu hình sự kiện. Nếu cấu hình bị gắn chặt vào mã nguồn, việc điều chỉnh nội dung và cân bằng sẽ phụ thuộc vào chu kỳ build và phát hành. Do đó, hướng tiếp cận \textit{data-driven} thường được áp dụng để tách cấu hình khỏi code, giúp quy trình cập nhật linh hoạt hơn và giảm rủi ro ``hard-code'' tham số\cite{adams-game-design,schell-art}.
@@ -22,13 +22,13 @@ Mục tiêu tổng quát của đề tài là xây dựng và vận hành \textb
 
 Trong phạm vi hiện tại, đề tài tập trung vào các mục tiêu cụ thể:
 \begin{itemize}
-    \item Chuẩn hoá và vận hành các phân hệ cốt lõi: Authentication, Player State, Tutorial Progress, Quest, Battle Session (start/\allowbreak finish), Reward, Progression, và Castle Upgrade.
-    \item Đồng bộ contract giữa Unity client và backend API cho các luồng chính: đăng nhập/\allowbreak đăng ký/\allowbreak refresh/\allowbreak logout, tải \texttt{/me}, đồng bộ/\allowbreak claim quest, vào trận, kết trận, cập nhật tutorial progress, nâng cấp hero/\allowbreak skill, nâng cấp castle.
+    \item Chuẩn hoá và vận hành các phân hệ cốt lõi: Authentication, Player State, Tutorial Progress, Quest, Battle Session (start/\allowbreak finish), Reward, Progression, Castle Upgrade và Shop.
+    \item Đồng bộ contract giữa Unity client và backend API cho các luồng chính: đăng nhập/\allowbreak đăng ký/\allowbreak refresh/\allowbreak logout, tải \texttt{/me}, đồng bộ/\allowbreak claim quest, vào trận, kết trận, cập nhật tutorial progress, nâng cấp hero/\allowbreak skill, nâng cấp castle, tải catalog shop và purchase offer.
     \item Thiết kế kiến trúc triển khai tổng thể theo mô hình client--server, bao gồm các thành phần backend và hạ tầng dữ liệu; xác định cơ chế giao tiếp phù hợp cho tác vụ request--response và real-time\cite{moriarty-networked,gregory-engine}.
     \item Thiết kế mô hình dữ liệu mức logic cho các thực thể chính: user, session, profile, statistics, tutorial progress, inventory, formation, quest state và battle history.
     \item Thiết kế pipeline quản trị \textbf{game configuration (tĩnh)} theo hướng data-driven:
     \begin{center}
-        Google Sheets $\rightarrow$ TSV $\rightarrow$ Import vào DB (collections cấu hình) $\rightarrow$ Load vào \textit{Config Manager} khi khởi động.
+        Google Sheets $\rightarrow$ TSV $\rightarrow$ Import vào DB (collections cấu hình chính) $\rightarrow$ Load vào \textit{Config Manager} khi khởi động.
     \end{center}
     Pipeline này \textbf{chỉ áp dụng cho game configuration} \\
     Ví dụ: CONFIG\_ITEM, CONFIG\_SKILL, CONFIG\_ENEMY và các bảng cấu hình mở rộng, không áp dụng cho dữ liệu tiến trình người chơi.
@@ -49,6 +49,8 @@ Phạm vi hiện tại bao gồm \textbf{phân tích, thiết kế và triển k
     tạo battle session, xử lý kết trận, nhận reward/\allowbreak exp/\allowbreak currency/\allowbreak quest updates, đồng bộ lại UI lobby.
     \item \textbf{Luồng progression và unit management:}
     nâng cấp/\allowbreak evolve hero, cập nhật chỉ số và tutorial step liên quan đến nâng cấp.
+    \item \textbf{Luồng shop và reward popup:}
+    tải shop catalog, kiểm tra currency đủ mua, gửi purchase và hiển thị popup phần thưởng theo response backend.
     \item \textbf{Kiến trúc triển khai đang sử dụng:}
     phân tách vai trò client và server; backend vận hành theo API server mô-đun hoá và hạ tầng dữ liệu chính; các thành phần mở rộng realtime sâu/\allowbreak multi-instance được giữ ở roadmap.
     \item \textbf{Thiết kế kiến trúc phần mềm theo mô-đun:}
@@ -56,7 +58,7 @@ Phạm vi hiện tại bao gồm \textbf{phân tích, thiết kế và triển k
     \item \textbf{Thiết kế dữ liệu mức logic:}
     xây dựng mô hình dữ liệu cho tiến trình người chơi (dynamic) và mô hình cho cấu hình game (static), làm rõ điểm tham chiếu giữa instance gameplay và definition trong config.
     \item \textbf{Hợp đồng giao tiếp:}
-    REST API đã dùng cho các luồng cốt lõi; WebSocket events ở mức định hướng mở rộng cho đồng bộ realtime sâu hơn.
+    REST API được dùng xuyên suốt cho các luồng cốt lõi đang vận hành.
     \item \textbf{Thiết kế pipeline cấu hình tĩnh:}
     mô tả quy trình export/\allowbreak import TSV và cơ chế nạp cấu hình vào Config Manager khi khởi động để phục vụ truy xuất thống nhất.
 \end{itemize}
@@ -66,10 +68,10 @@ Phạm vi hiện tại bao gồm \textbf{phân tích, thiết kế và triển k
 Các nội dung sau \textbf{chưa thuộc phạm vi hiện tại}:
 
 \begin{itemize}
-    \item Hoàn thiện gameplay ở mức production (độ sâu content, animation/\allowbreak FX hoàn chỉnh, tuning cảm giác điều khiển trên nhiều thiết bị).
-    \item Hệ PvP đầy đủ cho vận hành thực tế (matchmaking nâng cao, anti-cheat toàn diện, mùa giải và phần thưởng dài hạn).
+    \item Hoàn thiện gameplay ở mức vận hành cao hơn (độ sâu content, animation/\allowbreak FX và tuning cảm giác điều khiển trên nhiều thiết bị).
+    \item Mở rộng PvP cho vận hành thực tế (matchmaking nâng cao, cơ chế giảm gian lận, mùa giải và phần thưởng dài hạn).
     \item Live-ops thương mại và cân bằng kinh tế ở quy mô lớn (event vận hành định kỳ, monetization, A/\allowbreak B tuning).
-    \item Benchmark tải lớn, tối ưu production và triển khai multi-region ở mức SRE/\allowbreak DevOps hoàn chỉnh.
+    \item Benchmark tải lớn, tối ưu vận hành và triển khai multi-region ở mức SRE/\allowbreak DevOps.
 \end{itemize}
 
 \subsection{Ý nghĩa của đề tài}

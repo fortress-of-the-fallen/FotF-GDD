@@ -1,0 +1,1226 @@
+API Docs                 1.0   OAS 3.0
+
+
+
+
+API Documentation
+Tài liệu mô tả contract /api/v1 hiện đang chạy trong backend.
+
+
+Navigation
+      API Portal: /
+      Swagger All: /swagger
+      Swagger Auth: /swagger/auth
+      Swagger Character: /swagger/character
+      Swagger Player: /swagger/player
+      Swagger Inventory: /swagger/inventory
+      Swagger Formation: /swagger/formation
+      Swagger Quest: /swagger/quest
+      Swagger Battle: /swagger/battle
+      Swagger Leaderboard: /swagger/leaderboard
+      Swagger Config: /swagger/config
+
+
+Authentication
+      Protected endpoints dùng Authorization: Bearer <accessToken>
+       register , login , refresh là public
+       configs là public
+       logout cần cả bearer token và refreshToken trong body
+
+
+Response Envelopes
+Standard Success
+ {
+     "success": true,
+     "data": {},
+     "serverTime": "2026-05-04T10:00:00.000Z"
+ }
+
+
+Standard Error
+
+ {
+     "success": false,
+     "error": {
+       "code": "VALIDATION_FAILED",
+       "message": "Validation failed",
+       "details": {}
+     },
+     "serverTime": "2026-05-04T10:00:00.000Z"
+ }
+
+
+Character Compatibility Success
+
+ {
+     "success": true,
+     "errorCode": "",
+     "error": "",
+     "timestamp": "2026-05-04T10:00:00.000Z",
+     "result": {}
+ }
+
+Ghi chú:
+
+       Hầu hết feature mới đã chuyển sang data/serverTime
+        character vẫn dùng compatibility success envelope để tránh phá flow cũ
+       Các lỗi auth/guard ở character vẫn đi qua global error envelope mới
+
+
+Common Error Codes
+Error code                                 Ý nghĩa
+
+
+ UNAUTHORIZED                              Thiếu token, token sai format, token hết hạn, hoặc refresh token không hợp lệ.
+
+ FORBIDDEN                                 Token hợp lệ nhưng role không được phép gọi route.
+
+ VALIDATION_FAILED                         Body/query/path sai schema hoặc rule validation thất bại.
+
+ NOT_FOUND                                 Không tìm thấy resource, config, battle, formation, player, hero, skill hoặc leaderboard row.
+
+ USERNAME_TAKEN                            Username đã được đăng ký.
+
+ INVALID_CREDENTIALS                       Sai username/password hoặc account không active.
+
+ INSUFFICIENT_GOLD                         Không đủ gold cho mutation yêu cầu spend gold cố định, ví dụ castle upgrade.
+
+ INSUFFICIENT_RESOURCE                     Không đủ gold/gem/shard hoặc thiếu duplicate copies.
+
+ ALREADY_CLAIMED                           Quest reward hoặc progress reward đã được claim.
+
+ MAX_CASTLE_LEVEL                          Castle tier hiện tại đã đạt max level/max accumulated cost.
+
+ CONFIG_VERSION_MISSING                    Mutation phụ thuộc config không gửi configVersion .
+
+ CONFIG_VERSION_MISMATCH                    configVersion client không khớp active version trên server.
+
+ BATTLE_EXPIRED                            Battle session đã quá hạn finish/claim reward.
+
+ BATTLE_ALREADY_FINISHED                   Battle session đã được finish trước đó.
+
+ IDEMPOTENCY_CONFLICT                      Cùng idempotencyKey nhưng payload khác request trước.
+
+ INTERNAL_SERVER_ERROR                     Lỗi ngoài ý muốn trên server.
+
+
+
+Operational Notes
+      Access token TTL hiện tại: 15 phút
+    Refresh token TTL hiện tại: 30 ngày
+     idempotencyKey là bắt buộc cho hầu hết mutation có reward/claim/update profile
+     configVersion là bắt buộc cho inventory mutation và battle start
+
+
+Documentation Pages
+    Auth Docs: /docs/auth
+    Player Docs: /docs/player
+    Character Docs: /docs/character
+    Inventory Docs: /docs/inventory
+    Formation Docs: /docs/formation
+    Lobby Docs: /docs/lobby
+    Shop Docs: /docs/shop
+    Quest Docs: /docs/quest
+    Battle Docs: /docs/battle
+    Leaderboard Docs: /docs/leaderboard
+    Config Docs: /docs/config
+
+
+External Reference
+    Environment Config: Google Sheet
+
+
+
+
+                                                                                      Authorize
+
+
+
+
+Filter by tag
+
+
+
+Auth
+POST        /api/v1/auth/register Register user
+
+Parameters                                                            Try it out
+
+
+No parameters
+
+
+Request body required                              application/json
+
+
+
+Example Value   Schema
+
+{
+    "username": "player01",
+    "password": "secret123",
+    "confirmPassword": "secret123",
+    "displayName": "Player01"
+}
+
+
+
+
+Responses
+
+
+
+Code         Description                                                  Links
+
+200          Returns auth tokens and player info                          No links
+
+
+
+
+POST        /api/v1/auth/login Login user
+
+Parameters                                                            Try it out
+No parameters
+
+
+Request body required                                   application/json
+
+
+
+Example Value   Schema
+
+{
+    "username": "admin",
+    "password": "admin123",
+    "rememberMe": true,
+    "connectionId": "sEnpxxIeymn-KuvBAAAB"
+}
+
+
+
+
+Responses
+
+
+
+Code         Description                                                       Links
+
+200          Returns auth tokens and player info                               No links
+
+
+
+
+POST        /api/v1/auth/refresh Refresh access token
+
+Parameters                                                                 Try it out
+
+
+No parameters
+
+
+Request body required                                   application/json
+Example Value   Schema
+
+{
+    "refreshToken": "refresh-token"
+}
+
+
+
+
+Responses
+
+
+
+Code         Description                                                        Links
+
+200          Returns a rotated access token pair                                No links
+
+
+
+
+POST        /api/v1/auth/logout Logout current session
+
+Parameters                                                                  Try it out
+
+
+No parameters
+
+
+Request body required                                    application/json
+
+
+
+Example Value   Schema
+
+{
+    "refreshToken": "refresh-token"
+}
+Responses
+
+
+
+Code          Description                                                          Links
+
+200           Revokes the current refresh session                                  No links
+
+
+
+
+Battle
+
+ POST        /api/v1/battles/start Start a battle session
+
+Parameters                                                                     Try it out
+
+
+No parameters
+
+
+Request body required                                       application/json
+
+
+
+Example Value   Schema
+
+ {
+     "mode": "FAKE_PVP",
+     "formationName": "active",
+     "configVersion": "2026.05.02.1"
+ }
+
+
+
+
+Responses
+Code          Description                                                                                         Links
+
+200           Returns battle session seed and opponent snapshot                                                   No links
+
+
+
+
+ POST        /api/v1/battles/{battleId}/finish Finish a battle session and claim rewards
+
+Parameters                                                                                                    Try it out
+
+
+
+Name                  Description
+
+
+battleId * required
+string                   battleId
+(path)
+
+
+
+
+Request body required                                                                      application/json
+
+
+
+Example Value   Schema
+
+ {
+     "idempotencyKey": "bb6ef5e8-26b6-4f49-9d55-6b0f56a00001",
+     "result": "WIN",
+     "durationSec": 82,
+     "winCondition": "DestroyAllTarget",
+     "playerPercent": 0.63
+ }
+
+
+
+
+Responses
+Code          Description                                                      Links
+
+200           Returns battle rewards and player delta                          No links
+
+
+
+
+Character
+
+ POST        /api/v1/character Create character
+
+Parameters                                                                 Try it out
+
+
+No parameters
+
+
+Request body required                                   application/json
+
+
+
+Example Value   Schema
+
+ {
+     "character_name": "MyCharacter",
+     "gender": "male",
+     "race": "human",
+     "hair": "ShortWavy",
+     "beard": "TrimGoatee",
+     "eye": "RoundSharp",
+     "hairColor": "#4A2C1D",
+     "beardColor": "#2C1B12",
+     "eyeColor": "#3A86FF"
+ }
+
+
+
+
+Responses
+Code         Description                                                  Links
+
+200          Returns created character ID                                 No links
+
+             Media type
+
+                application/json
+             Controls Accept header.
+
+             Example Value     Schema
+
+
+              {
+                  "timestamp": "2026-05-16T09:47:17.408Z",
+                  "errorCode": "string",
+                  "error": "string",
+                  "success": true,
+                  "validates": [
+                    "string"
+                  ],
+                  "result": {}
+              }
+
+400.1        Character.Create.CharacterNameExists                         No links
+
+400.2        Character.Create.InvalidGender                               No links
+
+400.3        Character.Create.UserNotFound                                No links
+
+400.4        Character.Create.MaxCharacterReached                         No links
+
+
+
+
+ GET      /api/v1/character Get list of characters for current user
+
+Parameters                                                            Try it out
+
+
+No parameters
+Responses
+
+
+
+Code         Description                                           Links
+
+200          Returns list of characters                            No links
+
+             Media type
+
+               application/json
+             Controls Accept header.
+
+             Example Value     Schema
+
+
+              {
+                  "timestamp": "2026-05-16T09:47:17.410Z",
+                  "errorCode": "string",
+                  "error": "string",
+                  "success": true,
+                  "validates": [
+                    "string"
+                  ],
+                  "result": {}
+              }
+
+400.1        Character.List.UserNotFound                           No links
+
+
+
+
+DELETE      /api/v1/character/{characterId} Delete character
+
+Parameters                                                     Try it out
+
+
+
+Name                       Description
+
+
+characterId * required     Character ID to delete
+Name                      Description
+
+string
+(path)
+                            8f7f4b44-5a35-4790-b95a-3ef165179f0a
+
+
+
+
+Responses
+
+
+
+Code        Description                                            Links
+
+200         Returns execution result                               No links
+
+            Media type
+
+              application/json
+            Controls Accept header.
+
+            Example Value     Schema
+
+
+             {
+                 "timestamp": "2026-05-16T09:47:17.411Z",
+                 "errorCode": "string",
+                 "error": "string",
+                 "success": true,
+                 "validates": [
+                   "string"
+                 ]
+             }
+
+400.1       Character.Delete.CharacterIdRequired                   No links
+
+400.2       Character.Delete.UserNotFound                          No links
+
+400.3       Character.Delete.CharacterNotFound                     No links
+PATCH       /api/v1/character/{characterId}/stats/base Update base attributes of a character
+
+Parameters                                                                                                        Try it out
+
+
+
+Name                       Description
+
+
+characterId * required     Character ID to update stats
+string
+(path)
+                            8f7f4b44-5a35-4790-b95a-3ef165179f0a
+
+
+
+Request body required                                                                          application/json
+
+
+
+Example Value    Schema
+
+{
+    "str": 10,
+    "dex": 12,
+    "con": 11,
+    "int": 8,
+    "wis": 9,
+    "cha": 7
+}
+
+
+
+
+Responses
+
+
+
+Code         Description                                                                                              Links
+
+200          Returns updated character stats                                                                          No links
+
+             Media type
+Code         Description                                                    Links
+
+               application/json
+             Controls Accept header.
+
+             Example Value     Schema
+
+              {
+                  "timestamp": "2026-05-16T09:47:17.414Z",
+                  "errorCode": "string",
+                  "error": "string",
+                  "success": true,
+                  "validates": [
+                    "string"
+                  ],
+                  "result": {}
+              }
+
+400.1        Character.UpdateBaseAttributes.CharacterIdRequired             No links
+
+400.2        Character.UpdateBaseAttributes.UserNotFound                    No links
+
+400.3        Character.UpdateBaseAttributes.CharacterNotFound               No links
+
+400.4        Character.UpdateBaseAttributes.StatsNotFound                   No links
+
+400.5        Character.UpdateBaseAttributes.NoAttributeToUpdate             No links
+
+400.6        Character.UpdateBaseAttributes.InvalidAttributeValue           No links
+
+400.7        Character.UpdateBaseAttributes.InsufficientUnspentPoints       No links
+
+
+
+
+Config
+
+ GET     /api/v1/configs/manifest Get active config manifest
+
+Parameters                                                              Try it out
+No parameters
+
+
+
+
+Responses
+
+
+
+Code         Description                                            Links
+
+200          Returns active config versions                         No links
+
+
+
+
+ GET        /api/v1/configs/{name} Get config records by name
+
+Parameters                                                      Try it out
+
+
+
+Name                 Description
+
+
+name * required
+string
+                      name
+(path)
+
+
+version * required
+string
+                      version
+(query)
+
+
+
+
+Responses
+Code         Description                                      Links
+
+200          Returns config data                              No links
+
+
+
+
+Formation
+
+ GET        /api/v1/formation Get current formation
+
+Parameters                                                Try it out
+
+
+No parameters
+
+
+
+
+Responses
+
+
+
+Code         Description                                      Links
+
+200          Returns the active formation                     No links
+
+
+
+
+ PUT        /api/v1/formation Replace current formation
+
+Parameters                                                Try it out
+
+
+No parameters
+Request body required
+                                                       application/json
+
+
+Example Value   Schema
+
+ {
+     "name": "active",
+     "slots": [
+       {
+         "slot": 0,
+         "unitName": "Soldier",
+         "position": {
+           "x": 0,
+           "y": 0,
+           "z": 0
+         }
+       }
+     ]
+ }
+
+
+
+
+Responses
+
+
+
+Code          Description                                                     Links
+
+200           Returns the updated formation                                   No links
+
+
+
+
+Inventory
+ GET         /api/v1/inventory Get current inventory
+
+Parameters                                                                Try it out
+No parameters
+
+
+
+
+Responses
+
+
+
+Code         Description                                                                              Links
+
+200          Returns heroes and skills inventory                                                      No links
+
+
+
+
+POST        /api/v1/inventory/heroes/{instanceId}/upgrade Upgrade hero level
+
+Parameters                                                                                        Try it out
+
+
+
+Name                       Description
+
+
+instanceId * required
+string
+                            instanceId
+(path)
+
+
+
+
+Request body required                                                          application/json
+
+
+
+Example Value   Schema
+
+{
+    "idempotencyKey": "bb6ef5e8-26b6-4f49-9d55-6b0f56a00001",
+    "configVersion": "2026.05.02.1"
+}
+Responses
+
+
+
+Code         Description                                                                                             Links
+
+200          Returns upgraded hero and updated currency                                                              No links
+
+
+
+
+POST        /api/v1/inventory/heroes/{instanceId}/evolve Evolve hero using duplicate copies
+
+Parameters                                                                                                       Try it out
+
+
+
+Name                       Description
+
+
+instanceId * required
+string
+                            instanceId
+(path)
+
+
+
+
+Request body required                                                                         application/json
+
+
+
+Example Value   Schema
+
+{
+    "idempotencyKey": "bb6ef5e8-26b6-4f49-9d55-6b0f56a00001",
+    "configVersion": "2026.05.02.1"
+}
+Responses
+
+
+
+Code         Description                                                                         Links
+
+200          Returns evolved hero and consumed copies                                            No links
+
+
+
+
+POST        /api/v1/inventory/skills/{itemId}/purchase Purchase a skill
+
+Parameters                                                                                   Try it out
+
+
+
+Name                Description
+
+
+itemId * required
+string
+                     itemId
+(path)
+
+
+
+
+Request body required                                                     application/json
+
+
+
+Example Value   Schema
+
+{
+    "idempotencyKey": "bb6ef5e8-26b6-4f49-9d55-6b0f56a00001",
+    "configVersion": "2026.05.02.1"
+}
+
+
+
+
+Responses
+Code         Description                                                                               Links
+
+200          Returns purchased skill and updated currency                                              No links
+
+
+
+
+POST        /api/v1/inventory/skills/{instanceId}/upgrade Upgrade skill level
+
+Parameters                                                                                         Try it out
+
+
+
+Name                       Description
+
+
+instanceId * required
+string                      instanceId
+(path)
+
+
+
+
+Request body required                                                           application/json
+
+
+
+Example Value   Schema
+
+{
+    "idempotencyKey": "bb6ef5e8-26b6-4f49-9d55-6b0f56a00001",
+    "configVersion": "2026.05.02.1"
+}
+
+
+
+
+Responses
+Code   Description                                   Links
+
+200    Returns upgraded skill and updated currency   No links
+
+
+
+
+Leaderboard
+ GET         /api/v1/leaderboards/{type} Get leaderboard entries
+
+Parameters                                                            Try it out
+
+
+
+Name               Description
+
+
+type * required
+string              type
+(path)
+
+
+limit * required
+number
+                    limit
+(query)
+
+
+
+
+Responses
+
+
+
+Code           Description                                                Links
+
+200            Returns leaderboard entries                                No links
+
+
+
+
+ GET         /api/v1/leaderboards/{type}/me Get current player rank
+
+Parameters                                                            Try it out
+Name              Description
+
+
+type * required
+string
+                   type
+(path)
+
+
+
+
+Responses
+
+
+
+Code          Description                                                 Links
+
+200           Returns current player rank                                 No links
+
+
+
+
+ GET        /api/v1/matchmaking/opponents Get matchmaking opponents
+
+Parameters                                                            Try it out
+
+
+No parameters
+
+
+
+
+Responses
+Code          Description                                                                     Links
+
+200           Returns matchmaking candidates                                                  No links
+
+
+
+
+Lobby
+
+ POST        /api/v1/lobby/castle/upgrade Upgrade castle progression
+
+Parameters                                                                                Try it out
+
+
+No parameters
+
+
+Request body required                                                  application/json
+
+
+
+Example Value   Schema
+
+ {
+     "idempotencyKey": "bb6ef5e8-26b6-4f49-9d55-6b0f56a00001",
+     "configVersion": "2026.05.02.1"
+ }
+
+
+
+
+Responses
+Code         Description                                           Links
+
+200          Returns updated castle progression and currency       No links
+
+
+
+
+Player
+
+ GET        /api/v1/me Get current player state
+
+Parameters                                                     Try it out
+
+
+No parameters
+
+
+
+
+Responses
+
+
+
+Code         Description                                           Links
+
+200          Returns the current player state                      No links
+
+
+
+
+ PATCH      /api/v1/me/profile Update current player profile
+
+Parameters                                                     Try it out
+
+
+No parameters
+Request body required
+                                                                                   application/json
+
+
+
+Example Value   Schema
+
+{
+    "displayName": "Player01",
+    "avatar": "avatar_01",
+    "country": "VN",
+    "idempotencyKey": "bb6ef5e8-26b6-4f49-9d55-6b0f56a00001"
+}
+
+
+
+
+Responses
+
+
+
+Code         Description                                                                                  Links
+
+200          Returns updated profile and currency                                                         No links
+
+
+
+
+PATCH       /api/v1/me/tutorial-progress Update current player tutorial progress
+
+Parameters                                                                                            Try it out
+
+
+No parameters
+
+
+Request body required                                                              application/json
+
+
+
+Example Value   Schema
+
+{
+    "updates": {
+       "finishOnboarding": true,
+       "finishFirstDeploy": true,
+       "isDoneUpgradeUnitTutorial": true
+     },
+     "clientUpdatedAt": "2026-05-05T10:00:00.000Z"
+ }
+
+
+
+
+Responses
+
+
+
+Code          Description                                Links
+
+200           Returns updated tutorial progress          No links
+
+
+
+
+Quest
+
+ GET         /api/v1/quests Get quest state
+
+Parameters                                           Try it out
+
+
+No parameters
+
+
+
+
+Responses
+Code         Description                                                               Links
+
+200          Returns daily/weekly/achievement quests                                   No links
+
+
+
+
+POST        /api/v1/quests/{questId}/claim Claim quest reward
+
+Parameters                                                                         Try it out
+
+
+
+Name                 Description
+
+
+questId * required
+number
+                         questId
+(path)
+
+
+
+
+Request body required                                           application/json
+
+
+
+Example Value   Schema
+
+{
+    "idempotencyKey": "bb6ef5e8-26b6-4f49-9d55-6b0f56a00001"
+}
+
+
+
+
+Responses
+Code          Description                                                                                               Links
+
+200           Claims a completed quest reward                                                                           No links
+
+
+
+
+ POST        /api/v1/quests/progress-rewards/{track}/{stage}/claim Claim quest progress reward
+
+Parameters                                                                                                          Try it out
+
+
+
+Name                 Description
+
+
+track * required
+string                 track
+(path)
+
+
+stage * required
+number                 stage
+(path)
+
+
+
+
+Request body required                                                                            application/json
+
+
+
+Example Value      Schema
+
+ {
+     "idempotencyKey": "bb6ef5e8-26b6-4f49-9d55-6b0f56a00001"
+ }
+Responses
+
+
+
+Code         Description                                                       Links
+
+200          Claims a track milestone reward                                   No links
+
+
+
+
+Shop
+
+ GET        /api/v1/shop/catalog Get shop catalog for current player
+
+Parameters                                                                 Try it out
+
+
+No parameters
+
+
+
+
+Responses
+
+
+
+Code         Description                                                       Links
+
+200          Returns shop offers, currency, and reset window                   No links
+
+
+
+
+ POST       /api/v1/shop/offers/{offerId}/purchase Purchase a shop offer
+
+Parameters                                                                 Try it out
+Name                 Description
+
+
+offerId * required
+string
+                      offerId
+(path)
+
+
+
+
+Request body required                                            application/json
+
+
+
+Example Value   Schema
+
+ {
+     "idempotencyKey": "bb6ef5e8-26b6-4f49-9d55-6b0f56a00001",
+     "configVersion": "2026.05.02.1",
+     "quantity": 1
+ }
+
+
+
+
+Responses
+
+
+
+Code          Description                                                           Links
+
+200           Returns granted rewards and post-purchase state                       No links
+

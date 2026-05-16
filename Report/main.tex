@@ -14,6 +14,7 @@
 % ================== FONT ==================
 % Latin Modern để ổn định hơn khi dùng T5
 \usepackage{lmodern}
+\usepackage{microtype}
 \renewcommand{\ttdefault}{lmtt}
 
 % ================== CỘT BẢNG RAGGEDRIGHT ==================
@@ -121,6 +122,16 @@
 % ================== DÒNG CÁCH ==================
 \onehalfspacing
 
+% ================== CHỐNG TRÀN DÒNG ==================
+% Giảm Overfull \hbox trên tài liệu nhiều endpoint/code-like text
+\setlength{\emergencystretch}{4em}
+\tolerance=2000
+\hbadness=2000
+\Urlmuskip=0mu plus 2mu
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
+
 % ================== HEADER / FOOTER ==================
 \setlength{\headheight}{40pt}
 \pagestyle{fancy}
@@ -158,6 +169,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+\sloppy
 
 % ===================== TRANG BÌA (có thông tin hội đồng) =====================
 \input{Content/titlepage}

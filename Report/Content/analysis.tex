@@ -22,6 +22,7 @@ Các phân hệ đang có runtime/API trong baseline:
     \item Tutorial Progress Sync.
     \item Hero/\allowbreak Skill Progression.
     \item Castle Progression.
+    \item Shop Catalog/\allowbreak Purchase.
 \end{itemize}
 
 % ===============================================================
@@ -118,6 +119,7 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
     \item Nâng cấp hero.
     \item Mua và nâng cấp skill.
     \item Nâng cấp castle qua endpoint backend chuyên biệt.
+    \item Mua shop offer và nhận reward popup.
 \end{itemize}
 
 \begin{figure}[H]
@@ -258,7 +260,7 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
 
 \textbf{Luồng chính:}
 \begin{enumerate}
-    \item Client gửi \texttt{battles/\{battleId\}/finish} kèm \texttt{idempotencyKey}.
+    \item Client gửi \texttt{battles/\allowbreak \{battleId\}/\allowbreak finish} kèm \texttt{idempotencyKey}.
     \item Server validate phiên và chốt kết quả.
     \item Server trả payload hậu trận.
     \item Client cập nhật state và UI theo payload này.
@@ -296,7 +298,7 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
 
 \textbf{Luồng chính:}
 \begin{enumerate}
-    \item Client gửi \texttt{PATCH /me/tutorial-progress} với các trường cập nhật.
+    \item Client gửi \texttt{PATCH /me/\allowbreak tutorial-progress} với các trường cập nhật.
     \item Server ghi nhận và trả trạng thái mới.
     \item Client apply lại cờ tutorial theo response.
 \end{enumerate}
@@ -320,8 +322,28 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
     \item Client cập nhật lại dữ liệu hiển thị.
 \end{enumerate}
 
-\subsubsection{UC-08 -- Nâng cấp castle}
+\subsubsection{UC-08 -- Mua shop offer và hiển thị phần thưởng}
 \label{subsubsec:uc-08}
+
+\textbf{Mục tiêu:} thực hiện giao dịch shop theo backend source-of-truth và hiển thị reward đúng payload trả về.
+
+\textbf{Tác nhân chính:} Player.
+
+\textbf{Tiền điều kiện:} người chơi đã đăng nhập; catalog shop tải thành công; offer còn khả dụng.
+
+\textbf{Hậu điều kiện:} currency và trạng thái mua được cập nhật; popup reward hiển thị đúng danh sách item nhận được.
+
+\textbf{Luồng chính:}
+\begin{enumerate}
+    \item Client gọi \texttt{GET /shop/catalog} khi mở UIShop.
+    \item Người chơi chọn offer và bấm mua.
+    \item Client gửi \texttt{POST /shop/\allowbreak offers/\allowbreak \{offerId\}/\allowbreak purchase} kèm idempotency key.
+    \item Server validate giá/giới hạn mua, trừ currency và trả reward.
+    \item Client cập nhật UI shop theo catalog mới và mở popup reward.
+\end{enumerate}
+
+\subsubsection{UC-09 -- Nâng cấp castle}
+\label{subsubsec:uc-09}
 
 \textbf{Mục tiêu:} thực hiện nâng cấp castle bằng backend contract riêng.
 
@@ -346,7 +368,7 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
 \subsubsection{Server-authoritative state}
 \label{subsec:analysis_rules_authority}
 \begin{itemize}
-    \item Reward, currency, statistics, quest progress, tutorial flags, castle progression chỉ lấy từ payload backend.
+    \item Reward, currency, statistics, quest progress, tutorial flags, castle progression, shop purchase result chỉ lấy từ payload backend.
     \item Client không tự suy diễn kết quả hậu trận hoặc kết quả claim.
 \end{itemize}
 
@@ -394,7 +416,7 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
     \item \textbf{Identity}: account, session/token state.
     \item \textbf{Player snapshot}: profile, statistics, tutorial, currency, inventory, formation, quests.
     \item \textbf{Battle}: phiên start/finish và reward/result state.
-    \item \textbf{Progression}: hero/skill upgrade state, castle state.
+    \item \textbf{Progression}: hero/skill upgrade state, castle state, shop purchase state.
 \end{itemize}
 
 \subsubsection{Quan hệ dữ liệu quan trọng}
@@ -409,4 +431,4 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
 \subsection{Tổng kết chương}
 \label{subsec:analysis_summary}
 
-Chương này đã phân tích hệ thống theo đúng phạm vi implemented-only: xác thực phiên, đồng bộ trạng thái người chơi, quest, battle session, tutorial sync, nâng cấp hero/\allowbreak skill và nâng cấp castle. Kết quả phân tích là đầu vào trực tiếp cho quyết định thiết kế ở Chương~7 và bám chặt baseline vận hành thực tế.
+Chương này đã phân tích hệ thống theo đúng phạm vi implemented-only: xác thực phiên, đồng bộ trạng thái người chơi, quest, battle session, tutorial sync, nâng cấp hero/\allowbreak skill, nâng cấp castle và shop purchase. Kết quả phân tích là đầu vào trực tiếp cho quyết định thiết kế ở Chương~7 và bám chặt baseline vận hành thực tế.

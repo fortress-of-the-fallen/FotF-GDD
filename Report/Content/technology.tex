@@ -60,13 +60,13 @@ NestJS cung cấp kiến trúc rõ ràng theo hướng module + dependency injec
 Các lý do lựa chọn:
 \begin{itemize}
     \item \textbf{Tổ chức mã nguồn}: module hoá tự nhiên, dễ quản lý ranh giới nghiệp vụ và tái sử dụng service dùng chung.
-    \item \textbf{Hỗ trợ đa giao thức}: REST là kênh đang vận hành; WebSocket gateway ở mức định hướng mở rộng cho đồng bộ realtime sâu\cite{nest-docs}.
+    \item \textbf{Hỗ trợ API rõ ràng}: REST đang vận hành ổn định cho các luồng gameplay/lobby cốt lõi\cite{nest-docs}.
     \item \textbf{Khả năng mở rộng}: có thể bắt đầu theo kiểu monolithic-module để giảm độ phức tạp, và có cơ sở để tách dịch vụ khi hệ thống tăng quy mô.
 \end{itemize}
 
 \subsubsection{Tác vụ nền (background jobs)}
 
-Trong game online, một số xử lý không cần chạy trực tiếp trên request realtime, ví dụ: đồng bộ dữ liệu định kỳ, tổng hợp log, xử lý mail hệ thống, hoặc quản lý sự kiện theo lịch. Các tác vụ này có thể được tách thành \textbf{job worker} chạy độc lập với API server để giảm tải cho luồng realtime, đồng thời dễ kiểm soát retry và lịch chạy.
+Trong game online, một số xử lý không cần chạy trực tiếp trên request realtime, ví dụ: đồng bộ dữ liệu định kỳ, tổng hợp log, xử lý mail hệ thống, hoặc quản lý sự kiện theo lịch. Trong bản hiện tại, phần job worker được tổ chức ở mức nền tảng và có thể kích hoạt dần theo nhu cầu vận hành để giảm tải cho API server.
 
 % ===============================================================
 \subsection{Công nghệ giao tiếp mạng}
@@ -78,17 +78,9 @@ HTTP phù hợp với các tác vụ không yêu cầu độ trễ thấp hoặc
     \item Đăng ký/\allowbreak đăng nhập/\allowbreak refresh token, tải player state từ \texttt{/me}.
     \item Đồng bộ quest, tutorial progress, inventory hero upgrade/\allowbreak evolve.
     \item Khởi tạo/\allowbreak kết thúc battle session, nhận reward và cập nhật progression.
-    \item Tải dữ liệu cấu hình và các thao tác quản trị/\allowbreak truy vấn lịch sử\cite{nest-docs}.
+    \item Tải catalog shop, purchase offer và đồng bộ currency/\allowbreak reward popup.
+    \item Tải dữ liệu cấu hình và truy vấn trạng thái phục vụ vận hành\cite{nest-docs}.
 \end{itemize}
-
-\subsubsection{WebSocket (định hướng mở rộng)}
-
-WebSocket phù hợp cho các tương tác realtime trong phiên chơi khi mở rộng:
-\begin{itemize}
-    \item Cập nhật trạng thái chiến đấu, sự kiện tức thời trong instance.
-    \item Thông báo thay đổi trạng thái (loot, revive, buff/\allowbreak debuff) và đồng bộ theo nhịp tick.
-\end{itemize}
-Trong bản hiện tại, các luồng nghiệp vụ cốt lõi đang được kiểm chứng chủ yếu qua REST API; WebSocket chưa là kênh runtime chính thức và được giữ như lớp mở rộng cho các chế độ realtime sâu hơn (ví dụ đồng bộ room/\allowbreak PvP theo tick). Với mô hình server authoritative, WebSocket là kênh phù hợp để truyền nhận input/\allowbreak snapshot khi mở rộng\cite{moriarty-networked,gaffer-networking}.
 
 % ===============================================================
 \subsection{Công nghệ lưu trữ dữ liệu}
@@ -97,13 +89,17 @@ Trong bản hiện tại, các luồng nghiệp vụ cốt lõi đang được k
 
 MongoDB phù hợp cho dữ liệu game do đặc tính document linh hoạt, dễ biểu diễn các cấu trúc lồng nhau (inventory, quest tracks, formation, battle metadata) và thích nghi khi schema thay đổi trong quá trình phát triển\cite{mongodb-guide}. Trong bối cảnh đồ án:
 \begin{itemize}
-    \item \textbf{Dữ liệu tiến trình (dynamic)}: user/\allowbreak session/\allowbreak profile/\allowbreak statistics/\allowbreak tutorial/\allowbreak currency/\allowbreak inventory/\allowbreak formation/\allowbreak quests/\allowbreak battles cần lưu bền vững và truy vấn theo khoá định danh.
-    \item \textbf{Dữ liệu cấu hình (static)}: các collection cấu hình như hero/\allowbreak quest/\allowbreak rank/\allowbreak upgrade/\allowbreak account-level/\allowbreak campaign có thể được import từ pipeline TSV và nạp vào bộ nhớ khi chạy.
+    \item \textbf{Dữ liệu tiến trình (dynamic)}:
+    user/\allowbreak session/\allowbreak profile/\allowbreak statistics/\allowbreak tutorial/\allowbreak currency.
+    \item inventory/\allowbreak formation/\allowbreak quests/\allowbreak battles lưu bền vững và truy vấn theo khoá định danh.
+    \item \textbf{Dữ liệu cấu hình (static)}:
+    hero/\allowbreak quest/\allowbreak rank/\allowbreak upgrade/\allowbreak account-level/\allowbreak campaign.
+    \item các collection static được import từ pipeline TSV và nạp vào bộ nhớ khi chạy.
 \end{itemize}
 
 \subsubsection{Redis}
 
-Redis được sử dụng ở mức hỗ trợ hiệu năng và phối hợp realtime theo nhu cầu triển khai\cite{redis-in-action}:
+Redis được sử dụng trước hết cho hiệu năng (cache); vai trò phối hợp realtime được mở theo nhu cầu triển khai\cite{redis-in-action}:
 \begin{itemize}
     \item \textbf{Cache}: giảm tải đọc DB cho dữ liệu truy cập thường xuyên (ví dụ session mapping, một phần config hot, trạng thái online).
     \item \textbf{Pub/\allowbreak Sub}: chia sẻ sự kiện giữa nhiều tiến trình/\allowbreak instance backend khi mở rộng theo chiều ngang.
@@ -118,11 +114,11 @@ Một số dữ liệu dạng file (asset pack, snapshot log, hoặc các tệp 
 
 Trong đồ án, \textbf{pipeline cấu hình} chỉ áp dụng cho \textbf{các bảng cấu hình/\allowbreak thông số game} (ví dụ: hero/\allowbreak quest/\allowbreak rank/\allowbreak upgrade và các hệ số cân bằng), không áp dụng cho toàn bộ dữ liệu tiến trình người chơi.
 
-Quy trình đang áp dụng:
+Quy trình đang áp dụng ở mức hiện tại:
 \begin{itemize}
     \item Thiết kế bảng cấu hình bằng \textbf{Google Sheets} để thuận lợi nhập liệu và review.
     \item Export sang \textbf{TSV} nhằm đảm bảo format đơn giản, dễ parse và thân thiện khi version control.
-    \item Import TSV vào các \textbf{collections cấu hình} trong DB (tách biệt với collections progress).
+    \item Import TSV vào các \textbf{collections cấu hình} chính trong DB (tách biệt với collections progress).
     \item Khi khởi động hoặc khi tải game, hệ thống nạp config từ DB vào \textbf{Config Manager} (in-memory) để truy xuất thống nhất trong runtime.
 \end{itemize}
 

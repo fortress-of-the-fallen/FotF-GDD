@@ -50,40 +50,40 @@
 \contentsline {subsubsection}{\numberline {3.2.3}Tác vụ nền (background jobs)}{15}{subsubsection.60}%
 \contentsline {subsection}{\numberline {3.3}Công nghệ giao tiếp mạng}{15}{subsection.61}%
 \contentsline {subsubsection}{\numberline {3.3.1}HTTP/\allowbreak REST}{15}{subsubsection.62}%
-\contentsline {subsubsection}{\numberline {3.3.2}WebSocket (định hướng mở rộng)}{16}{subsubsection.63}%
-\contentsline {subsection}{\numberline {3.4}Công nghệ lưu trữ dữ liệu}{16}{subsection.64}%
-\contentsline {subsubsection}{\numberline {3.4.1}MongoDB}{16}{subsubsection.65}%
-\contentsline {subsubsection}{\numberline {3.4.2}Redis}{16}{subsubsection.66}%
-\contentsline {subsubsection}{\numberline {3.4.3}Object Storage (tuỳ chọn mở rộng)}{16}{subsubsection.67}%
-\contentsline {subsection}{\numberline {3.5}Công cụ quản trị game configuration theo hướng data-driven}{17}{subsection.68}%
-\contentsline {subsection}{\numberline {3.6}Công cụ hỗ trợ phát triển và tài liệu hoá}{17}{subsection.69}%
-\contentsline {subsubsection}{\numberline {3.6.1}Quản lý mã nguồn và phối hợp nhóm}{17}{subsubsection.70}%
-\contentsline {subsubsection}{\numberline {3.6.2}Công cụ mô hình hoá và tài liệu}{17}{subsubsection.71}%
-\contentsline {subsection}{\numberline {3.7}Tổng kết}{17}{subsection.72}%
-\contentsline {section}{\numberline {4}Các công trình liên quan}{18}{section.73}%
-\contentsline {subsection}{\numberline {4.1}Cách dùng nguồn tham khảo ở thời điểm hiện tại}{18}{subsection.74}%
-\contentsline {subsection}{\numberline {4.2}Đối chiếu nguồn cảm hứng và mức tương đồng hiện tại}{18}{subsection.75}%
-\contentsline {subsection}{\numberline {4.3}Nguồn tham khảo có ảnh hưởng trực tiếp đến triển khai}{19}{subsection.77}%
-\contentsline {subsection}{\numberline {4.4}Kết luận chương}{19}{subsection.78}%
-\contentsline {section}{\numberline {5}Phân tích yêu cầu}{20}{section.79}%
-\contentsline {subsection}{\numberline {5.1}Phạm vi và giả định}{20}{subsection.80}%
-\contentsline {subsubsection}{\numberline {5.1.1}Phạm vi hiện tại}{20}{subsubsection.81}%
-\contentsline {subsubsection}{\numberline {5.1.2}Giả định}{20}{subsubsection.82}%
-\contentsline {subsection}{\numberline {5.2}Tác nhân và ranh giới hệ thống}{20}{subsection.83}%
-\contentsline {subsubsection}{\numberline {5.2.1}Tác nhân}{20}{subsubsection.84}%
-\contentsline {subsubsection}{\numberline {5.2.2}Ranh giới hệ thống}{21}{subsubsection.85}%
-\contentsline {subsection}{\numberline {5.3}Yêu cầu chức năng}{21}{subsection.86}%
-\contentsline {subsubsection}{\numberline {5.3.1}Danh sách yêu cầu chức năng hiện tại}{21}{subsubsection.87}%
-\contentsline {paragraph}{FR-01 -- Đăng ký tài khoản}{21}{section*.88}%
-\contentsline {paragraph}{FR-02 -- Đăng nhập và quản lý phiên}{21}{section*.89}%
-\contentsline {paragraph}{FR-03 -- Đồng bộ player state}{21}{section*.90}%
-\contentsline {paragraph}{FR-04 -- Đồng bộ quest và nhận thưởng quest}{22}{section*.91}%
-\contentsline {paragraph}{FR-05 -- Khởi tạo battle session}{22}{section*.92}%
-\contentsline {paragraph}{FR-06 -- Kết thúc battle và chốt hậu trận}{22}{section*.93}%
-\contentsline {paragraph}{FR-07 -- Đồng bộ tutorial progress}{22}{section*.94}%
-\contentsline {paragraph}{FR-08 -- Nâng cấp hero}{23}{section*.95}%
-\contentsline {paragraph}{FR-09 -- Nâng cấp và mua skill}{23}{section*.96}%
-\contentsline {paragraph}{FR-10 -- Nâng cấp castle}{23}{section*.97}%
+\contentsline {subsection}{\numberline {3.4}Công nghệ lưu trữ dữ liệu}{16}{subsection.63}%
+\contentsline {subsubsection}{\numberline {3.4.1}MongoDB}{16}{subsubsection.64}%
+\contentsline {subsubsection}{\numberline {3.4.2}Redis}{16}{subsubsection.65}%
+\contentsline {subsubsection}{\numberline {3.4.3}Object Storage (tuỳ chọn mở rộng)}{16}{subsubsection.66}%
+\contentsline {subsection}{\numberline {3.5}Công cụ quản trị game configuration theo hướng data-driven}{16}{subsection.67}%
+\contentsline {subsection}{\numberline {3.6}Công cụ hỗ trợ phát triển và tài liệu hoá}{17}{subsection.68}%
+\contentsline {subsubsection}{\numberline {3.6.1}Quản lý mã nguồn và phối hợp nhóm}{17}{subsubsection.69}%
+\contentsline {subsubsection}{\numberline {3.6.2}Công cụ mô hình hoá và tài liệu}{17}{subsubsection.70}%
+\contentsline {subsection}{\numberline {3.7}Tổng kết}{17}{subsection.71}%
+\contentsline {section}{\numberline {4}Các công trình liên quan}{17}{section.72}%
+\contentsline {subsection}{\numberline {4.1}Cách dùng nguồn tham khảo ở thời điểm hiện tại}{18}{subsection.73}%
+\contentsline {subsection}{\numberline {4.2}Đối chiếu nguồn cảm hứng và mức tương đồng hiện tại}{18}{subsection.74}%
+\contentsline {subsection}{\numberline {4.3}Nguồn tham khảo có ảnh hưởng trực tiếp đến triển khai}{19}{subsection.76}%
+\contentsline {subsection}{\numberline {4.4}Kết luận chương}{19}{subsection.77}%
+\contentsline {section}{\numberline {5}Phân tích yêu cầu}{19}{section.78}%
+\contentsline {subsection}{\numberline {5.1}Phạm vi và giả định}{19}{subsection.79}%
+\contentsline {subsubsection}{\numberline {5.1.1}Phạm vi hiện tại}{19}{subsubsection.80}%
+\contentsline {subsubsection}{\numberline {5.1.2}Giả định}{20}{subsubsection.81}%
+\contentsline {subsection}{\numberline {5.2}Tác nhân và ranh giới hệ thống}{20}{subsection.82}%
+\contentsline {subsubsection}{\numberline {5.2.1}Tác nhân}{20}{subsubsection.83}%
+\contentsline {subsubsection}{\numberline {5.2.2}Ranh giới hệ thống}{20}{subsubsection.84}%
+\contentsline {subsection}{\numberline {5.3}Yêu cầu chức năng}{20}{subsection.85}%
+\contentsline {subsubsection}{\numberline {5.3.1}Danh sách yêu cầu chức năng hiện tại}{20}{subsubsection.86}%
+\contentsline {paragraph}{FR-01 -- Đăng ký tài khoản}{20}{section*.87}%
+\contentsline {paragraph}{FR-02 -- Đăng nhập và quản lý phiên}{21}{section*.88}%
+\contentsline {paragraph}{FR-03 -- Đồng bộ player state}{21}{section*.89}%
+\contentsline {paragraph}{FR-04 -- Đồng bộ quest và nhận thưởng quest}{21}{section*.90}%
+\contentsline {paragraph}{FR-05 -- Khởi tạo battle session}{21}{section*.91}%
+\contentsline {paragraph}{FR-06 -- Kết thúc battle và chốt hậu trận}{22}{section*.92}%
+\contentsline {paragraph}{FR-07 -- Đồng bộ tutorial progress}{22}{section*.93}%
+\contentsline {paragraph}{FR-08 -- Nâng cấp hero}{22}{section*.94}%
+\contentsline {paragraph}{FR-09 -- Nâng cấp và mua skill}{22}{section*.95}%
+\contentsline {paragraph}{FR-10 -- Nâng cấp castle}{23}{section*.96}%
+\contentsline {paragraph}{FR-11 -- Mua shop offer và nhận reward}{23}{section*.97}%
 \contentsline {subsection}{\numberline {5.4}Yêu cầu phi chức năng}{23}{subsection.98}%
 \contentsline {subsection}{\numberline {5.5}Yêu cầu dữ liệu}{24}{subsection.99}%
 \contentsline {subsubsection}{\numberline {5.5.1}Phân loại dữ liệu}{24}{subsubsection.100}%
@@ -93,7 +93,7 @@
 \contentsline {subsection}{\numberline {5.6}Tiêu chí chấp nhận theo trạng thái hiện tại}{24}{subsection.104}%
 \contentsline {section}{\numberline {6}Phân tích hệ thống}{25}{section.105}%
 \contentsline {subsection}{\numberline {6.1}Tổng quan phân hệ và ranh giới trách nhiệm}{25}{subsection.106}%
-\contentsline {subsection}{\numberline {6.2}Tác nhân hệ thống}{26}{subsection.107}%
+\contentsline {subsection}{\numberline {6.2}Tác nhân hệ thống}{25}{subsection.107}%
 \contentsline {subsection}{\numberline {6.3}Phân tích use case theo phạm vi hiện tại}{26}{subsection.109}%
 \contentsline {subsubsection}{\numberline {6.3.1}Nhóm xác thực và phiên}{26}{subsubsection.110}%
 \contentsline {subsubsection}{\numberline {6.3.2}Nhóm đồng bộ trạng thái người chơi}{28}{subsubsection.113}%
@@ -109,106 +109,100 @@
 \contentsline {subsubsection}{\numberline {6.4.5}UC-05 -- Kết thúc battle và đồng bộ hậu trận}{34}{subsubsection.144}%
 \contentsline {subsubsection}{\numberline {6.4.6}UC-06 -- Đồng bộ tutorial progress}{36}{subsubsection.151}%
 \contentsline {subsubsection}{\numberline {6.4.7}UC-07 -- Nâng cấp hero và skill}{36}{subsubsection.155}%
-\contentsline {subsubsection}{\numberline {6.4.8}UC-08 -- Nâng cấp castle}{36}{subsubsection.160}%
-\contentsline {subsection}{\numberline {6.5}Quy tắc nghiệp vụ và ràng buộc hệ thống}{37}{subsection.165}%
-\contentsline {subsubsection}{\numberline {6.5.1}Server-authoritative state}{37}{subsubsection.166}%
-\contentsline {subsubsection}{\numberline {6.5.2}Idempotency và retry}{37}{subsubsection.167}%
-\contentsline {subsubsection}{\numberline {6.5.3}Nhất quán bất đồng bộ}{37}{subsubsection.168}%
-\contentsline {subsubsection}{\numberline {6.5.4}Tương thích cấu hình}{37}{subsubsection.169}%
-\contentsline {subsection}{\numberline {6.6}Phân tích dữ liệu ở mức logic}{37}{subsection.170}%
-\contentsline {subsubsection}{\numberline {6.6.1}Dữ liệu tiến trình}{37}{subsubsection.171}%
-\contentsline {subsubsection}{\numberline {6.6.2}Thực thể lõi theo luồng hiện tại}{38}{subsubsection.172}%
-\contentsline {subsubsection}{\numberline {6.6.3}Quan hệ dữ liệu quan trọng}{38}{subsubsection.173}%
-\contentsline {subsection}{\numberline {6.7}Tổng kết chương}{38}{subsection.174}%
-\contentsline {section}{\numberline {7}Thiết kế hệ thống}{38}{section.175}%
-\contentsline {subsection}{\numberline {7.1}Mục tiêu thiết kế}{38}{subsection.176}%
-\contentsline {subsection}{\numberline {7.2}Kiến trúc tổng thể và triển khai}{39}{subsection.177}%
-\contentsline {subsubsection}{\numberline {7.2.1}Tổng quan triển khai}{39}{subsubsection.178}%
-\contentsline {subsubsection}{\numberline {7.2.2}Nguyên tắc server-authoritative}{40}{subsubsection.180}%
-\contentsline {subsubsection}{\numberline {7.2.3}Phân tách giao tiếp: HTTP và WebSocket (định hướng)}{40}{subsubsection.181}%
-\contentsline {paragraph}{HTTP/\allowbreak REST}{40}{section*.182}%
-\contentsline {paragraph}{WebSocket}{40}{section*.183}%
-\contentsline {subsection}{\numberline {7.3}Thiết kế mô-đun backend}{41}{subsection.184}%
-\contentsline {subsubsection}{\numberline {7.3.1}Các thành phần dùng chung (cross-cutting)}{41}{subsubsection.186}%
-\contentsline {subsection}{\numberline {7.4}Thiết kế dữ liệu}{42}{subsection.187}%
-\contentsline {subsubsection}{\numberline {7.4.1}Nguyên tắc thiết kế dữ liệu}{42}{subsubsection.188}%
-\contentsline {subsubsection}{\numberline {7.4.2}Mô hình thực thể chính (ERD mức logic)}{42}{subsubsection.189}%
-\contentsline {subsubsection}{\numberline {7.4.3}Phân tích quan hệ và phụ thuộc thuộc tính}{43}{subsubsection.191}%
-\contentsline {paragraph}{Nhóm danh tính và phiên (USER, GAME\_PROFILE, SESSION\_RUNTIME)}{43}{section*.192}%
-\contentsline {paragraph}{Nhóm nhân vật và tiến trình (CHARACTER + stats/resources/appearance)}{43}{section*.193}%
-\contentsline {paragraph}{Nhóm inventory/equipment/skill (instance state vs config reference)}{44}{section*.194}%
-\contentsline {paragraph}{Nhóm battle/runtime linkage}{44}{section*.195}%
-\contentsline {paragraph}{Nhóm mở rộng full scope theo ERD (customization/island/NPC)}{44}{section*.196}%
-\contentsline {subsubsection}{\numberline {7.4.4}Từ điển dữ liệu (Data Dictionary) ở mức collection}{45}{subsubsection.198}%
-\contentsline {paragraph}{Collection: USER}{45}{section*.199}%
-\contentsline {paragraph}{Collection: GAME\_PROFILE}{46}{section*.200}%
-\contentsline {paragraph}{Collection: SESSION\_RUNTIME}{46}{section*.201}%
-\contentsline {paragraph}{Collection: CHARACTER}{47}{section*.202}%
-\contentsline {paragraph}{Collection: INVENTORY}{48}{section*.203}%
-\contentsline {paragraph}{Collection: CHARACTER\_EQUIPMENT}{49}{section*.204}%
-\contentsline {paragraph}{Collection: CHARACTER\_SKILLS}{50}{section*.205}%
-\contentsline {paragraph}{Collection: PERSONAL\_ISLAND}{50}{section*.206}%
-\contentsline {paragraph}{Collection: NPC\_COLLECTION}{51}{section*.207}%
-\contentsline {paragraph}{Collection: CONFIG\_ITEM / CONFIG\_BUILDING / CONFIG\_SKILL (tĩnh)}{52}{section*.208}%
-\contentsline {subsubsection}{\numberline {7.4.5}Chỉ mục (indexes) và khoá truy vấn}{52}{subsubsection.209}%
-\contentsline {subsection}{\numberline {7.5}Thiết kế hệ thống chỉ số và tăng trưởng nhân vật}{53}{subsection.210}%
-\contentsline {subsubsection}{\numberline {7.5.1}Thuộc tính nền và chỉ số suy diễn}{53}{subsubsection.211}%
-\contentsline {subsubsection}{\numberline {7.5.2}Tính toán chỉ số theo hướng data-driven}{54}{subsubsection.213}%
-\contentsline {subsection}{\numberline {7.6}Thiết kế quản trị cấu hình game (Config Pipeline)}{54}{subsection.214}%
-\contentsline {subsubsection}{\numberline {7.6.1}Luồng dữ liệu cấu hình}{54}{subsubsection.215}%
-\contentsline {subsubsection}{\numberline {7.6.2}Thiết kế Config Manager}{55}{subsubsection.220}%
-\contentsline {subsection}{\numberline {7.7}Thiết kế giao tiếp client--server}{55}{subsection.221}%
-\contentsline {subsubsection}{\numberline {7.7.1}REST API: nhóm endpoint và quy ước}{55}{subsubsection.222}%
-\contentsline {subsubsection}{\numberline {7.7.2}WebSocket (định hướng): định dạng message và vòng đời phiên}{56}{subsubsection.223}%
-\contentsline {subsection}{\numberline {7.8}Thiết kế giao diện người dùng (UI/\allowbreak UX) mức tham chiếu}{56}{subsection.236}%
-\contentsline {subsubsection}{\numberline {7.8.1}Luồng UI xác thực: Login/\allowbreak Register}{57}{subsubsection.237}%
-\contentsline {subsubsection}{\numberline {7.8.2}UI lobby và điều hướng phân hệ}{58}{subsubsection.239}%
-\contentsline {subsubsection}{\numberline {7.8.3}UI quest và milestone reward}{59}{subsubsection.241}%
-\contentsline {subsubsection}{\numberline {7.8.4}UI hero inventory, upgrade và evolve}{60}{subsubsection.243}%
-\contentsline {subsubsection}{\numberline {7.8.5}UI tutorial và onboarding}{61}{subsubsection.245}%
-\contentsline {subsubsection}{\numberline {7.8.6}UI vào trận và gameplay battle}{62}{subsubsection.247}%
-\contentsline {subsubsection}{\numberline {7.8.7}UI kết quả trận và reward}{63}{subsubsection.249}%
-\contentsline {subsection}{\numberline {7.9}Thiết kế vòng lặp real-time cho combat/\allowbreak instance}{63}{subsection.251}%
-\contentsline {subsubsection}{\numberline {7.9.1}Mô hình instance/\allowbreak room}{63}{subsubsection.252}%
-\contentsline {subsubsection}{\numberline {7.9.2}Tick loop và phát snapshot}{63}{subsubsection.253}%
-\contentsline {subsection}{\numberline {7.10}Thiết kế phân hệ Administration}{64}{subsection.258}%
-\contentsline {subsection}{\numberline {7.11}Bảo mật, nhất quán và quan sát hệ thống}{64}{subsection.259}%
-\contentsline {subsubsection}{\numberline {7.11.1}Bảo mật}{64}{subsubsection.260}%
-\contentsline {subsubsection}{\numberline {7.11.2}Nhất quán dữ liệu và giao dịch nghiệp vụ}{65}{subsubsection.261}%
-\contentsline {subsubsection}{\numberline {7.11.3}Quan sát hệ thống (observability)}{65}{subsubsection.262}%
-\contentsline {subsection}{\numberline {7.12}Tổng kết chương}{65}{subsection.263}%
-\contentsline {section}{\numberline {8}Hiện thực và tích hợp hệ thống}{65}{section.264}%
-\contentsline {subsection}{\numberline {8.1}Mục tiêu chương}{65}{subsection.265}%
-\contentsline {subsection}{\numberline {8.2}Baseline triển khai hiện tại}{66}{subsection.266}%
-\contentsline {subsection}{\numberline {8.3}Hiện thực phía client (Unity)}{66}{subsection.267}%
-\contentsline {subsubsection}{\numberline {8.3.1}Tổ chức lớp giao tiếp backend}{66}{subsubsection.268}%
-\contentsline {subsubsection}{\numberline {8.3.2}Nguyên tắc đồng bộ dữ liệu}{66}{subsubsection.269}%
-\contentsline {subsection}{\numberline {8.4}Hiện thực phía backend theo contract}{67}{subsection.270}%
-\contentsline {subsubsection}{\numberline {8.4.1}Nhóm endpoint đã tích hợp}{67}{subsubsection.271}%
-\contentsline {subsubsection}{\numberline {8.4.2}Quy tắc dữ liệu quan trọng}{67}{subsubsection.272}%
-\contentsline {subsection}{\numberline {8.5}Luồng tích hợp đã kiểm chứng}{67}{subsection.273}%
-\contentsline {subsubsection}{\numberline {8.5.1}Luồng xác thực và vào lobby}{67}{subsubsection.274}%
-\contentsline {subsubsection}{\numberline {8.5.2}Luồng quest và reward}{67}{subsubsection.278}%
-\contentsline {subsubsection}{\numberline {8.5.3}Luồng battle và hậu battle}{68}{subsubsection.282}%
-\contentsline {subsubsection}{\numberline {8.5.4}Luồng level-up, tutorial và castle}{68}{subsubsection.286}%
-\contentsline {subsection}{\numberline {8.6}Claim va Evidence}{68}{subsection.287}%
-\contentsline {subsection}{\numberline {8.7}Các hạng mục mở rộng chưa hoàn tất}{69}{subsection.289}%
-\contentsline {subsection}{\numberline {8.8}Tổng kết chương}{69}{subsection.290}%
-\contentsline {section}{\numberline {9}Đánh giá hệ thống}{69}{section.291}%
-\contentsline {subsection}{\numberline {9.1}Mục tiêu và phương pháp đánh giá}{69}{subsection.292}%
-\contentsline {subsection}{\numberline {9.2}Bao phủ yêu cầu chức năng}{70}{subsection.293}%
-\contentsline {subsection}{\numberline {9.3}Đánh giá nhất quán dữ liệu}{70}{subsection.295}%
-\contentsline {subsubsection}{\numberline {9.3.1}Điểm đã đạt}{70}{subsubsection.296}%
-\contentsline {subsubsection}{\numberline {9.3.2}Điểm cần kiểm soát}{70}{subsubsection.297}%
-\contentsline {subsection}{\numberline {9.4}Đánh giá phi chức năng}{70}{subsection.298}%
-\contentsline {subsection}{\numberline {9.5}Rủi ro còn lại và hướng giảm thiểu}{71}{subsection.299}%
-\contentsline {subsection}{\numberline {9.6}Tổng kết chương}{71}{subsection.301}%
-\contentsline {section}{\numberline {10}Kết luận và hướng phát triển}{71}{section.302}%
-\contentsline {subsection}{\numberline {10.1}Tổng kết kết quả hiện tại}{71}{subsection.303}%
-\contentsline {subsection}{\numberline {10.2}Đóng góp}{72}{subsection.304}%
-\contentsline {subsection}{\numberline {10.3}Hạn chế hiện tại}{72}{subsection.305}%
-\contentsline {subsection}{\numberline {10.4}Hướng phát triển tiếp theo}{72}{subsection.306}%
-\contentsline {subsection}{\numberline {10.5}Kết luận}{72}{subsection.307}%
-\contentsline {section}{Phân công nhiệm vụ và đóng góp của các thành viên}{73}{section*.308}%
-\contentsline {section}{Roadmap giai đoạn tiếp theo}{75}{section*.310}%
-\contentsline {section}{Tài liệu tham khảo}{76}{table.caption.311}%
+\contentsline {subsubsection}{\numberline {6.4.8}UC-08 -- Mua shop offer và hiển thị phần thưởng}{36}{subsubsection.160}%
+\contentsline {subsubsection}{\numberline {6.4.9}UC-09 -- Nâng cấp castle}{37}{subsubsection.166}%
+\contentsline {subsection}{\numberline {6.5}Quy tắc nghiệp vụ và ràng buộc hệ thống}{37}{subsection.171}%
+\contentsline {subsubsection}{\numberline {6.5.1}Server-authoritative state}{37}{subsubsection.172}%
+\contentsline {subsubsection}{\numberline {6.5.2}Idempotency và retry}{37}{subsubsection.173}%
+\contentsline {subsubsection}{\numberline {6.5.3}Nhất quán bất đồng bộ}{37}{subsubsection.174}%
+\contentsline {subsubsection}{\numberline {6.5.4}Tương thích cấu hình}{37}{subsubsection.175}%
+\contentsline {subsection}{\numberline {6.6}Phân tích dữ liệu ở mức logic}{38}{subsection.176}%
+\contentsline {subsubsection}{\numberline {6.6.1}Dữ liệu tiến trình}{38}{subsubsection.177}%
+\contentsline {subsubsection}{\numberline {6.6.2}Thực thể lõi theo luồng hiện tại}{38}{subsubsection.178}%
+\contentsline {subsubsection}{\numberline {6.6.3}Quan hệ dữ liệu quan trọng}{38}{subsubsection.179}%
+\contentsline {subsection}{\numberline {6.7}Tổng kết chương}{38}{subsection.180}%
+\contentsline {section}{\numberline {7}Thiết kế hệ thống}{39}{section.181}%
+\contentsline {subsection}{\numberline {7.1}Mục tiêu thiết kế}{39}{subsection.182}%
+\contentsline {subsection}{\numberline {7.2}Kiến trúc tổng thể và triển khai}{39}{subsection.183}%
+\contentsline {subsubsection}{\numberline {7.2.1}Tổng quan triển khai}{39}{subsubsection.184}%
+\contentsline {subsubsection}{\numberline {7.2.2}Nguyên tắc server-authoritative}{40}{subsubsection.186}%
+\contentsline {subsubsection}{\numberline {7.2.3}Phân tách giao tiếp: REST API vận hành}{41}{subsubsection.187}%
+\contentsline {paragraph}{REST}{41}{section*.188}%
+\contentsline {subsection}{\numberline {7.3}Thiết kế mô-đun backend}{41}{subsection.189}%
+\contentsline {subsubsection}{\numberline {7.3.1}Các thành phần dùng chung (cross-cutting)}{42}{subsubsection.191}%
+\contentsline {subsection}{\numberline {7.4}Thiết kế dữ liệu}{43}{subsection.192}%
+\contentsline {subsubsection}{\numberline {7.4.1}Nguyên tắc thiết kế dữ liệu}{43}{subsubsection.193}%
+\contentsline {subsubsection}{\numberline {7.4.2}Mô hình thực thể chính (ERD mức logic)}{43}{subsubsection.194}%
+\contentsline {subsubsection}{\numberline {7.4.3}Phân tích quan hệ và phụ thuộc thuộc tính}{44}{subsubsection.196}%
+\contentsline {paragraph}{Nhóm danh tính và phiên (USER, GAME\_PROFILE, SESSION\_RUNTIME)}{44}{section*.197}%
+\contentsline {paragraph}{Nhóm nhân vật và tiến trình (CHARACTER + stats/resources/appearance)}{44}{section*.198}%
+\contentsline {paragraph}{Nhóm inventory/equipment/skill (instance state vs config reference)}{45}{section*.199}%
+\contentsline {paragraph}{Nhóm battle/runtime linkage}{45}{section*.200}%
+\contentsline {subsubsection}{\numberline {7.4.4}Từ điển dữ liệu (Data Dictionary) ở mức collection}{46}{subsubsection.202}%
+\contentsline {paragraph}{Collection: USER}{46}{section*.203}%
+\contentsline {paragraph}{Collection: GAME\_PROFILE}{47}{section*.204}%
+\contentsline {paragraph}{Collection: SESSION\_RUNTIME}{48}{section*.205}%
+\contentsline {paragraph}{Collection: CHARACTER}{48}{section*.206}%
+\contentsline {paragraph}{Collection: INVENTORY}{49}{section*.207}%
+\contentsline {paragraph}{Collection: CHARACTER\_EQUIPMENT}{50}{section*.208}%
+\contentsline {paragraph}{Collection: CHARACTER\_SKILLS}{51}{section*.209}%
+\contentsline {paragraph}{Collection: CONFIG\_ITEM / CONFIG\_SKILL (tĩnh)}{52}{section*.210}%
+\contentsline {subsubsection}{\numberline {7.4.5}Chỉ mục (indexes) và khoá truy vấn}{53}{subsubsection.211}%
+\contentsline {subsection}{\numberline {7.5}Thiết kế hệ thống chỉ số và tăng trưởng nhân vật}{53}{subsection.212}%
+\contentsline {subsubsection}{\numberline {7.5.1}Thuộc tính nền và chỉ số suy diễn}{53}{subsubsection.213}%
+\contentsline {subsubsection}{\numberline {7.5.2}Tính toán chỉ số theo hướng data-driven}{54}{subsubsection.215}%
+\contentsline {subsection}{\numberline {7.6}Thiết kế quản trị cấu hình game (Config Pipeline)}{55}{subsection.216}%
+\contentsline {subsubsection}{\numberline {7.6.1}Luồng dữ liệu cấu hình}{55}{subsubsection.217}%
+\contentsline {subsubsection}{\numberline {7.6.2}Thiết kế Config Manager}{55}{subsubsection.222}%
+\contentsline {subsection}{\numberline {7.7}Thiết kế giao tiếp client--server}{55}{subsection.223}%
+\contentsline {subsubsection}{\numberline {7.7.1}REST API: nhóm endpoint và quy ước}{55}{subsubsection.224}%
+\contentsline {subsection}{\numberline {7.8}Thiết kế giao diện người dùng (UI/\allowbreak UX) mức tham chiếu}{56}{subsection.225}%
+\contentsline {subsubsection}{\numberline {7.8.1}Luồng UI xác thực: Login/\allowbreak Register}{57}{subsubsection.226}%
+\contentsline {subsubsection}{\numberline {7.8.2}UI lobby và điều hướng phân hệ}{58}{subsubsection.228}%
+\contentsline {subsubsection}{\numberline {7.8.3}UI quest và milestone reward}{59}{subsubsection.230}%
+\contentsline {subsubsection}{\numberline {7.8.4}UI shop và popup phần thưởng}{60}{subsubsection.232}%
+\contentsline {subsubsection}{\numberline {7.8.5}UI hero inventory, upgrade và evolve}{61}{subsubsection.234}%
+\contentsline {subsubsection}{\numberline {7.8.6}UI tutorial và onboarding}{62}{subsubsection.236}%
+\contentsline {subsubsection}{\numberline {7.8.7}UI vào trận và gameplay battle}{63}{subsubsection.238}%
+\contentsline {subsubsection}{\numberline {7.8.8}UI kết quả trận và reward}{64}{subsubsection.240}%
+\contentsline {subsection}{\numberline {7.9}Bảo mật, nhất quán và quan sát hệ thống}{64}{subsection.242}%
+\contentsline {subsubsection}{\numberline {7.9.1}Bảo mật}{64}{subsubsection.243}%
+\contentsline {subsubsection}{\numberline {7.9.2}Nhất quán dữ liệu và giao dịch nghiệp vụ}{65}{subsubsection.244}%
+\contentsline {subsubsection}{\numberline {7.9.3}Quan sát hệ thống (observability)}{65}{subsubsection.245}%
+\contentsline {subsection}{\numberline {7.10}Tổng kết chương}{65}{subsection.246}%
+\contentsline {section}{\numberline {8}Hiện thực và tích hợp hệ thống}{65}{section.247}%
+\contentsline {subsection}{\numberline {8.1}Mục tiêu chương}{65}{subsection.248}%
+\contentsline {subsection}{\numberline {8.2}Baseline triển khai hiện tại}{65}{subsection.249}%
+\contentsline {subsection}{\numberline {8.3}Hiện thực phía client (Unity)}{66}{subsection.250}%
+\contentsline {subsubsection}{\numberline {8.3.1}Tổ chức lớp giao tiếp backend}{66}{subsubsection.251}%
+\contentsline {subsubsection}{\numberline {8.3.2}Nguyên tắc đồng bộ dữ liệu}{66}{subsubsection.252}%
+\contentsline {subsection}{\numberline {8.4}Hiện thực phía backend theo contract}{67}{subsection.253}%
+\contentsline {subsubsection}{\numberline {8.4.1}Nhóm endpoint đã tích hợp}{67}{subsubsection.254}%
+\contentsline {subsubsection}{\numberline {8.4.2}Quy tắc dữ liệu quan trọng}{67}{subsubsection.255}%
+\contentsline {subsection}{\numberline {8.5}Luồng tích hợp đã kiểm chứng}{67}{subsection.256}%
+\contentsline {subsubsection}{\numberline {8.5.1}Luồng xác thực và vào lobby}{67}{subsubsection.257}%
+\contentsline {subsubsection}{\numberline {8.5.2}Luồng quest và reward}{67}{subsubsection.261}%
+\contentsline {subsubsection}{\numberline {8.5.3}Luồng battle và hậu battle}{68}{subsubsection.265}%
+\contentsline {subsubsection}{\numberline {8.5.4}Luồng level-up, tutorial và castle}{68}{subsubsection.269}%
+\contentsline {subsubsection}{\numberline {8.5.5}Luồng shop purchase và popup reward}{68}{subsubsection.270}%
+\contentsline {subsection}{\numberline {8.6}Claim va Evidence}{69}{subsection.275}%
+\contentsline {subsection}{\numberline {8.7}Các hạng mục mở rộng chưa hoàn tất}{69}{subsection.277}%
+\contentsline {subsection}{\numberline {8.8}Tổng kết chương}{69}{subsection.278}%
+\contentsline {section}{\numberline {9}Đánh giá hệ thống}{70}{section.279}%
+\contentsline {subsection}{\numberline {9.1}Mục tiêu và phương pháp đánh giá}{70}{subsection.280}%
+\contentsline {subsection}{\numberline {9.2}Bao phủ yêu cầu chức năng}{70}{subsection.281}%
+\contentsline {subsection}{\numberline {9.3}Đánh giá nhất quán dữ liệu}{70}{subsection.283}%
+\contentsline {subsubsection}{\numberline {9.3.1}Điểm đã đạt}{70}{subsubsection.284}%
+\contentsline {subsubsection}{\numberline {9.3.2}Điểm cần kiểm soát}{71}{subsubsection.285}%
+\contentsline {subsection}{\numberline {9.4}Đánh giá phi chức năng}{71}{subsection.286}%
+\contentsline {subsection}{\numberline {9.5}Rủi ro còn lại và hướng giảm thiểu}{72}{subsection.287}%
+\contentsline {subsection}{\numberline {9.6}Tổng kết chương}{72}{subsection.289}%
+\contentsline {section}{\numberline {10}Kết luận và hướng phát triển}{72}{section.290}%
+\contentsline {subsection}{\numberline {10.1}Tổng kết kết quả hiện tại}{72}{subsection.291}%
+\contentsline {subsection}{\numberline {10.2}Đóng góp}{73}{subsection.292}%
+\contentsline {subsection}{\numberline {10.3}Hạn chế hiện tại}{73}{subsection.293}%
+\contentsline {subsection}{\numberline {10.4}Hướng phát triển tiếp theo}{73}{subsection.294}%
+\contentsline {subsection}{\numberline {10.5}Kết luận}{73}{subsection.295}%
+\contentsline {section}{Phân công nhiệm vụ và đóng góp của các thành viên}{74}{section*.296}%
+\contentsline {section}{Roadmap giai đoạn tiếp theo}{75}{section*.298}%
+\contentsline {section}{Tài liệu tham khảo}{76}{table.caption.299}%

@@ -5,7 +5,7 @@ Chương này được cập nhật theo trạng thái hiện tại của \texti
 
 Hiện tại, hướng phát triển sản phẩm được quyết định chủ yếu bởi:
 \begin{itemize}
-    \item phạm vi tính năng đã triển khai thực tế (auth, \texttt{/me}, quest, battle session, tutorial sync, upgrade, castle);
+    \item phạm vi tính năng đã triển khai thực tế (auth, \texttt{/me}, quest, battle session, tutorial sync, upgrade, castle, shop);
     \item ràng buộc tích hợp client--backend và tính nhất quán dữ liệu runtime;
     \item ưu tiên kỹ thuật để giữ ổn định vận hành trước khi mở rộng content.
 \end{itemize}
@@ -34,9 +34,9 @@ Bảng \ref{tab:rw-current-fit} phản ánh mức tương đồng giữa các ng
 \hline
 SAO (Aincrad) \cite{sao-aincrad} & Thấp & Không bám theo cấu trúc leo tầng đặc thù; chỉ còn ảnh hưởng thematic về tiến trình theo mốc & Ý tưởng ban đầu \\
 \hline
-Overlord \cite{overlord-novel} & Thấp & Lớp NPC vận hành sâu chưa là trọng tâm runtime hiện tại & Ý tưởng ban đầu \\
+Overlord \cite{overlord-novel} & Thấp & Chỉ còn ảnh hưởng ở bối cảnh fantasy, không còn bám vào hệ vận hành cốt lõi & Ý tưởng ban đầu \\
 \hline
-Pick Me Up! \cite{pickmeup-webtoon} & Thấp & Gacha/\allowbreak collection chưa phải lõi vận hành của baseline hiện tại & Ý tưởng ban đầu \\
+Pick Me Up! \cite{pickmeup-webtoon} & Thấp & Chỉ còn ảnh hưởng ở nhịp progression theo mốc ngắn hạn & Ý tưởng ban đầu \\
 \hline
 Arcane Odyssey \cite{arcane-odyssey} & Thấp--Trung bình & Chỉ còn ảnh hưởng ở cảm giác combat nhanh; không sao chép loop hay cấu trúc mode & Tham khảo định hướng UX combat \\
 \hline

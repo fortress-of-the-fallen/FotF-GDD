@@ -24,17 +24,19 @@ Mục tiêu của chương này là đánh giá mức độ đáp ứng các yê
 \hline
 FR-01, FR-02 & Auth và vòng đời phiên & Register/\allowbreak login/\allowbreak refresh/\allowbreak logout đã chạy ổn định theo contract \\
 \hline
-FR-03 & Đồng bộ player state & \texttt{/me} trả đầy đủ profile, statistics, tutorial, currency, inventory, formation, quests \\
+FR-03 & Đồng bộ player state & \texttt{/me} trả các trường chính của profile, statistics, tutorial, currency, inventory, formation, quests \\
 \hline
 FR-04 & Quest sync và claim reward & Daily/\allowbreak weekly/\allowbreak achievement và trạng thái claim được cập nhật theo backend source-of-truth \\
 \hline
 FR-05, FR-06 & Battle session start/finish & \texttt{battles/start} + \texttt{battles/\{id\}/finish} trả reward, currency, statistics, tutorialProgress, questUpdates \\
 \hline
-FR-07 & Tutorial progress sync & \texttt{PATCH /me/tutorial-progress} và payload battle finish giữ tutorial flags nhất quán \\
+FR-07 & Tutorial progress sync & \texttt{PATCH /me/\allowbreak tutorial-progress} và payload battle finish giữ tutorial flags nhất quán \\
 \hline
 FR-08, FR-09 & Hero/skill progression & Luồng nâng cấp đã tích hợp API và phản ánh về UI Units theo response backend \\
 \hline
 FR-10 & Castle progression & Nâng cấp castle đi qua endpoint backend riêng, không phụ thuộc local-only \\
+\hline
+FR-11 & Shop catalog/purchase & \texttt{/shop/\allowbreak catalog} và \texttt{/shop/\allowbreak offers/\allowbreak \{offerId\}/\allowbreak purchase} chạy ổn định; reward popup hiển thị theo payload backend \\
 \hline
 \end{tabularx}
 \caption{Đối chiếu mức bao phủ FR theo trạng thái triển khai hiện tại}
@@ -46,10 +48,11 @@ FR-10 & Castle progression & Nâng cấp castle đi qua endpoint backend riêng,
 
 \subsubsection{Điểm đã đạt}
 \begin{itemize}
-    \item Battle finish trả gói hậu trận đầy đủ, giảm sai lệch giữa battle scene và lobby state.
+    \item Battle finish trả gói hậu trận ở mức cần thiết, giảm sai lệch giữa battle scene và lobby state.
     \item Quest progress/reward claim hiển thị theo dữ liệu backend, không chốt theo suy diễn local.
     \item Tutorial flags được đồng bộ theo cả luồng patch riêng và payload hậu battle.
     \item Castle upgrade đã có backend source-of-truth nên ổn định hơn khi đổi scene hoặc reload.
+    \item Shop catalog/purchase đồng bộ currency và reward theo response backend; popup nhận thưởng lấy trực tiếp từ payload purchase.
 \end{itemize}
 
 \subsubsection{Điểm cần kiểm soát}
@@ -64,7 +67,8 @@ FR-10 & Castle progression & Nâng cấp castle đi qua endpoint backend riêng,
 
 \begin{itemize}
     \item \textbf{NFR-01, NFR-02}: vòng đời token và ranh giới server-authoritative đang bám đúng baseline.
-    \item \textbf{NFR-03, NFR-04}: đã có idempotency contract cho thao tác nhạy cảm; còn cần siết thêm xử lý stale response ở một số nhánh UI.
+    \item \textbf{NFR-03, NFR-04}: đã có idempotency contract cho thao tác nhạy cảm
+    (battle/\allowbreak claim/\allowbreak shop/\allowbreak upgrade); còn cần siết thêm xử lý stale response ở một số nhánh UI.
     \item \textbf{NFR-05}: log runtime hiện đủ cho trace luồng chính; nên tăng metric dashboard trước production scale.
     \item \textbf{NFR-06, NFR-07}: cấu trúc APIManager + UI layer giúp tách luồng rõ; trạng thái loading/error đã được thể hiện trong các màn chính.
     \item \textbf{NFR-08}: configVersion đã đi cùng luồng battle/config manifest để giảm lệch cấu hình.
@@ -97,4 +101,4 @@ Thiếu benchmark tải & Trung bình & Chưa có bộ số liệu tải định
 \subsection{Tổng kết chương}
 \label{subsec:eval-summary}
 
-Kết quả đánh giá cho thấy hệ thống đã đáp ứng đầy đủ baseline implemented-only của Chương~\ref{sec:requirements}, đặc biệt ở các luồng auth, player state, quest, battle, tutorial sync, upgrade và castle progression. Các rủi ro còn lại chủ yếu thuộc nhóm đồng bộ bất đồng bộ và vận hành khi mở rộng tải.
+Kết quả đánh giá cho thấy hệ thống đã đáp ứng phần lớn baseline implemented-only của Chương~\ref{sec:requirements}, đặc biệt ở các luồng auth, player state, quest, battle, tutorial sync, upgrade, castle progression và shop purchase. Các rủi ro còn lại chủ yếu thuộc nhóm đồng bộ bất đồng bộ và vận hành khi mở rộng tải.

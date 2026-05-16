@@ -17,7 +17,8 @@ Các yêu cầu trong chương này chỉ bao gồm các phân hệ đã có run
     \item battle session start/finish;
     \item tutorial progress sync;
     \item nâng cấp hero/skill;
-    \item nâng cấp castle.
+    \item nâng cấp castle;
+    \item shop catalog, purchase và popup reward.
 \end{itemize}
 
 \subsubsection{Giả định}
@@ -41,7 +42,7 @@ Các yêu cầu trong chương này chỉ bao gồm các phân hệ đã có run
 \subsubsection{Ranh giới hệ thống}
 \begin{itemize}
     \item \textbf{Client}: UI, input, điều hướng màn hình, gọi API.
-    \item \textbf{Server}: auth, session, battle result, quest, tutorial, progression, castle.
+    \item \textbf{Server}: auth, session, battle result, quest, tutorial, progression, castle, shop.
     \item \textbf{Data layer}: lưu player state, battle session, quest state, tutorial flags, progression state.
 \end{itemize}
 
@@ -58,7 +59,7 @@ Mỗi yêu cầu được mô tả theo cùng một format: \textbf{Mục tiêu 
     \item \textbf{Mục tiêu:} tạo tài khoản mới hợp lệ.
     \item \textbf{Điều kiện vào:} người chơi nhập username/password/confirmPassword/displayName hợp lệ.
     \item \textbf{Kết quả mong đợi:} backend tạo tài khoản và trả access token + refresh token + thông tin player.
-    \item \textbf{Bằng chứng triển khai:} \texttt{POST /api/v1/auth/register}.
+    \item \textbf{Bằng chứng triển khai:} \texttt{POST /api/\allowbreak v1/\allowbreak auth/\allowbreak register}.
 \end{itemize}
 
 \paragraph{FR-02 -- Đăng nhập và quản lý phiên}
@@ -66,15 +67,15 @@ Mỗi yêu cầu được mô tả theo cùng một format: \textbf{Mục tiêu 
     \item \textbf{Mục tiêu:} cho phép vào game an toàn theo vòng đời token.
     \item \textbf{Điều kiện vào:} tài khoản hợp lệ, token refresh còn hiệu lực khi cần làm mới phiên.
     \item \textbf{Kết quả mong đợi:} login nhận token; refresh đổi token mới; logout revoke refresh token.
-    \item \textbf{Bằng chứng triển khai:} \texttt{POST /api/v1/auth/login}, \texttt{/auth/refresh}, \texttt{/auth/logout}.
+    \item \textbf{Bằng chứng triển khai:} \texttt{POST /api/\allowbreak v1/\allowbreak auth/\allowbreak login}, \texttt{/auth/\allowbreak refresh}, \texttt{/auth/\allowbreak logout}.
 \end{itemize}
 
 \paragraph{FR-03 -- Đồng bộ player state}
 \begin{itemize}
     \item \textbf{Mục tiêu:} nạp trạng thái người chơi nhất quán khi vào game.
     \item \textbf{Điều kiện vào:} access token hợp lệ.
-    \item \textbf{Kết quả mong đợi:} trả đầy đủ profile, statistics, tutorialProgress, currency, inventory, formation, quests, configVersion.
-    \item \textbf{Bằng chứng triển khai:} \texttt{GET /api/v1/me}.
+    \item \textbf{Kết quả mong đợi:} trả các trường chính gồm profile, statistics, tutorialProgress, currency, inventory, formation, quests, configVersion.
+    \item \textbf{Bằng chứng triển khai:} \texttt{GET /api/\allowbreak v1/\allowbreak me}.
 \end{itemize}
 
 \paragraph{FR-04 -- Đồng bộ quest và nhận thưởng quest}
@@ -82,7 +83,7 @@ Mỗi yêu cầu được mô tả theo cùng một format: \textbf{Mục tiêu 
     \item \textbf{Mục tiêu:} theo dõi tiến độ daily/weekly/achievement và claim reward theo backend.
     \item \textbf{Điều kiện vào:} người chơi đã đăng nhập; quest tồn tại và đủ điều kiện claim.
     \item \textbf{Kết quả mong đợi:} danh sách quest/tiến độ/rewardClaimed đồng bộ đúng với backend; claim cập nhật ngay state.
-    \item \textbf{Bằng chứng triển khai:} \texttt{GET /api/v1/quests} và các endpoint claim quest/progress reward đã tích hợp trong client.
+    \item \textbf{Bằng chứng triển khai:} \texttt{GET /api/\allowbreak v1/\allowbreak quests} và các endpoint claim quest/\allowbreak progress reward đã tích hợp trong client.
 \end{itemize}
 
 \paragraph{FR-05 -- Khởi tạo battle session}
@@ -90,7 +91,7 @@ Mỗi yêu cầu được mô tả theo cùng một format: \textbf{Mục tiêu 
     \item \textbf{Mục tiêu:} tạo phiên battle hợp lệ trước khi vào trận.
     \item \textbf{Điều kiện vào:} người chơi chọn mode/formation/config version hợp lệ.
     \item \textbf{Kết quả mong đợi:} backend trả \texttt{battleId}, mode, seed, configVersion, expiresAt (và opponent data với PvP).
-    \item \textbf{Bằng chứng triển khai:} \texttt{POST /api/v1/battles/start}.
+    \item \textbf{Bằng chứng triển khai:} \texttt{POST /api/\allowbreak v1/\allowbreak battles/\allowbreak start}.
 \end{itemize}
 
 \paragraph{FR-06 -- Kết thúc battle và chốt hậu trận}
@@ -98,7 +99,7 @@ Mỗi yêu cầu được mô tả theo cùng một format: \textbf{Mục tiêu 
     \item \textbf{Mục tiêu:} chốt kết quả battle theo cơ chế server-authoritative.
     \item \textbf{Điều kiện vào:} có \texttt{battleId} hợp lệ và payload finish hợp lệ, kèm \texttt{idempotencyKey}.
     \item \textbf{Kết quả mong đợi:} backend trả reward, playerDelta, statistics, tutorialProgress, currency, questUpdates; client cập nhật state theo payload này.
-    \item \textbf{Bằng chứng triển khai:} \texttt{POST /api/v1/battles/\{battleId\}/finish}.
+    \item \textbf{Bằng chứng triển khai:} \path{POST /api/v1/battles/{battleId}/finish}.
 \end{itemize}
 
 \paragraph{FR-07 -- Đồng bộ tutorial progress}
@@ -106,7 +107,7 @@ Mỗi yêu cầu được mô tả theo cùng một format: \textbf{Mục tiêu 
     \item \textbf{Mục tiêu:} đảm bảo cờ tutorial nhất quán giữa các phiên/chuyển scene.
     \item \textbf{Điều kiện vào:} có \texttt{updates} hợp lệ và thời điểm cập nhật client.
     \item \textbf{Kết quả mong đợi:} backend xác nhận và trả tutorialProgress mới để client apply ngay.
-    \item \textbf{Bằng chứng triển khai:} \texttt{PATCH /api/v1/me/tutorial-progress}.
+    \item \textbf{Bằng chứng triển khai:} \texttt{PATCH /api/\allowbreak v1/\allowbreak me/\allowbreak tutorial-progress}.
 \end{itemize}
 
 \paragraph{FR-08 -- Nâng cấp hero}
@@ -130,7 +131,17 @@ Mỗi yêu cầu được mô tả theo cùng một format: \textbf{Mục tiêu 
     \item \textbf{Mục tiêu:} đồng bộ castle progression qua backend, không chốt local-only.
     \item \textbf{Điều kiện vào:} người chơi đủ tài nguyên và điều kiện nâng cấp.
     \item \textbf{Kết quả mong đợi:} backend trả castle state/currency mới; client cập nhật UI Upgrade Castle theo response.
-    \item \textbf{Bằng chứng triển khai:} endpoint \texttt{/api/v1/lobby/castle/upgrade} đã được tích hợp theo spec.
+    \item \textbf{Bằng chứng triển khai:} endpoint \texttt{/api/\allowbreak v1/\allowbreak lobby/\allowbreak castle/\allowbreak upgrade} đã được tích hợp theo spec.
+\end{itemize}
+
+\paragraph{FR-11 -- Mua shop offer và nhận reward}
+\begin{itemize}
+    \item \textbf{Mục tiêu:} cho phép người chơi xem catalog shop, mua offer và nhận thưởng theo rule backend.
+    \item \textbf{Điều kiện vào:} người chơi đã đăng nhập; offer khả dụng; đủ currency theo loại giá (GO/GE).
+    \item \textbf{Kết quả mong đợi:} client tải catalog từ backend, gửi purchase với idempotency key, nhận currency mới và reward để hiển thị popup.
+    \item \textbf{Bằng chứng triển khai:}\\
+    \path{GET /api/v1/shop/catalog}\\
+    \path{POST /api/v1/shop/offers/{offerId}/purchase}
 \end{itemize}
 
 % ===============================================================
@@ -138,12 +149,12 @@ Mỗi yêu cầu được mô tả theo cùng một format: \textbf{Mục tiêu 
 \label{subsec:req-nonfunctional}
 
 \begin{itemize}
-    \item \textbf{NFR-01 -- Security:} mật khẩu phải lưu dạng hash; access/refresh token có hạn dùng và hỗ trợ revoke.
-    \item \textbf{NFR-02 -- Authority boundary:} reward, currency, statistics, quest progress, tutorial flags, castle progression phải lấy theo backend response.
-    \item \textbf{NFR-03 -- Idempotency:} finish battle, claim reward, upgrade operations phải chống cấp trùng khi retry.
+    \item \textbf{NFR-01 -- Security:} mật khẩu phải lưu dạng hash; access/\allowbreak refresh token có hạn dùng và hỗ trợ revoke.
+    \item \textbf{NFR-02 -- Authority boundary:} reward, currency, statistics, quest progress, tutorial flags, castle progression và shop currency/\allowbreak reward phải lấy theo backend response.
+    \item \textbf{NFR-03 -- Idempotency:} finish battle, claim reward, shop purchase và upgrade operations phải chống cấp trùng khi retry.
     \item \textbf{NFR-04 -- Consistency:} client không được ghi đè state mới bằng response cũ trong các luồng bất đồng bộ.
-    \item \textbf{NFR-05 -- Observability:} phải có log request và log nghiệp vụ đủ để truy vết battle/quest/tutorial/upgrade.
-    \item \textbf{NFR-06 -- UX state clarity:} UI cần thể hiện rõ trạng thái loading/success/error/disabled ở các thao tác gọi API.
+    \item \textbf{NFR-05 -- Observability:} phải có log request và log nghiệp vụ đủ để truy vết battle/\allowbreak quest/\allowbreak tutorial/\allowbreak upgrade.
+    \item \textbf{NFR-06 -- UX state clarity:} UI cần thể hiện rõ trạng thái loading/\allowbreak success/\allowbreak error/\allowbreak disabled ở các thao tác gọi API.
     \item \textbf{NFR-07 -- Maintainability:} tách lớp giao tiếp API và lớp điều phối nghiệp vụ để giảm phụ thuộc chéo.
     \item \textbf{NFR-08 -- Version compatibility:} client gửi/đọc \texttt{configVersion} để đảm bảo gameplay chạy trên cấu hình hợp lệ.
 \end{itemize}
@@ -155,7 +166,7 @@ Mỗi yêu cầu được mô tả theo cùng một format: \textbf{Mục tiêu 
 \subsubsection{Phân loại dữ liệu}
 
 \paragraph{Dữ liệu động (player state)}
-Profile, statistics, tutorial progress, currency, inventory (heroes/skills), formation, quest state, battle session state, castle progression.
+Profile, statistics, tutorial progress, currency, inventory (heroes/skills), formation, quest state, battle session state, castle progression, shop state.
 
 \paragraph{Dữ liệu cấu hình}
 Manifest version và các bảng cấu hình gameplay mà backend dùng để validate/compute reward và progression.
@@ -166,7 +177,7 @@ Manifest version và các bảng cấu hình gameplay mà backend dùng để va
     \item \textbf{DR-02} -- Snapshot player state từ \texttt{/me} phải gom nhất quán profile, statistics, tutorial, currency, inventory, formation, quests.
     \item \textbf{DR-03} -- Quest state phải lưu được track daily/weekly/achievement, progress, required, rewardClaimed, progressRewards.
     \item \textbf{DR-04} -- Battle session phải lưu được \texttt{battleId}, mode, seed, expiresAt và trạng thái finish theo idempotency key.
-    \item \textbf{DR-05} -- Progression data phải phản ánh được hero/skill upgrade và castle upgrade cùng biến động currency.
+    \item \textbf{DR-05} -- Progression data phải phản ánh được hero/skill upgrade, castle upgrade, shop purchase cùng biến động currency.
     \item \textbf{DR-06} -- Các object có mốc thời gian cần trường cập nhật để giải quyết xung đột state (ví dụ: \texttt{updatedAt}, \texttt{serverTime}).
 \end{itemize}
 
@@ -175,8 +186,8 @@ Manifest version và các bảng cấu hình gameplay mà backend dùng để va
 \label{subsec:req-acceptance}
 
 \begin{itemize}
-    \item Toàn bộ FR-01 đến FR-10 có thể đối chiếu trực tiếp với endpoint hoặc luồng runtime đã chạy.
+    \item Toàn bộ FR-01 đến FR-11 có thể đối chiếu trực tiếp với endpoint hoặc luồng runtime đã chạy.
     \item Không xuất hiện yêu cầu cho tính năng chưa có bằng chứng runtime/API trong bản hiện tại.
     \item NFR-01 đến NFR-08 phản ánh đúng mô hình server-authoritative và các ràng buộc nhất quán dữ liệu đang áp dụng.
-    \item Dữ liệu yêu cầu ở DR-01 đến DR-06 đủ để truy vết các luồng auth/\allowbreak quest/\allowbreak battle/\allowbreak tutorial/\allowbreak upgrade/\allowbreak castle.
+    \item Dữ liệu yêu cầu ở DR-01 đến DR-06 đủ để truy vết các luồng auth/\allowbreak quest/\allowbreak battle/\allowbreak tutorial/\allowbreak upgrade/\allowbreak castle/\allowbreak shop.
 \end{itemize}

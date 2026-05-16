@@ -1,0 +1,3699 @@
+         ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH
+               TRƯỜNG ĐẠI HỌC BÁCH KHOA
+     KHOA KHOA HỌC VÀ KỸ THUẬT MÁY TÍNH
+
+
+
+
+                  ĐỒ ÁN TỐT NGHIỆP
+                          BÁO CÁO
+
+
+ PHÁT TRIỂN HỆ THỐNG GAME ONLINE
+NHẬP VAI HÀNH ĐỘNG NHIỀU NGƯỜI CHƠI
+               “FORTRESS OF THE FALLEN”
+
+                   Ngành: Khoa học Máy tính
+                 Học kỳ 2 năm học 2025–2026 (HK252)
+
+                     Mã đồ án: HK252-DATN-409
+
+
+  Hội đồng:      Hội đồng 4L Khoa học Máy tính
+  Đợt:           GD2 – DATN/LVTN (Đồ án tốt nghiệp/Luận văn tốt
+                 nghiệp) – HK252
+  Giảng viên     ThS. Vương Bá Thịnh
+  hướng dẫn:
+
+                   Sinh viên thực hiện   MSSV
+
+                   Trần Minh Khang       2211472
+                   Hà Thái Toàn          2213524
+
+
+                    TP. Hồ Chí Minh, năm 2026
+Lời cảm ơn
+    Trong quá trình thực hiện đồ án “Phát triển hệ thống game online nhập vai hành động
+nhiều người chơi Fortress of the Fallen”, nhóm đã nhận được sự hỗ trợ, hướng dẫn và tạo điều
+kiện từ nhiều cá nhân và tập thể. Với tinh thần trân trọng, nhóm xin gửi lời cảm ơn chân thành
+đến những người đã đồng hành và đóng góp để nhóm có thể hoàn thành đồ án cũng như báo
+cáo theo đúng mục tiêu và phạm vi đề ra.
+    Trước hết, nhóm xin bày tỏ lòng biết ơn sâu sắc đến ThS. Vương Bá Thịnh — giảng
+viên hướng dẫn trực tiếp — người đã dành nhiều thời gian theo sát tiến độ, định hướng phương
+pháp tiếp cận và liên tục góp ý trong từng giai đoạn. Từ việc chốt phạm vi bài toán, thống
+nhất mô hình client–server, tổ chức mô-đun backend theo hướng rõ ràng, cho đến việc hoàn
+thiện thiết kế dữ liệu và luồng giao tiếp REST (kèm định hướng mở rộng WebSocket), những
+nhận xét của thầy đã giúp nhóm tránh được các sai lệch phổ biến khi phát triển một hệ thống
+game online. Không chỉ hỗ trợ về mặt kỹ thuật, thầy còn góp ý cách trình bày báo cáo theo
+hướng chặt chẽ, có luận điểm và có dẫn chứng, giúp nhóm cải thiện đáng kể chất lượng nội
+dung và tính nhất quán giữa các chương.
+    Nhóm xin chân thành cảm ơn quý thầy/cô trong Khoa Khoa học và Kỹ thuật Máy
+tính đã giảng dạy và trang bị nền tảng kiến thức xuyên suốt quá trình học tập. Các học phần
+liên quan đến công nghệ phần mềm, cơ sở dữ liệu, mạng máy tính, hệ thống phân tán, cũng
+như các kỹ năng phân tích và thiết kế hệ thống đã tạo tiền đề quan trọng để nhóm có thể tiếp
+cận đề tài theo hướng có phương pháp. Bên cạnh đó, môi trường học tập của Khoa giúp nhóm
+rèn luyện tư duy kỷ luật, cách làm việc theo quy trình, và ý thức về chất lượng sản phẩm, đặc
+biệt quan trọng với những đề tài có tính tích hợp cao giữa gameplay, backend, dữ liệu và vận
+hành.
+    Nhóm cũng xin gửi lời cảm ơn đến Hội đồng chấm bảo vệ đã dành thời gian đọc, đánh
+giá và góp ý cho đồ án. Các nhận xét phản biện và gợi ý cải thiện là cơ sở để nhóm nhìn nhận
+rõ hơn những điểm còn hạn chế về kiến trúc, dữ liệu và trải nghiệm người dùng, đồng thời định
+hướng các hạng mục cần ưu tiên trong các giai đoạn phát triển tiếp theo. Nhóm xin tiếp thu
+nghiêm túc các góp ý và sẽ chủ động điều chỉnh để hoàn thiện sản phẩm ở mức tốt hơn.
+    Trong suốt quá trình triển khai, nhóm cũng nhận được nhiều hỗ trợ từ bạn bè, các anh/chị
+khóa trên và các nhóm đồ án khác thông qua việc trao đổi kinh nghiệm và chia sẻ tài liệu
+tham khảo. Những trao đổi về cách tổ chức mã nguồn, cách quản lý tài nguyên (asset), cách
+thiết kế cấu hình theo hướng data-driven, cũng như các lưu ý khi kiểm thử luồng nghiệp vụ và
+xử lý lỗi thực tế đã giúp nhóm rút ngắn đáng kể thời gian thử–sai. Đây là nguồn tham khảo
+hữu ích để nhóm cân bằng giữa mục tiêu kỹ thuật và giới hạn thời gian của một đồ án học
+thuật.
+    Cuối cùng, nhóm xin gửi lời cảm ơn sâu sắc đến gia đình đã luôn động viên, tạo điều kiện
+và hỗ trợ tinh thần để nhóm có thể tập trung thực hiện đồ án trong giai đoạn cao điểm. Sự
+cảm thông và đồng hành của gia đình là động lực quan trọng để nhóm duy trì kỷ luật làm việc,
+hoàn thành các mốc tiến độ và vượt qua áp lực về thời gian.
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page i/81
+   Nhóm ý thức rằng, dù đã nỗ lực hoàn thiện trong phạm vi cho phép, báo cáo và sản phẩm
+hiện thực vẫn có thể còn thiếu sót do giới hạn nguồn lực và thời lượng thực hiện. Nhóm kính
+mong tiếp tục nhận được sự góp ý từ quý thầy/cô để có thể hoàn thiện hơn trong các bước
+phát triển kế tiếp. Nhóm xin trân trọng cảm ơn.
+
+
+
+                                                               TP. Hồ Chí Minh, năm 2026
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                  Page ii/81
+Lời cam đoan
+    Chúng tôi xin cam đoan rằng báo cáo đồ án “Phát triển hệ thống game online nhập vai
+hành động nhiều người chơi Fortress of the Fallen” là kết quả của quá trình nghiên cứu, phân
+tích, thiết kế và hiện thực do nhóm tự thực hiện dưới sự hướng dẫn của giảng viên hướng dẫn.
+Toàn bộ nội dung được trình bày trong báo cáo phản ánh trung thực các công việc mà nhóm
+đã thực hiện trong phạm vi đồ án, bao gồm việc xác định mục tiêu và phạm vi hệ thống, phân
+tích yêu cầu, thiết kế kiến trúc tổng thể client–server, thiết kế mô-đun backend, thiết kế dữ
+liệu và giao tiếp, cũng như mô tả hiện thực, kiểm thử và đánh giá kết quả.
+    Chúng tôi cam kết rằng các phần nội dung mang tính tham khảo, kế thừa hoặc tổng hợp
+từ các nguồn tài liệu bên ngoài (sách, bài báo, tài liệu kỹ thuật, tài liệu hướng dẫn, hình minh
+hoạ tham khảo, và các nguồn công khai khác) đều được trích dẫn hoặc ghi nguồn phù hợp theo
+quy định của báo cáo. Các ý tưởng và cách tiếp cận được tham khảo chỉ đóng vai trò làm cơ
+sở lý thuyết hoặc định hướng triển khai, còn việc lựa chọn giải pháp, điều chỉnh theo phạm vi
+đề tài, tổ chức cấu trúc hệ thống, thiết kế dữ liệu, quy ước API, và hiện thực các chức năng
+cụ thể là do nhóm tự xây dựng. Chúng tôi không sao chép nguyên văn hoặc sử dụng sản phẩm
+nghiên cứu/hiện thực của bất kỳ cá nhân hay tổ chức nào như là kết quả của nhóm khi chưa
+được ghi nhận nguồn trích dẫn đúng quy định.
+    Chúng tôi cũng cam kết rằng các số liệu, bảng biểu, sơ đồ, hình ảnh và nội dung mô tả
+trong báo cáo được sử dụng nhằm mục đích học thuật và phục vụ việc trình bày kết quả nghiên
+cứu. Những nội dung này được thể hiện theo đúng hiểu biết và kết quả thực tế của nhóm trong
+quá trình thực hiện. Các đánh giá về mức độ hoàn thiện, ưu điểm, hạn chế và hướng phát triển
+tiếp theo được trình bày khách quan theo phạm vi đã triển khai; nhóm không cố tình làm sai
+lệch kết quả, không thổi phồng năng lực hệ thống, và không đưa ra những nhận định vượt quá
+bằng chứng/khả năng kiểm chứng trong đồ án.
+    Chúng tôi hiểu rằng tính trung thực và chuẩn mực học thuật là yêu cầu bắt buộc đối với
+một báo cáo đồ án. Do đó, chúng tôi xin hoàn toàn chịu trách nhiệm trước Khoa và Trường về
+nội dung của báo cáo này. Trong trường hợp phát hiện có sai sót liên quan đến trích dẫn, bản
+quyền hoặc tính chính xác của thông tin, nhóm cam kết sẽ nghiêm túc tiếp thu, chỉnh sửa và
+bổ sung theo yêu cầu của giảng viên hướng dẫn và Hội đồng, đồng thời chịu mọi hình thức xử
+lý (nếu có) theo quy định hiện hành.
+    Bằng lời cam đoan này, chúng tôi xác nhận rằng các nội dung trong báo cáo là trung thực,
+có nguồn gốc rõ ràng và được thực hiện đúng tinh thần học thuật.
+
+
+
+                                                                  TP. Hồ Chí Minh, năm 2026
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                      Page iii/81
+Tóm tắt
+    Đồ án tập trung phát triển một hệ thống game online nhập vai hành động nhiều người chơi
+có tên Fortress of the Fallen. Mục tiêu của đề tài là xây dựng nền tảng client–server có khả
+năng vận hành ổn định cho các chức năng cốt lõi: xác thực người dùng, quản lý profile/nhân
+vật, quản lý túi đồ và trang bị, hệ thống kỹ năng, lưu trữ tiến trình người chơi và các mô-đun
+gameplay mở rộng như đảo cá nhân, NPC và gacha.
+    Hệ thống được tổ chức theo mô hình server-authoritative nhằm đảm bảo tính nhất quán dữ
+liệu và giảm rủi ro gian lận. Client (Unity) giao tiếp với backend (NestJS) chủ yếu qua REST
+cho các tác vụ meta và luồng gameplay hiện tại (đăng nhập, tải dữ liệu, quản lý nhân vật,
+quest, battle, reward, progression). Kênh WebSocket được giữ ở mức thiết kế mở rộng cho các
+chế độ realtime sâu hơn trong giai đoạn tiếp theo. Cơ sở dữ liệu MongoDB lưu trữ dữ liệu tiến
+trình, trong khi dữ liệu cấu hình gameplay được quản trị theo hướng data-driven thông qua
+quy trình: soạn thảo trên Google Sheets, xuất TSV, import vào database và nạp vào Config
+Manager khi hệ thống khởi động.
+    Kết quả đồ án là một kiến trúc mô-đun rõ ràng, có khả năng mở rộng theo từng phân hệ
+và hỗ trợ kiểm thử tích hợp dựa trên các luồng nghiệp vụ chính.
+
+Từ khóa: game online, Action RPG, client–server, server-authoritative, NestJS, MongoDB,
+REST API, data-driven configuration.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page iv/81
+Danh mục thuật ngữ
+Bảng dưới đây liệt kê các thuật ngữ và viết tắt thường được sử dụng trong báo cáo, đặc biệt
+liên quan tới phát triển game online, kiến trúc client–server, hệ thống AI NPC và cơ sở dữ liệu.
+Các thuật ngữ này sẽ được dùng xuyên suốt các chương sau.
+
+   Thuật ngữ               Tên đầy đủ            Giải thích
+   Nhóm thuật ngữ về game và gameplay
+   RPG                     Role-Playing Game     Game nhập vai, trong đó người chơi điều
+                                                 khiển một hoặc nhiều nhân vật, phát triển
+                                                 sức mạnh thông qua hệ thống level, chỉ số,
+                                                 kỹ năng, trang bị và cốt truyện.
+   Action RPG              Action Role-Playing   Game nhập vai hành động, chiến đấu diễn
+                           Game                  ra theo thời gian thực (real-time), người
+                                                 chơi điều khiển trực tiếp nhân vật (tấn
+                                                 công, né, dùng kỹ năng) thay vì theo lượt
+                                                 (turn-based).
+   PvP                     Player vs Player      Chế độ người chơi chiến đấu trực tiếp với
+                                                 người chơi khác. Yêu cầu đồng bộ trạng
+                                                 thái nhanh, cơ chế xử lý độ trễ và chống
+                                                 gian lận mạnh.
+   PvE                     Player vs             Chế độ người chơi đối đầu với quái, boss
+                           Environment           hoặc môi trường do hệ thống điều khiển.
+                                                 Trong Fortress of the Fallen, phần lớn nội
+                                                 dung dungeon, tháp, đảo cá nhân ban đầu
+                                                 thiên về PvE.
+   Boss                    Boss                  Kẻ địch đặc biệt có chỉ số cao, cơ chế tấn
+                                                 công phức tạp, thường là trọng tâm của
+                                                 một dungeon hoặc tầng tháp.
+   Dungeon                 Dungeon               Khu vực (thường là instance riêng) tập
+                                                 trung chiến đấu, vượt thử thách. Trong đề
+                                                 tài, dungeon có thể là các tầng Tinh Hà
+                                                 Trung Tâm hoặc các khu vực phụ.
+   Hitbox                  Hitbox                Vùng hình học trong game đại diện cho
+                                                 phạm vi đòn tấn công có hiệu lực.
+
+                                                                         (còn tiếp trang sau)
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                       Page v/81
+   Thuật ngữ               Tên đầy đủ               Giải thích
+   Hurtbox                 Hurtbox                  Vùng hình học đại diện cho khu vực trên
+                                                    nhân vật có thể nhận sát thương.
+   Cooldown (CD)           Cooldown                 Thời gian chờ sau khi sử dụng kỹ năng
+                                                    trước khi kỹ năng đó có thể được sử dụng
+                                                    lại.
+   Animation               Animation                Chuỗi hình ảnh mô phỏng chuyển động
+                                                    trong game.
+   Nhóm thuật ngữ về multiplayer và networking
+   Multiplayer             Multiplayer              Hình thức chơi nhiều người trong cùng một
+                                                    thế giới game.
+   Real-time               Real-time                Hệ thống xử lý và phản hồi gần như ngay
+                                                    lập tức theo input người chơi.
+   Latency                 Network Latency          Độ trễ mạng giữa client và server, thường
+                                                    đo bằng mili-giây (ms).
+   Tick rate               Server Tick Rate         Số lần server cập nhật trạng thái game
+                                                    trong một giây.
+   Snapshot                State Snapshot           Bản chụp trạng thái game tại một thời
+                                                    điểm để đồng bộ client.
+   Client-side             Client-side Prediction   Client dự đoán kết quả hành động trước khi
+   Prediction                                       server phản hồi.
+   Reconciliation          Reconciliation           Client điều chỉnh trạng thái dự đoán cho
+                                                    khớp với server.
+   Server                  Server Authoritative     Server quyết định cuối cùng mọi logic game.
+   Authoritative           Model
+   WebSocket               WebSocket                Giao thức truyền thông hai chiều trên TCP
+                                                    cho thời gian thực.
+   Instance                Instance                 Phiên bản riêng của một khu vực game cho
+                                                    nhóm người chơi.
+   Zone / Shard            Zone / Shard             Phân vùng logic thế giới game để chia tải.
+   Interest                Interest Management      Chỉ gửi dữ liệu cần thiết cho mỗi client để
+   Management                                       giảm tải hệ thống.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                           Page vi/81
+Mục lục
+Lời cảm ơn                                                                                         i
+
+Lời cam đoan                                                                                     iii
+
+Tóm tắt                                                                                           iv
+
+Danh mục thuật ngữ                                                                                 v
+
+1 Giới thiệu                                                                                       1
+  1.1 Động lực . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     1
+  1.2 Mục tiêu . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     1
+  1.3 Phạm vi . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      2
+      1.3.1 Phạm vi hiện tại . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         2
+      1.3.2 Ngoài phạm vi hiện tại . . . . . . . . . . . . . . . . . . . . . . . . . . . .         3
+  1.4 Ý nghĩa của đề tài . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       3
+      1.4.1 Ý nghĩa thực tiễn . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        3
+      1.4.2 Ý nghĩa khoa học và học thuật . . . . . . . . . . . . . . . . . . . . . . .            3
+  1.5 Cấu trúc báo cáo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       4
+
+2 Kiến thức nền tảng                                                                              4
+  2.1 Kiến thức nền tảng về Action RPG và môi trường real-time . . . . . . . . . . .              5
+      2.1.1 Đặc điểm của Action RPG . . . . . . . . . . . . . . . . . . . . . . . . . .           5
+      2.1.2 Hệ thống multiplayer trong Action RPG . . . . . . . . . . . . . . . . . .             5
+  2.2 Kiến thức nền tảng về Game Design . . . . . . . . . . . . . . . . . . . . . . . .           6
+      2.2.1 Core Loop và Meta Loop . . . . . . . . . . . . . . . . . . . . . . . . . . .          6
+      2.2.2 Progression System (Hệ thống phát triển nhân vật) . . . . . . . . . . . .             7
+      2.2.3 Combat Design (Thiết kế chiến đấu) . . . . . . . . . . . . . . . . . . . .           11
+      2.2.4 World System và Level Design . . . . . . . . . . . . . . . . . . . . . . . .         11
+      2.2.5 Hệ thống kinh tế (Game Economy) . . . . . . . . . . . . . . . . . . . . .            12
+      2.2.6 UX/UI Design trong game và định hướng phong cách Pixel Art . . . . .                 12
+      2.2.7 Balancing Fundamentals (Cân bằng game) . . . . . . . . . . . . . . . . .             12
+  2.3 Tổng kết chương . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      13
+
+3 Công nghệ sử dụng                                                                              13
+  3.1 Công nghệ phía client . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    14
+      3.1.1 Game engine: Unity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       14
+      3.1.2 Ngôn ngữ lập trình: C# . . . . . . . . . . . . . . . . . . . . . . . . . . .         14
+      3.1.3 Nguyên tắc xử lý logic ở client . . . . . . . . . . . . . . . . . . . . . . . .      14
+  3.2 Công nghệ phía server . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      15
+      3.2.1 Nền tảng runtime: Node.js . . . . . . . . . . . . . . . . . . . . . . . . . .        15
+      3.2.2 Framework: NestJS và TypeScript . . . . . . . . . . . . . . . . . . . . . .          15
+      3.2.3 Tác vụ nền (background jobs) . . . . . . . . . . . . . . . . . . . . . . . .         15
+  3.3 Công nghệ giao tiếp mạng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       15
+      3.3.1 HTTP/REST . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          15
+      3.3.2 WebSocket (định hướng mở rộng) . . . . . . . . . . . . . . . . . . . . . .           16
+  3.4 Công nghệ lưu trữ dữ liệu . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      16
+      3.4.1 MongoDB . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        16
+      3.4.2 Redis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    16
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                        Page vii/81
+          3.4.3 Object Storage (tuỳ chọn mở rộng) . . . . . . . . . . . . . . . . . . . . .          16
+    3.5   Công cụ quản trị game configuration theo hướng data-driven . . . . . . . . . . .           17
+    3.6   Công cụ hỗ trợ phát triển và tài liệu hoá . . . . . . . . . . . . . . . . . . . . . .      17
+          3.6.1 Quản lý mã nguồn và phối hợp nhóm . . . . . . . . . . . . . . . . . . . .            17
+          3.6.2 Công cụ mô hình hoá và tài liệu . . . . . . . . . . . . . . . . . . . . . . .        17
+    3.7   Tổng kết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   17
+
+4 Các công trình liên quan                                                                           18
+  4.1 Cách dùng nguồn tham khảo ở thời điểm hiện tại . . . . . . . . . . . . . . . . .               18
+  4.2 Đối chiếu nguồn cảm hứng và mức tương đồng hiện tại . . . . . . . . . . . . . .                18
+  4.3 Nguồn tham khảo có ảnh hưởng trực tiếp đến triển khai . . . . . . . . . . . . .                19
+  4.4 Kết luận chương . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          19
+
+5 Phân tích yêu cầu                                                                                  20
+  5.1 Phạm vi và giả định . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          20
+      5.1.1 Phạm vi hiện tại . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           20
+      5.1.2 Giả định . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         20
+  5.2 Tác nhân và ranh giới hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . .           20
+      5.2.1 Tác nhân . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           20
+      5.2.2 Ranh giới hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           21
+  5.3 Yêu cầu chức năng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          21
+      5.3.1 Danh sách yêu cầu chức năng hiện tại . . . . . . . . . . . . . . . . . . .               21
+  5.4 Yêu cầu phi chức năng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          23
+  5.5 Yêu cầu dữ liệu . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        24
+      5.5.1 Phân loại dữ liệu . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          24
+      5.5.2 Yêu cầu mô hình dữ liệu mức logic . . . . . . . . . . . . . . . . . . . . .              24
+  5.6 Tiêu chí chấp nhận theo trạng thái hiện tại . . . . . . . . . . . . . . . . . . . . .          24
+
+6 Phân tích hệ thống                                                                                 25
+  6.1 Tổng quan phân hệ và ranh giới trách nhiệm . . . . . . . . . . . . . . . . . . . .             25
+  6.2 Tác nhân hệ thống . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          26
+  6.3 Phân tích use case theo phạm vi hiện tại . . . . . . . . . . . . . . . . . . . . . .           26
+      6.3.1 Nhóm xác thực và phiên . . . . . . . . . . . . . . . . . . . . . . . . . . .             26
+      6.3.2 Nhóm đồng bộ trạng thái người chơi . . . . . . . . . . . . . . . . . . . .               28
+      6.3.3 Nhóm quest . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           28
+      6.3.4 Nhóm battle session . . . . . . . . . . . . . . . . . . . . . . . . . . . . .            28
+      6.3.5 Nhóm tutorial progress . . . . . . . . . . . . . . . . . . . . . . . . . . . .           28
+      6.3.6 Nhóm progression thao tác trực tiếp . . . . . . . . . . . . . . . . . . . .              29
+  6.4 Đặc tả use case trọng yếu . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          30
+      6.4.1 UC-01 – Đăng nhập và thiết lập phiên . . . . . . . . . . . . . . . . . . .               30
+      6.4.2 UC-02 – Đồng bộ player state . . . . . . . . . . . . . . . . . . . . . . . .             31
+      6.4.3 UC-03 – Đồng bộ và claim quest . . . . . . . . . . . . . . . . . . . . . .               31
+      6.4.4 UC-04 – Khởi tạo battle session . . . . . . . . . . . . . . . . . . . . . . .            33
+      6.4.5 UC-05 – Kết thúc battle và đồng bộ hậu trận . . . . . . . . . . . . . . .                34
+      6.4.6 UC-06 – Đồng bộ tutorial progress . . . . . . . . . . . . . . . . . . . . .              36
+      6.4.7 UC-07 – Nâng cấp hero và skill . . . . . . . . . . . . . . . . . . . . . . .             36
+      6.4.8 UC-08 – Nâng cấp castle . . . . . . . . . . . . . . . . . . . . . . . . . . .            36
+  6.5 Quy tắc nghiệp vụ và ràng buộc hệ thống . . . . . . . . . . . . . . . . . . . . .              37
+      6.5.1 Server-authoritative state . . . . . . . . . . . . . . . . . . . . . . . . . .           37
+      6.5.2 Idempotency và retry . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           37
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                           Page viii/81
+          6.5.3 Nhất quán bất đồng bộ . . . . . . . . . . . . . . . . . . . . . . . . . . . .      37
+          6.5.4 Tương thích cấu hình . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     37
+    6.6   Phân tích dữ liệu ở mức logic . . . . . . . . . . . . . . . . . . . . . . . . . . . .    37
+          6.6.1 Dữ liệu tiến trình . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   37
+          6.6.2 Thực thể lõi theo luồng hiện tại . . . . . . . . . . . . . . . . . . . . . . .     38
+          6.6.3 Quan hệ dữ liệu quan trọng . . . . . . . . . . . . . . . . . . . . . . . . .       38
+    6.7   Tổng kết chương . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    38
+
+7 Thiết kế hệ thống                                                                                38
+  7.1 Mục tiêu thiết kế . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      38
+  7.2 Kiến trúc tổng thể và triển khai . . . . . . . . . . . . . . . . . . . . . . . . . . .       39
+       7.2.1 Tổng quan triển khai . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        39
+       7.2.2 Nguyên tắc server-authoritative . . . . . . . . . . . . . . . . . . . . . . .         40
+       7.2.3 Phân tách giao tiếp: HTTP và WebSocket (định hướng) . . . . . . . . .                 40
+  7.3 Thiết kế mô-đun backend . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          41
+       7.3.1 Các thành phần dùng chung (cross-cutting) . . . . . . . . . . . . . . . .             42
+  7.4 Thiết kế dữ liệu . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     42
+       7.4.1 Nguyên tắc thiết kế dữ liệu . . . . . . . . . . . . . . . . . . . . . . . . .         42
+       7.4.2 Mô hình thực thể chính (ERD mức logic) . . . . . . . . . . . . . . . . . .            43
+       7.4.3 Phân tích quan hệ và phụ thuộc thuộc tính . . . . . . . . . . . . . . . . .           43
+       7.4.4 Từ điển dữ liệu (Data Dictionary) ở mức collection . . . . . . . . . . . .            46
+       7.4.5 Chỉ mục (indexes) và khoá truy vấn . . . . . . . . . . . . . . . . . . . . .          57
+  7.5 Thiết kế hệ thống chỉ số và tăng trưởng nhân vật . . . . . . . . . . . . . . . . .           58
+       7.5.1 Thuộc tính nền và chỉ số suy diễn . . . . . . . . . . . . . . . . . . . . . .         58
+       7.5.2 Tính toán chỉ số theo hướng data-driven . . . . . . . . . . . . . . . . . .           58
+  7.6 Thiết kế quản trị cấu hình game (Config Pipeline) . . . . . . . . . . . . . . . . .          59
+       7.6.1 Luồng dữ liệu cấu hình . . . . . . . . . . . . . . . . . . . . . . . . . . . .        59
+       7.6.2 Thiết kế Config Manager . . . . . . . . . . . . . . . . . . . . . . . . . . .         59
+  7.7 Thiết kế giao tiếp client–server . . . . . . . . . . . . . . . . . . . . . . . . . . . .     60
+       7.7.1 REST API: nhóm endpoint và quy ước . . . . . . . . . . . . . . . . . . .              60
+       7.7.2 WebSocket (định hướng): định dạng message và vòng đời phiên . . . . .                 60
+  7.8 Thiết kế giao diện người dùng (UI/UX) mức tham chiếu . . . . . . . . . . . . .               61
+       7.8.1 Luồng UI xác thực: Login/Register . . . . . . . . . . . . . . . . . . . . .           61
+       7.8.2 UI lobby và điều hướng phân hệ . . . . . . . . . . . . . . . . . . . . . . .          62
+       7.8.3 UI quest và milestone reward . . . . . . . . . . . . . . . . . . . . . . . .          63
+       7.8.4 UI hero inventory, upgrade và evolve . . . . . . . . . . . . . . . . . . . .          64
+       7.8.5 UI tutorial và onboarding . . . . . . . . . . . . . . . . . . . . . . . . . .         65
+       7.8.6 UI vào trận và gameplay battle . . . . . . . . . . . . . . . . . . . . . . .          66
+       7.8.7 UI kết quả trận và reward . . . . . . . . . . . . . . . . . . . . . . . . . .         67
+  7.9 Thiết kế vòng lặp real-time cho combat/instance . . . . . . . . . . . . . . . . . .          67
+       7.9.1 Mô hình instance/room . . . . . . . . . . . . . . . . . . . . . . . . . . . .         67
+       7.9.2 Tick loop và phát snapshot . . . . . . . . . . . . . . . . . . . . . . . . .          67
+  7.10 Thiết kế phân hệ Administration . . . . . . . . . . . . . . . . . . . . . . . . . .         68
+  7.11 Bảo mật, nhất quán và quan sát hệ thống . . . . . . . . . . . . . . . . . . . . .           68
+       7.11.1 Bảo mật . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      68
+       7.11.2 Nhất quán dữ liệu và giao dịch nghiệp vụ . . . . . . . . . . . . . . . . . .         69
+       7.11.3 Quan sát hệ thống (observability) . . . . . . . . . . . . . . . . . . . . . .        69
+  7.12 Tổng kết chương . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       69
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                          Page ix/81
+8 Hiện thực và tích hợp hệ thống                                                                   69
+  8.1 Mục tiêu chương . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        69
+  8.2 Baseline triển khai hiện tại . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     70
+  8.3 Hiện thực phía client (Unity) . . . . . . . . . . . . . . . . . . . . . . . . . . . .        70
+      8.3.1 Tổ chức lớp giao tiếp backend . . . . . . . . . . . . . . . . . . . . . . . .          70
+      8.3.2 Nguyên tắc đồng bộ dữ liệu . . . . . . . . . . . . . . . . . . . . . . . . .           70
+  8.4 Hiện thực phía backend theo contract . . . . . . . . . . . . . . . . . . . . . . . .         71
+      8.4.1 Nhóm endpoint đã tích hợp . . . . . . . . . . . . . . . . . . . . . . . . .            71
+      8.4.2 Quy tắc dữ liệu quan trọng . . . . . . . . . . . . . . . . . . . . . . . . .           71
+  8.5 Luồng tích hợp đã kiểm chứng . . . . . . . . . . . . . . . . . . . . . . . . . . . .         71
+      8.5.1 Luồng xác thực và vào lobby . . . . . . . . . . . . . . . . . . . . . . . . .          71
+      8.5.2 Luồng quest và reward . . . . . . . . . . . . . . . . . . . . . . . . . . . .          71
+      8.5.3 Luồng battle và hậu battle . . . . . . . . . . . . . . . . . . . . . . . . . .         72
+      8.5.4 Luồng level-up, tutorial và castle . . . . . . . . . . . . . . . . . . . . . .         72
+  8.6 Claim va Evidence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        72
+  8.7 Các hạng mục mở rộng chưa hoàn tất . . . . . . . . . . . . . . . . . . . . . . . .           73
+  8.8 Tổng kết chương . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        73
+
+9 Đánh giá hệ thống                                                                                73
+  9.1 Mục tiêu và phương pháp đánh giá . . . . . . . . . . . . . . . . . . . . . . . . .           73
+  9.2 Bao phủ yêu cầu chức năng . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          74
+  9.3 Đánh giá nhất quán dữ liệu . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         74
+      9.3.1 Điểm đã đạt . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        74
+      9.3.2 Điểm cần kiểm soát . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         74
+  9.4 Đánh giá phi chức năng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         74
+  9.5 Rủi ro còn lại và hướng giảm thiểu . . . . . . . . . . . . . . . . . . . . . . . . .         75
+  9.6 Tổng kết chương . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        75
+
+10 Kết luận và hướng phát triển                                                                    75
+   10.1 Tổng kết kết quả hiện tại . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    75
+   10.2 Đóng góp . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     76
+   10.3 Hạn chế hiện tại . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   76
+   10.4 Hướng phát triển tiếp theo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     76
+   10.5 Kết luận . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   76
+
+Phân công nhiệm vụ và đóng góp của các thành viên                                                  77
+
+Roadmap giai đoạn tiếp theo                                                                        79
+
+Tài liệu tham khảo                                                                                 80
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                           Page x/81
+Danh sách hình vẽ
+    1     Ví dụ mô hình hoá Core Loop trong Action RPG . . . . . . . . . . . . . . . . .           7
+    2     Mô hình hoá thuộc tính nền, chỉ số suy diễn và nhóm trait đặc biệt . . . . . . .         8
+    3     Use case cho phân hệ xác thực và phiên . . . . . . . . . . . . . . . . . . . . . . .    26
+    4     Activity flow cho phân hệ xác thực . . . . . . . . . . . . . . . . . . . . . . . . .    27
+    5     Use case cho phân hệ battle session . . . . . . . . . . . . . . . . . . . . . . . . .   28
+    6     Use case cho phân hệ progression người chơi . . . . . . . . . . . . . . . . . . . .     29
+    7     Use case cho phân hệ character và formation . . . . . . . . . . . . . . . . . . . .     30
+    8     Sequence đăng nhập và thiết lập phiên . . . . . . . . . . . . . . . . . . . . . . .     31
+    9     Sequence làm mới access token . . . . . . . . . . . . . . . . . . . . . . . . . . . .   31
+    10    Sequence đồng bộ và claim quest . . . . . . . . . . . . . . . . . . . . . . . . . .     32
+    11    Activity flow cho luồng claim quest . . . . . . . . . . . . . . . . . . . . . . . . .   33
+    12    Sequence khởi tạo và kết thúc battle session . . . . . . . . . . . . . . . . . . . .    34
+    13    Activity flow cho vòng đời battle session . . . . . . . . . . . . . . . . . . . . . .   35
+    14    Sơ đồ triển khai tổng quan hệ thống (bản cập nhật) . . . . . . . . . . . . . . . .      39
+    15    Bộ sơ đồ ERD mức logic theo phân hệ (trình bày bằng hình) . . . . . . . . . . .         43
+    16    Mô hình thuộc tính nền và chỉ số suy diễn . . . . . . . . . . . . . . . . . . . . .     58
+    17    Luồng UI xác thực và tải dữ liệu ban đầu . . . . . . . . . . . . . . . . . . . . .      61
+    18    UI lobby, nâng cấp castle và leaderboard . . . . . . . . . . . . . . . . . . . . . .    62
+    19    UI nhiệm vụ ngày, tuần và thành tựu . . . . . . . . . . . . . . . . . . . . . . . .     63
+    20    UI quản lý hero/unit: danh sách, UIUnit, chi tiết, nâng cấp và tiến hoá . . . . .       64
+    21    UI tutorial điều hướng người chơi mới . . . . . . . . . . . . . . . . . . . . . . . .   65
+    22    UI chuẩn bị trận và gameplay battle . . . . . . . . . . . . . . . . . . . . . . . .     66
+    23    UI kết quả trận, reward và level-up . . . . . . . . . . . . . . . . . . . . . . . . .   67
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                         Page xi/81
+Danh sách bảng
+    1     Vai trò của 6 thuộc tính nền trong thiết kế build . . . . . . . . . . . . . . . . . .    8
+    2     Ví dụ quan hệ phụ thuộc Secondary Stats từ Primary Attributes . . . . . . . . .          9
+    3     Ví dụ mốc level và phần thưởng mở slot kỹ năng . . . . . . . . . . . . . . . . .        10
+    4     Mức tương đồng hiện tại giữa nguồn cảm hứng và sản phẩm . . . . . . . . . . .           19
+    5     Tác nhân và vai trò trong phạm vi triển khai hiện tại . . . . . . . . . . . . . . .     26
+    6     Bản đồ mô-đun backend và dữ liệu liên quan . . . . . . . . . . . . . . . . . . . .      41
+    7     Tóm tắt Entity–Relation–Constraint theo nhóm ERD . . . . . . . . . . . . . . .          46
+    8     Từ điển dữ liệu – Collection USER . . . . . . . . . . . . . . . . . . . . . . . . .     47
+    9     Từ điển dữ liệu – Collection SESSION . . . . . . . . . . . . . . . . . . . . . . .      47
+    10    Từ điển dữ liệu – Collection PLAYER . . . . . . . . . . . . . . . . . . . . . . .       48
+    11    Từ điển dữ liệu – Collection PLAYER_INVENTORY_ITEM . . . . . . . . . .                  49
+    12    Từ điển dữ liệu – Collection PLAYER_FORMATION . . . . . . . . . . . . . .               49
+    13    Từ điển dữ liệu – Collection PLAYER_QUEST . . . . . . . . . . . . . . . . . .           50
+    14    Từ điển dữ liệu – Collection PLAYER_QUEST_PROGRESS_REWARD . . .                         51
+    15    Từ điển dữ liệu – Collection BATTLE_SESSION . . . . . . . . . . . . . . . . .           51
+    16    Từ điển dữ liệu – Collection REWARD_TRANSACTION . . . . . . . . . . . .                 52
+    17    Từ điển dữ liệu – Collection CHARACTER . . . . . . . . . . . . . . . . . . . .          53
+    18    Từ điển dữ liệu – Collection CHARACTER_APPEARANCE . . . . . . . . . .                   53
+    19    Từ điển dữ liệu – Collection CHARACTER_STATS . . . . . . . . . . . . . . .              54
+    20    Từ điển dữ liệu – Collection LEADERBOARD_SCORE . . . . . . . . . . . . .                55
+    21    Từ điển dữ liệu – Collection IDEMPOTENCY_RECORD . . . . . . . . . . . .                 55
+    22    Từ điển dữ liệu – Collection CONFIG . . . . . . . . . . . . . . . . . . . . . . .       56
+    23    Từ điển dữ liệu – Collection BACKUP . . . . . . . . . . . . . . . . . . . . . . .       56
+    24    Bảng traceability claim kỹ thuật và bằng chứng triển khai . . . . . . . . . . . .       72
+    25    Đối chiếu mức bao phủ FR theo trạng thái triển khai hiện tại . . . . . . . . . .        74
+    26    Rủi ro hiện tại và biện pháp giảm thiểu . . . . . . . . . . . . . . . . . . . . . . .   75
+    27    Phân công nhiệm vụ và đóng góp của các thành viên . . . . . . . . . . . . . . .         78
+    28    Roadmap sau baseline triển khai (mốc thời gian tính từ 05/2026) . . . . . . . .         79
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                         Page xii/81
+1      Giới thiệu
+1.1     Động lực
+    Trong những năm gần đây, thị trường game trực tuyến tiếp tục tăng trưởng và xu hướng
+người chơi chuyển dịch mạnh sang các sản phẩm có tính tương tác và cập nhật liên tục[1]. Đặc
+biệt, nhóm trò chơi nhập vai hành động trực tuyến (Online Action RPG) đặt ra yêu cầu cao cả
+về trải nghiệm thời gian thực (real-time) lẫn tiến trình dài hạn (meta-progression). Người chơi
+kỳ vọng hệ thống vận hành ổn định, đồng bộ trạng thái mượt mà, phản hồi nhanh và đảm bảo
+tính nhất quán khi tương tác với nhiều phân hệ gameplay trong cùng một tài khoản.
+    Để đáp ứng các kỳ vọng đó, hệ thống phía server không chỉ xử lý xác thực và lưu trữ dữ
+liệu, mà còn phải đảm nhiệm các bài toán đặc thù của game online như:
+
+    • Quản lý phiên chơi và xử lý nhiều kết nối đồng thời.
+
+    • Đồng bộ trạng thái theo mô hình phù hợp để giảm sai lệch giữa client và server, đồng
+      thời hạn chế gian lận ở mức kiến trúc[2].
+
+    • Thiết kế dữ liệu tiến trình người chơi (profile/statistics/tutorial/inventory/formation/
+      quest/battle history) sao cho có thể mở rộng và truy vết.
+
+    • Tổ chức các phân hệ nghiệp vụ cốt lõi (auth, player state, quest, battle, reward, progression,
+      admin) trong một kiến trúc nhất quán, giảm phụ thuộc chéo và thuận lợi bảo trì[3].
+
+   Ngoài ra, một thách thức quan trọng trong thiết kế game là quản trị game configuration
+(dữ liệu tĩnh) như định nghĩa vật phẩm, công trình, tham số cân bằng, bảng tỉ lệ và cấu hình
+sự kiện. Nếu cấu hình bị gắn chặt vào mã nguồn, việc điều chỉnh nội dung và cân bằng sẽ phụ
+thuộc vào chu kỳ build và phát hành. Do đó, hướng tiếp cận data-driven thường được áp dụng
+để tách cấu hình khỏi code, giúp quy trình cập nhật linh hoạt hơn và giảm rủi ro “hard-code”
+tham số[4, 5].
+   Trong bối cảnh đó, đề tài Fortress of the Fallen được triển khai theo hướng vừa thiết kế
+vừa hiện thực hệ thống client–server. Báo cáo không chỉ mô tả kiến trúc và mô hình dữ liệu,
+mà còn phản ánh các luồng đã chạy thực tế trong bản hiện tại.
+
+
+1.2     Mục tiêu
+   Mục tiêu tổng quát của đề tài là xây dựng và vận hành nền tảng hệ thống client–server
+cho trò chơi Online Action RPG Fortress of the Fallen, bao gồm kiến trúc, mô hình dữ liệu,
+luồng nghiệp vụ, hợp đồng giao tiếp và các màn hình UI trọng yếu.
+   Trong phạm vi hiện tại, đề tài tập trung vào các mục tiêu cụ thể:
+
+    • Chuẩn hoá và vận hành các phân hệ cốt lõi: Authentication, Player State, Tutorial
+      Progress, Quest, Battle Session (start/finish), Reward, Progression, và Castle Upgrade.
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                         Page 1/81
+   • Đồng bộ contract giữa Unity client và backend API cho các luồng chính: đăng nhập/đăng
+     ký/refresh/logout, tải /me, đồng bộ/claim quest, vào trận, kết trận, cập nhật tutorial
+     progress, nâng cấp hero/skill, nâng cấp castle.
+
+   • Thiết kế kiến trúc triển khai tổng thể theo mô hình client–server, bao gồm các thành phần
+     backend và hạ tầng dữ liệu; xác định cơ chế giao tiếp phù hợp cho tác vụ request–response
+     và real-time[2, 3].
+
+   • Thiết kế mô hình dữ liệu mức logic cho các thực thể chính: user, session, profile, statistics,
+     tutorial progress, inventory, formation, quest state và battle history.
+
+   • Thiết kế pipeline quản trị game configuration (tĩnh) theo hướng data-driven:
+
+         Google Sheets → TSV → Import vào DB (collections cấu hình) → Load vào Config
+                                  Manager khi khởi động.
+
+        Pipeline này chỉ áp dụng cho game configuration
+        Ví dụ: CONFIG_ITEM, CONFIG_SKILL, CONFIG_ENEMY và các bảng cấu hình mở
+        rộng, không áp dụng cho dữ liệu tiến trình người chơi.
+
+
+1.3      Phạm vi
+1.3.1    Phạm vi hiện tại
+
+   Phạm vi hiện tại bao gồm phân tích, thiết kế và triển khai vận hành cho các luồng
+gameplay/lobby cốt lõi:
+
+   • Luồng xác thực và state người chơi: đăng nhập/đăng ký/refresh token, tải player
+     state từ /me, áp dụng profile/statistics/currency/inventory/formation/tutorial progress.
+
+   • Luồng quest và reward: đồng bộ daily/weekly/achievement, claim quest, claim milestone
+     reward và cập nhật tiến trình sau battle.
+
+   • Luồng battle và hậu battle: tạo battle session, xử lý kết trận, nhận reward/exp/
+     currency/quest updates, đồng bộ lại UI lobby.
+
+   • Luồng progression và unit management: nâng cấp/evolve hero, cập nhật chỉ số và
+     tutorial step liên quan đến nâng cấp.
+
+   • Kiến trúc triển khai đang sử dụng: phân tách vai trò client và server; backend vận
+     hành theo API server mô-đun hoá và hạ tầng dữ liệu chính; các thành phần mở rộng
+     realtime sâu/multi-instance được giữ ở roadmap.
+
+   • Thiết kế kiến trúc phần mềm theo mô-đun: phân rã module theo phân hệ, xác định
+     dịch vụ dùng chung (validation, resource, RNG, inventory rules, sync/audit) nhằm giảm
+     trùng lặp và đảm bảo nhất quán nghiệp vụ.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                         Page 2/81
+   • Thiết kế dữ liệu mức logic: xây dựng mô hình dữ liệu cho tiến trình người chơi
+     (dynamic) và mô hình cho cấu hình game (static), làm rõ điểm tham chiếu giữa instance
+     gameplay và definition trong config.
+
+   • Hợp đồng giao tiếp: REST API đã dùng cho các luồng cốt lõi; WebSocket events ở
+     mức định hướng mở rộng cho đồng bộ realtime sâu hơn.
+
+   • Thiết kế pipeline cấu hình tĩnh: mô tả quy trình export/import TSV và cơ chế nạp
+     cấu hình vào Config Manager khi khởi động để phục vụ truy xuất thống nhất.
+
+1.3.2    Ngoài phạm vi hiện tại
+
+    Các nội dung sau chưa thuộc phạm vi hiện tại:
+
+   • Hoàn thiện gameplay ở mức production (độ sâu content, animation/FX hoàn chỉnh, tuning
+     cảm giác điều khiển trên nhiều thiết bị).
+
+   • Hệ PvP đầy đủ cho vận hành thực tế (matchmaking nâng cao, anti-cheat toàn diện, mùa
+     giải và phần thưởng dài hạn).
+
+   • Live-ops thương mại và cân bằng kinh tế ở quy mô lớn (event vận hành định kỳ,
+     monetization, A/B tuning).
+
+   • Benchmark tải lớn, tối ưu production và triển khai multi-region ở mức SRE/DevOps hoàn
+     chỉnh.
+
+
+1.4     Ý nghĩa của đề tài
+1.4.1    Ý nghĩa thực tiễn
+
+   Đề tài cung cấp một hệ thống client–server đã tích hợp các luồng gameplay/lobby cốt lõi cho
+game Online Action RPG, đồng thời làm rõ cách tổ chức các phân hệ và quản trị dữ liệu nhất
+quán trong sản phẩm. Đặc biệt, cơ chế quản trị game configuration theo hướng data-driven
+tạo nền tảng cho mở rộng nội dung và cân bằng ở các giai đoạn sau mà không phụ thuộc hoàn
+toàn vào chỉnh sửa mã nguồn[4, 3].
+
+1.4.2    Ý nghĩa khoa học và học thuật
+
+   Đề tài tạo môi trường để vận dụng tổng hợp kiến thức về kiến trúc phần mềm, hệ thống
+phân tán, cơ sở dữ liệu, và nguyên lý đồng bộ trạng thái trong game online. Việc mô hình hoá
+nghiệp vụ và dữ liệu ở mức logic, sau đó đối chiếu với luồng đã chạy thực tế, giúp tăng tính hệ
+thống và khả năng đánh giá rủi ro kỹ thuật[2, 3].
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 3/81
+1.5     Cấu trúc báo cáo
+    Báo cáo được tổ chức như sau:
+
+    • Chương 2 – Kiến thức nền tảng: Trình bày các khái niệm nền tảng về Action RPG
+      online, core loop/meta loop, nguyên tắc client–server và hướng tiếp cận data-driven cho
+      cấu hình[4, 5].
+
+    • Chương 3 – Công nghệ sử dụng: Giới thiệu các công nghệ đang sử dụng trong bản
+      hiện tại và các hạng mục mở rộng đã tách riêng thành roadmap[6, 7, 8, 9].
+
+    • Chương 4 – Các công trình liên quan: Tổng hợp tham khảo theo nhóm phân hệ và
+      bảng đối chiếu để rút ra các điểm áp dụng vào thiết kế.
+
+    • Chương 5 – Phân tích yêu cầu: Xác định yêu cầu chức năng, phi chức năng, dữ liệu
+      và phạm vi hiện tại của hệ thống.
+
+    • Chương 6 – Phân tích hệ thống: Phân tích actors, use case, luồng nghiệp vụ và dữ
+      liệu mức logic phục vụ thiết kế.
+
+    • Chương 7 – Thiết kế hệ thống: Trình bày kiến trúc triển khai, kiến trúc module, mô
+      hình dữ liệu và hợp đồng giao tiếp; mô tả pipeline quản trị game configuration.
+
+    • Chương 8 – Hiện thực hệ thống: Trình bày phần đã tích hợp thực tế giữa client và
+      backend, cùng các hạng mục còn lại trong backlog kỹ thuật.
+
+    • Chương 9 – Đánh giá hệ thống: Đánh giá mức độ bao phủ yêu cầu dựa trên trạng
+      thái triển khai hiện tại, tính nhất quán dữ liệu và các rủi ro còn tồn tại.
+
+    • Chương 10 – Kết luận: Tổng kết kết quả đã triển khai và định hướng phát triển cho
+      các giai đoạn tiếp theo.
+
+
+2     Kiến thức nền tảng
+   Chương này hệ thống hoá các kiến thức cơ sở phục vụ cho việc thiết kế một trò chơi Action
+RPG trong môi trường trực tuyến thời gian thực. Nội dung tập trung vào hai nhóm chính: (i)
+đặc trưng của Action RPG và các nguyên lý đồng bộ multiplayer; (ii) các khái niệm nền tảng
+của Game Design gồm vòng lặp chơi (loop), hệ thống tiến trình (progression), thiết kế chiến
+đấu, thiết kế thế giới, kinh tế trong game, UX/UI và cân bằng thông số[4, 5]. Các khái niệm
+ở chương này đóng vai trò “khung lý thuyết” để liên kết xuyên suốt sang phần phân tích yêu
+cầu (Chương 5) và phần thiết kế hệ thống (Chương 7).
+   Trong bản hiện tại của đề tài, một số cơ chế trong chương này đã được áp dụng trực tiếp
+trong runtime (xác thực, quest, battle session, reward, đồng bộ player state). Một số cơ chế
+còn lại được giữ ở mức tham chiếu thiết kế để định hướng mở rộng dài hạn (ví dụ các nhánh
+build chuyên sâu).
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                   Page 4/81
+2.1     Kiến thức nền tảng về Action RPG và môi trường real-time
+2.1.1    Đặc điểm của Action RPG
+
+   Action RPG (Action Role-Playing Game) kết hợp cơ chế nhập vai (tăng trưởng sức mạnh,
+xây dựng nhân vật) với chiến đấu thời gian thực (real-time combat). Các đặc điểm cốt lõi
+thường gặp[4, 5]:
+
+   • Điều khiển trực tiếp và phản hồi tức thời: hành vi chiến đấu (tấn công, né tránh,
+     di chuyển, dùng kỹ năng) cần phản hồi nhanh để tạo cảm giác “đã tay”.
+
+   • Chiến đấu gắn với animation: logic đòn đánh phụ thuộc vào các mốc thời gian của
+     animation (khi nào hitbox bật/tắt, khi nào có i-frame, thời gian hồi chiêu/khôi phục).
+
+   • Kết hợp kỹ năng người chơi và chỉ số nhân vật: thao tác (timing, vị trí, né đòn)
+     quyết định hiệu quả ngắn hạn; hệ thống chỉ số, trang bị và kỹ năng quyết định “tiềm
+     năng” dài hạn.
+
+   • Tính công bằng trong va chạm và sát thương: cần quy ước rõ về hitbox/hurtbox,
+     phạm vi hiệu lực và điều kiện trúng đòn nhằm giảm cảm giác “bị oan”.
+
+    Một hành động tấn công điển hình thường được chia thành ba pha[4]:
+
+   1. Startup: thời gian chuẩn bị, người chơi có thể bị ngắt hoặc bị trừng phạt nếu ra đòn sai
+      thời điểm.
+
+   2. Active: thời gian hitbox có hiệu lực, đòn có thể gây sát thương/hiệu ứng.
+
+   3. Recovery: thời gian hồi lại, tạo “cửa sổ” để đối thủ phản công.
+
+Việc xác định hợp lý độ dài ba pha giúp kiểm soát nhịp độ combat (pacing), tạo khác biệt giữa
+vũ khí/kỹ năng, và là cơ sở để cân bằng.
+
+2.1.2    Hệ thống multiplayer trong Action RPG
+
+  Với Action RPG online, bài toán kỹ thuật trung tâm là đồng bộ trạng thái trong điều kiện
+mạng không ổn định: độ trễ (latency), jitter, mất gói, chênh lệch tốc độ khung hình giữa các
+máy. Thực tế triển khai thường dựa trên mô hình server authoritative[2, 10].
+
+Mô hình client–server và tính thẩm quyền (authoritative) Trong mô hình phổ biến:
+
+   • Client thu thập input, dự đoán (prediction) ở mức hiển thị và render hình ảnh/âm thanh.
+
+   • Server giữ trạng thái “chuẩn”, xử lý các luật gameplay quan trọng (xác nhận vị trí, tính
+     sát thương, trạng thái kỹ năng, kiểm tra điều kiện) và chống gian lận ở mức hệ thống[2].
+
+Ưu điểm của server authoritative là giảm sai lệch giữa người chơi và hạn chế cheat; đánh đổi
+là cần cơ chế che giấu độ trễ để giữ cảm giác điều khiển mượt.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 5/81
+Tick-rate và vòng lặp mô phỏng Server chạy theo chu kỳ mô phỏng (tick). Ở mỗi tick,
+server có thể thực hiện: nhận input, cập nhật trạng thái, xử lý va chạm/chiến đấu, sau đó
+gửi snapshot cho client[2]. Tick-rate cao cho phản hồi tốt hơn nhưng tăng chi phí CPU/băng
+thông; tick-rate thấp tiết kiệm hơn nhưng đòi hỏi client xử lý nội suy tốt để tránh giật.
+
+Các kỹ thuật che giấu độ trễ Để gameplay cảm giác “real-time” dù có latency, các kỹ
+thuật nền tảng thường phối hợp[2, 10]:
+
+   • Snapshot interpolation: client nhận snapshot định kỳ và nội suy để hiển thị chuyển
+     động mượt.
+
+   • Client-side prediction: client tạm dự đoán kết quả dựa trên input thay vì chờ phản
+     hồi server.
+
+   • Reconciliation: khi server gửi trạng thái chuẩn, client điều chỉnh sai lệch một cách “êm”
+     để tránh giật.
+
+Các kỹ thuật này là nền tảng khi thiết kế combat có yêu cầu timing chính xác (né, dash, cast
+skill) và là tiền đề cho các quyết định ở phần thiết kế hệ thống.
+
+
+2.2     Kiến thức nền tảng về Game Design
+    Game Design mô tả cách trò chơi vận hành: người chơi làm gì, vì sao họ muốn làm điều đó,
+và trò chơi phản hồi như thế nào[4, 5]. Một Action RPG online thường được phân tích theo các
+lớp: vòng lặp chơi, tiến trình nhân vật, chiến đấu, nội dung/không gian, kinh tế phần thưởng
+và UX/UI.
+
+2.2.1    Core Loop và Meta Loop
+
+Core Loop là vòng lặp hành vi ngắn hạn lặp lại liên tục. Với Action RPG, core loop thường
+xoay quanh: (i) tham gia giao tranh; (ii) nhận phần thưởng; (iii) dùng phần thưởng để mạnh
+lên; (iv) quay lại nội dung khó hơn[4].
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 6/81
+                      Hình 1: Ví dụ mô hình hoá Core Loop trong Action RPG
+
+
+   Một core loop tốt cần dễ hiểu, có nhịp độ hợp lý và cung cấp “phản hồi thoả mãn” sau mỗi
+vòng lặp (âm thanh, hiệu ứng, tiến bộ nhìn thấy được)[5].
+
+Meta Loop là lớp động lực dài hạn (giữ chân người chơi): tăng cấp, mở khoá hệ thống, sưu
+tầm trang bị/kỹ năng, tối ưu hoá build, tham gia nội dung endgame[4]. Meta loop cần có các
+mốc rõ ràng để tạo cảm giác tiến bộ, đồng thời đủ không gian cho người chơi cá nhân hoá
+(nhiều hướng build khác nhau).
+
+2.2.2    Progression System (Hệ thống phát triển nhân vật)
+
+    Progression là “xương sống” của Action RPG: quyết định tốc độ mạnh lên, cách người
+chơi ra quyết định build và cách nội dung được mở khoá theo thời gian[4, 5]. Trong phạm vi
+kiến thức nền tảng của đề tài, hệ thống tiến trình được trình bày theo ba lớp: (i) chỉ số nền
+(attributes/stats); (ii) tăng cấp và mở slot kỹ năng; (iii) tiến trình lớp nghề nghiệp (class) và
+điều kiện mở khoá.
+
+Phân loại chỉ số: Primary vs. Secondary Một thiết kế phổ biến là chia chỉ số thành:
+
+   • Primary Attributes: người chơi phân bổ trực tiếp (ví dụ STR/DEX/CON/INT/WIS/
+     CHA).
+
+   • Secondary Stats: suy ra từ primary (HP, MP, tốc độ, chí mạng, chính xác, né tránh,
+     tấn công/phòng thủ, . . . ).
+
+Cách phân lớp này giúp hệ thống dễ mở rộng và thuận lợi cho cân bằng: thay vì chỉnh trực
+tiếp mọi thứ, có thể điều chỉnh hệ số chuyển đổi giữa primary và secondary.
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                       Page 7/81
+Hệ thống chỉ số 6 thuộc tính và quan hệ phụ thuộc Trong thiết kế tham chiếu của đề
+tài, nhân vật có 6 thuộc tính nền và các chỉ số chiến đấu suy diễn theo quan hệ phụ thuộc như
+Hình 2. Mục tiêu là đảm bảo mỗi thuộc tính đều có giá trị và hỗ trợ nhiều hướng build (tấn
+công, sống sót, cơ động, hỗ trợ).
+
+
+
+
+           Hình 2: Mô hình hoá thuộc tính nền, chỉ số suy diễn và nhóm trait đặc biệt
+
+
+                      Bảng 1: Vai trò của 6 thuộc tính nền trong thiết kế build
+
+           Thuộc tính        Ý nghĩa thiết kế
+           STR               Sức mạnh thể chất; hỗ trợ sát thương cận chiến, tăng hiệu
+                             quả các hành động thiên về “đè lực”.
+           DEX               Sự nhanh nhẹn; hỗ trợ tốc độ, độ linh hoạt (dash/dodge),
+                             chí mạng và các hướng build cơ động.
+           CON               Thể lực; tăng sống sót (HP), giảm rủi ro bị “bốc hơi”, giúp
+                             cân bằng giữa tấn công và phòng thủ.
+           INT               Trí tuệ; hỗ trợ sát thương phép/khả năng kiểm soát, tương
+                             tác với cơ chế kỹ năng và hiệu ứng.
+           WIS               Minh triết; hỗ trợ tài nguyên (MP), hồi phục/kháng hiệu
+                             ứng và các vai trò hỗ trợ.
+           CHA               Sức hút/khả năng dẫn dắt; dùng làm biến điều kiện cho mở
+                             khoá, tương tác NPC/đội nhóm và một số hướng build đặc
+                             thù.
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                         Page 8/81
+            Bảng 2: Ví dụ quan hệ phụ thuộc Secondary Stats từ Primary Attributes
+
+                  Chỉ số suy diễn                            Phụ thuộc chính
+                  HP (máu tối đa)                            CON, STR
+                  MP (năng lượng kỹ năng)                    WIS, INT
+                  PATK/DATK (tấn công vật lý)                STR, DEX, CON
+                  MATK/MDEF (tấn công/phòng thủ phép)        INT, WIS
+                  SPD (tốc độ)                               DEX
+                  CRIT (tỉ lệ chí mạng)                      DEX
+                  ACC (độ chính xác)                         DEX, INT
+                  EVA (né tránh)                             DEX, CON
+
+
+    Từ góc độ triển khai, các công thức nên được cấu hình hoá (hệ số có thể thay đổi), ví dụ:
+
+           HPmax = HP0 + a · CON + b · ST R,    M Pmax = M P0 + c · W IS + d · IN T
+
+                 P AT K = p1 · ST R + p2 · DEX + p3 · CON,   SP D = s1 · DEX
+
+Việc tách hệ số khỏi logic cho phép cân bằng mà không cần thay đổi mã nguồn, đồng thời hỗ
+trợ thử nghiệm nhiều “đường cong sức mạnh” (linear/exponential) ở giai đoạn tinh chỉnh[4].
+
+Nhóm trait đặc biệt (Special Traits) và ý nghĩa thiết kế Bên cạnh hệ 6 thuộc tính,
+thiết kế tham chiếu còn đưa vào nhóm trait đặc biệt nhằm tăng chiều sâu meta-progression:
+
+   • Karma: trục lựa chọn/định hướng hành vi, có thể ảnh hưởng điều kiện mở khoá class và
+     nội dung.
+
+   • Affinity: liên kết nguyên tố/hệ (Light/Dark/Nature/. . . ), dùng cho phân nhánh class/
+     kỹ năng và kháng.
+
+   • Luck: tăng biến thiên theo hướng tích cực (drop, tỉ lệ chí mạng, các cơ chế RNG), nhưng
+     cần giới hạn để tránh phá cân bằng.
+
+   • Resistance: sức đề kháng/kháng hiệu ứng, giảm cảm giác bị “khống chế liên hoàn” trong
+     combat.
+
+Nhóm trait này giúp hệ thống mở rộng theo hướng “điều kiện mở khoá” thay vì chỉ tăng số,
+tạo thêm mục tiêu dài hạn cho người chơi.
+
+Leveling và mở slot kỹ năng Một lựa chọn thiết kế quan trọng là level không trực tiếp
+cấp kỹ năng, mà cấp tài nguyên build (điểm cộng chỉ số và slot để trang bị kỹ năng). Cách
+tiếp cận này tạo ra khác biệt giữa:
+
+   • Học kỹ năng (thu thập từ sách, nhiệm vụ, NPC, quái rơi, . . . ).
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 9/81
+   • Trang bị kỹ năng (bị giới hạn bởi slot, buộc người chơi ra quyết định).
+
+Trong kịch bản tham chiếu mở rộng của đề tài: level tối đa 100; mỗi level cho +5 điểm chỉ số
+để phân bổ; các mốc level mở dần slot kỹ năng thường và slot kỹ năng kết hợp (combo).
+
+                      Bảng 3: Ví dụ mốc level và phần thưởng mở slot kỹ năng
+
+               Mốc          Phần thưởng tiến trình
+            10, 20, 30      Mở dần các slot kỹ năng thường (slot 1–3), giúp người chơi
+                            hình thành bộ kỹ năng cơ bản.
+                 40         Mở slot kỹ năng combo đầu tiên, bắt đầu giai đoạn “xây
+                            dựng lối chơi”.
+                 50         Mốc nội dung/boss theo tuyến truyện và nới giới hạn stat
+                            cap (định hướng power spike).
+            60, 80, 100     Mở thêm các slot combo (2–4), hướng tới các tổ hợp mạnh
+                            và “ultimate combo”.
+               70, 90       Mở thêm slot thường (slot 4–5), tăng tính linh hoạt của bộ
+                            kỹ năng.
+
+
+Kỹ năng kết hợp (Combo Skills) như cơ chế đa dạng hoá build Combo skill là kỹ
+năng hình thành từ việc kết hợp ít nhất 2 kỹ năng đã học (cơ bản hoặc theo class). Từ góc độ
+Game Design, combo skill tạo ra:
+
+   • Động lực sưu tầm kỹ năng: người chơi có lý do tìm thêm kỹ năng ngoài “meta” hiện
+     tại.
+
+   • Không gian thử nghiệm: cùng một level nhưng khác bộ kỹ năng vẫn tạo trải nghiệm
+     khác biệt.
+
+   • Đòn bẩy endgame: ở level cao, số slot combo tăng, cho phép build chuyên sâu.
+
+Tuy nhiên, combo skill cũng là rủi ro cân bằng: cần giới hạn điều kiện trang bị (slot), chi phí
+tài nguyên (MP/stamina), và ràng buộc cooldown để tránh “một combo thống trị”.
+
+Class và cơ chế mở khoá theo điều kiện Hệ class là lớp meta-progression giúp người chơi
+định hình vai trò và phong cách chơi. Một mô hình thường gặp:
+
+   • Class cung cấp kỹ năng nghề nghiệp, cơ chế chiến đấu đặc thù và nhánh thăng tiến (định
+     hình lối chơi).
+
+Trong thiết kế tham chiếu, class được phân tầng (Basic/Intermediate/Advanced/Legendary/
+Hidden) với điều kiện mở khoá dạng ngưỡng chỉ số (STR/DEX/INT/. . . ), trait đặc biệt
+(Karma/Affinity/Luck/Resistance) và thành tựu hành vi (PvP, Arena, chỉ huy NPC, . . . ).
+Cách thiết kế này biến “mở class” thành mục tiêu gameplay thay vì chỉ là lựa chọn menu, đồng
+thời cho phép hệ thống nội dung gắn với điều kiện mở khoá.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                       Page 10/81
+2.2.3    Combat Design (Thiết kế chiến đấu)
+
+    Combat là trung tâm trải nghiệm của Action RPG; mọi hệ thống tiến trình cuối cùng đều
+“đổ” vào cảm giác chiến đấu[4, 5]. Vì vậy, thiết kế combat cần đồng thời kiểm soát nhịp độ, độ
+rõ ràng và độ công bằng.
+
+Nhịp độ (Pacing) và cửa sổ rủi ro Pacing được tạo bởi tốc độ animation, thời gian
+cooldown, khoảng cách hiệu lực và mức “trừng phạt” khi người chơi mắc lỗi. Một thiết kế tốt
+thường đảm bảo:
+
+   • Có hành động nhanh (đánh thường/dash) để duy trì nhịp.
+
+   • Có hành động mạnh nhưng rủi ro (kỹ năng nặng, hồi chiêu dài) để tạo quyết định.
+
+   • Có cơ chế phòng thủ/cơ động (dodge/i-frame) nhưng bị giới hạn tài nguyên để tránh lạm
+     dụng.
+
+Tương tác giữa chỉ số và cảm giác điều khiển Khi chỉ số ảnh hưởng đến combat, cần
+tránh để “chỉ số thay thế kỹ năng người chơi”. Ví dụ:
+
+   • Tốc độ (SPD) và né tránh (EVA) nên tăng theo ngưỡng hợp lý để không biến combat
+     thành “không thể trúng”.
+
+   • Chính xác (ACC) cần có vai trò đối trọng với EVA để cân bằng PvE/PvP.
+
+   • HP/Resistance tăng sống sót nhưng cần đi kèm trade-off (mất sát thương hoặc giảm cơ
+     động).
+
+Các nguyên tắc này liên quan trực tiếp tới thiết kế power budget và TTK trong phần cân bằng.
+
+2.2.4    World System và Level Design
+
+    World/Level design xác định cấu trúc không gian và cách nội dung được phân phối: luồng
+di chuyển, mật độ giao tranh, checkpoint, nhịp nghỉ[5]. Với Action RPG online, world design
+còn liên quan tới:
+
+   • Tổ chức phiên chơi: nội dung dạng phòng (room), khu (zone) hoặc dungeon; ảnh hưởng
+     tới cách đồng bộ multiplayer.
+
+   • Điểm neo tiến trình: checkpoint và mốc nội dung để tạo cảm giác “đi được một đoạn”
+     thay vì cày vô hạn.
+
+   • Phân tầng độ khó: đảm bảo nội dung “vừa tầm” theo tiến trình, giảm cảm giác bế tắc.
+
+Các nguyên lý này thường được kết hợp với progression (mốc level, mở slot, mở class) để tạo
+ra đường cong trải nghiệm liền mạch.
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                   Page 11/81
+2.2.5    Hệ thống kinh tế (Game Economy)
+
+   Kinh tế trong game mô tả luồng tạo và tiêu thụ tài nguyên[4]. Về nguyên tắc, luôn cần đồng
+thời:
+
+   • Nguồn (sources): quà nhiệm vụ, rơi vật phẩm, phần thưởng theo phiên, sự kiện.
+
+   • Hút (sinks): nâng cấp trang bị, chế tạo, tiêu hao vật phẩm, phí sửa chữa/duy trì, các
+     cơ chế RNG.
+
+Thiết kế kinh tế tốt đảm bảo người chơi luôn có mục tiêu chi tiêu hợp lý, tránh tích luỹ vô hạn
+hoặc cạn kiệt quá nhanh.
+
+2.2.6    UX/UI Design trong game và định hướng phong cách Pixel Art
+
+   UX/UI trong game có nhiệm vụ: truyền tải trạng thái, hỗ trợ ra quyết định nhanh và tạo
+phản hồi nhất quán[5]. Với định hướng đồ hoạ pixel art, các nguyên tắc UI cần nhấn mạnh
+tính đọc được (readability) và rõ trạng thái:
+
+   • Lưới pixel và căn chỉnh: UI nên bám lưới, viền/thanh máu dùng bội số pixel để tránh
+     mờ/nhòe.
+
+   • Tương phản cao: chữ/icon cần tương phản nền đủ lớn; hạn chế gradient mịn gây giảm
+     độ sắc.
+
+   • Phân lớp thông tin: trong combat chỉ hiển thị thông tin thiết yếu (HP/MP/cooldown/
+     buff-debuff), thông tin chi tiết chuyển sang màn hình nhân vật.
+
+   • Phản hồi hành động: tấn công trúng, bị trúng, nhặt vật phẩm, nâng cấp thành công/
+     thất bại cần có phản hồi hình–âm rõ ràng, nhất quán.
+
+    Ngoài ra, một bộ UI tối thiểu cho Action RPG online thường bao gồm:
+
+   • HUD chiến đấu: HP/MP, thanh kỹ năng theo slot, trạng thái cooldown, buff/debuff.
+
+   • Màn hình nhân vật: chỉ số, phân bổ điểm, class và trait đặc biệt.
+
+   • Inventory/Equipment: quản lý slot, trang bị, vật phẩm tiêu hao.
+
+   • Menu xã hội/cơ bản: bạn bè, party (nếu có), thiết lập (âm lượng, ngôn ngữ).
+
+2.2.7    Balancing Fundamentals (Cân bằng game)
+
+  Cân bằng là quá trình điều chỉnh thông số để đảm bảo trải nghiệm hợp lý[4, 5]. Với Action
+RPG có hệ chỉ số và slot kỹ năng, các trục cân bằng thường gặp:
+
+   • Tăng trưởng tuyến tính vs. luỹ thừa: quyết định tốc độ mạnh lên theo thời gian và
+     “độ chênh” giữa người chơi.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 12/81
+    • Time-to-Kill (TTK): thời gian hạ mục tiêu; quá thấp gây “bốc hơi”, quá cao gây lê
+      thê.
+
+    • Risk–Reward: nội dung rủi ro cao phải thưởng tương xứng; nếu không sẽ bị bỏ qua.
+
+    • Power Budget: tổng sức mạnh được phân bổ qua chỉ số, trang bị, kỹ năng; cần kiểm
+      soát để combo/skill không vượt ngân sách.
+
+    Trong bối cảnh có combo skill và điều kiện mở class theo trait, cân bằng cần chú ý thêm:
+
+    • Giới hạn khả năng “stack” (xếp chồng) các lợi thế: chí mạng + tốc độ + né tránh +
+      kháng hiệu ứng.
+
+    • Đảm bảo nhiều hướng build đều có “đất diễn”: build cơ động mạnh nhưng mỏng; build
+      trâu bò sống lâu nhưng thiếu bùng nổ; build phép mạnh nhưng phụ thuộc tài nguyên.
+
+
+2.3     Tổng kết chương
+    Chương này đã trình bày các kiến thức nền tảng phục vụ thiết kế Action RPG online: đặc
+trưng real-time và đồng bộ multiplayer; các khái niệm game design như core loop, progression,
+combat, economy, UX/UI và balancing[4, 5, 2, 10]. Đồng thời, chương cũng mô hình hoá hệ chỉ
+số 6 thuộc tính, nhóm trait đặc biệt và cơ chế tiến trình thông qua mở slot kỹ năng/combo. Đây
+là cơ sở để chuyển sang phân tích yêu cầu (Chương 5) và đặc tả thiết kế hệ thống (Chương 7).
+
+
+3     Công nghệ sử dụng
+   Chương này trình bày các công nghệ và nền tảng phần mềm đang sử dụng trong đồ án
+để xây dựng trò chơi Action RPG trực tuyến. Nội dung tập trung vào vai trò của từng công
+nghệ trong kiến trúc tổng thể, các ưu điểm/hạn chế và lý do phù hợp với bối cảnh hệ thống
+game online thời gian thực[3, 2].
+   Về mặt chức năng, hệ thống có thể chia thành các lớp chính:
+
+    • Client/Game Engine: hiển thị đồ hoạ, nhận input, mô phỏng cục bộ (visual/animation),
+      UI và giao tiếp mạng.
+
+    • Backend/Application Server: xử lý nghiệp vụ game, xác thực, quản lý phiên, đồng
+      bộ trạng thái và cung cấp API.
+
+    • Data & Storage: lưu trữ lâu dài (progress người chơi), cache/pub-sub, và kho dữ liệu
+      cấu hình/tài nguyên.
+
+    • Tooling & Process: quản lý mã nguồn, quản lý tác vụ, tài liệu hoá và công cụ thiết kế.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                   Page 13/81
+3.1     Công nghệ phía client
+3.1.1    Game engine: Unity
+
+   Unity là lựa chọn phù hợp để hiện thực client trong bối cảnh đồ án nhờ hệ sinh thái hoàn
+chỉnh và tài liệu phong phú[6]. Các lý do chính:
+
+   • Pipeline đồ hoạ và nội dung: hỗ trợ sprite/animation, quản lý scene, prefab và asset
+     import giúp tăng tốc phát triển nội dung.
+
+   • UI framework: cung cấp hệ thống UI phục vụ HUD chiến đấu, inventory, menu và các
+     màn hình meta-progression.
+
+   • Khả năng mở rộng: cho phép tổ chức mã theo hướng component-based; có thể mở rộng
+     sang hướng ECS tuỳ mức độ phức tạp[3].
+
+   Trong phạm vi hiện tại, Unity là nền tảng client để triển khai UI/gameplay và kiểm chứng
+contract giao tiếp với backend; tối ưu hiệu năng production sâu vẫn là mục tiêu ở giai đoạn
+sau.
+
+3.1.2    Ngôn ngữ lập trình: C#
+
+    C# là ngôn ngữ chính khi phát triển với Unity[11]. Các đặc điểm phù hợp:
+
+   • Hỗ trợ tốt lập trình hướng đối tượng và tổ chức hệ thống gameplay theo mô-đun.
+
+   • Có thư viện tiêu chuẩn mạnh cho cấu trúc dữ liệu, toán học và xử lý bất đồng bộ ở mức
+     client.
+
+   • Tích hợp trực tiếp với API Unity để điều khiển animation, UI và xử lý input[6].
+
+3.1.3    Nguyên tắc xử lý logic ở client
+
+    Đối với game online, cần tách bạch rõ giữa:
+
+   • Client logic (hiển thị): UI, animation, hiệu ứng, nội suy chuyển động và dự đoán phản
+     hồi để giảm cảm giác trễ.
+
+   • Server logic (quyết định): các kết quả quan trọng như tính sát thương, xác nhận loot,
+     cập nhật tài nguyên và thay đổi trạng thái chính thức[2].
+
+Nguyên tắc này giúp giảm rủi ro gian lận và đảm bảo tính nhất quán khi nhiều người chơi
+tương tác.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 14/81
+3.2     Công nghệ phía server
+3.2.1    Nền tảng runtime: Node.js
+
+   Node.js phù hợp với backend game online nhờ mô hình I/O bất đồng bộ, thuận lợi khi phải
+xử lý đồng thời nhiều request và tác vụ nền[12]. Với đặc thù đồ án, Node.js hỗ trợ:
+   • Xây dựng API nhanh, dễ mở rộng theo mô-đun.
+
+   • Tích hợp tốt với hệ sinh thái thư viện cho xác thực, logging, validation và kết nối DB.
+
+3.2.2    Framework: NestJS và TypeScript
+
+   NestJS cung cấp kiến trúc rõ ràng theo hướng module + dependency injection, phù hợp
+khi hệ thống cần phân rã theo phân hệ (auth, player state, tutorial progress, quests, battles,
+inventory, config, . . . )[7]. TypeScript giúp tăng độ an toàn của mã nguồn nhờ kiểu tường minh,
+giảm lỗi trong phát triển trung hạn.
+   Các lý do lựa chọn:
+   • Tổ chức mã nguồn: module hoá tự nhiên, dễ quản lý ranh giới nghiệp vụ và tái sử dụng
+     service dùng chung.
+
+   • Hỗ trợ đa giao thức: REST là kênh đang vận hành; WebSocket gateway ở mức định
+     hướng mở rộng cho đồng bộ realtime sâu[7].
+
+   • Khả năng mở rộng: có thể bắt đầu theo kiểu monolithic-module để giảm độ phức tạp,
+     và có cơ sở để tách dịch vụ khi hệ thống tăng quy mô.
+
+3.2.3    Tác vụ nền (background jobs)
+
+    Trong game online, một số xử lý không cần chạy trực tiếp trên request realtime, ví dụ: đồng
+bộ dữ liệu định kỳ, tổng hợp log, xử lý mail hệ thống, hoặc quản lý sự kiện theo lịch. Các tác
+vụ này có thể được tách thành job worker chạy độc lập với API server để giảm tải cho luồng
+realtime, đồng thời dễ kiểm soát retry và lịch chạy.
+
+
+3.3     Công nghệ giao tiếp mạng
+3.3.1    HTTP/REST
+
+    HTTP phù hợp với các tác vụ không yêu cầu độ trễ thấp hoặc không cần kết nối hai chiều
+liên tục:
+   • Đăng ký/đăng nhập/refresh token, tải player state từ /me.
+
+   • Đồng bộ quest, tutorial progress, inventory hero upgrade/evolve.
+
+   • Khởi tạo/kết thúc battle session, nhận reward và cập nhật progression.
+
+   • Tải dữ liệu cấu hình và các thao tác quản trị/truy vấn lịch sử[7].
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 15/81
+3.3.2    WebSocket (định hướng mở rộng)
+
+    WebSocket phù hợp cho các tương tác realtime trong phiên chơi khi mở rộng:
+
+   • Cập nhật trạng thái chiến đấu, sự kiện tức thời trong instance.
+
+   • Thông báo thay đổi trạng thái (loot, revive, buff/debuff) và đồng bộ theo nhịp tick.
+
+Trong bản hiện tại, các luồng nghiệp vụ cốt lõi đang được kiểm chứng chủ yếu qua REST
+API; WebSocket chưa là kênh runtime chính thức và được giữ như lớp mở rộng cho các chế
+độ realtime sâu hơn (ví dụ đồng bộ room/PvP theo tick). Với mô hình server authoritative,
+WebSocket là kênh phù hợp để truyền nhận input/snapshot khi mở rộng[2, 10].
+
+
+3.4     Công nghệ lưu trữ dữ liệu
+3.4.1    MongoDB
+
+   MongoDB phù hợp cho dữ liệu game do đặc tính document linh hoạt, dễ biểu diễn các cấu
+trúc lồng nhau (inventory, quest tracks, formation, battle metadata) và thích nghi khi schema
+thay đổi trong quá trình phát triển[8]. Trong bối cảnh đồ án:
+
+   • Dữ liệu tiến trình (dynamic): user/session/profile/statistics/tutorial/currency/inventory/
+     formation/quests/battles cần lưu bền vững và truy vấn theo khoá định danh.
+
+   • Dữ liệu cấu hình (static): các collection cấu hình như hero/quest/rank/upgrade/
+     account-level/campaign có thể được import từ pipeline TSV và nạp vào bộ nhớ khi chạy.
+
+3.4.2    Redis
+
+    Redis được sử dụng ở mức hỗ trợ hiệu năng và phối hợp realtime theo nhu cầu triển khai[9]:
+
+   • Cache: giảm tải đọc DB cho dữ liệu truy cập thường xuyên (ví dụ session mapping, một
+     phần config hot, trạng thái online).
+
+   • Pub/Sub: chia sẻ sự kiện giữa nhiều tiến trình/instance backend khi mở rộng theo chiều
+     ngang.
+
+3.4.3    Object Storage (tuỳ chọn mở rộng)
+
+   Một số dữ liệu dạng file (asset pack, snapshot log, hoặc các tệp cấu hình đóng gói) có thể
+lưu trong object storage theo chuẩn S3-compatible. Trong phạm vi hiện tại, phần này được
+chuẩn bị ở mức kiến trúc để sẵn sàng mở rộng; chưa đặt trọng tâm vận hành production.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 16/81
+3.5     Công cụ quản trị game configuration theo hướng data-driven
+    Trong đồ án, pipeline cấu hình chỉ áp dụng cho các bảng cấu hình/thông số game
+(ví dụ: hero/quest/rank/upgrade và các hệ số cân bằng), không áp dụng cho toàn bộ dữ liệu
+tiến trình người chơi.
+    Quy trình đang áp dụng:
+   • Thiết kế bảng cấu hình bằng Google Sheets để thuận lợi nhập liệu và review.
+
+   • Export sang TSV nhằm đảm bảo format đơn giản, dễ parse và thân thiện khi version
+     control.
+
+   • Import TSV vào các collections cấu hình trong DB (tách biệt với collections progress).
+
+   • Khi khởi động hoặc khi tải game, hệ thống nạp config từ DB vào Config Manager
+     (in-memory) để truy xuất thống nhất trong runtime.
+    Lợi ích chính của cách tiếp cận data-driven:
+   • Giảm phụ thuộc vào hard-code tham số, hỗ trợ điều chỉnh cân bằng nhanh.
+
+   • Tăng khả năng kiểm soát thay đổi: TSV có thể được quản lý theo commit để truy vết
+     phiên bản cấu hình.
+
+   • Tạo tiền đề cho mở rộng nội dung và kiểm thử A/B cấu hình trong tương lai.
+
+
+3.6     Công cụ hỗ trợ phát triển và tài liệu hoá
+3.6.1    Quản lý mã nguồn và phối hợp nhóm
+
+    Git/GitHub được sử dụng để quản lý phiên bản mã nguồn và phối hợp theo pull request;
+GitHub Projects dùng để quản lý tác vụ theo bảng, gán trách nhiệm và theo dõi tiến độ[13,
+14].
+
+3.6.2    Công cụ mô hình hoá và tài liệu
+
+   Các sơ đồ use case/luồng nghiệp vụ/kiến trúc có thể được xây dựng bằng công cụ UML/
+BPMN hoặc Mermaid để đảm bảo tính nhất quán khi trình bày[15]. Báo cáo và tài liệu hệ
+thống được soạn thảo bằng LATEX nhằm đảm bảo định dạng học thuật và quản lý nội dung
+theo từng chương độc lập[16].
+
+
+3.7     Tổng kết
+    Chương này đã trình bày các công nghệ chính đang sử dụng cho đồ án: Unity và C# ở phía
+client[6, 11]; Node.js, NestJS và TypeScript ở phía server[12, 7]; MongoDB và Redis cho lớp dữ
+liệu[8, 9]; cùng các công cụ hỗ trợ phát triển và tài liệu hoá[13, 14, 16]. Ngoài ra, chương cũng
+nêu pipeline quản trị game configuration theo hướng data-driven đang dùng để vận hành
+cấu hình nhất quán giữa backend và client.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                      Page 17/81
+4     Các công trình liên quan
+   Chương này được cập nhật theo trạng thái hiện tại của Fortress of the Fallen: các nguồn
+tham khảo bên ngoài chủ yếu còn vai trò bối cảnh ý tưởng ban đầu, không còn là khuôn
+mẫu bám sát như giai đoạn định hình concept.
+   Hiện tại, hướng phát triển sản phẩm được quyết định chủ yếu bởi:
+
+    • phạm vi tính năng đã triển khai thực tế (auth, /me, quest, battle session, tutorial sync,
+      upgrade, castle);
+
+    • ràng buộc tích hợp client–backend và tính nhất quán dữ liệu runtime;
+
+    • ưu tiên kỹ thuật để giữ ổn định vận hành trước khi mở rộng content.
+
+
+4.1     Cách dùng nguồn tham khảo ở thời điểm hiện tại
+    Để tránh lệch giữa báo cáo và thực tế triển khai, các nguồn tham khảo được dùng theo 2
+lớp:
+
+    • Lớp định hướng ý tưởng (mức thấp): tham khảo thematic về loop và fantasy setting.
+
+    • Lớp quyết định triển khai (mức cao): tài liệu kỹ thuật về kiến trúc game online,
+      networking, backend và dữ liệu [5, 4, 3, 10, 2, 6, 7, 12, 8, 9].
+
+
+4.2     Đối chiếu nguồn cảm hứng và mức tương đồng hiện tại
+   Bảng 4 phản ánh mức tương đồng giữa các nguồn cảm hứng ban đầu và bản game đang
+chạy.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 18/81
+ Nguồn                    Mức        Ghi chú ở trạng thái hiện tại           Vai trò trong
+                          tương                                              báo cáo
+                          đồng
+ SAO (Aincrad)            Thấp       Không bám theo cấu trúc leo tầng        Ý tưởng ban đầu
+ [17]                                đặc thù; chỉ còn ảnh hưởng thematic
+                                     về tiến trình theo mốc
+ Overlord [18]            Thấp       Lớp NPC vận hành sâu chưa là trọng      Ý tưởng ban đầu
+                                     tâm runtime hiện tại
+ Pick Me Up! [19]         Thấp       Gacha/collection chưa phải lõi vận      Ý tưởng ban đầu
+                                     hành của baseline hiện tại
+ Arcane Odyssey           Thấp–      Chỉ còn ảnh hưởng ở cảm giác            Tham khảo định
+ [20]                     Trung      combat nhanh; không sao chép loop       hướng UX
+                          bình       hay cấu trúc mode                       combat
+ Soul Knight              Trung      Gần nhất ở loop phiên ngắn: vào         Tham khảo loop
+ Prequel [21]             bình       trận → kết trận → nhận thưởng           gameplay
+ Clash of Clans           Thấp–      Chỉ còn ảnh hưởng ở ý tưởng             Tham khảo
+ [22]                     Trung      progression dài hạn (castle upgrade),   meta-progression
+                          bình       không phải base-building đầy đủ
+
+               Bảng 4: Mức tương đồng hiện tại giữa nguồn cảm hứng và sản phẩm
+
+
+4.3     Nguồn tham khảo có ảnh hưởng trực tiếp đến triển khai
+    Khác với nhóm cảm hứng nội dung, nhóm tài liệu kỹ thuật dưới đây đang ảnh hưởng trực
+tiếp đến thiết kế và hiện thực:
+
+   • Kiến trúc hệ thống game online: phân tách client–server, authoritative state, vòng
+     lặp realtime [3, 2, 10].
+
+   • Stack triển khai: Unity/C#, Node.js/NestJS, MongoDB, Redis [6, 7, 12, 8, 9].
+
+   • Nguyên lý game design để kiểm tra tính nhất quán: loop, progression, economy
+     và UX ở mức framework tư duy [5, 4].
+
+
+4.4     Kết luận chương
+   Ở phiên bản báo cáo hiện tại, Chương 4 không còn trình bày các ref như “mẫu thiết kế”
+cho sản phẩm. Thay vào đó:
+
+   • nhóm ref cảm hứng chỉ được giữ ở mức bối cảnh lịch sử hình thành ý tưởng;
+
+   • các quyết định hệ thống hiện tại ưu tiên theo evidence triển khai thực tế và tài liệu kỹ
+     thuật.
+
+   Cách trình bày này giúp giảm mâu thuẫn giữa phần tham khảo và trạng thái game đang
+vận hành.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 19/81
+5       Phân tích yêu cầu
+    Chương này xác định yêu cầu cho hệ thống game Fortress of the Fallen theo phạm vi đã
+triển khai thực tế. Nội dung tập trung vào các luồng runtime đang hoạt động giữa Unity
+client và backend API.
+
+
+5.1     Phạm vi và giả định
+5.1.1    Phạm vi hiện tại
+
+    Các yêu cầu trong chương này chỉ bao gồm các phân hệ đã có runtime/API:
+
+    • xác thực và vòng đời phiên (register/login/refresh/logout);
+
+    • đồng bộ player state qua GET /me;
+
+    • quest sync và claim reward;
+
+    • battle session start/finish;
+
+    • tutorial progress sync;
+
+    • nâng cấp hero/skill;
+
+    • nâng cấp castle.
+
+5.1.2    Giả định
+
+    • Hệ thống vận hành theo mô hình client–server; backend là nguồn sự thật cho progression
+      và reward.
+
+    • Các thao tác nhạy cảm (finish battle, claim, upgrade) cần contract idempotency để tránh
+      cấp trùng.
+
+    • Dữ liệu hiển thị ở UI được cập nhật từ payload backend, không chốt local-only.
+
+
+5.2     Tác nhân và ranh giới hệ thống
+5.2.1    Tác nhân
+
+    • Player: người chơi thao tác qua Unity client.
+
+    • Backend services: cung cấp API và xác nhận kết quả nghiệp vụ.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 20/81
+5.2.2    Ranh giới hệ thống
+
+   • Client: UI, input, điều hướng màn hình, gọi API.
+
+   • Server: auth, session, battle result, quest, tutorial, progression, castle.
+
+   • Data layer: lưu player state, battle session, quest state, tutorial flags, progression state.
+
+
+5.3     Yêu cầu chức năng
+  Mỗi yêu cầu được mô tả theo cùng một format: Mục tiêu – Điều kiện vào – Kết quả
+mong đợi – Bằng chứng triển khai.
+
+5.3.1    Danh sách yêu cầu chức năng hiện tại
+
+FR-01 – Đăng ký tài khoản
+
+   • Mục tiêu: tạo tài khoản mới hợp lệ.
+
+   • Điều kiện vào: người chơi nhập username/password/confirmPassword/displayName hợp
+     lệ.
+
+   • Kết quả mong đợi: backend tạo tài khoản và trả access token + refresh token + thông
+     tin player.
+
+   • Bằng chứng triển khai: POST /api/v1/auth/register.
+
+FR-02 – Đăng nhập và quản lý phiên
+
+   • Mục tiêu: cho phép vào game an toàn theo vòng đời token.
+
+   • Điều kiện vào: tài khoản hợp lệ, token refresh còn hiệu lực khi cần làm mới phiên.
+
+   • Kết quả mong đợi: login nhận token; refresh đổi token mới; logout revoke refresh token.
+
+   • Bằng chứng triển khai: POST /api/v1/auth/login, /auth/refresh, /auth/logout.
+
+FR-03 – Đồng bộ player state
+
+   • Mục tiêu: nạp trạng thái người chơi nhất quán khi vào game.
+
+   • Điều kiện vào: access token hợp lệ.
+
+   • Kết quả mong đợi: trả đầy đủ profile, statistics, tutorialProgress, currency, inventory,
+     formation, quests, configVersion.
+
+   • Bằng chứng triển khai: GET /api/v1/me.
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                       Page 21/81
+FR-04 – Đồng bộ quest và nhận thưởng quest
+
+   • Mục tiêu: theo dõi tiến độ daily/weekly/achievement và claim reward theo backend.
+
+   • Điều kiện vào: người chơi đã đăng nhập; quest tồn tại và đủ điều kiện claim.
+
+   • Kết quả mong đợi: danh sách quest/tiến độ/rewardClaimed đồng bộ đúng với backend;
+     claim cập nhật ngay state.
+
+   • Bằng chứng triển khai: GET /api/v1/quests và các endpoint claim quest/progress
+     reward đã tích hợp trong client.
+
+FR-05 – Khởi tạo battle session
+
+   • Mục tiêu: tạo phiên battle hợp lệ trước khi vào trận.
+
+   • Điều kiện vào: người chơi chọn mode/formation/config version hợp lệ.
+
+   • Kết quả mong đợi: backend trả battleId, mode, seed, configVersion, expiresAt (và
+     opponent data với PvP).
+
+   • Bằng chứng triển khai: POST /api/v1/battles/start.
+
+FR-06 – Kết thúc battle và chốt hậu trận
+
+   • Mục tiêu: chốt kết quả battle theo cơ chế server-authoritative.
+
+   • Điều kiện vào: có battleId hợp lệ và payload finish hợp lệ, kèm idempotencyKey.
+
+   • Kết quả mong đợi: backend trả reward, playerDelta, statistics, tutorialProgress, currency,
+     questUpdates; client cập nhật state theo payload này.
+
+   • Bằng chứng triển khai: POST /api/v1/battles/{battleId}/finish.
+
+FR-07 – Đồng bộ tutorial progress
+
+   • Mục tiêu: đảm bảo cờ tutorial nhất quán giữa các phiên/chuyển scene.
+
+   • Điều kiện vào: có updates hợp lệ và thời điểm cập nhật client.
+
+   • Kết quả mong đợi: backend xác nhận và trả tutorialProgress mới để client apply ngay.
+
+   • Bằng chứng triển khai: PATCH /api/v1/me/tutorial-progress.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                   Page 22/81
+FR-08 – Nâng cấp hero
+
+   • Mục tiêu: cho phép tăng tiến hero theo tài nguyên và rule backend.
+
+   • Điều kiện vào: hero tồn tại, đủ currency/material theo cấu hình.
+
+   • Kết quả mong đợi: backend trả trạng thái hero/currency mới; client cập nhật UI Units
+     theo dữ liệu trả về.
+
+   • Bằng chứng triển khai: luồng upgrade hero đã tích hợp API trong runtime hiện tại.
+
+FR-09 – Nâng cấp và mua skill
+
+   • Mục tiêu: quản lý tiến trình kỹ năng theo rule backend.
+
+   • Điều kiện vào: skill hợp lệ và đủ điều kiện tài nguyên.
+
+   • Kết quả mong đợi: backend trả skill/currency cập nhật; client hiển thị đúng trạng thái
+     mới.
+
+   • Bằng chứng triển khai: luồng purchase/upgrade skill đã tích hợp API trong runtime
+     hiện tại.
+
+FR-10 – Nâng cấp castle
+
+   • Mục tiêu: đồng bộ castle progression qua backend, không chốt local-only.
+
+   • Điều kiện vào: người chơi đủ tài nguyên và điều kiện nâng cấp.
+
+   • Kết quả mong đợi: backend trả castle state/currency mới; client cập nhật UI Upgrade
+     Castle theo response.
+
+   • Bằng chứng triển khai: endpoint /api/v1/lobby/castle/upgrade đã được tích hợp
+     theo spec.
+
+
+5.4     Yêu cầu phi chức năng
+   • NFR-01 – Security: mật khẩu phải lưu dạng hash; access/refresh token có hạn dùng
+     và hỗ trợ revoke.
+
+   • NFR-02 – Authority boundary: reward, currency, statistics, quest progress, tutorial
+     flags, castle progression phải lấy theo backend response.
+
+   • NFR-03 – Idempotency: finish battle, claim reward, upgrade operations phải chống
+     cấp trùng khi retry.
+
+   • NFR-04 – Consistency: client không được ghi đè state mới bằng response cũ trong các
+     luồng bất đồng bộ.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                 Page 23/81
+   • NFR-05 – Observability: phải có log request và log nghiệp vụ đủ để truy vết battle/quest/tutorial/u
+
+   • NFR-06 – UX state clarity: UI cần thể hiện rõ trạng thái loading/success/error/disabled
+     ở các thao tác gọi API.
+
+   • NFR-07 – Maintainability: tách lớp giao tiếp API và lớp điều phối nghiệp vụ để giảm
+     phụ thuộc chéo.
+
+   • NFR-08 – Version compatibility: client gửi/đọc configVersion để đảm bảo gameplay
+     chạy trên cấu hình hợp lệ.
+
+
+5.5     Yêu cầu dữ liệu
+5.5.1    Phân loại dữ liệu
+
+Dữ liệu động (player state) Profile, statistics, tutorial progress, currency, inventory (heroes/skills),
+formation, quest state, battle session state, castle progression.
+
+Dữ liệu cấu hình Manifest version và các bảng cấu hình gameplay mà backend dùng để
+validate/compute reward và progression.
+
+5.5.2    Yêu cầu mô hình dữ liệu mức logic
+
+   • DR-01 – Mỗi account có định danh player duy nhất và trạng thái auth/session tương
+     ứng.
+
+   • DR-02 – Snapshot player state từ /me phải gom nhất quán profile, statistics, tutorial,
+     currency, inventory, formation, quests.
+
+   • DR-03 – Quest state phải lưu được track daily/weekly/achievement, progress, required,
+     rewardClaimed, progressRewards.
+
+   • DR-04 – Battle session phải lưu được battleId, mode, seed, expiresAt và trạng thái
+     finish theo idempotency key.
+
+   • DR-05 – Progression data phải phản ánh được hero/skill upgrade và castle upgrade cùng
+     biến động currency.
+
+   • DR-06 – Các object có mốc thời gian cần trường cập nhật để giải quyết xung đột state
+     (ví dụ: updatedAt, serverTime).
+
+
+5.6     Tiêu chí chấp nhận theo trạng thái hiện tại
+   • Toàn bộ FR-01 đến FR-10 có thể đối chiếu trực tiếp với endpoint hoặc luồng runtime đã
+     chạy.
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                      Page 24/81
+    • Không xuất hiện yêu cầu cho tính năng chưa có bằng chứng runtime/API trong bản hiện
+      tại.
+
+    • NFR-01 đến NFR-08 phản ánh đúng mô hình server-authoritative và các ràng buộc nhất
+      quán dữ liệu đang áp dụng.
+
+    • Dữ liệu yêu cầu ở DR-01 đến DR-06 đủ để truy vết các luồng auth/quest/battle/tutorial/
+      upgrade/castle.
+
+
+6     Phân tích hệ thống
+   Chương này phân tích hệ thống ở mức logic cho phạm vi đã triển khai thực tế, nhằm chuyển
+hoá yêu cầu ở Chương 5 thành mô tả vận hành rõ ràng cho thiết kế và kiểm thử tích hợp.
+
+
+6.1     Tổng quan phân hệ và ranh giới trách nhiệm
+    Hệ thống vận hành theo mô hình client–server:
+
+    • Client: hiển thị UI, thu thập input, gửi request và áp dụng state trả về.
+
+    • Server: xác thực, quản lý phiên, xử lý nghiệp vụ và chốt state authoritative.
+
+    Các phân hệ đang có runtime/API trong baseline:
+
+    • Auth/Session.
+
+    • Player State Snapshot (/me).
+
+    • Quest Sync/Claim.
+
+    • Battle Session Start/Finish.
+
+    • Tutorial Progress Sync.
+
+    • Hero/Skill Progression.
+
+    • Castle Progression.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 25/81
+6.2      Tác nhân hệ thống
+
+        Tác nhân                 Mô tả
+        Player                   Người chơi thao tác trên game client để đăng nhập, chơi
+                                 trận, làm quest và nâng cấp tiến trình.
+        Game Client              Ứng dụng Unity gửi HTTP request, nhận response và đồng
+                                 bộ trạng thái hiển thị.
+        Backend Server           Thành phần xử lý auth, nghiệp vụ và cập nhật dữ liệu tiến
+                                 trình theo server-authoritative.
+        Database                 Lưu trạng thái người chơi và dữ liệu phục vụ nghiệp vụ
+                                 runtime.
+
+                   Bảng 5: Tác nhân và vai trò trong phạm vi triển khai hiện tại
+
+
+6.3      Phân tích use case theo phạm vi hiện tại
+6.3.1     Nhóm xác thực và phiên
+
+   • Đăng ký tài khoản.
+
+   • Đăng nhập.
+
+   • Làm mới access token bằng refresh token.
+
+   • Đăng xuất và revoke refresh token.
+
+
+
+
+                            Hình 3: Use case cho phân hệ xác thực và phiên
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                       Page 26/81
+Khoa Khoa Học và Kỹ Thuật Máy Tính   Page 27/81
+6.3.2    Nhóm đồng bộ trạng thái người chơi
+
+   • Tải snapshot player state qua /me.
+
+   • Áp dụng profile, statistics, tutorialProgress, currency, inventory, formation, quests vào
+     state client.
+
+6.3.3    Nhóm quest
+
+   • Đồng bộ quest tracks (daily/weekly/achievement).
+
+   • Claim quest reward và progress reward theo điều kiện backend.
+
+6.3.4    Nhóm battle session
+
+   • Khởi tạo phiên battle (battleId, seed, configVersion, expiresAt).
+
+   • Kết thúc phiên battle với idempotency key.
+
+   • Đồng bộ hậu trận: reward, statistics, currency, tutorialProgress, questUpdates.
+
+
+
+
+                              Hình 5: Use case cho phân hệ battle session
+
+
+6.3.5    Nhóm tutorial progress
+
+   • Cập nhật cờ tutorial qua endpoint patch.
+
+   • Hợp nhất cờ tutorial từ nhiều nguồn response backend theo trạng thái mới nhất.
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 28/81
+6.3.6    Nhóm progression thao tác trực tiếp
+
+   • Nâng cấp hero.
+
+   • Mua và nâng cấp skill.
+
+   • Nâng cấp castle qua endpoint backend chuyên biệt.
+
+
+
+
+                         Hình 6: Use case cho phân hệ progression người chơi
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                             Page 29/81
+                         Hình 7: Use case cho phân hệ character và formation
+
+
+6.4     Đặc tả use case trọng yếu
+6.4.1    UC-01 – Đăng nhập và thiết lập phiên
+
+    Mục tiêu: xác thực người chơi và cấp token hợp lệ để truy cập API.
+    Tác nhân chính: Player.
+    Tiền điều kiện: tài khoản tồn tại và không bị khoá.
+    Hậu điều kiện: client có access/refresh token; có thể gọi /me.
+    Luồng chính:
+
+   1. Player nhập thông tin đăng nhập.
+
+   2. Client gửi request login.
+
+   3. Server xác thực và trả token.
+
+   4. Client lưu token và chuyển sang đồng bộ state.
+
+    Ngoại lệ:
+
+   • Sai thông tin đăng nhập → trả lỗi xác thực.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                             Page 30/81
+                            Hình 8: Sequence đăng nhập và thiết lập phiên
+
+
+
+
+                                 Hình 9: Sequence làm mới access token
+
+
+6.4.2    UC-02 – Đồng bộ player state
+
+    Mục tiêu: nạp trạng thái người chơi nhất quán sau khi xác thực.
+    Tác nhân chính: Game Client.
+    Tiền điều kiện: access token hợp lệ.
+    Hậu điều kiện: state local phản ánh đúng snapshot backend.
+    Luồng chính:
+
+   1. Client gọi GET /me.
+
+   2. Server trả profile, statistics, tutorialProgress, currency, inventory, formation, quests.
+
+   3. Client apply state theo thứ tự ưu tiên backend response.
+
+6.4.3    UC-03 – Đồng bộ và claim quest
+
+    Mục tiêu: cập nhật tiến độ quest và nhận thưởng theo điều kiện backend.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                        Page 31/81
+    Tác nhân chính: Player.
+    Tiền điều kiện: đã có snapshot state, quest tồn tại.
+    Hậu điều kiện: progress/rewardClaimed được cập nhật nhất quán.
+    Luồng chính:
+
+   1. Client gọi endpoint lấy quest.
+
+   2. Player thực hiện claim khi đủ điều kiện.
+
+   3. Server validate, cập nhật dữ liệu và trả trạng thái mới.
+
+   4. Client cập nhật UI quest theo payload trả về.
+
+
+
+
+                               Hình 10: Sequence đồng bộ và claim quest
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                        Page 32/81
+                              Hình 11: Activity flow cho luồng claim quest
+
+
+6.4.4    UC-04 – Khởi tạo battle session
+
+    Mục tiêu: tạo phiên battle hợp lệ trước khi vào trận.
+    Tác nhân chính: Player.
+    Tiền điều kiện: đã đăng nhập, có formation hợp lệ.
+    Hậu điều kiện: nhận battleId và thông tin phiên để bắt đầu gameplay.
+    Luồng chính:
+
+   1. Client gửi request battles/start với mode, formationName, configVersion.
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                               Page 33/81
+   2. Server tạo battle session và trả dữ liệu phiên.
+
+   3. Client lưu battleId để dùng cho bước finish.
+
+6.4.5    UC-05 – Kết thúc battle và đồng bộ hậu trận
+
+    Mục tiêu: chốt kết quả trận đấu theo backend source-of-truth.
+    Tác nhân chính: Player.
+    Tiền điều kiện: có battleId còn hiệu lực.
+    Hậu điều kiện: reward, statistics, currency, tutorialProgress, questUpdates được cập nhật.
+    Luồng chính:
+
+   1. Client gửi battles/{battleId}/finish kèm idempotencyKey.
+
+   2. Server validate phiên và chốt kết quả.
+
+   3. Server trả payload hậu trận.
+
+   4. Client cập nhật state và UI theo payload này.
+
+    Ngoại lệ:
+
+   • Retry cùng idempotency key → backend không cấp trùng kết quả.
+
+
+
+
+                        Hình 12: Sequence khởi tạo và kết thúc battle session
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 34/81
+                           Hình 13: Activity flow cho vòng đời battle session
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                              Page 35/81
+6.4.6    UC-06 – Đồng bộ tutorial progress
+
+    Mục tiêu: đồng bộ các cờ tutorial liên phiên.
+    Tác nhân chính: Game Client.
+    Tiền điều kiện: có thay đổi cờ tutorial từ gameplay.
+    Hậu điều kiện: backend lưu và trả tutorialProgress mới.
+    Luồng chính:
+
+   1. Client gửi PATCH /me/tutorial-progress với các trường cập nhật.
+
+   2. Server ghi nhận và trả trạng thái mới.
+
+   3. Client apply lại cờ tutorial theo response.
+
+6.4.7    UC-07 – Nâng cấp hero và skill
+
+    Mục tiêu: cập nhật progression hero/skill theo rule backend.
+    Tác nhân chính: Player.
+    Tiền điều kiện: đủ tài nguyên và điều kiện nâng cấp.
+    Hậu điều kiện: dữ liệu hero/skill/currency được cập nhật đồng bộ.
+    Luồng chính:
+
+   1. Player thao tác nâng cấp trên UI Units hoặc UI kỹ năng.
+
+   2. Client gọi endpoint nâng cấp tương ứng.
+
+   3. Server validate điều kiện và trả trạng thái mới.
+
+   4. Client cập nhật lại dữ liệu hiển thị.
+
+6.4.8    UC-08 – Nâng cấp castle
+
+    Mục tiêu: thực hiện nâng cấp castle bằng backend contract riêng.
+    Tác nhân chính: Player.
+    Tiền điều kiện: đủ tài nguyên và điều kiện nâng cấp castle.
+    Hậu điều kiện: castle progression và currency mới được trả về cho client.
+    Luồng chính:
+
+   1. Player bấm nâng cấp castle.
+
+   2. Client gọi endpoint nâng cấp castle.
+
+   3. Server validate và ghi nhận nâng cấp.
+
+   4. Client cập nhật UI theo response backend.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                              Page 36/81
+6.5     Quy tắc nghiệp vụ và ràng buộc hệ thống
+6.5.1    Server-authoritative state
+
+   • Reward, currency, statistics, quest progress, tutorial flags, castle progression chỉ lấy từ
+     payload backend.
+
+   • Client không tự suy diễn kết quả hậu trận hoặc kết quả claim.
+
+6.5.2    Idempotency và retry
+
+   • Các thao tác có khả năng retry phải đi kèm idempotency key.
+
+   • Backend phải chống cấp trùng dữ liệu khi nhận lại request cùng khoá.
+
+6.5.3    Nhất quán bất đồng bộ
+
+   • Khi có nhiều response gần nhau, client chỉ áp dụng trạng thái mới nhất theo mốc thời
+     gian/version.
+
+   • Luồng hậu battle phải apply state trước khi mở các UI kế tiếp.
+
+6.5.4    Tương thích cấu hình
+
+   • Battle session phải gắn với configVersion hợp lệ.
+
+   • Client và backend cần cùng phiên bản config để tránh lệch tính toán.
+
+
+6.6     Phân tích dữ liệu ở mức logic
+6.6.1    Dữ liệu tiến trình
+
+   • Auth/session tokens.
+
+   • Player profile và statistics.
+
+   • Tutorial progress flags.
+
+   • Currency và inventory (heroes/skills).
+
+   • Formation state.
+
+   • Quest tracks và progress rewards.
+
+   • Battle session state và dữ liệu hậu trận.
+
+   • Castle progression state.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 37/81
+6.6.2    Thực thể lõi theo luồng hiện tại
+
+    • Identity: account, session/token state.
+
+    • Player snapshot: profile, statistics, tutorial, currency, inventory, formation, quests.
+
+    • Battle: phiên start/finish và reward/result state.
+
+    • Progression: hero/skill upgrade state, castle state.
+
+6.6.3    Quan hệ dữ liệu quan trọng
+
+    • Một account gắn với một định danh player dùng xuyên suốt các luồng auth, state, battle,
+      quest.
+
+    • Snapshot /me là điểm hợp nhất dữ liệu cho nhiều phân hệ để client đồng bộ nhất quán.
+
+    • Battle finish, quest claim, tutorial patch và upgrade đều tạo ra thay đổi progression cần
+      phản ánh lại về snapshot hiển thị.
+
+
+6.7     Tổng kết chương
+   Chương này đã phân tích hệ thống theo đúng phạm vi implemented-only: xác thực phiên,
+đồng bộ trạng thái người chơi, quest, battle session, tutorial sync, nâng cấp hero/skill và nâng
+cấp castle. Kết quả phân tích là đầu vào trực tiếp cho quyết định thiết kế ở Chương 7 và bám
+chặt baseline vận hành thực tế.
+
+
+7       Thiết kế hệ thống
+7.1     Mục tiêu thiết kế
+    Mục tiêu của chương này là chuyển hoá kết quả phân tích ở Chương 6 thành các quyết
+định thiết kế cụ thể ở mức: (i) kiến trúc tổng thể client–server và triển khai; (ii) thiết kế
+mô-đun backend và ranh giới trách nhiệm; (iii) thiết kế dữ liệu (progression/state và game
+configuration); (iv) thiết kế giao tiếp (HTTP đang vận hành/WebSocket định hướng mở rộng)
+và quy ước dữ liệu; (v) thiết kế các cơ chế đảm bảo nhất quán, bảo mật và quan sát hệ thống;
+(vi) thiết kế giao diện UI/UX ở mức tham chiếu để đối chiếu với luồng nghiệp vụ và API.
+    Trong baseline hiện tại, thiết kế ưu tiên:
+
+    • Tính đúng đắn và nhất quán: các thay đổi ảnh hưởng tiến trình (reward/currency/
+      gacha/checkpoint, nâng cấp, tiêu hao vật phẩm) phải được server xác nhận.
+
+    • Tính mô-đun: phân tách rõ theo phân hệ (auth, player, character, inventory, formation,
+      quest, battle, reward, leaderboard, idempotency, config, admin/backup).
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                      Page 38/81
+   • Tính data-driven cho cấu hình: tách dữ liệu cấu hình gameplay khỏi mã nguồn; hỗ
+     trợ quản trị và thay đổi nhanh.
+
+   • Phù hợp phạm vi đồ án: triển khai ở mức hợp lý (single deployment có thể chạy được),
+     nhưng vẫn giữ được hướng mở rộng.
+
+
+7.2     Kiến trúc tổng thể và triển khai
+7.2.1    Tổng quan triển khai
+
+   Hệ thống được tổ chức thành 3 lớp chính: Client Devices, Backend Infrastructure và Data
+& Storage. Hình 14 mô tả các thành phần và đường giao tiếp chính.
+
+
+
+
+                   Hình 14: Sơ đồ triển khai tổng quan hệ thống (bản cập nhật)
+
+
+    Các thành phần cốt lõi:
+
+   • Game Client (Unity): hiển thị đồ hoạ, UI, thu thập input; hiện giao tiếp với server
+     qua HTTPS cho các luồng cốt lõi.
+
+   • API Server (NestJS): lớp ứng dụng xử lý REST API; thiết kế chừa khả năng mở rộng
+     kênh real-time (WebSocket gateway) cho các giai đoạn sau.
+
+   • Job Worker: xử lý tác vụ nền theo lịch (ví dụ: mail hệ thống, sự kiện, tổng hợp log, dọn
+     dẹp dữ liệu runtime).
+
+   • MongoDB (Primary DB): lưu dữ liệu tiến trình bền vững và các collections cấu hình.
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                   Page 39/81
+   • Redis (Cache & Pub/Sub): lưu cache/session runtime hoặc pub-sub khi mở rộng nhiều
+     instance.
+
+   • MinIO (Object Storage): lưu trữ tệp và asset bundle (nếu áp dụng); client tải qua
+     presigned URL.
+
+7.2.2    Nguyên tắc server-authoritative
+
+   Thiết kế áp dụng nguyên tắc server-authoritative cho các tác vụ ảnh hưởng tiến trình
+và công bằng:
+
+   • Client chỉ gửi ý định (intent), không gửi trạng thái “đã xảy ra” như “đã trúng đòn” hay
+     “đã nhận item”.
+
+   • Server kiểm tra luật (cooldown, tài nguyên, điều kiện tham gia, dung lượng inventory,
+     điều kiện skill) và chỉ khi hợp lệ mới ghi dữ liệu.
+
+   • Các giao dịch reward/currency/gacha/checkpoint, nâng cấp trang bị/kỹ năng được coi là
+     giao dịch nghiệp vụ và phải có log/audit để truy vết.
+
+Các quyết định này giúp giảm rủi ro gian lận và tăng tính nhất quán trong môi trường online
+[10, 2].
+
+7.2.3    Phân tách giao tiếp: HTTP và WebSocket (định hướng)
+
+HTTP/REST được dùng cho:
+
+   • đăng ký/đăng nhập, khôi phục tài khoản;
+
+   • quản lý profile/nhân vật;
+
+   • tải dữ liệu meta (inventory, equipment, skills, island state, NPC collection);
+
+   • thao tác quản trị (admin) và các tác vụ không yêu cầu độ trễ thấp.
+
+WebSocket được thiết kế cho giai đoạn mở rộng:
+
+   • tham gia instance/room và vòng lặp chiến đấu real-time;
+
+   • gửi input (move/attack/cast/dodge) theo nhịp;
+
+   • nhận snapshot/event từ server để hiển thị mượt.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 40/81
+7.3     Thiết kế mô-đun backend
+  Backend được tổ chức theo phong cách module hoá của NestJS [7]. Mỗi mô-đun tương ứng
+một phân hệ nghiệp vụ và sở hữu ranh giới dữ liệu rõ ràng. Bảng 6 tóm tắt các mô-đun chính.
+
+ Mô-đun                   Trách nhiệm chính                                   Dữ liệu/Collection
+                                                                              liên quan
+ Auth Module              Đăng ký/đăng nhập; cấp và xác thực token;           USER, SESSION
+                          revoke session; chính sách role
+ Player Module            Khởi tạo và đọc/ghi profile, statistics, tutorial   PLAYER
+                          progress, currency; theo dõi configVersion
+ Character                Tạo/chọn/xoá nhân vật; appearance và base           CHARACTER,
+ Module                   stats riêng để tối ưu truy vấn                      CHARACTER_
+                                                                              APPEARANCE,
+                                                                              CHARACTER_
+                                                                              STATS
+ Inventory Module         Quản lý từng item instance theo row;                PLAYER_
+                          itemType/itemClass; tiêu thụ                        INVENTORY_ITEM
+                          remainingUses; customData cho thuộc tính
+                          tuỳ biến
+ Formation                Lưu nhiều đội hình theo người chơi; mỗi             PLAYER_
+ Module                   formation chứa slots (json) ánh xạ vị trí →         FORMATION
+                          unit
+ Quest Module             Daily/weekly/achievement; tiến độ                   PLAYER_QUEST,
+                          progress/required; claim theo periodKey;            PLAYER_QUEST_
+                          track milestone reward theo stage                   PROGRESS_
+                                                                              REWARD
+ Battle Module            Khởi tạo phiên trận, lưu seed và                    BATTLE_SESSION
+                          configVersion; ghi summary/rewards hậu
+                          trận; expire/finish
+ Reward Module            Audit log mọi reward grant; idempotent theo         REWARD_
+                          idempotencyKey; ghi changes và                      TRANSACTION
+                          balanceAfter
+ Leaderboard              Xếp hạng theo type; cập nhật score kèm              LEADERBOARD_
+ Module                   display info; unique theo (player, type)            SCORE
+ Idempotency              Khoá theo idempotencyKey để chặn replay;            IDEMPOTENCY_
+ Module                   cache response gần nhất theo player                 RECORD
+ Config Module            Versioning theo (name, version); flag               CONFIG
+                          isActive; nội dung trong records (json)
+ Admin/Backup             Ban/unban (qua USER.status); soft-delete;           USER, BACKUP
+ Module                   backup theo backUpType và filePath
+
+                        Bảng 6: Bản đồ mô-đun backend và dữ liệu liên quan
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                         Page 41/81
+7.3.1    Các thành phần dùng chung (cross-cutting)
+
+    Để giảm trùng lặp và tăng tính nhất quán, hệ thống dùng các thành phần dùng chung:
+
+   • Validation: kiểm tra input cho REST và (khi mở rộng) WebSocket (schema/DTO) để
+     chặn dữ liệu sai từ đầu.
+
+   • Error handling: chuẩn hoá mã lỗi và thông điệp lỗi; đảm bảo client có thể hiển thị đúng
+     trạng thái UI (loading/error/disabled).
+
+   • Logging & audit: log request, log nghiệp vụ (reward/gacha/equip/skill-up/admin action),
+     kèm correlation id.
+
+   • Rate limit / anti-spam: giới hạn tần suất với endpoint nhạy cảm (login, gacha) và
+     message real-time khi mở rộng (input spam).
+
+
+7.4     Thiết kế dữ liệu
+7.4.1    Nguyên tắc thiết kế dữ liệu
+
+    Hệ thống dữ liệu được chia thành 2 nhóm:
+
+   • Progression/State (động): dữ liệu thay đổi theo thời gian – account/session, player
+     profile (statistics, tutorial progress, currency), character + appearance + stats, inventory
+     items, formations, quests, quest progress rewards, battle sessions, reward transactions,
+     leaderboard, idempotency records.
+
+   • Game Configuration (tĩnh): dữ liệu định nghĩa và thông số gameplay, lưu trong
+     collection CONFIG (versioning theo name + version, đánh dấu bản đang dùng bằng
+     isActive, nội dung trong trường records).
+
+    Với MongoDB, thiết kế ưu tiên:
+
+   • Embed (json field) khi dữ liệu có vòng đời gắn chặt với thực thể cha và thường được tải
+     cùng nhau: profile/statistics/tutorialProgress/currency nhúng trong PLAYER;
+     slots nhúng trong PLAYER_FORMATION; customData nhúng trong PLAYER_
+     INVENTORY_ITEM; summary/rewards nhúng trong BATTLE_SESSION; changes/
+     balanceAfter nhúng trong REWARD_TRANSACTION.
+
+   • Reference (FK) khi dữ liệu cần tách riêng để lập chỉ mục/truy vấn độc lập:
+     CHARACTER_APPEARANCE và CHARACTER_STATS tách khỏi CHARACTER
+     (1:1) để tránh document quá lớn; mỗi item là một row PLAYER_INVENTORY_ITEM
+     (thay vì array nhúng) – thuận lợi cho index theo itemType/itemId và pagination.
+
+   • Versioning cho config: client đính kèm configVersion của PLAYER khi gọi API;
+     backend so sánh với bản isActive hiện hành để invalidate cache hoặc yêu cầu reload.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                      Page 42/81
+7.4.2    Mô hình thực thể chính (ERD mức logic)
+
+   Trong phạm vi báo cáo, ERD được trình bày ở mức logic để làm rõ quan hệ 1:1, 1:N và
+các liên kết tham chiếu tới cấu hình. Các “STRUCT_*” trong ERD đại diện cho embedded
+document (struct nhúng), không phải collection độc lập.
+
+
+
+
+              (a) ERD auth & player                     (b) ERD character progression
+
+
+
+
+           (c) ERD inventory & battle                  (d) ERD character customization
+
+              Hình 15: Bộ sơ đồ ERD mức logic theo phân hệ (trình bày bằng hình)
+
+
+7.4.3    Phân tích quan hệ và phụ thuộc thuộc tính
+
+    Phần này phân tích ERD theo nhóm để làm rõ mục đích dữ liệu, quan hệ chính, khóa/tham
+chiếu và các ràng buộc cần giữ nhất quán.
+
+Nhóm danh tính và phiên (USER, SESSION) Mục đích dữ liệu: quản lý tài khoản
+đăng nhập và phiên hoạt động có TTL.
+
+   • Quan hệ chính: USER (1:N) SESSION; USER (1:1) PLAYER (qua accountId); USER
+     (1:N) CHARACTER (qua userId).
+
+   • Khóa/Ref quan trọng: USER.id, USER.username (unique), SESSION.tokenHash
+     (unique), SESSION.accountId, SESSION.expiresAt.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                      Page 43/81
+   • Ràng buộc nhất quán: username/tokenHash unique; index theo expiresAt để dọn
+     phiên hết hạn; maxSession/max_game_user giới hạn số phiên/nhân vật song song; ban
+     user (status) phải revoke session.
+
+Nhóm player progression Mục đích dữ liệu: root meta progression – profile/statistics/
+tutorial/currency; đội hình; quest tracking và milestone reward.
+
+   • Quan hệ chính: PLAYER (1:N) PLAYER_FORMATION; PLAYER (1:N) PLAYER_
+     QUEST; PLAYER (1:N) PLAYER_QUEST_PROGRESS_REWARD.
+
+   • Khóa/Ref quan trọng: PLAYER.id, PLAYER.accountId (unique FK USER),
+     configVersion; PLAYER_QUEST unique theo (playerId, questId, periodKey);
+     PLAYER_QUEST_PROGRESS_REWARD unique theo (playerId, track, stage,
+     periodKey).
+
+   • Ràng buộc nhất quán: progress ≤ required trước khi cho claimed=true; reward
+     chỉ ghi vào REWARD_TRANSACTION khi claim thành công; configVersion của
+     PLAYER là cơ sở để client biết khi nào cần reload config.
+
+Nhóm inventory và battle Mục đích dữ liệu: item instance theo người chơi, phiên trận
+và audit log reward.
+
+   • Quan hệ chính: PLAYER (1:N) PLAYER_INVENTORY_ITEM; PLAYER (1:N)
+     BATTLE_SESSION; PLAYER (1:N) REWARD_TRANSACTION.
+
+   • Khóa/Ref quan trọng: itemId (FK CONFIG), index (playerId, itemType); BATTLE_
+     SESSION.status/expiresAt (cleanup), seed+configVersion (replay deterministic);
+     REWARD_TRANSACTION.idempotencyKey (chống grant trùng).
+
+   • Ràng buộc nhất quán: remainingUses ≥ 0; battle chỉ finishedAt sau
+     startedAt; mọi thay đổi currency/inventory đều ghi REWARD_TRANSACTION với
+     changes+balanceAfter để truy ngược; idempotencyKey kết hợp IDEMPOTENCY_
+     RECORD.
+
+Nhóm character và customization Mục đích dữ liệu: thông tin nhân vật được tách
+theo loại để cập nhật/truy vấn độc lập (appearance ít đổi, stats đổi thường xuyên khi level up).
+
+   • Quan hệ chính: USER (1:N) CHARACTER; CHARACTER (1:1) CHARACTER_
+     APPEARANCE; CHARACTER (1:1) CHARACTER_STATS.
+
+   • Khóa/Ref     quan    trọng: CHARACTER.userId (FK USER), CHARACTER_
+     APPEARANCE.characterId (unique FK), CHARACTER_STATS.characterId (unique
+     FK), formulaVersion.
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 44/81
+   • Ràng buộc nhất quán: APPEARANCE và STATS phải tồn tại song song với
+     CHARACTER (xoá CHARACTER kéo xoá hai bảng phụ); unspentPoints ≥ 0;
+     formulaVersion phải khớp với version công thức backend dùng để derive HP/MP/ATK/
+     DEF.
+
+Nhóm operational Mục đích dữ liệu: dữ liệu vận hành – xếp hạng, anti-replay, cấu hình
+gameplay tĩnh, sao lưu hệ thống.
+
+   • Quan hệ chính: PLAYER (1:N) LEADERBOARD_SCORE (unique theo
+     (player, type)); PLAYER (1:N) IDEMPOTENCY_RECORD (unique theo (player,
+     idempotencyKey)); CONFIG và BACKUP độc lập (không FK tới player).
+
+   • Khóa/Ref quan trọng: LEADERBOARD_SCORE unique (playerId, type), index (type,
+     score); IDEMPOTENCY_RECORD unique (playerId, idempotencyKey); CONFIG unique
+     (name, version), index (name, isActive).
+
+   • Ràng buộc nhất quán: mỗi (name) trong CONFIG chỉ một bản isActive=true tại
+     mỗi thời điểm; IDEMPOTENCY_RECORD có TTL cleanup theo createdAt để tránh
+     phình; cập nhật LEADERBOARD atomic theo (playerId, type).
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                           Page 45/81
+ Nhóm thực thể                 Quan hệ chính     Ràng buộc cốt lõi
+ Identity & Session            USER (1:N)        username/tokenHash unique; TTL cleanup
+                               SESSION; USER     theo expiresAt; ban user revoke session.
+                               (1:1) PLAYER
+ Player Progression            PLAYER (1:N)      progress ≤ required trước claimed;
+                               PLAYER_           unique theo (player, questId, periodKey)
+                               FORMATION/        hoặc (player, track, stage, periodKey).
+                               QUEST/QUEST_
+                               PROGRESS_
+                               REWARD
+ Character &                   USER (1:N)        APPEARANCE/STATS đồng vòng đời với
+ Customization                 CHARACTER;        CHARACTER; unspentPoints ≥ 0;
+                               CHARACTER (1:1)   formulaVersion đồng bộ backend.
+                               CHARACTER_
+                               APPEARANCE/
+                               STATS
+ Inventory & Battle            PLAYER (1:N)      remainingUses ≥ 0; battle có
+                               PLAYER_           seed+configVersion; reward grant
+                               INVENTORY_        idempotent theo idempotencyKey.
+                               ITEM/BATTLE_
+                               SESSION/
+                               REWARD_
+                               TRANSACTION
+ Operational                   PLAYER (1:N)      Mỗi name chỉ 1 isActive=true; TTL
+                               LEADERBOARD_      cleanup IDEMPOTENCY; leaderboard cập
+                               SCORE/            nhật atomic.
+                               IDEMPOTENCY_
+                               RECORD;
+                               CONFIG/BACKUP
+                               độc lập
+
+                   Bảng 7: Tóm tắt Entity–Relation–Constraint theo nhóm ERD
+
+
+7.4.4    Từ điển dữ liệu (Data Dictionary) ở mức collection
+
+    Phần này mô tả các collection chính trong hệ thống ở mức thuộc tính, mục đích và ràng
+buộc quan trọng. Các trường json (như profile, statistics, slots, summary, records, . . . )
+là tài liệu nhúng (sub-document) bên trong document cha.
+
+Collection: USER
+
+   • Mục đích: lưu tài khoản đăng nhập, role và policy giới hạn phiên/nhân vật.
+
+   • Quan hệ: USER (1:N) SESSION; USER (1:1) PLAYER; USER (1:N) CHARACTER.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                   Page 46/81
+                              Bảng 8: Từ điển dữ liệu – Collection USER
+
+      Thuộc tính             Kiểu          Bắt       Mô tả / Ràng buộc
+                                           buộc
+      id                     string        Yes       PK.
+      username               string        Yes       Unique; định danh đăng nhập.
+      passwordHash           string        Yes       Hash mật khẩu; không lưu plaintext.
+      playerId               string        No        Tham chiếu PLAYER active gần nhất
+                                                     (cache).
+      status                 string        Yes       active/banned/. . . ; ban sẽ revoke
+                                                     session.
+      role                   string        Yes       player/admin; phân quyền API.
+      maxSession             int           Yes       Số phiên đồng thời tối đa cho phép.
+      max_game_user          int           Yes       Số nhân vật tối đa được tạo.
+      createdAt              datetime      Yes       Thời điểm tạo.
+      updatedAt              datetime      Yes       Cập nhật cuối.
+      lastLoginAt            datetime      No        Cập nhật khi login thành công.
+
+
+Collection: SESSION
+
+   • Mục đích: lưu phiên đăng nhập có TTL; chứa thông tin client (UA, IP) phục vụ audit.
+
+   • Quan hệ: SESSION (N:1) USER qua accountId.
+
+                            Bảng 9: Từ điển dữ liệu – Collection SESSION
+
+      Thuộc tính             Kiểu          Bắt       Mô tả / Ràng buộc
+                                           buộc
+      id                     string        Yes       PK.
+      accountId              string        Yes       FK tới USER.id; index.
+      playerId               string        No        Cache player active của phiên (nếu có).
+      tokenHash              string        Yes       Unique; hash token cấp client.
+      expiresAt              datetime      Yes       TTL; index để cleanup.
+      revokedAt              datetime      No        Đặt khi ban/logout cưỡng bức.
+      createdAt              datetime      Yes       Thời điểm tạo phiên.
+      userAgent              string        No        UA của client; phục vụ audit.
+                                                                          (còn tiếp trang sau)
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                         Page 47/81
+      Thuộc tính             Kiểu         Bắt      Mô tả / Ràng buộc
+                                          buộc
+      ip                     string       No       IP client; audit.
+
+
+Collection: PLAYER
+
+   • Mục đích: root của progression – bundle profile/statistics/tutorial/currency theo tài
+     khoản; đính configVersion để client biết cache config có còn hiệu lực.
+
+   • Quan hệ: PLAYER (1:1) USER; PLAYER (1:N) PLAYER_INVENTORY_ITEM,
+     PLAYER_FORMATION,     PLAYER_QUEST,     PLAYER_QUEST_PROGRESS_
+     REWARD, BATTLE_SESSION, REWARD_TRANSACTION, LEADERBOARD_
+     SCORE, IDEMPOTENCY_RECORD.
+
+                           Bảng 10: Từ điển dữ liệu – Collection PLAYER
+
+      Thuộc tính             Kiểu         Bắt      Mô tả / Ràng buộc
+                                          buộc
+      id                     string       Yes      PK.
+      accountId              string       Yes      Unique FK tới USER.id.
+      profile                json         Yes      Display name, avatar, country, . . .
+      statistics             json         Yes      Tích luỹ trận, win/loss, hero count, . . .
+      tutorial               json         Yes      Cờ trạng thái onboarding/
+      Progress                                     first-deploy/. . .
+      currency               json         Yes      Số dư các loại currency (gold, gem,
+                                                   . . . ).
+      configVersion          string       Yes      Version CONFIG đang dùng (để
+                                                   invalidate cache client).
+      createdAt              datetime     Yes      Thời điểm tạo.
+      updatedAt              datetime     Yes      Cập nhật cuối.
+
+
+Collection: PLAYER_INVENTORY_ITEM
+
+   • Mục đích: mỗi item instance là 1 row – thuận lợi cho index, đếm, paging và cập nhật
+     từng item.
+
+   • Quan hệ: (N:1) PLAYER qua playerId; itemId tham chiếu CONFIG.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                        Page 48/81
+             Bảng 11: Từ điển dữ liệu – Collection PLAYER_INVENTORY_ITEM
+
+      Thuộc tính             Kiểu       Bắt    Mô tả / Ràng buộc
+                                        buộc
+      id                     string     Yes    PK; định danh instance.
+      playerId               string     Yes    FK PLAYER.id; index.
+      itemId                 string     Yes    Tham chiếu config item.
+      itemType               string     Yes    Phân loại (hero, equip, mat,
+                                               consumable, . . . ); index (playerId,
+                                               itemType).
+      itemClass              string     No     Phân loại phụ tuỳ gameplay.
+      remainingUses          int        No     Còn dùng được bao nhiêu
+                                               (consumable/charge); ≥ 0.
+      customData             json       No     Dữ liệu instance-specific (level,
+                                               enhance, stats override, . . . ).
+      createdAt              datetime   Yes    Thời điểm nhận/tạo item.
+      updatedAt              datetime   Yes    Cập nhật cuối.
+
+
+Collection: PLAYER_FORMATION
+
+   • Mục đích: đội hình do người chơi cấu hình; mỗi formation có name unique trong scope
+     player.
+
+   • Quan hệ: (N:1) PLAYER; slots (json) ánh xạ vị trí → unit instance trong inventory.
+
+                 Bảng 12: Từ điển dữ liệu – Collection PLAYER_FORMATION
+
+      Thuộc tính             Kiểu       Bắt    Mô tả / Ràng buộc
+                                        buộc
+      id                     string     Yes    PK.
+      playerId               string     Yes    FK PLAYER.id; unique theo
+                                               (playerId, name).
+      name                   string     Yes    Tên đội hình; unique trong player.
+      slots                  json       Yes    Ánh xạ slot → unit instance; tham
+                                               chiếu PLAYER_INVENTORY_
+                                               ITEM.id.
+      createdAt              datetime   Yes    Thời điểm tạo.
+                                                                   (còn tiếp trang sau)
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 49/81
+      Thuộc tính             Kiểu       Bắt     Mô tả / Ràng buộc
+                                        buộc
+      updatedAt              datetime   Yes     Cập nhật cuối.
+
+
+Collection: PLAYER_QUEST
+
+   • Mục đích: theo dõi quest đang nhận của người chơi (daily/weekly/achievement).
+
+   • Quan hệ: (N:1) PLAYER; questId tham chiếu config quest.
+
+                     Bảng 13: Từ điển dữ liệu – Collection PLAYER_QUEST
+
+      Thuộc tính             Kiểu       Bắt     Mô tả / Ràng buộc
+                                        buộc
+      id                     string     Yes     PK.
+      playerId               string     Yes     FK PLAYER.id.
+      questId                int        Yes     Khóa quest trong CONFIG.
+      type                   string     Yes     daily/weekly/achievement.
+      actionId               string     Yes     Loại hành động được track (kill,
+                                                deploy, . . . ).
+      progress               int        Yes     Số lần đã thực hiện; ≤ required.
+      required               int        Yes     Mục tiêu cần đạt.
+      claimed                boolean    Yes     Đã nhận reward chưa.
+      periodKey              string     Yes     Khóa chu kỳ (ngày/tuần) – cho phép
+                                                reset; unique theo (playerId,
+                                                questId, periodKey).
+      createdAt              datetime   Yes     Thời điểm nhận quest.
+      updatedAt              datetime   Yes     Cập nhật cuối.
+
+
+Collection: PLAYER_QUEST_PROGRESS_REWARD
+
+   • Mục đích: lưu milestone reward theo track và stage (ví dụ Battle Pass/Daily Track
+     theo điểm tích luỹ).
+
+   • Quan hệ: (N:1) PLAYER.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                 Page 50/81
+     Bảng 14: Từ điển dữ liệu – Collection PLAYER_QUEST_PROGRESS_REWARD
+
+      Thuộc tính             Kiểu       Bắt     Mô tả / Ràng buộc
+                                        buộc
+      id                     string     Yes     PK.
+      playerId               string     Yes     FK PLAYER.id.
+      track                  string     Yes     Tên track (daily, event, pass, . . . ).
+      stage                  int        Yes     Bậc milestone trong track.
+      points                 int        Yes     Số điểm tích luỹ hiện tại của track.
+      periodKey              string     Yes     Chu kỳ; unique theo (playerId,
+                                                track, stage, periodKey).
+      reward                 json       Yes     Nội dung reward (item/currency).
+      claimed                boolean    Yes     Đã claim chưa.
+      createdAt              datetime   Yes     Thời điểm tạo bản ghi.
+      updatedAt              datetime   Yes     Cập nhật cuối.
+
+
+Collection: BATTLE_SESSION
+
+   • Mục đích: ghi nhận một phiên trận từ khởi tạo đến kết thúc; lưu seed và configVersion
+     để có thể replay/verify deterministic.
+
+   • Quan hệ: (N:1) PLAYER; opponentPlayerId tham chiếu PLAYER khác (PvP).
+
+                    Bảng 15: Từ điển dữ liệu – Collection BATTLE_SESSION
+
+      Thuộc tính             Kiểu       Bắt     Mô tả / Ràng buộc
+                                        buộc
+      id                     string     Yes     PK.
+      playerId               string     Yes     FK PLAYER.id; index theo
+                                                (playerId, startedAt).
+      opponent               string     No      FK PLAYER (PvP).
+      PlayerId
+      mode                   string     Yes     Mode trận (PvE, PvP, raid, . . . ).
+      seed                   int        Yes     Seed RNG để replay deterministic.
+      status                 string     Yes     running/finished/expired; index
+                                                (status, expiresAt).
+      startedAt              datetime   Yes     Thời điểm bắt đầu.
+                                                                    (còn tiếp trang sau)
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 51/81
+      Thuộc tính             Kiểu       Bắt    Mô tả / Ràng buộc
+                                        buộc
+      expiresAt              datetime   Yes    TTL nếu không kết thúc; phục vụ
+                                               cleanup.
+      finishedAt             datetime   No     Đặt khi kết thúc; phải ≥ startedAt.
+      result                 string     No     Kết quả (win/lose/draw).
+      summary                json       No     Snapshot kết quả (damage, mvp, . . . ).
+      rewards                json       No     Reward đã trao (đối chiếu REWARD_
+                                               TRANSACTION).
+      configVersion          string     Yes    Version config dùng cho trận (replay
+                                               tương thích).
+
+
+Collection: REWARD_TRANSACTION
+
+   • Mục đích: audit log của mọi reward grant; idempotent theo idempotencyKey để tránh
+     trao trùng.
+
+   • Quan hệ: (N:1) PLAYER; sourceType/sourceId chỉ về nguyên nhân (battle, quest,
+     claim, . . . ).
+
+               Bảng 16: Từ điển dữ liệu – Collection REWARD_TRANSACTION
+
+      Thuộc tính             Kiểu       Bắt    Mô tả / Ràng buộc
+                                        buộc
+      id                     string     Yes    PK.
+      playerId               string     Yes    FK PLAYER.id; index (playerId,
+                                               createdAt).
+      sourceType             string     Yes    Loại nguồn (battle, quest, milestone,
+                                               . . . ); index (sourceType, sourceId).
+      sourceId               string     Yes    ID nguồn (BATTLE_SESSION.id,
+                                               PLAYER_QUEST.id, . . . ).
+      idempotencyKey string             Yes    Khóa idempotent; chống grant trùng
+                                               (kết hợp IDEMPOTENCY_
+                                               RECORD).
+      changes                json       Yes    Mảng thay đổi (currency, item) đã áp
+                                               dụng.
+      balanceAfter           json       Yes    Snapshot số dư sau khi grant.
+                                                                  (còn tiếp trang sau)
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                  Page 52/81
+      Thuộc tính             Kiểu        Bắt      Mô tả / Ràng buộc
+                                         buộc
+      createdAt              datetime    Yes      Thời điểm grant.
+
+
+Collection: CHARACTER
+
+   • Mục đích: thông tin lõi của nhân vật (race/gender/name); soft-delete và lock state.
+
+   • Quan hệ: (N:1) USER; (1:1) CHARACTER_APPEARANCE; (1:1) CHARACTER_
+     STATS.
+
+                        Bảng 17: Từ điển dữ liệu – Collection CHARACTER
+
+      Thuộc tính             Kiểu        Bắt      Mô tả / Ràng buộc
+                                         buộc
+      id                     string      Yes      PK.
+      character_name string              Yes      Tên nhân vật.
+      race                   string      Yes      Race (human, elf, . . . ).
+      gender                 string      Yes      Giới tính nhân vật.
+      userId                 string      Yes      FK USER.id; index.
+      isDeleted              boolean     Yes      Soft-delete flag.
+      isLocked               boolean     Yes      Khóa nhân vật (admin/penalty).
+
+
+Collection: CHARACTER_APPEARANCE
+
+   • Mục đích: thuộc tính ngoại hình (ít đổi); tách khỏi CHARACTER để giảm document
+     size cho hot path.
+
+   • Quan hệ: (1:1) CHARACTER qua characterId.
+
+             Bảng 18: Từ điển dữ liệu – Collection CHARACTER_APPEARANCE
+
+      Thuộc tính             Kiểu        Bắt      Mô tả / Ràng buộc
+                                         buộc
+      id                     string      Yes      PK.
+      characterId            string      Yes      Unique FK CHARACTER.id.
+      hair                   string      Yes      Kiểu tóc.
+      beard                  string      No       Râu (nếu có).
+      eye                    string      Yes      Kiểu mắt.
+                                                                        (còn tiếp trang sau)
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                       Page 53/81
+      Thuộc tính             Kiểu       Bắt    Mô tả / Ràng buộc
+                                        buộc
+      hairColor              string     Yes    Mã màu tóc.
+      beardColor             string     No     Mã màu râu.
+      eyeColor               string     Yes    Mã màu mắt.
+
+
+Collection: CHARACTER_STATS
+
+   • Mục đích: stats nền và derived; cập nhật khi level up/phân điểm; formulaVersion để
+     đồng bộ với công thức backend.
+
+   • Quan hệ: (1:1) CHARACTER qua characterId.
+
+                  Bảng 19: Từ điển dữ liệu – Collection CHARACTER_STATS
+
+      Thuộc tính             Kiểu       Bắt    Mô tả / Ràng buộc
+                                        buộc
+      id                     string     Yes    PK.
+      characterId            string     Yes    Unique FK CHARACTER.id.
+      str, dex, con,         int        Yes    6 stat nền; tổng phân bổ + base ≤
+      int, wis, cha                            tổng cho phép theo level.
+      unspentPoints          int        Yes    Điểm chưa phân; ≥ 0.
+      hp, mp                 int        Yes    Tài nguyên derived.
+      patk, datk,            int        Yes    ATK/DEF physical/magic; derived.
+      matk, mdef
+      spd, crit, acc,        int        Yes    Speed/crit/accuracy/evasion derived.
+      eva
+      formulaVersion int                Yes    Version công thức derive; phải khớp
+                                               với backend.
+      updatedAt              datetime   Yes    Cập nhật cuối.
+
+
+Collection: LEADERBOARD_SCORE
+
+   • Mục đích: bản ghi điểm cao nhất của người chơi theo từng type bảng xếp hạng.
+
+   • Quan hệ: (N:1) PLAYER; unique theo (playerId, type).
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                   Page 54/81
+                Bảng 20: Từ điển dữ liệu – Collection LEADERBOARD_SCORE
+
+      Thuộc tính             Kiểu       Bắt    Mô tả / Ràng buộc
+                                        buộc
+      id                     string     Yes    PK.
+      playerId               string     Yes    FK PLAYER.id; unique (playerId,
+                                               type).
+      type                   string     Yes    Loại bảng xếp hạng (PvP, raid, event,
+                                               . . . ); index (type, score).
+      score                  int        Yes    Điểm.
+      displayName            string     Yes    Tên hiển thị (snapshot).
+      avatar                 string     No     Avatar snapshot.
+      country                string     No     Cờ quốc gia (display).
+      updatedAt              datetime   Yes    Cập nhật cuối.
+
+
+Collection: IDEMPOTENCY_RECORD
+
+   • Mục đích: chống replay/double-submit cho action có side-effect (claim reward, gacha,
+     finish battle); cache response gần nhất theo idempotencyKey.
+
+   • Quan hệ: (N:1) PLAYER; unique theo (playerId, idempotencyKey).
+
+               Bảng 21: Từ điển dữ liệu – Collection IDEMPOTENCY_RECORD
+
+      Thuộc tính             Kiểu       Bắt    Mô tả / Ràng buộc
+                                        buộc
+      id                     string     Yes    PK.
+      playerId               string     Yes    FK PLAYER.id; index (playerId,
+                                               createdAt).
+      idempotencyKey string             Yes    Khóa client gửi kèm; unique
+                                               (playerId, idempotencyKey).
+      action                 string     Yes    Tên action được khoá.
+      requestHash            string     Yes    Hash payload để phát hiện request
+                                               khác cùng key.
+      response               json       Yes    Response cache để trả lại khi gặp
+                                               request trùng.
+      createdAt              datetime   Yes    Cleanup theo TTL.
+
+
+Collection: CONFIG
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                 Page 55/81
+   • Mục đích: cấu hình gameplay tĩnh, có versioning; nội dung trong records; flag isActive
+     đánh dấu bản đang dùng.
+
+   • Quan hệ: độc lập (không FK tới player); client tham chiếu qua PLAYER.configVersion.
+
+                           Bảng 22: Từ điển dữ liệu – Collection CONFIG
+
+      Thuộc tính             Kiểu         Bắt      Mô tả / Ràng buộc
+                                          buộc
+      id                     string       Yes      PK.
+      name                   string       Yes      Tên config (items, quests,
+                                                   stats_formula, . . . ); unique (name,
+                                                   version).
+      version                string       Yes      Version semver-like; cùng name có thể
+                                                   có nhiều version.
+      isActive               boolean      Yes      Mỗi name chỉ một bản isActive=true;
+                                                   index (name, isActive).
+      records                json         Yes      Mảng/object dữ liệu config (item list,
+                                                   formula, . . . ).
+      createdAt              datetime     Yes      Thời điểm import.
+      activatedAt            datetime     No       Thời điểm chuyển sang active.
+
+
+Collection: BACKUP
+
+   • Mục đích: metadata các bản backup (full/partial/per-collection); file thực tế lưu ngoài
+     DB.
+
+   • Quan hệ: độc lập.
+
+                           Bảng 23: Từ điển dữ liệu – Collection BACKUP
+
+      Thuộc tính             Kiểu         Bắt      Mô tả / Ràng buộc
+                                          buộc
+      id                     string       Yes      PK.
+      backUpType             string       Yes      Loại backup (full/collection/. . . );
+                                                   index (backUpType, createAt).
+      filePath               string       Yes      Đường dẫn file backup (ngoài DB).
+      createAt               datetime     Yes      Thời điểm tạo backup.
+      isDeleted              boolean      Yes      Soft-delete.
+                                                                        (còn tiếp trang sau)
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                         Page 56/81
+      Thuộc tính             Kiểu      Bắt     Mô tả / Ràng buộc
+                                       buộc
+      isLocked               boolean   Yes     Khoá tránh xoá nhầm.
+
+
+7.4.5    Chỉ mục (indexes) và khoá truy vấn
+
+    Để đảm bảo truy vấn ổn định, các chỉ mục đề xuất khớp với schema thực tế:
+
+   • USER: unique theo username; index theo status (nếu thường lọc admin).
+
+   • SESSION: unique theo tokenHash; index theo accountId, playerId; TTL theo expiresAt.
+
+   • PLAYER: unique theo accountId.
+
+   • PLAYER_INVENTORY_ITEM: index theo (playerId, itemType) và (playerId,
+     itemId).
+
+   • PLAYER_FORMATION: unique theo (playerId, name).
+
+   • PLAYER_QUEST: unique theo (playerId, questId, periodKey); index (playerId,
+     type, periodKey).
+
+   • PLAYER_QUEST_PROGRESS_REWARD: unique theo (playerId, track, stage,
+     periodKey); index (playerId, track, periodKey).
+
+   • BATTLE_SESSION: index theo (playerId, startedAt), (status, expiresAt), (opponentPlayer
+
+   • REWARD_TRANSACTION: index theo (playerId, createdAt), (sourceType, sourceId).
+
+   • LEADERBOARD_SCORE: unique theo (playerId, type); index (type, score).
+
+   • IDEMPOTENCY_RECORD: unique theo (playerId, idempotencyKey); index (playerId,
+     createdAt).
+
+   • CHARACTER: index theo userId.
+
+   • CHARACTER_APPEARANCE / CHARACTER_STATS: unique theo characterId.
+
+   • CONFIG: unique theo (name, version); index (name, isActive).
+
+   • BACKUP: index theo (backUpType, createAt).
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                              Page 57/81
+7.5     Thiết kế hệ thống chỉ số và tăng trưởng nhân vật
+7.5.1    Thuộc tính nền và chỉ số suy diễn
+
+   Nhân vật có 6 thuộc tính nền: STR, DEX, CON, INT, WIS, CHA. Từ đó hệ thống suy diễn
+các chỉ số chiến đấu như HP/MP/ATK/DEF/CRIT/ACC/EVA. Hình 16 minh hoạ mối phụ
+thuộc giữa các nhóm chỉ số trong thiết kế dữ liệu.
+
+
+
+
+                         Hình 16: Mô hình thuộc tính nền và chỉ số suy diễn
+
+
+    Thiết kế tách rõ:
+
+   • Base Stats: điểm phân bổ trực tiếp bởi người chơi theo level (+5 points/level, tối đa
+     level 100).
+
+   • Derived Stats: chỉ số tính toán (HP/MP/ATK/. . . ) dựa trên công thức và hệ số cân
+     bằng.
+
+   • Special Traits: Karma, Affinity, Luck, Resistance là nhóm “đặc tính” dùng cho điều
+     kiện mở khoá và/hoặc hiệu ứng meta.
+
+7.5.2    Tính toán chỉ số theo hướng data-driven
+
+    Để tránh hard-code công thức, thiết kế cho phép cấu hình hoá hệ số (ví dụ: HP nhận trọng
+số từ CON và STR; MP nhận trọng số từ WIS và INT; SPD từ DEX). Cách tiếp cận:
+
+   • Công thức được lưu dưới dạng config (ví dụ bảng hệ số theo stat).
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                  Page 58/81
+   • Server tính toán derived stats khi:
+
+          – player phân bổ điểm;
+          – thay đổi trang bị;
+          – thay đổi class có modifier;
+          – nâng cấp kỹ năng passive/buff có modifier (nếu áp dụng).
+
+    Ở mức thiết kế, có thể biểu diễn công thức tuyến tính:
+                                                  X
+                                     Sderived =       wi · A i + b
+                                                  i
+
+
+trong đó Ai là thuộc tính nền (STR/DEX/CON/INT/WIS/CHA) và wi là hệ số cấu hình.
+
+
+7.6     Thiết kế quản trị cấu hình game (Config Pipeline)
+   Pipeline cấu hình chỉ áp dụng cho các bảng cấu hình/thông số gameplay (item/
+building/skill/rates/formulas). Dữ liệu tiến trình người chơi vẫn được ghi trực tiếp bởi server
+trong các collections động.
+
+7.6.1    Luồng dữ liệu cấu hình
+
+    Luồng quản trị cấu hình đề xuất:
+
+   1. Soạn thảo trên Google Sheets: mỗi bảng là một nhóm cấu hình (CONFIG_ITEM,
+      CONFIG_BUILDING, CONFIG_SKILL, rates, formulas).
+
+   2. Xuất TSV: xuất theo template thống nhất; đảm bảo kiểu dữ liệu và khoá id.
+
+   3. Import vào DB: script import thực hiện upsert theo id; tạo bản ghi version/import
+      log.
+
+   4. Nạp vào Config Manager: khi server khởi động (hoặc theo chính sách), server tải
+      config từ DB vào bộ nhớ để truy xuất nhanh.
+
+7.6.2    Thiết kế Config Manager
+
+    Config Manager là lớp truy xuất cấu hình thống nhất cho toàn bộ service:
+
+   • In-memory cache: lưu map id → config object cho từng nhóm cấu hình.
+
+   • Versioning: gắn config_version cho lần nạp, phục vụ debug và đảm bảo nhất quán
+     khi tính toán.
+
+   • Validation khi nạp: kiểm tra dữ liệu sau import (schema, khoá trùng, tham chiếu hợp
+     lệ).
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 59/81
+   Ở baseline hiện tại, cơ chế reload có thể ở mức đơn giản (restart server để nạp lại). Khi mở
+rộng, có thể bổ sung endpoint admin “reload config” có xác thực và đồng bộ đa instance qua
+pub/sub.
+
+
+7.7       Thiết kế giao tiếp client–server
+7.7.1      REST API: nhóm endpoint và quy ước
+
+    REST API được nhóm theo phân hệ. Mục tiêu thiết kế API:
+
+    • tài nguyên rõ ràng (resource-oriented);
+
+    • payload ổn định cho UI;
+
+    • lỗi có mã và thông điệp nhất quán.
+
+    Ví dụ nhóm endpoint (mức thiết kế):
+
+    • /auth/register, /auth/login, /auth/recover
+
+    • /profiles (list/create/select/delete)
+
+    • /characters (list/create/delete/select)
+
+    • /inventory (get/use/sort)
+
+    • /equipment (get/equip/unequip/repair/enhance)
+
+    • /skills (get/learn/upgrade/hotbar)
+
+    • /island (get/build/upgrade/assign-worker/collect)
+
+    • /gacha (banners/rates/summon/history/exchange)
+
+    • /admin (users/ban/mail/logs/events/config)
+
+7.7.2      WebSocket (định hướng): định dạng message và vòng đời phiên
+
+   Mục này mô tả thiết kế dự phòng cho giai đoạn mở rộng realtime; chưa là luồng runtime
+chính ở baseline hiện tại. Thiết kế message theo dạng envelope để dễ mở rộng:
+1   {
+2       " type " : " combat . input " ,
+3       " seq " : 1024 ,
+4       " ts " : 1730000000 ,
+5       " payload " : { ... }
+6   }
+
+    Quy ước chính:
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 60/81
+   • type: loại thông điệp (join, input, snapshot, event, error).
+
+   • seq: số thứ tự để hỗ trợ kiểm soát spam, debug và (nếu cần) reconciliation.
+
+   • payload: dữ liệu tuỳ theo type.
+
+    Vòng đời phiên:
+
+   1. Client đăng nhập và chọn profile/character qua REST.
+
+   2. Client handshake WebSocket kèm token; server xác thực và gán socket_id.
+
+   3. Client gửi join để vào instance/room; server trả dữ liệu spawn và state ban đầu.
+
+   4. Trong phiên: client gửi input theo nhịp; server phát snapshot/event.
+
+   5. Kết phiên: server trả kết quả, reward delta và trạng thái checkpoint.
+
+
+7.8     Thiết kế giao diện người dùng (UI/UX) mức tham chiếu
+   Mục này tổng hợp các màn hình UI mới được chụp trực tiếp từ bản Unity hiện tại. Các
+hình được dùng để minh hoạ luồng người dùng thực tế (xác thực → lobby → nhiệm vụ/nâng
+cấp → vào trận → nhận thưởng), đồng thời đối chiếu trạng thái UI với dữ liệu backend đang
+đồng bộ qua REST API.
+
+7.8.1    Luồng UI xác thực: Login/Register
+
+
+
+
+         (a) Đăng nhập                       (b) Đăng ký                      (c) Loading
+
+                          Hình 17: Luồng UI xác thực và tải dữ liệu ban đầu
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                          Page 61/81
+    Mapping nghiệp vụ và API:
+
+   • Input validation: username/password không rỗng; hiển thị lỗi theo mã lỗi chuẩn hoá.
+
+   • Endpoint: /auth/login, /auth/register, /auth/refresh, /me.
+
+   • Trạng thái UI: loading khi submit; disable nút khi request đang chạy; chuyển scene sau
+     khi token và player state được tải thành công.
+
+7.8.2    UI lobby và điều hướng phân hệ
+
+
+
+
+        (a) Lobby chính                  (b) Nâng cấp castle             (c) Bảng xếp hạng
+
+                          Hình 18: UI lobby, nâng cấp castle và leaderboard
+
+
+    Mapping nghiệp vụ và API:
+
+   • Player state: lobby đọc profile, statistics, currency, formation, tutorialProgress
+     từ /me.
+
+   • Castle upgrade: UI sử dụng levelCastle và lobbyUpgradeSpent; thao tác nâng cấp
+     cần endpoint backend riêng để tránh mất tiến trình sau khi đồng bộ lại.
+
+   • Leaderboard: hiển thị điểm/trophy và thứ hạng theo dữ liệu rank hoặc leaderboard từ
+     backend.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 62/81
+7.8.3    UI quest và milestone reward
+
+
+
+
+         (a) Daily quest                  (b) Weekly quest                 (c) Achievement
+
+                            Hình 19: UI nhiệm vụ ngày, tuần và thành tựu
+
+
+    Mapping nghiệp vụ và API:
+
+   • Endpoint: /quests, /quests/{questId}/claim, /quests/progress-rewards/{track}/{stage}/c
+
+   • Dữ liệu: daily/weekly/achievement gồm progress, required, trạng thái completed/claimed
+     và reward.
+
+   • Milestone: thanh mốc phía trên đọc points và progressRewards; icon reward lấy từ
+     item id do backend trả.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                      Page 63/81
+7.8.4    UI hero inventory, upgrade và evolve
+
+
+
+
+(a) Hero inventory          (b) UIUnit   (c) Chi tiết unit   (d) Upgrade        (e) Evolve
+
+        Hình 20: UI quản lý hero/unit: danh sách, UIUnit, chi tiết, nâng cấp và tiến hoá
+
+
+    Mapping nghiệp vụ và API:
+
+   • Endpoint: /inventory/heroes/{instanceId}/upgrade, /inventory/heroes/{instanceId}/evol
+
+   • Dữ liệu: danh sách hero instance (màn UIUnit), customData.lv, customData.evlove_lv,
+     shard và gold hiện có.
+
+   • Ràng buộc: backend kiểm tra chi phí, config version và idempotency; client chỉ cập nhật
+     UI sau khi nhận state mới.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 64/81
+7.8.5    UI tutorial và onboarding
+
+
+
+
+     (a) Bước hướng dẫn 1               (b) Bước hướng dẫn 2            (c) Bước hướng dẫn 3
+
+                            Hình 21: UI tutorial điều hướng người chơi mới
+
+
+    Mapping nghiệp vụ và API:
+
+   • Tutorial progress: finishOnboarding, finishFirstDeploy, isDoneUpgradeUnitTutorial.
+
+   • Endpoint: PATCH /me/tutorial-progress; battle finish cũng trả tutorial state mới để
+     client đồng bộ.
+
+   • Ràng buộc UI: chỉ hiển thị hand/dim khi bước trước đã hoàn tất và không có popup
+     reward hoặc level-up đang mở.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                      Page 65/81
+7.8.6    UI vào trận và gameplay battle
+
+
+
+
+   (a) Finding match                 (b) Matching        (c) Roulette       (d) Battle
+
+                             Hình 22: UI chuẩn bị trận và gameplay battle
+
+
+    Mapping nghiệp vụ và API:
+
+   • Start battle: POST /battles/start trả battleId, seed, mode và config version.
+
+   • Gameplay: client render battle, territory, unit deployment và hiệu ứng; backend lưu
+     session phục vụ reward/state authoritative.
+
+   • Finish battle: POST /battles/{battleId}/finish trả reward, statistics, currency, tutorial
+     progress và quest updates.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                  Page 66/81
+7.8.7    UI kết quả trận và reward
+
+
+
+
+      (a) End match             (b) Victory reward     (c) Defeat reward     (d) Level up
+
+                              Hình 23: UI kết quả trận, reward và level-up
+
+
+    Mapping nghiệp vụ và API:
+
+   • Reward: client hiển thị đúng danh sách grantedRewards/rewards do backend trả.
+
+   • Level-up: statistics.level và statistics.exp là nguồn sự thật; client không tự suy
+     diễn level nếu backend chưa tăng level.
+
+   • Quest update: battle finish trả questUpdates để cập nhật daily/weekly/achievement
+     progress ngay sau trận.
+
+
+7.9     Thiết kế vòng lặp real-time cho combat/instance
+7.9.1    Mô hình instance/room
+
+    Hệ thống tổ chức người chơi theo room (đơn vị logic của một instance). Mỗi room có:
+
+   • danh sách người chơi tham gia (socket id, character id);
+
+   • trạng thái runtime (vị trí, HP/MP, trạng thái skill, entity trong phòng);
+
+   • cấu hình phiên (mode: tower/dungeon/arena; floor/seed).
+
+7.9.2    Tick loop và phát snapshot
+
+    Thiết kế loop ở mức khái niệm:
+
+   1. Thu thập input queue từ client.
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 67/81
+   2. Xác thực input (cooldown, tài nguyên, vị trí hợp lệ, tốc độ).
+
+   3. Cập nhật trạng thái authoritative theo tick.
+
+   4. Phát snapshot định kỳ và phát event khi có thay đổi quan trọng (hit/loot/death).
+
+    Trong baseline hiện tại, cơ chế snapshot có thể thiết kế theo hướng đơn giản và rõ ràng:
+
+   • snapshot theo tick rate cố định (ví dụ 10–20 tick/s tuỳ mục tiêu kiểm thử);
+
+   • payload snapshot ưu tiên các giá trị tối thiểu để render (pos, hp/mp, state flags, cast
+     state);
+
+   • chưa bắt buộc triển khai đầy đủ prediction/reconciliation, nhưng định dạng message chừa
+     chỗ cho mở rộng [10, 2].
+
+
+7.10      Thiết kế phân hệ Administration
+    Phân hệ admin phục vụ quản trị vận hành và kiểm soát rủi ro:
+
+   • Ban/Unban user: cập nhật USER.status; thu hồi phiên đang hoạt động.
+
+   • System mail: gửi thông báo/phần thưởng theo user/profile; xử lý qua job để kiểm soát
+     retry.
+
+   • View logs: truy vấn log theo thời gian/actor/severity; hỗ trợ điều tra sự cố.
+
+   • Configure events/config: quản trị cấu hình sự kiện và cấu hình gameplay theo phân
+     quyền.
+
+    Các thao tác admin phải có:
+
+   • phân quyền theo role;
+
+   • audit log đầy đủ (ai làm, làm gì, khi nào, trước/sau);
+
+   • cơ chế chống thao tác lặp gây cấp trùng phần thưởng (idempotent key).
+
+
+7.11      Bảo mật, nhất quán và quan sát hệ thống
+7.11.1     Bảo mật
+
+    Các nguyên tắc:
+
+   • mật khẩu lưu dạng hash; không lưu plaintext;
+
+   • token có thời hạn; khi ban user cần thu hồi session;
+
+   • phân quyền rõ giữa player và admin (role-based);
+
+   • giới hạn tần suất login/gacha và kiểm tra input realtime để chống spam.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                   Page 68/81
+7.11.2     Nhất quán dữ liệu và giao dịch nghiệp vụ
+
+   Các thao tác như reward, gacha, exchange, equip/unequip, nâng cấp công trình/kỹ năng
+cần đảm bảo:
+
+    • atomic ở mức tài liệu (MongoDB document update) khi cập nhật trong cùng thực thể;
+
+    • idempotency cho request dễ bị gửi lại (retry do mạng);
+
+    • log nghiệp vụ để có thể đối soát và khôi phục khi lỗi.
+
+7.11.3     Quan sát hệ thống (observability)
+
+    Thiết kế log tối thiểu:
+
+    • request log: endpoint, latency, status code, user id (nếu có);
+
+    • business log: gacha result, reward delivery, currency delta, equip/skill-up actions, admin
+      actions;
+
+    • realtime log: join/leave room, disconnect, lỗi xác thực socket.
+
+
+7.12      Tổng kết chương
+    Chương này đã mô tả thiết kế hệ thống ở mức kiến trúc, mô-đun, dữ liệu, giao tiếp và UI/UX
+tham chiếu cho Fortress of the Fallen. Thiết kế nhấn mạnh ranh giới trách nhiệm client–server
+theo hướng server-authoritative, tổ chức backend theo mô-đun rõ ràng, tách dữ liệu tiến trình
+khỏi dữ liệu cấu hình, và xây dựng pipeline quản trị cấu hình theo hướng data-driven. Phần
+thiết kế dữ liệu đã cập nhật ERD (inventory/equipment/skills) và bổ sung data dictionary có
+caption để các bảng được đánh số và xuất hiện trong danh sách bảng. Các quyết định thiết kế
+này là nền tảng để mô tả hiện thực hệ thống và kiểm thử trong các chương tiếp theo [7, 8, 9,
+10, 2].
+
+
+8      Hiện thực và tích hợp hệ thống
+8.1      Mục tiêu chương
+    Chương này mô tả trạng thái hiện thực đang vận hành của hệ thống Fortress of the Fallen,
+tập trung vào các luồng đã chạy thực tế giữa Unity client và backend API. Mục tiêu là đối
+chiếu trực tiếp giữa thiết kế ở Chương 7 và hành vi runtime hiện tại, đồng thời tách rõ phần
+mở rộng chưa triển khai đầy đủ.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 69/81
+8.2     Baseline triển khai hiện tại
+    Tại thời điểm viết báo cáo, các luồng cốt lõi đã tích hợp gồm:
+
+   • Authentication: register/login/refresh/logout.
+
+   • Đồng bộ player state qua GET /me.
+
+   • Quest: tải quest, claim quest, claim progress reward.
+
+   • Battle session: battles/start và battles/{id}/finish.
+
+   • Tutorial progress sync: PATCH /me/tutorial-progress.
+
+   • Progression thao tác trực tiếp: nâng cấp hero/skill, evolve hero.
+
+   • Castle progression: nâng cấp castle qua endpoint backend chuyên biệt.
+
+   Các luồng trên là nguồn sự thật chính cho dữ liệu người chơi (level, exp, currency, quest
+progress, tutorial flags, castle state).
+
+
+8.3     Hiện thực phía client (Unity)
+8.3.1    Tổ chức lớp giao tiếp backend
+
+    Client tổ chức lớp API theo mô hình:
+
+   • BackendApiClient: gửi request HTTP, parse response chuẩn, xử lý lỗi mạng/timeout.
+
+   • APIManager: điều phối luồng nghiệp vụ mức game (auth success, load /me, sync quest,
+     battle start/finish, tutorial update, upgrade actions).
+
+   • UI layer: các màn hình UILoginAuth, UISetupBattle, UITask, UIUnits, UIReward,
+     UILevelUp đọc dữ liệu đã chuẩn hoá từ APIManager.
+
+8.3.2    Nguyên tắc đồng bộ dữ liệu
+
+    Client áp dụng nguyên tắc:
+
+   • Backend là nguồn sự thật cho statistics/currency/quest/tutorial/castle.
+
+   • UI chỉ hiển thị theo dữ liệu phản hồi; không tự “chốt” reward, level hay quest state nếu
+     backend chưa xác nhận.
+
+   • Sau các thao tác nhạy cảm (battle finish, quest claim, upgrade), client thực hiện cập nhật
+     lại state theo payload backend.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 70/81
+8.4     Hiện thực phía backend theo contract
+8.4.1    Nhóm endpoint đã tích hợp
+
+    Các nhóm endpoint được client gọi trong runtime hiện tại:
+
+   • Auth: /auth/register, /auth/login, /auth/refresh, /auth/logout.
+
+   • Player state: /me.
+
+   • Tutorial: /me/tutorial-progress.
+
+   • Quest: /quests, claim quest, claim progress reward.
+
+   • Battle: /battles/start, /battles/{battleId}/finish.
+
+   • Inventory progression: upgrade/evolve hero, purchase/upgrade skill.
+
+   • Castle: /lobby/castle/upgrade.
+
+8.4.2    Quy tắc dữ liệu quan trọng
+
+   • Battle finish trả đồng thời reward, statistics, currency, tutorialProgress và questUpdates
+     để giảm lệch state giữa màn battle và lobby.
+
+   • Tutorial flags được cập nhật qua hai đường: payload battle finish và endpoint patch riêng;
+     client hợp nhất theo trạng thái mới nhất từ backend.
+
+   • Các thao tác có khả năng retry dùng idempotency key theo contract để tránh cấp trùng.
+
+   • Castle upgrade dùng endpoint riêng để không phụ thuộc vào biến cục bộ client.
+
+
+8.5     Luồng tích hợp đã kiểm chứng
+8.5.1    Luồng xác thực và vào lobby
+
+   1. Người chơi login/register thành công, nhận access/refresh token.
+
+   2. Client gọi /me, nhận đầy đủ profile, statistics, tutorial, currency, inventory, formation,
+      quests.
+
+   3. APIManager áp dụng state vào dữ liệu local và mở lobby.
+
+8.5.2    Luồng quest và reward
+
+   1. Client đồng bộ /quests khi vào game và khi cần refresh.
+
+   2. Người chơi claim quest/progress reward qua endpoint tương ứng.
+
+   3. UI quest cập nhật tiến độ và trạng thái claim theo dữ liệu backend.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 71/81
+8.5.3    Luồng battle và hậu battle
+
+   1. Trước trận: client gọi /battles/start, nhận battleId, seed và config version.
+
+   2. Sau trận: client gọi /battles/{battleId}/finish với idempotency key.
+
+   3. Backend trả reward/statistics/tutorial/quest updates; client cập nhật lobby UI theo
+      payload mới.
+
+8.5.4    Luồng level-up, tutorial và castle
+
+   • Màn UILevelUp hiển thị theo delta trước/sau do backend trả; level thực tế lấy từ
+     statistics.level.
+
+   • finishFirstDeploy và các tutorial flag được sync về backend để tránh lệch khi đổi thiết
+     bị/phiên.
+
+   • Nâng cấp castle đi qua API riêng, cập nhật lại state hiển thị sau phản hồi thành công.
+
+
+8.6     Claim va Evidence
+
+ Claim kỹ thuật                      Evidence triển khai                          Trạng thái
+ Auth đầy đủ vòng đời                Client gọi register/login/refresh/logout,    Đã triển khai
+ phiên                               nhận và xoay token theo API contract
+ Lobby lấy state tập                 GET /me trả profile, statistics, tutorial,   Đã triển khai
+ trung từ backend                    inventory, formation, quest; client apply
+                                     một lần vào state local
+ Quest sync và claim                 /quests + claim endpoints; UI daily/         Đã triển khai
+ theo backend                        weekly/achievement cập nhật từ payload
+                                     backend
+ Battle reward là                    battles/start +                              Đã triển khai
+ server-authoritative                battles/{id}/finish; reward/
+                                     currency/quest update trả từ backend
+ Tutorial progress đồng              PATCH /me/tutorial-progress +                Đã triển khai
+ bộ liên phiên                       tutorial payload từ battle finish
+ Upgrade hero/skill theo             Client gọi endpoint nâng cấp, sau đó         Đã triển khai
+ API                                 đồng bộ lại trạng thái từ phản hồi
+                                     backend
+ Castle upgrade có                   Luồng nâng cấp castle dùng endpoint          Đã triển khai
+ backend source-of-truth             chuyên biệt, không xử lý local-only
+ Realtime WebSocket                  Mới ở mức kiến trúc/roadmap, chưa là         Mở rộng
+ tick-level authoritative            trọng tâm vận hành hiện tại
+ PvP production
+
+               Bảng 24: Bảng traceability claim kỹ thuật và bằng chứng triển khai
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                                Page 72/81
+8.7     Các hạng mục mở rộng chưa hoàn tất
+    • Chuẩn hoá sâu cơ chế realtime authoritative theo tick cho PvP production.
+
+    • Bổ sung bộ benchmark tải và dashboard observability đầy đủ.
+
+    • Mở rộng nội dung gameplay và cân bằng kinh tế ở mức live-ops.
+
+
+8.8     Tổng kết chương
+    Hệ thống hiện đã vượt mức “prototype thiết kế” và có tích hợp runtime cho các luồng cốt
+lõi: auth, player state, quest, battle, tutorial sync, progression và castle upgrade. Phần còn lại
+được tách rõ thành roadmap mở rộng để tránh nhầm lẫn giữa tính năng đã chạy và định hướng
+tương lai.
+
+
+9     Đánh giá hệ thống
+9.1     Mục tiêu và phương pháp đánh giá
+   Mục tiêu của chương này là đánh giá mức độ đáp ứng các yêu cầu đã chuẩn hóa ở Chương 5
+theo phạm vi triển khai thực tế. Phương pháp gồm:
+
+    • đối chiếu trực tiếp FR–NFR với luồng runtime và API contract;
+
+    • kiểm tra tính nhất quán dữ liệu sau các thao tác hậu battle, quest claim, tutorial sync
+      và upgrade;
+
+    • xác định rủi ro vận hành còn lại và biện pháp giảm thiểu.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                       Page 73/81
+9.2     Bao phủ yêu cầu chức năng
+
+ FR               Phân hệ                  Đánh giá trạng thái
+ FR-01,           Auth và vòng đời phiên   Register/login/refresh/logout đã chạy ổn định
+ FR-02                                     theo contract
+ FR-03            Đồng bộ player state     /me trả đầy đủ profile, statistics, tutorial,
+                                           currency, inventory, formation, quests
+ FR-04            Quest sync và claim      Daily/weekly/achievement và trạng thái claim
+                  reward                   được cập nhật theo backend source-of-truth
+ FR-05,           Battle session           battles/start + battles/{id}/finish trả
+ FR-06            start/finish             reward, currency, statistics, tutorialProgress,
+                                           questUpdates
+ FR-07            Tutorial progress sync   PATCH /me/tutorial-progress và payload battle
+                                           finish giữ tutorial flags nhất quán
+ FR-08,           Hero/skill progression   Luồng nâng cấp đã tích hợp API và phản ánh về
+ FR-09                                     UI Units theo response backend
+ FR-10            Castle progression       Nâng cấp castle đi qua endpoint backend riêng,
+                                           không phụ thuộc local-only
+
+             Bảng 25: Đối chiếu mức bao phủ FR theo trạng thái triển khai hiện tại
+
+
+9.3     Đánh giá nhất quán dữ liệu
+9.3.1    Điểm đã đạt
+
+   • Battle finish trả gói hậu trận đầy đủ, giảm sai lệch giữa battle scene và lobby state.
+
+   • Quest progress/reward claim hiển thị theo dữ liệu backend, không chốt theo suy diễn
+     local.
+
+   • Tutorial flags được đồng bộ theo cả luồng patch riêng và payload hậu battle.
+
+   • Castle upgrade đã có backend source-of-truth nên ổn định hơn khi đổi scene hoặc reload.
+
+9.3.2    Điểm cần kiểm soát
+
+   • Cần tránh áp dụng response cũ đè lên state mới trong các request bất đồng bộ.
+
+   • Các thao tác retry phải duy trì idempotency key thống nhất giữa client và backend.
+
+   • Thứ tự cập nhật UI hậu battle phải luôn đi theo dữ liệu mới nhất từ backend.
+
+
+9.4     Đánh giá phi chức năng
+   • NFR-01, NFR-02: vòng đời token và ranh giới server-authoritative đang bám đúng
+     baseline.
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                     Page 74/81
+   • NFR-03, NFR-04: đã có idempotency contract cho thao tác nhạy cảm; còn cần siết
+     thêm xử lý stale response ở một số nhánh UI.
+
+   • NFR-05: log runtime hiện đủ cho trace luồng chính; nên tăng metric dashboard trước
+     production scale.
+
+   • NFR-06, NFR-07: cấu trúc APIManager + UI layer giúp tách luồng rõ; trạng thái
+     loading/error đã được thể hiện trong các màn chính.
+
+   • NFR-08: configVersion đã đi cùng luồng battle/config manifest để giảm lệch cấu hình.
+
+
+9.5     Rủi ro còn lại và hướng giảm thiểu
+
+ Rủi ro                     Mức          Mô tả                                Giảm thiểu
+ Stale state hậu            Trung        UI nhận response chậm và có          So sánh timestamp/
+ battle                     bình         thể hiển thị lại state cũ            version trước khi
+                                                                              apply state
+ Retry gây thao tác         Cao          Request finish/claim/upgrade         Bắt buộc
+ lặp                                     bị gửi lại do mạng                   idempotency key và
+                                                                              kiểm tra duplicate
+                                                                              phía backend
+ Drift tài liệu so với      Trung        Tài liệu thay đổi chậm hơn           Duy trì bảng đối
+ runtime                    bình         code/API                             chiếu FR định kỳ
+                                                                              theo mỗi release
+ Thiếu benchmark            Trung        Chưa có bộ số liệu tải định          Bổ sung kịch bản
+ tải                        bình         lượng khi scale production           load test và theo dõi
+                                                                              metric nền
+
+                           Bảng 26: Rủi ro hiện tại và biện pháp giảm thiểu
+
+
+9.6     Tổng kết chương
+   Kết quả đánh giá cho thấy hệ thống đã đáp ứng đầy đủ baseline implemented-only của
+Chương 5, đặc biệt ở các luồng auth, player state, quest, battle, tutorial sync, upgrade và
+castle progression. Các rủi ro còn lại chủ yếu thuộc nhóm đồng bộ bất đồng bộ và vận hành
+khi mở rộng tải.
+
+
+10       Kết luận và hướng phát triển
+10.1      Tổng kết kết quả hiện tại
+   Đề tài Fortress of the Fallen đã đi từ mức thiết kế sang trạng thái đã tích hợp vận hành
+cho các luồng cốt lõi giữa Unity client và backend. Kết quả chính:
+
+   • Hoàn chỉnh luồng auth: register/login/refresh/logout.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                          Page 75/81
+   • Đồng bộ player state tập trung qua /me.
+
+   • Vận hành quest sync và claim theo backend.
+
+   • Vận hành battle session start/finish với reward và cập nhật progression.
+
+   • Đồng bộ tutorial progress liên phiên.
+
+   • Tích hợp upgrade hero/skill và castle upgrade theo API backend.
+
+
+10.2      Đóng góp
+   • Thiết lập baseline kiến trúc client–server có khả năng mở rộng, nhưng vẫn bám sát luồng
+     game thực tế.
+
+   • Chuẩn hoá nguyên tắc backend source-of-truth cho progression (exp/level/quest/reward/
+     tutorial/castle).
+
+   • Đồng bộ tài liệu kỹ thuật theo hướng claim có evidence, giảm drift giữa báo cáo và
+     runtime.
+
+
+10.3      Hạn chế hiện tại
+   • Realtime PvP authoritative sâu và benchmark tải production chưa hoàn tất.
+
+   • Một số phân hệ mở rộng (live-ops quy mô lớn, anti-cheat toàn diện, dashboard observability
+     đầy đủ) vẫn ở roadmap.
+
+   • Cần tiếp tục siết quy ước version/timestamp để chống stale response ở mọi màn UI.
+
+
+10.4      Hướng phát triển tiếp theo
+   • Hoàn thiện benchmark tải, metric và cảnh báo vận hành.
+
+   • Mở rộng realtime stack cho PvP production (state sync, room scaling, resilience).
+
+   • Tiếp tục chuẩn hoá contract và idempotency cho toàn bộ endpoint nhạy cảm.
+
+   • Mở rộng content/economy theo roadmap live-ops.
+
+
+10.5      Kết luận
+   Hệ thống hiện không còn ở phạm vi “chỉ thiết kế”. Các luồng gameplay/lobby cốt lõi đã
+được triển khai và đồng bộ theo backend source-of-truth. Nền tảng này đủ vững để chuyển
+trọng tâm sang tối ưu vận hành, mở rộng realtime và hoàn thiện các phân hệ nâng cao.
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                    Page 76/81
+Phân công nhiệm vụ và đóng góp của các thành viên
+    Phần này tổng hợp phạm vi công việc và mức đóng góp của từng thành viên trong suốt quá
+trình thực hiện đồ án. Việc phân công được xây dựng dựa trên thế mạnh của mỗi thành viên
+và được phối hợp xuyên suốt theo từng mốc triển khai, nhằm đảm bảo tính nhất quán giữa
+trải nghiệm người dùng (client/UI) và xử lý nghiệp vụ (server/DB/giao tiếp).
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                Page 77/81
+ Hạng mục                 Mô tả công việc                      Thành      viên   Phối hợp
+                                                               chính
+ Lên ý tưởng đề tài       Thống     nhất    định    hướng      Toàn + Khang      Cả hai
+                          gameplay,        scope         hệ
+                          thống, các phân hệ chính
+                          (auth,         profile/character,
+                          inventory/equipment,       skills,
+                          island/npc, combat/gacha).
+ Tìm game tham            Tìm các tựa game/reference phù       Hà Thái Toàn      Trần       Minh
+ khảo và chốt             hợp, tổng hợp luồng UI, bố cục                         Khang
+ hướng UI                 màn hình và quy ước tương tác
+                          để chốt phong cách giao diện và
+                          trải nghiệm.
+ Client và UI/UX          Thiết kế luồng màn hình              Hà Thái Toàn      Trần       Minh
+                          (login/register,        profile,                       Khang
+                          create character, main hub,
+                          inventory), định nghĩa UI
+                          state (loading/error/disabled),
+                          chuẩn hoá dữ liệu hiển thị theo
+                          response từ API.
+ Đề xuất tính năng        Đề xuất các tính năng trọng tâm      Trần Minh Khang   Hà Thái Toàn
+ và đánh giá khả          theo phạm vi đồ án; đánh giá rủi
+ thi                      ro/độ phức tạp; chốt các chức
+                          năng phải server-authoritative
+                          và các điểm cần audit/log.
+ Hiện thực          hệ    Thiết kế/hiện thực backend theo      Trần Minh Khang   Hà Thái Toàn
+ thống server             mô-đun; tổ chức REST API cho
+                          các luồng cốt lõi; xác thực, phân
+                          quyền, xử lý lỗi; chuẩn hoá
+                          payload; quản lý session runtime
+                          và luồng nghiệp vụ chính; chuẩn
+                          bị thiết kế mở rộng WebSocket.
+ Đồng bộ client–          Thống nhất contract dữ liệu          Cả hai            Cả hai
+ server                   giữa UI và API (endpoint,
+                          request/response),   rà  soát
+                          mismatch, điều chỉnh luồng để
+                          đảm bảo trải nghiệm mượt và
+                          dữ liệu nhất quán; định nghĩa
+                          trước message envelope cho
+                          hướng realtime mở rộng.
+
+                   Bảng 27: Phân công nhiệm vụ và đóng góp của các thành viên
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                        Page 78/81
+Roadmap giai đoạn tiếp theo
+   Phần này mô tả roadmap sau baseline đã triển khai, tập trung vào các hạng mục còn thiếu
+để đạt mức production-ready. Mốc thời gian dưới đây được chốt theo kế hoạch tại thời điểm
+tháng 05/2026.
+
+ Ưu tiên       Thời gian             Hạng mục                                   Kết quả mong đợi
+ P1            05–06/2026            Chuẩn hoá observability (metrics/          Có dashboard vận
+                                     tracing/alert) cho auth, quest, battle,    hành và ngưỡng
+                                     tutorial, upgrade, castle                  cảnh báo
+ P1            05–06/2026            Hoàn thiện bộ test hồi quy cho các luồng   Giảm lỗi drift state
+                                     đã chạy và kịch bản retry idempotency      và lỗi cấp trùng
+ P2            07–08/2026            Mở rộng realtime authoritative cho PvP     Luồng PvP ổn định
+                                     production (room scaling, sync ổn định,    theo tiêu chí vận
+                                     reconnect policy)                          hành
+ P2            07–08/2026            Benchmark tải và tối ưu hiệu năng          Báo cáo hiệu năng
+                                     backend/client theo số liệu thực nghiệm    và kế hoạch scale
+ P3            09/2026 trở đi        Mở rộng live-ops: event loop, economy      Nâng mức vận hành
+                                     tuning, content pipeline sâu hơn           nội dung dài hạn
+
+           Bảng 28: Roadmap sau baseline triển khai (mốc thời gian tính từ 05/2026)
+
+
+Nguyên tắc triển khai roadmap:
+
+   • Không phá vỡ baseline đã ổn định (auth/me/quest/battle/tutorial/progression/castle).
+
+   • Mọi tính năng mới phải có claim ↔ evidence trước khi ghi vào báo cáo là “đã triển khai”.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                           Page 79/81
+Tài liệu
+ [1] Newzoo. Global Games Market Report. Online report. Báo cáo thống kê thị trường game
+     toàn cầu. 2023.
+ [2] Michael Moriarty. “Networked Physics and Latency Compensation in Online Games”.
+     inProceedings of the Game Developers Conference: Trình bày các kỹ thuật client-side
+     prediction, interpolation, reconciliation. 2014.
+ [3] Jason Gregory. Game Engine Architecture. 3 edition. Kiến trúc game engine, kiến trúc
+     nhiều lớp và real-time system. CRC Press, 2018.
+ [4] Ernest Adams. Fundamentals of Game Design. 3 edition. Tài liệu cơ bản về thiết kế
+     game, core loop, progression, economy. New Riders, 2014.
+ [5] Jesse Schell. The Art of Game Design: A Book of Lenses. 3 edition. Các nguyên lý thiết
+     kế trải nghiệm, level design, UX trong game. CRC Press, 2019.
+ [6] Unity Technologies. Unity User Manual. https://docs.unity3d.com/Manual/index.
+     html. Tài liệu chính thức hướng dẫn sử dụng Unity. 2023.
+ [7] Kamil Myśliwiec and NestJS Team. NestJS Documentation. https://docs.nestjs.com.
+     Tài liệu chính thức của NestJS. 2023.
+ [8] Kristina Chodorow. MongoDB: The Definitive Guide. 2 edition. Giới thiệu và hướng dẫn
+     sử dụng MongoDB. O’Reilly Media, 2013.
+ [9] Josiah L. Carlson. Redis in Action. Ứng dụng Redis cho cache, pub/sub, lưu trữ session.
+     Manning Publications, 2013.
+[10] Glenn Fiedler. Gaffer on Games: Networking for Game Programmers. Tài liệu tham khảo
+     về server authoritative, prediction, interpolation. 2010.
+[11] Microsoft. C# Programming Guide. https://learn.microsoft.com/dotnet/csharp/.
+     Tài liệu chính thức về ngôn ngữ C#. 2023.
+[12] OpenJS Foundation. Node.js Documentation. https://nodejs.org/en/docs. Tài liệu
+     chính thức của Node.js. 2023.
+[13] GitHub. GitHub Documentation. https : / / docs . github . com. Hướng dẫn sử dụng
+     GitHub và Git cơ bản. 2023.
+[14] GitHub. GitHub Projects Documentation. https://docs.github.com/issues/planning-
+     and-tracking-with-projects. Hướng dẫn sử dụng GitHub Projects để quản lý tác vụ.
+     2023.
+[15] Thomas Allweyer. BPMN 2.0: Introduction to the Standard for Business Process Modeling.
+     Giới thiệu BPMN 2.0 dùng cho mô hình hoá quy trình. Books on Demand, 2016.
+[16] Frank Mittelbach andothers. The LATEX Companion. 2 edition. Tài liệu tham khảo về
+     soạn thảo tài liệu bằng LATEX. Addison-Wesley, 2004.
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                                  Page 80/81
+[17] Reki Kawahara. Sword Art Online, Vol. 1: Aincrad. Nguồn tham khảo ý tưởng leo tầng
+     và boss tầng. Yen Press, 2014.
+[18] Kugane Maruyama. Overlord, Vol. 1: The Undead King. Nguồn tham khảo cách xây dựng
+     NPC và thế giới vận hành. Yen Press, 2016.
+[19] Pick Me Up! Infinite Gacha. Pick Me Up! Infinite Gacha (Webtoon/Manhwa). Nguồn
+     tham khảo cơ chế gacha và meta-progression. 2022.
+[20] Arcane Odyssey. Arcane Odyssey (Game). Nguồn tham khảo trải nghiệm online RPG và
+     cảm giác điều khiển. 2023.
+[21] ChillyRoom. Soul Knight Prequel (Game). Nguồn tham khảo vòng lặp phiên chơi ngắn
+     và reward theo phiên. 2023.
+[22] Supercell. Clash of Clans (Game). Nguồn tham khảo hệ thống căn cứ/công trình và quản
+     trị tài nguyên. 2012.
+
+
+
+
+Khoa Khoa Học và Kỹ Thuật Máy Tính                                               Page 81/81
+

@@ -12,6 +12,7 @@
     \item Vận hành battle session start/\allowbreak finish với reward và cập nhật progression.
     \item Đồng bộ tutorial progress liên phiên.
     \item Tích hợp upgrade hero/\allowbreak skill và castle upgrade theo API backend.
+    \item Vận hành shop catalog/\allowbreak purchase và popup reward theo payload backend.
 \end{itemize}
 
 \subsection{Đóng góp}
@@ -19,7 +20,7 @@
 
 \begin{itemize}
     \item Thiết lập baseline kiến trúc client--server có khả năng mở rộng, nhưng vẫn bám sát luồng game thực tế.
-    \item Chuẩn hoá nguyên tắc backend source-of-truth cho progression (exp/\allowbreak level/\allowbreak quest/\allowbreak reward/\allowbreak tutorial/\allowbreak castle).
+    \item Chuẩn hoá nguyên tắc backend source-of-truth cho progression (exp/\allowbreak level/\allowbreak quest/\allowbreak reward/\allowbreak tutorial/\allowbreak castle/\allowbreak shop currency).
     \item Đồng bộ tài liệu kỹ thuật theo hướng claim có evidence, giảm drift giữa báo cáo và runtime.
 \end{itemize}
 
@@ -27,8 +28,8 @@
 \label{subsec:conclusion-limitations}
 
 \begin{itemize}
-    \item Realtime PvP authoritative sâu và benchmark tải production chưa hoàn tất.
-    \item Một số phân hệ mở rộng (live-ops quy mô lớn, anti-cheat toàn diện, dashboard observability đầy đủ) vẫn ở roadmap.
+    \item Realtime PvP authoritative sâu và benchmark tải vận hành chưa hoàn tất.
+    \item Một số phân hệ mở rộng (live-ops quy mô lớn, cơ chế giảm gian lận, dashboard observability cho nhiều kịch bản) vẫn ở roadmap.
     \item Cần tiếp tục siết quy ước version/\allowbreak timestamp để chống stale response ở mọi màn UI.
 \end{itemize}
 
@@ -37,7 +38,7 @@
 
 \begin{itemize}
     \item Hoàn thiện benchmark tải, metric và cảnh báo vận hành.
-    \item Mở rộng realtime stack cho PvP production (state sync, room scaling, resilience).
+    \item Mở rộng realtime stack cho PvP (state sync, room scaling, resilience).
     \item Tiếp tục chuẩn hoá contract và idempotency cho toàn bộ endpoint nhạy cảm.
     \item Mở rộng content/\allowbreak economy theo roadmap live-ops.
 \end{itemize}
