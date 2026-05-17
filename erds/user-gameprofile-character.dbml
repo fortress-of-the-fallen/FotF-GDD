@@ -34,8 +34,6 @@ Table CHARACTER [headercolor: #D5F5E3] {
   name string [not null, note: 'User input at character creation']
   gender enum [not null, note: 'User selected at character creation']
   race enum [not null, note: 'User selected at character creation']
-  appearance object [note: 'Random by server at character creation']
-  creation_meta object [note: 'appearance_randomized=true, roll_seed, reroll_count']
   created_at datetime
 
   indexes {
