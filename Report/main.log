@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  16 MAY 2026 19:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  17 MAY 2026 15:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2233,193 +2233,192 @@ File: Images/newDiagram/erd-inventory-battle.png Graphic file (type png)
 Package pdftex.def Info: Images/newDiagram/erd-inventory-battle.png  used on in
 put line 166.
 (pdftex.def)             Requested size: 232.17242pt x 103.26276pt.
-<Images/newDiagram/erd-character-customization.png, id=1474, 1014.79124pt x 436
-.63126pt>
+<Images/newDiagram/erd-character-customization.png, id=1474, 999.735pt x 199.74
+625pt>
 File: Images/newDiagram/erd-character-customization.png Graphic file (type png)
 
 <use Images/newDiagram/erd-character-customization.png>
 Package pdftex.def Info: Images/newDiagram/erd-character-customization.png  use
 d on input line 172.
-(pdftex.def)             Requested size: 232.17242pt x 99.89674pt.
+(pdftex.def)             Requested size: 232.17242pt x 46.38565pt.
  [43] [44 <./Images/newDiagram/erd-auth-player.png> <./Images/newDiagram/erd-ch
 aracter-progression.png> <./Images/newDiagram/erd-inventory-battle.png> <./Imag
-es/newDiagram/erd-character-customization.png>] [45]
-ignored error: Infinite glue shrinkage found in box being split [46]
-ignored error: Infinite glue shrinkage found in box being split [47] [48]
-ignored error: Infinite glue shrinkage found in box being split [49]
-ignored error: Infinite glue shrinkage found in box being split [50]
+es/newDiagram/erd-character-customization.png (PNG copy)>]
+[45]
+ignored error: Infinite glue shrinkage found in box being split [46] [47]
+ignored error: Infinite glue shrinkage found in box being split [48] [49]
+[50]
 ignored error: Infinite glue shrinkage found in box being split [51]
-ignored error: Infinite glue shrinkage found in box being split [52]
 File: Images/stats-system.png Graphic file (type png)
 <use Images/stats-system.png>
-Package pdftex.def Info: Images/stats-system.png  used on input line 655.
+Package pdftex.def Info: Images/stats-system.png  used on input line 653.
 (pdftex.def)             Requested size: 377.28296pt x 295.67294pt.
- [53]
-[54] [55{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
-<Images/newUI/login.png, id=1567, 344.78813pt x 629.35126pt>
+ [52]
+[53] [54{c:/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+<Images/newUI/login.png, id=1561, 344.78813pt x 629.35126pt>
 File: Images/newUI/login.png Graphic file (type png)
 <use Images/newUI/login.png>
-Package pdftex.def Info: Images/newUI/login.png  used on input line 759.
+Package pdftex.def Info: Images/newUI/login.png  used on input line 757.
 (pdftex.def)             Requested size: 149.94484pt x 273.69836pt.
-<Images/newUI/register.png, id=1568, 346.29375pt x 627.09282pt>
+<Images/newUI/register.png, id=1562, 346.29375pt x 627.09282pt>
 File: Images/newUI/register.png Graphic file (type png)
 <use Images/newUI/register.png>
-Package pdftex.def Info: Images/newUI/register.png  used on input line 765.
+Package pdftex.def Info: Images/newUI/register.png  used on input line 763.
 (pdftex.def)             Requested size: 149.94484pt x 271.53925pt.
-<Images/newUI/loading_scene.png, id=1569, 344.78813pt x 627.09282pt>
+<Images/newUI/loading_scene.png, id=1563, 344.78813pt x 627.09282pt>
 File: Images/newUI/loading_scene.png Graphic file (type png)
 <use Images/newUI/loading_scene.png>
-Package pdftex.def Info: Images/newUI/loading_scene.png  used on input line 771
+Package pdftex.def Info: Images/newUI/loading_scene.png  used on input line 769
 .
 (pdftex.def)             Requested size: 149.94484pt x 272.71619pt.
- [56]
-<Images/newUI/main_scene.png, id=1575, 346.29375pt x 630.85687pt>
+ [55]
+<Images/newUI/main_scene.png, id=1569, 346.29375pt x 630.85687pt>
 File: Images/newUI/main_scene.png Graphic file (type png)
 <use Images/newUI/main_scene.png>
-Package pdftex.def Info: Images/newUI/main_scene.png  used on input line 792.
+Package pdftex.def Info: Images/newUI/main_scene.png  used on input line 790.
 (pdftex.def)             Requested size: 149.94484pt x 273.16913pt.
-<Images/newUI/upgrade_castle.png, id=1576, 346.29375pt x 629.35126pt>
+<Images/newUI/upgrade_castle.png, id=1570, 346.29375pt x 629.35126pt>
 File: Images/newUI/upgrade_castle.png Graphic file (type png)
 <use Images/newUI/upgrade_castle.png>
 Package pdftex.def Info: Images/newUI/upgrade_castle.png  used on input line 79
-8.
+6.
 (pdftex.def)             Requested size: 149.94484pt x 272.51718pt.
-<Images/newUI/leaderBoard.png, id=1577, 345.54094pt x 627.84563pt>
+<Images/newUI/leaderBoard.png, id=1571, 345.54094pt x 627.84563pt>
 File: Images/newUI/leaderBoard.png Graphic file (type png)
 <use Images/newUI/leaderBoard.png>
-Package pdftex.def Info: Images/newUI/leaderBoard.png  used on input line 804.
+Package pdftex.def Info: Images/newUI/leaderBoard.png  used on input line 802.
 (pdftex.def)             Requested size: 149.94484pt x 272.4496pt.
- [57 <./Images/newUI/login.png> <./Images/newUI/register.png> <./Images/newUI/l
+ [56 <./Images/newUI/login.png> <./Images/newUI/register.png> <./Images/newUI/l
 oading_scene.png>]
-<Images/newUI/daily_task.png, id=1586, 341.02406pt x 619.56468pt>
+<Images/newUI/daily_task.png, id=1580, 341.02406pt x 619.56468pt>
 File: Images/newUI/daily_task.png Graphic file (type png)
 <use Images/newUI/daily_task.png>
-Package pdftex.def Info: Images/newUI/daily_task.png  used on input line 827.
+Package pdftex.def Info: Images/newUI/daily_task.png  used on input line 825.
 (pdftex.def)             Requested size: 149.94484pt x 272.42021pt.
-<Images/newUI/weekly_task.png, id=1587, 340.27126pt x 621.07031pt>
+<Images/newUI/weekly_task.png, id=1581, 340.27126pt x 621.07031pt>
 File: Images/newUI/weekly_task.png Graphic file (type png)
 <use Images/newUI/weekly_task.png>
-Package pdftex.def Info: Images/newUI/weekly_task.png  used on input line 833.
+Package pdftex.def Info: Images/newUI/weekly_task.png  used on input line 831.
 (pdftex.def)             Requested size: 149.94484pt x 273.67928pt.
-<Images/newUI/achievements.png, id=1588, 344.03531pt x 627.09282pt>
+<Images/newUI/achievements.png, id=1582, 344.03531pt x 627.09282pt>
 File: Images/newUI/achievements.png Graphic file (type png)
 <use Images/newUI/achievements.png>
-Package pdftex.def Info: Images/newUI/achievements.png  used on input line 839.
+Package pdftex.def Info: Images/newUI/achievements.png  used on input line 837.
 
 (pdftex.def)             Requested size: 149.94484pt x 273.30945pt.
- [58 <./Images/newUI/main_scene.png> <./Images/newUI/upgrade_castle.png> <./Ima
+ [57 <./Images/newUI/main_scene.png> <./Images/newUI/upgrade_castle.png> <./Ima
 ges/newUI/leaderBoard.png>]
-<Images/newUI/UIShop.png, id=1597, 344.03531pt x 630.85687pt>
+<Images/newUI/UIShop.png, id=1591, 344.03531pt x 630.85687pt>
 File: Images/newUI/UIShop.png Graphic file (type png)
 <use Images/newUI/UIShop.png>
-Package pdftex.def Info: Images/newUI/UIShop.png  used on input line 862.
+Package pdftex.def Info: Images/newUI/UIShop.png  used on input line 860.
 (pdftex.def)             Requested size: 232.17242pt x 425.733pt.
-<Images/newUI/popupShop.png, id=1598, 344.03531pt x 638.385pt>
+<Images/newUI/popupShop.png, id=1592, 344.03531pt x 638.385pt>
 File: Images/newUI/popupShop.png Graphic file (type png)
 <use Images/newUI/popupShop.png>
-Package pdftex.def Info: Images/newUI/popupShop.png  used on input line 868.
+Package pdftex.def Info: Images/newUI/popupShop.png  used on input line 866.
 (pdftex.def)             Requested size: 232.17242pt x 430.81334pt.
- [59 <./Images/newUI/daily_task.png> <./Images/newUI/weekly_task.png> <./Images
+ [58 <./Images/newUI/daily_task.png> <./Images/newUI/weekly_task.png> <./Images
 /newUI/achievements.png>]
-<Images/newUI/inventory.png, id=1607, 347.04657pt x 629.35126pt>
+<Images/newUI/inventory.png, id=1601, 347.04657pt x 629.35126pt>
 File: Images/newUI/inventory.png Graphic file (type png)
 <use Images/newUI/inventory.png>
-Package pdftex.def Info: Images/newUI/inventory.png  used on input line 891.
+Package pdftex.def Info: Images/newUI/inventory.png  used on input line 889.
 (pdftex.def)             Requested size: 91.90358pt x 166.66205pt.
-<Images/newUI/UI_Unit.png, id=1608, 344.03531pt x 625.58719pt>
+<Images/newUI/UI_Unit.png, id=1602, 344.03531pt x 625.58719pt>
 File: Images/newUI/UI_Unit.png Graphic file (type png)
 <use Images/newUI/UI_Unit.png>
-Package pdftex.def Info: Images/newUI/UI_Unit.png  used on input line 897.
+Package pdftex.def Info: Images/newUI/UI_Unit.png  used on input line 895.
 (pdftex.def)             Requested size: 91.90358pt x 167.11621pt.
-<Images/newUI/UI_descUnit.png, id=1609, 344.03531pt x 631.60968pt>
+<Images/newUI/UI_descUnit.png, id=1603, 344.03531pt x 631.60968pt>
 File: Images/newUI/UI_descUnit.png Graphic file (type png)
 <use Images/newUI/UI_descUnit.png>
-Package pdftex.def Info: Images/newUI/UI_descUnit.png  used on input line 903.
+Package pdftex.def Info: Images/newUI/UI_descUnit.png  used on input line 901.
 (pdftex.def)             Requested size: 91.90358pt x 168.72502pt.
-<Images/newUI/UI_upgrade.png, id=1610, 347.79938pt x 630.10406pt>
+<Images/newUI/UI_upgrade.png, id=1604, 347.79938pt x 630.10406pt>
 File: Images/newUI/UI_upgrade.png Graphic file (type png)
 <use Images/newUI/UI_upgrade.png>
-Package pdftex.def Info: Images/newUI/UI_upgrade.png  used on input line 909.
+Package pdftex.def Info: Images/newUI/UI_upgrade.png  used on input line 907.
 (pdftex.def)             Requested size: 91.90358pt x 166.49605pt.
-<Images/newUI/UI_evolution.png, id=1611, 344.78813pt x 630.10406pt>
+<Images/newUI/UI_evolution.png, id=1605, 344.78813pt x 630.10406pt>
 File: Images/newUI/UI_evolution.png Graphic file (type png)
 <use Images/newUI/UI_evolution.png>
-Package pdftex.def Info: Images/newUI/UI_evolution.png  used on input line 915.
+Package pdftex.def Info: Images/newUI/UI_evolution.png  used on input line 913.
 
 (pdftex.def)             Requested size: 91.90358pt x 167.95746pt.
- [60 <./Images/newUI/UIShop.png> <./Images/newUI/popupShop.png>]
-<Images/newUI/tutorial1_1.png, id=1620, 347.04657pt x 627.84563pt>
+ [59 <./Images/newUI/UIShop.png> <./Images/newUI/popupShop.png>]
+<Images/newUI/tutorial1_1.png, id=1613, 347.04657pt x 627.84563pt>
 File: Images/newUI/tutorial1_1.png Graphic file (type png)
 <use Images/newUI/tutorial1_1.png>
-Package pdftex.def Info: Images/newUI/tutorial1_1.png  used on input line 937.
+Package pdftex.def Info: Images/newUI/tutorial1_1.png  used on input line 935.
 (pdftex.def)             Requested size: 149.94484pt x 271.27126pt.
-<Images/newUI/tutorial1_2.png, id=1621, 346.29375pt x 630.10406pt>
+<Images/newUI/tutorial1_2.png, id=1614, 346.29375pt x 630.10406pt>
 File: Images/newUI/tutorial1_2.png Graphic file (type png)
 <use Images/newUI/tutorial1_2.png>
-Package pdftex.def Info: Images/newUI/tutorial1_2.png  used on input line 943.
+Package pdftex.def Info: Images/newUI/tutorial1_2.png  used on input line 941.
 (pdftex.def)             Requested size: 149.94484pt x 272.84315pt.
-<Images/newUI/tutorial1_3.png, id=1622, 343.2825pt x 627.84563pt>
+<Images/newUI/tutorial1_3.png, id=1615, 343.2825pt x 627.84563pt>
 File: Images/newUI/tutorial1_3.png Graphic file (type png)
 <use Images/newUI/tutorial1_3.png>
-Package pdftex.def Info: Images/newUI/tutorial1_3.png  used on input line 949.
+Package pdftex.def Info: Images/newUI/tutorial1_3.png  used on input line 947.
 (pdftex.def)             Requested size: 149.94484pt x 274.24109pt.
- [61 <./Images/newUI/inventory.png> <./Images/newUI/UI_Unit.png> <./Images/newU
+ [60 <./Images/newUI/inventory.png> <./Images/newUI/UI_Unit.png> <./Images/newU
 I/UI_descUnit.png> <./Images/newUI/UI_upgrade.png> <./Images/newUI/UI_evolution
 .png>]
-<Images/newUI/finding_match.png, id=1634, 342.5297pt x 627.09282pt>
+<Images/newUI/finding_match.png, id=1627, 342.5297pt x 627.09282pt>
 File: Images/newUI/finding_match.png Graphic file (type png)
 <use Images/newUI/finding_match.png>
-Package pdftex.def Info: Images/newUI/finding_match.png  used on input line 972
+Package pdftex.def Info: Images/newUI/finding_match.png  used on input line 970
 .
 (pdftex.def)             Requested size: 116.0899pt x 212.52936pt.
-<Images/newUI/matching_scene.png, id=1635, 347.04657pt x 626.34pt>
+<Images/newUI/matching_scene.png, id=1628, 347.04657pt x 626.34pt>
 File: Images/newUI/matching_scene.png Graphic file (type png)
 <use Images/newUI/matching_scene.png>
 Package pdftex.def Info: Images/newUI/matching_scene.png  used on input line 97
-8.
+6.
 (pdftex.def)             Requested size: 116.0899pt x 209.51219pt.
-<Images/newUI/roulette.png, id=1636, 346.29375pt x 629.35126pt>
+<Images/newUI/roulette.png, id=1629, 346.29375pt x 629.35126pt>
 File: Images/newUI/roulette.png Graphic file (type png)
 <use Images/newUI/roulette.png>
-Package pdftex.def Info: Images/newUI/roulette.png  used on input line 984.
+Package pdftex.def Info: Images/newUI/roulette.png  used on input line 982.
 (pdftex.def)             Requested size: 116.0899pt x 210.98042pt.
-<Images/newUI/battle_scene.png, id=1637, 350.05782pt x 631.60968pt>
+<Images/newUI/battle_scene.png, id=1630, 350.05782pt x 631.60968pt>
 File: Images/newUI/battle_scene.png Graphic file (type png)
 <use Images/newUI/battle_scene.png>
-Package pdftex.def Info: Images/newUI/battle_scene.png  used on input line 990.
+Package pdftex.def Info: Images/newUI/battle_scene.png  used on input line 988.
 
 (pdftex.def)             Requested size: 116.0899pt x 209.45341pt.
- [62 <./Images/newUI/tutorial1_1.png> <./Images/newUI/tutorial1_2.png> <./Image
+ [61 <./Images/newUI/tutorial1_1.png> <./Images/newUI/tutorial1_2.png> <./Image
 s/newUI/tutorial1_3.png>]
-<Images/newUI/end_match.png, id=1646, 344.03531pt x 627.09282pt>
+<Images/newUI/end_match.png, id=1640, 344.03531pt x 627.09282pt>
 File: Images/newUI/end_match.png Graphic file (type png)
 <use Images/newUI/end_match.png>
-Package pdftex.def Info: Images/newUI/end_match.png  used on input line 1013.
+Package pdftex.def Info: Images/newUI/end_match.png  used on input line 1011.
 (pdftex.def)             Requested size: 116.0899pt x 211.6012pt.
-<Images/newUI/victory_reward.png, id=1647, 344.03531pt x 629.35126pt>
+<Images/newUI/victory_reward.png, id=1641, 344.03531pt x 629.35126pt>
 File: Images/newUI/victory_reward.png Graphic file (type png)
 <use Images/newUI/victory_reward.png>
 Package pdftex.def Info: Images/newUI/victory_reward.png  used on input line 10
-19.
+17.
 (pdftex.def)             Requested size: 116.0899pt x 212.36327pt.
-<Images/newUI/defeat_reward.png, id=1648, 348.55219pt x 627.84563pt>
+<Images/newUI/defeat_reward.png, id=1642, 348.55219pt x 627.84563pt>
 File: Images/newUI/defeat_reward.png Graphic file (type png)
 <use Images/newUI/defeat_reward.png>
 Package pdftex.def Info: Images/newUI/defeat_reward.png  used on input line 102
-5.
+3.
 (pdftex.def)             Requested size: 116.0899pt x 209.10571pt.
-<Images/newUI/level_up.png, id=1649, 348.55219pt x 625.58719pt>
+<Images/newUI/level_up.png, id=1643, 348.55219pt x 625.58719pt>
 File: Images/newUI/level_up.png Graphic file (type png)
 <use Images/newUI/level_up.png>
-Package pdftex.def Info: Images/newUI/level_up.png  used on input line 1031.
+Package pdftex.def Info: Images/newUI/level_up.png  used on input line 1029.
 (pdftex.def)             Requested size: 116.0899pt x 208.35355pt.
 
-[63 <./Images/newUI/finding_match.png> <./Images/newUI/matching_scene.png> <./I
-mages/newUI/roulette.png> <./Images/newUI/battle_scene.png>] [64 <./Images/newU
+[62 <./Images/newUI/finding_match.png> <./Images/newUI/matching_scene.png> <./I
+mages/newUI/roulette.png> <./Images/newUI/battle_scene.png>] [63 <./Images/newU
 I/end_match.png> <./Images/newUI/victory_reward.png> <./Images/newUI/defeat_rew
-ard.png> <./Images/newUI/level_up.png>]) (./Content/implementation.tex [65]
-[66] [67] [68]) (./Content/evaluation.tex [69] [70] [71])
-(./Content/conclusion.tex [72]) [73] (./Content/contributions.tex
+ard.png> <./Images/newUI/level_up.png>]) (./Content/implementation.tex [64]
+[65] [66] [67]) (./Content/evaluation.tex [68] [69] [70])
+(./Content/conclusion.tex [71]) [72] (./Content/contributions.tex
 Underfull \hbox (badness 10000) in paragraph at lines 29--29
 []|\T5/lmr/bx/n/12 (+20) Th nh vi¶n
  []
@@ -2484,7 +2483,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--29
 \T5/lmr/m/n/12 (+20) request/response), r  so¡t
  []
 
-[74
+[73
 
 
 ]) (./Content/timeline_next_phase.tex
@@ -2497,7 +2496,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--26
 \T5/lmr/m/n/12 (+20) h nh v  ng÷ïng
  []
 
-) [75
+) [74
 
 
 ]
@@ -2687,7 +2686,7 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 (biblatex)                loaded, is faulty or does not contain a definition
 (biblatex)                for \mkbibdatelong.
 
-[76
+[75
 
 ]
 
@@ -2725,7 +2724,7 @@ Package biblatex Warning: Using fallback definition for \mkbibdatelong.
 (biblatex)                loaded, is faulty or does not contain a definition
 (biblatex)                for \mkbibdatelong.
 
-[77] 
+[76] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
@@ -2737,6 +2736,9 @@ L3 programming layer <2025-11-14>
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 81E0D3F90E60D952A67D48A37DAAB4B8;37219.
 Package logreq Info: Writing requests to 'main.run.xml'.
@@ -2746,24 +2748,28 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Here is how much of TeX's memory you used:
  43032 strings out of 467538
  816379 string characters out of 5426329
- 1771474 words of memory out of 5000000
+ 1769474 words of memory out of 5000000
  70452 multiletter control sequences out of 15000+600000
  773501 words of font info for 242 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  104i,12n,116p,1197b,1695s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/texmf-dis
-t/fonts/type1/public/lm/lmex10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm
-/lmmi12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/
-texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/texmf-dist/fonts/type1/p
-ublic/lm/lmr12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/te
-xlive/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/texmf-dist/fonts/
-type1/public/lm/lmri8.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmss8.pf
-b><c:/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/texmf-dis
-t/fonts/type1/public/lm/lmtt12.pfb>
-Output written on main.pdf (90 pages, 6526700 bytes).
+
+pdfTeX warning (dest): name{page.90} has been referenced but does not exist, re
+placed by a fixed one
+
+<c:/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/texmf-dist/
+fonts/type1/public/lm/lmex10.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/l
+mmi12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/te
+xmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/texmf-dist/fonts/type1/pub
+lic/lm/lmr12.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texl
+ive/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/texmf-dist/fonts/ty
+pe1/public/lm/lmri8.pfb><c:/texlive/texmf-dist/fonts/type1/public/lm/lmss8.pfb>
+<c:/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/texmf-dist/
+fonts/type1/public/lm/lmtt12.pfb>
+Output written on main.pdf (89 pages, 6535533 bytes).
 PDF statistics:
- 1923 PDF objects out of 2073 (max. 8388607)
- 1695 compressed objects within 17 object streams
+ 1918 PDF objects out of 2073 (max. 8388607)
+ 1692 compressed objects within 17 object streams
  423 named destinations out of 1000 (max. 500000)
  56883 words of extra memory for PDF output out of 61914 (max. 10000000)
 

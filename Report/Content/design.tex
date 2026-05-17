@@ -87,7 +87,7 @@ Auth Module & Đăng ký/\allowbreak đăng nhập; cấp và xác thực token;
 \hline
 Profile Module & Tạo/\allowbreak chọn profile; cập nhật last\_played; thiết lập profile & GAME\_\allowbreak PROFILE \\
 \hline
-Character Module & Tạo/\allowbreak chọn/\allowbreak xoá nhân vật; quản lý level/\allowbreak EXP; base stats, appearance & CHARACTER \\
+Character Module & Tạo/\allowbreak chọn/\allowbreak xoá nhân vật; quản lý level/\allowbreak EXP; base stats & CHARACTER \\
 \hline
 Inventory Module & Quản lý slot, stack, currency; dùng vật phẩm; cập nhật reward & INVENTORY, CONFIG\_\allowbreak ITEM \\
 \hline
@@ -136,7 +136,7 @@ Hệ thống dữ liệu được chia thành 2 nhóm:
 
 Với MongoDB, thiết kế ưu tiên:
 \begin{itemize}
-    \item \textbf{Embed} khi dữ liệu có vòng đời gắn chặt với thực thể cha và thường được tải cùng nhau (ví dụ: base\_stats/\allowbreak resources/\allowbreak appearance nhúng trong CHARACTER; items nhúng trong INVENTORY; skill list/\allowbreak hotbar nhúng trong CHARACTER\_SKILLS; từng slot trang bị nhúng trong CHARACTER\_EQUIPMENT).
+    \item \textbf{Embed} khi dữ liệu có vòng đời gắn chặt với thực thể cha và thường được tải cùng nhau (ví dụ: base\_stats/\allowbreak resources/\allowbreak position nhúng trong CHARACTER; items nhúng trong INVENTORY; skill list/\allowbreak hotbar nhúng trong CHARACTER\_SKILLS; từng slot trang bị nhúng trong CHARACTER\_EQUIPMENT).
     \item \textbf{Reference} khi dữ liệu là định nghĩa tĩnh dùng chung (CONFIG collections) hoặc cần tái sử dụng giữa nhiều thực thể.
 \end{itemize}
 
@@ -191,10 +191,10 @@ Phần này phân tích ERD theo nhóm để làm rõ mục đích dữ liệu, 
     session chỉ hợp lệ khi profile còn tồn tại; \texttt{expires\_at} dùng TTL để tự dọn phiên hết hạn.
 \end{itemize}
 
-\paragraph{Nhóm nhân vật và tiến trình (CHARACTER + stats/resources/appearance)}
+\paragraph{Nhóm nhân vật và tiến trình (CHARACTER + stats/resources/position)}
 \textbf{Mục đích dữ liệu:} lưu trạng thái phát triển nhân vật và dữ liệu hiển thị/\allowbreak vận hành trong gameplay.
 \begin{itemize}
-    \item \textbf{Quan hệ chính:} GAME\_PROFILE (1:N) CHARACTER; CHARACTER (1:1) với các struct nhúng \texttt{base\_stats}, \texttt{resources}, \texttt{position}, \texttt{appearance}.
+    \item \textbf{Quan hệ chính:} GAME\_PROFILE (1:N) CHARACTER; CHARACTER (1:1) với các struct nhúng \texttt{base\_stats}, \texttt{resources}, \texttt{position}.
     \item \textbf{Khóa/\allowbreak Ref quan trọng:} \texttt{CHARACTER.\_id}, \texttt{CHARACTER.profile\_id}.
     \item \textbf{Ràng buộc nhất quán:} các struct nhúng phải theo cùng vòng đời với CHARACTER; cập nhật level/\allowbreak EXP phải đồng bộ với các ngưỡng progression.
 \end{itemize}
@@ -231,7 +231,7 @@ Phần này phân tích ERD theo nhóm để làm rõ mục đích dữ liệu, 
 \hline
 Identity \& Session & USER (1:N) GAME\_PROFILE; SESSION\_\allowbreak RUNTIME $\rightarrow$ GAME\_PROFILE & Unique account identity; session TTL; không orphan profile trong phiên. \\
 \hline
-Character \& Progression & GAME\_PROFILE (1:N) CHARACTER; CHARACTER nhúng stats/\allowbreak resources/\allowbreak appearance & Tiến trình level/\allowbreak EXP nhất quán; struct nhúng cùng vòng đời CHARACTER. \\
+Character \& Progression & GAME\_PROFILE (1:N) CHARACTER; CHARACTER nhúng stats/\allowbreak resources/\allowbreak position & Tiến trình level/\allowbreak EXP nhất quán; struct nhúng cùng vòng đời CHARACTER. \\
 \hline
 Inventory/\allowbreak Equipment/\allowbreak Skill & CHARACTER (1:1) INVENTORY/\allowbreak EQUIPMENT/\allowbreak SKILLS; ref sang CONFIG\_ITEM/\allowbreak CONFIG\_SKILL & Đồng bộ item equip và inventory; hotbar hợp lệ; state động không lệch config tĩnh. \\
 \hline
@@ -360,7 +360,7 @@ Phần này mô tả các collection chính ở mức thuộc tính, mục đíc
 \endlastfoot
 \texttt{token} & string & Yes & PK; token phiên. \\
 \hline
-\texttt{socket\_id} & string & No & Trường dự phòng cho mở rộng WS; cập nhật khi bật handshake WS. \\
+\texttt{socket\_id} & string & No & Trường dự phòng cho định danh kết nối phiên; cập nhật khi có cơ chế kết nối phiên. \\
 \hline
 \texttt{user\_id} & string & Yes & Tham chiếu user; dùng kiểm tra nhanh. \\
 \hline
@@ -418,8 +418,6 @@ Phần này mô tả các collection chính ở mức thuộc tính, mục đíc
 \texttt{resources} & object/\allowbreak embed & Yes & STRUCT\_CURRENT\_RESOURCES (HP/\allowbreak MP/\allowbreak Stamina). \\
 \hline
 \texttt{position} & object/\allowbreak embed & Yes & STRUCT\_POSITION\_DATA (map + toạ độ). \\
-\hline
-\texttt{appearance} & object/\allowbreak embed & Yes & STRUCT\_APPEARANCE. \\
 \hline
 \end{longtable}
 

@@ -14,12 +14,12 @@
 \contentsline {figure}{\numberline {13}{\ignorespaces Activity flow cho vòng đời battle session}}{35}{figure.caption.150}%
 \contentsline {figure}{\numberline {14}{\ignorespaces Sơ đồ triển khai tổng quan hệ thống (bản cập nhật)}}{40}{figure.caption.185}%
 \contentsline {figure}{\numberline {15}{\ignorespaces Bộ sơ đồ ERD mức logic theo phân hệ (trình bày bằng hình)}}{44}{figure.caption.195}%
-\contentsline {figure}{\numberline {16}{\ignorespaces Mô hình thuộc tính nền và chỉ số suy diễn}}{54}{figure.caption.214}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Luồng UI xác thực và tải dữ liệu ban đầu}}{57}{figure.caption.227}%
-\contentsline {figure}{\numberline {18}{\ignorespaces UI lobby, nâng cấp castle và leaderboard}}{58}{figure.caption.229}%
-\contentsline {figure}{\numberline {19}{\ignorespaces UI nhiệm vụ ngày, tuần và thành tựu}}{59}{figure.caption.231}%
-\contentsline {figure}{\numberline {20}{\ignorespaces UI shop: catalog offer và popup reward}}{60}{figure.caption.233}%
-\contentsline {figure}{\numberline {21}{\ignorespaces UI quản lý hero/\allowbreak unit: danh sách, UIUnit, chi tiết, nâng cấp và tiến hoá}}{61}{figure.caption.235}%
-\contentsline {figure}{\numberline {22}{\ignorespaces UI tutorial điều hướng người chơi mới}}{62}{figure.caption.237}%
-\contentsline {figure}{\numberline {23}{\ignorespaces UI chuẩn bị trận và gameplay battle}}{63}{figure.caption.239}%
-\contentsline {figure}{\numberline {24}{\ignorespaces UI kết quả trận, reward và level-up}}{64}{figure.caption.241}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Mô hình thuộc tính nền và chỉ số suy diễn}}{53}{figure.caption.214}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Luồng UI xác thực và tải dữ liệu ban đầu}}{56}{figure.caption.227}%
+\contentsline {figure}{\numberline {18}{\ignorespaces UI lobby, nâng cấp castle và leaderboard}}{57}{figure.caption.229}%
+\contentsline {figure}{\numberline {19}{\ignorespaces UI nhiệm vụ ngày, tuần và thành tựu}}{58}{figure.caption.231}%
+\contentsline {figure}{\numberline {20}{\ignorespaces UI shop: catalog offer và popup reward}}{59}{figure.caption.233}%
+\contentsline {figure}{\numberline {21}{\ignorespaces UI quản lý hero/\allowbreak unit: danh sách, UIUnit, chi tiết, nâng cấp và tiến hoá}}{60}{figure.caption.235}%
+\contentsline {figure}{\numberline {22}{\ignorespaces UI tutorial điều hướng người chơi mới}}{61}{figure.caption.237}%
+\contentsline {figure}{\numberline {23}{\ignorespaces UI chuẩn bị trận và gameplay battle}}{62}{figure.caption.239}%
+\contentsline {figure}{\numberline {24}{\ignorespaces UI kết quả trận, reward và level-up}}{63}{figure.caption.241}%
