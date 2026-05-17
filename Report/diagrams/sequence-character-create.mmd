@@ -4,13 +4,11 @@ sequenceDiagram
   participant API as CharacterController
   participant Char as CharacterService
   participant CRepo as Character(characters)
-  participant ARepo as CharacterAppearance
   participant SRepo as CharacterStats
 
   Player->>API: POST /v1/character
   API->>Char: createCharacter(auth, body)
   Char->>CRepo: create core character
-  Char->>ARepo: create appearance
   Char->>SRepo: create initial stats
   Char-->>API: character aggregate
   API-->>Player: 200 success envelope

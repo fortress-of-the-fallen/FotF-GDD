@@ -34,14 +34,6 @@ entity "CHARACTER" as CH <<table>> {
   race : string
   gender : string
 }
-entity "CHARACTER_APPEARANCE" as CA <<table>> {
-  * id : string <<PK>>
-  --
-  characterId : string <<FK>>
-  hair : string
-  beard : string
-  eye : string
-}
 entity "CHARACTER_STATS" as CS <<table>> {
   * id : string <<PK>>
   --
@@ -61,8 +53,7 @@ entity "BACKUP" as BK <<table>> {
 }
 
 USER ||--o{ CH : owns
-CH ||--o| CA : appearance
 CH ||--o| CS : stats
-CA -[hidden]- BK
+CS -[hidden]- BK
 
 @enduml

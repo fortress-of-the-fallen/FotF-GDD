@@ -207,17 +207,6 @@ Table CHARACTER [headercolor: #D5F5E3] {
   isLocked boolean
 }
 
-Table CHARACTER_APPEARANCE [headercolor: #D5F5E3] {
-  id string [pk]
-  characterId string [unique, ref: > CHARACTER.id]
-  hair string
-  beard string
-  eye string
-  hairColor string
-  beardColor string
-  eyeColor string
-}
-
 Table CHARACTER_STATS [headercolor: #D5F5E3] {
   id string [pk]
   characterId string [unique, ref: > CHARACTER.id]

@@ -4,9 +4,8 @@ flowchart TD
   C --> D{Has existing active character constraints?}
   D -->|Fail| X[Return validation error]
   D -->|Pass| E[Create character core]
-  E --> F[Create appearance]
-  F --> G[Create initial stats]
-  G --> H[Persist aggregate]
-  H --> I[Return created character]
+  E --> F[Create initial stats]
+  F --> G[Persist aggregate]
+  G --> H[Return created character]
   X --> Z([End])
-  I --> Z
+  H --> Z

@@ -155,17 +155,6 @@ erDiagram
         boolean isLocked
     }
 
-    CHARACTER_APPEARANCE {
-        string id PK
-        string characterId FK
-        string hair
-        string beard
-        string eye
-        string hairColor
-        string beardColor
-        string eyeColor
-    }
-
     CHARACTER_STATS {
         string id PK
         string characterId FK
@@ -212,5 +201,4 @@ erDiagram
     PLAYER ||--o{ LEADERBOARD_SCORE : ranks
     PLAYER ||--o{ IDEMPOTENCY_RECORD : stores
 
-    CHARACTER ||--o| CHARACTER_APPEARANCE : has
     CHARACTER ||--o| CHARACTER_STATS : has
