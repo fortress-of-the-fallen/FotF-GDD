@@ -74,6 +74,45 @@ FR-11 & Shop catalog/purchase & \texttt{/shop/\allowbreak catalog} và \texttt{/
     \item \textbf{NFR-08}: configVersion đã đi cùng luồng battle/config manifest để giảm lệch cấu hình.
 \end{itemize}
 
+\subsection{Automation Testing với Unity Test Framework}
+\label{subsec:eval-automation-testing}
+
+Nhóm sử dụng Unity Test Framework để tự động hóa kiểm thử hồi quy cho các luồng UI và logic cốt lõi đã triển khai. Mục tiêu là phát hiện sớm lỗi sau khi thay đổi code, đặc biệt ở các luồng xác thực, đồng bộ trạng thái và hiển thị UI theo dữ liệu backend.
+
+\subsubsection{Cài đặt package kiểm thử}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/testFramework/package.png}
+    \caption{Unity Package Manager với Test Framework và UI Test Framework được cài trong dự án}
+    \label{fig:testframework-package}
+\end{figure}
+
+\subsubsection{Bộ EditMode tests}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Images/testFramework/editmode.png}
+    \caption{Kết quả chạy EditMode tests cho các ca kiểm thử logic UI cục bộ}
+    \label{fig:testframework-editmode}
+\end{figure}
+
+\subsubsection{Bộ PlayMode tests}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Images/testFramework/playmode.png}
+    \caption{Kết quả chạy PlayMode tests trên scene runtime để kiểm tra tích hợp thành phần}
+    \label{fig:testframework-playmode}
+\end{figure}
+
+\subsubsection{Kết quả chạy test trên player/test runner}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Images/testFramework/player.png}
+    \caption{Kết quả test runner ở chế độ player dùng để đối chiếu hành vi kiểm thử ngoài editor}
+    \label{fig:testframework-player}
+\end{figure}
+
+Các ảnh trên thể hiện quy trình test đã được tích hợp ở mức khả dụng cho regression cơ bản. Bộ test hiện tại chưa đại diện cho toàn bộ bề mặt hệ thống, nhưng đủ làm bằng chứng tự động hóa cho các flow chính đã vận hành trong baseline.
+
 \subsection{Rủi ro còn lại và hướng giảm thiểu}
 \label{subsec:eval-risks}
 

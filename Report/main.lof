@@ -1,25 +1,31 @@
 \babel@toc {vietnamese}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Ví dụ mô hình hoá Core Loop trong Action RPG}}{7}{figure.caption.31}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Mô hình hoá thuộc tính nền, chỉ số suy diễn và nhóm trait đặc biệt}}{8}{figure.caption.36}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Use case cho phân hệ xác thực và phiên}}{26}{figure.caption.111}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Activity flow cho phân hệ xác thực}}{27}{figure.caption.112}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Use case cho phân hệ battle session}}{28}{figure.caption.116}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Use case cho phân hệ progression người chơi}}{29}{figure.caption.119}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Use case cho phân hệ character và formation}}{30}{figure.caption.120}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Sequence đăng nhập và thiết lập phiên}}{31}{figure.caption.127}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Sequence làm mới access token}}{31}{figure.caption.128}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Sequence đồng bộ và claim quest}}{32}{figure.caption.138}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Activity flow cho luồng claim quest}}{33}{figure.caption.139}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Sequence khởi tạo và kết thúc battle session}}{34}{figure.caption.149}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Activity flow cho vòng đời battle session}}{35}{figure.caption.150}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Sơ đồ triển khai tổng quan hệ thống (bản cập nhật)}}{40}{figure.caption.185}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Bộ sơ đồ ERD mức logic theo phân hệ (trình bày bằng hình)}}{44}{figure.caption.195}%
-\contentsline {figure}{\numberline {16}{\ignorespaces Mô hình thuộc tính nền và chỉ số suy diễn}}{53}{figure.caption.214}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Luồng UI xác thực và tải dữ liệu ban đầu}}{56}{figure.caption.227}%
-\contentsline {figure}{\numberline {18}{\ignorespaces UI lobby, nâng cấp castle và leaderboard}}{57}{figure.caption.229}%
-\contentsline {figure}{\numberline {19}{\ignorespaces UI nhiệm vụ ngày, tuần và thành tựu}}{58}{figure.caption.231}%
-\contentsline {figure}{\numberline {20}{\ignorespaces UI shop: catalog offer và popup reward}}{59}{figure.caption.233}%
-\contentsline {figure}{\numberline {21}{\ignorespaces UI quản lý hero/\allowbreak unit: danh sách, UIUnit, chi tiết, nâng cấp và tiến hoá}}{60}{figure.caption.235}%
-\contentsline {figure}{\numberline {22}{\ignorespaces UI tutorial điều hướng người chơi mới}}{61}{figure.caption.237}%
-\contentsline {figure}{\numberline {23}{\ignorespaces UI chuẩn bị trận và gameplay battle}}{62}{figure.caption.239}%
-\contentsline {figure}{\numberline {24}{\ignorespaces UI kết quả trận, reward và level-up}}{63}{figure.caption.241}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Ví dụ mô hình hoá Core Loop trong casual strategy}}{8}{figure.caption.45}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Mô hình hoá thuộc tính nền, chỉ số suy diễn và nhóm trait đặc biệt}}{9}{figure.caption.50}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Use case cho phân hệ xác thực và phiên}}{28}{figure.caption.125}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Activity flow cho phân hệ xác thực}}{29}{figure.caption.126}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Use case cho phân hệ battle session}}{30}{figure.caption.130}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Use case cho phân hệ progression người chơi}}{31}{figure.caption.133}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Use case cho phân hệ character và formation}}{32}{figure.caption.134}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Sequence đăng nhập và thiết lập phiên}}{33}{figure.caption.141}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Sequence làm mới access token}}{33}{figure.caption.142}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Sequence đồng bộ và claim quest}}{34}{figure.caption.152}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Activity flow cho luồng claim quest}}{35}{figure.caption.153}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Sequence khởi tạo và kết thúc battle session}}{36}{figure.caption.163}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Activity flow cho vòng đời battle session}}{37}{figure.caption.164}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Flow đầu vào trận theo runtime hiện tại: matching $\rightarrow $ roulette.}}{40}{figure.caption.193}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Flow core gameplay: battle $\rightarrow $ chốt kết quả $\rightarrow $ reward.}}{41}{figure.caption.194}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Sơ đồ triển khai tổng quan hệ thống (bản cập nhật)}}{45}{figure.caption.221}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Bộ sơ đồ ERD mức logic theo phân hệ (trình bày bằng hình)}}{49}{figure.caption.231}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Mô hình thuộc tính nền và chỉ số suy diễn}}{58}{figure.caption.250}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Luồng UI xác thực và tải dữ liệu ban đầu}}{61}{figure.caption.263}%
+\contentsline {figure}{\numberline {20}{\ignorespaces UI lobby, nâng cấp castle và leaderboard}}{62}{figure.caption.265}%
+\contentsline {figure}{\numberline {21}{\ignorespaces UI nhiệm vụ ngày, tuần và thành tựu}}{63}{figure.caption.267}%
+\contentsline {figure}{\numberline {22}{\ignorespaces UI shop: catalog offer và popup reward}}{64}{figure.caption.269}%
+\contentsline {figure}{\numberline {23}{\ignorespaces UI quản lý hero/\allowbreak unit: danh sách, UIUnit, chi tiết, nâng cấp và tiến hoá}}{65}{figure.caption.271}%
+\contentsline {figure}{\numberline {24}{\ignorespaces UI tutorial điều hướng người chơi mới}}{66}{figure.caption.273}%
+\contentsline {figure}{\numberline {25}{\ignorespaces UI chuẩn bị trận và gameplay battle}}{67}{figure.caption.275}%
+\contentsline {figure}{\numberline {26}{\ignorespaces UI kết quả trận, reward và level-up}}{68}{figure.caption.277}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Unity Package Manager với Test Framework và UI Test Framework được cài trong dự án}}{76}{figure.caption.325}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Kết quả chạy EditMode tests cho các ca kiểm thử logic UI cục bộ}}{76}{figure.caption.327}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Kết quả chạy PlayMode tests trên scene runtime để kiểm tra tích hợp thành phần}}{77}{figure.caption.329}%
+\contentsline {figure}{\numberline {30}{\ignorespaces Kết quả test runner ở chế độ player dùng để đối chiếu hành vi kiểm thử ngoài editor}}{77}{figure.caption.331}%

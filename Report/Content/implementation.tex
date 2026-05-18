@@ -123,7 +123,7 @@ Các nhóm endpoint được client gọi trong runtime hiện tại:
     \item Backend trả currency mới và \texttt{grantedRewards}/\texttt{rewards}; client mở \texttt{PopUpShop} để hiển thị phần thưởng.
 \end{enumerate}
 
-\subsection{Claim va Evidence}
+\subsection{Claim và Evidence}
 \label{subsec:impl-traceability}
 
 \begin{table}[H]
@@ -150,8 +150,6 @@ Castle upgrade có backend source-of-truth & Luồng nâng cấp castle dùng en
 \hline
 Shop purchase và reward popup đồng bộ backend & Catalog/\allowbreak purchase gọi qua API shop; popup reward đọc trực tiếp từ \texttt{grantedRewards}/\texttt{rewards} response & Đã triển khai \\
 \hline
-Realtime PvP quy mô lớn & Mới ở mức kiến trúc/\allowbreak roadmap, chưa là trọng tâm vận hành hiện tại & Mở rộng \\
-\hline
 \end{tabularx}
 \caption{Bảng traceability claim kỹ thuật và bằng chứng triển khai}
 \label{tab:claim-evidence}
@@ -161,9 +159,8 @@ Realtime PvP quy mô lớn & Mới ở mức kiến trúc/\allowbreak roadmap, c
 \label{subsec:impl-open-items}
 
 \begin{itemize}
-    \item Chuẩn hoá sâu cơ chế realtime authoritative theo tick cho PvP mở rộng.
     \item Bổ sung bộ benchmark tải và dashboard observability cho các luồng chính.
-    \item Mở rộng nội dung gameplay và cân bằng kinh tế ở mức live-ops.
+    \item Tiếp tục mở rộng nội dung gameplay và cân bằng kinh tế ở mức live-ops.
 \end{itemize}
 
 \subsection{Tổng kết chương}

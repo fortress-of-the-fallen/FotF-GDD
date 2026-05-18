@@ -362,6 +362,110 @@ Database & Lưu trạng thái người chơi và dữ liệu phục vụ nghiệ
 \end{enumerate}
 
 % ===============================================================
+\subsection{Hướng dẫn chơi \& flow gameplay hiện tại}
+\label{subsec:analysis_gameplay_guide}
+
+\subsubsection{Hướng dẫn chơi nhanh}
+\label{subsubsec:analysis_gameplay_quickstart}
+\begin{enumerate}
+    \item Đăng nhập/\allowbreak đăng ký, đồng bộ state người chơi qua \texttt{/me} và config cần thiết qua \texttt{/configs/manifest}.
+    \item Từ lobby, vào matching để tìm trận phù hợp với trạng thái hiện tại.
+    \item Đi qua màn roulette để xác nhận vào battle.
+    \item Vào battle session và thực hiện gameplay của trận.
+    \item Chốt trạng thái thắng/\allowbreak thua, sau đó nhận reward và đồng bộ hậu trận.
+    \item Quay về lobby và tiếp tục với các tính năng khác như quest/\allowbreak upgrade/\allowbreak shop.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/matching_scene.png}
+        \caption{Màn tìm trận}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/roulette.png}
+        \caption{Màn roulette trước trận}
+    \end{subfigure}
+    \caption{Flow đầu vào trận theo runtime hiện tại: matching $\rightarrow$ roulette.}
+    \label{fig:analysis_gameplay_match_roulette}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/battle_scene.png}
+        \caption{Màn battle}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/newUI/victory_reward.png}
+        \caption{Reward hậu trận}
+    \end{subfigure}
+    \caption{Flow core gameplay: battle $\rightarrow$ chốt kết quả $\rightarrow$ reward.}
+    \label{fig:analysis_gameplay_battle_reward}
+\end{figure}
+
+\subsubsection{Flow chơi theo battle-first}
+\label{subsubsec:analysis_gameplay_runtime_flow}
+\textbf{Bước 1 -- Matching/tìm trận:}
+\begin{enumerate}
+    \item Người chơi vào matching từ lobby.
+    \item Hệ thống ghép cặp theo cấu hình và trạng thái phiên hiện tại.
+\end{enumerate}
+
+\textbf{Bước 2 -- Roulette trước trận:}
+\begin{enumerate}
+    \item Sau matching, người chơi đi qua màn roulette.
+    \item Kết quả roulette xác nhận chuyển tiếp vào battle session.
+\end{enumerate}
+
+\textbf{Bước 3 -- Battle:}
+\begin{enumerate}
+    \item Khởi tạo phiên trận và nhận \texttt{battleId}.
+    \item Thực hiện gameplay chiến đấu trong màn.
+    \item Trận kết thúc khi đạt điều kiện thắng hoặc thua.
+\end{enumerate}
+
+\subsubsection{Luật battle}
+\label{subsubsec:analysis_gameplay_battle_rules}
+\begin{itemize}
+    \item Battle runtime đi qua đúng chuỗi matching $\rightarrow$ roulette $\rightarrow$ battle session.
+    \item Mỗi trận hợp lệ phải có \texttt{battleId} được backend cấp ở bước start.
+    \item Mọi dữ liệu của trận được chốt tại bước finish battle, không suy diễn cục bộ.
+\end{itemize}
+
+\subsubsection{Luật thắng/thua}
+\label{subsubsec:analysis_gameplay_winlose_rules}
+\begin{itemize}
+    \item \textbf{Thắng:} người chơi hoàn tất điều kiện mục tiêu của màn battle hiện tại.
+    \item \textbf{Thua:} không đạt điều kiện mục tiêu theo logic runtime của battle session.
+    \item Trạng thái thắng/\allowbreak thua là đầu vào trực tiếp cho luồng hậu trận và reward.
+\end{itemize}
+
+\subsubsection{Luật reward và đồng bộ hậu trận}
+\label{subsubsec:analysis_gameplay_reward_rules}
+\begin{itemize}
+    \item Client gửi finish battle kèm \texttt{idempotencyKey} để chốt kết quả an toàn khi retry.
+    \item Reward, currency, statistics và quest progress chỉ có hiệu lực theo payload backend trả về.
+    \item UI hậu trận hiển thị dữ liệu theo response mới nhất sau khi backend xác nhận.
+\end{itemize}
+
+\subsubsection{Mở rộng sang các tính năng khác}
+\label{subsubsec:analysis_gameplay_feature_handoff}
+\begin{itemize}
+    \item Sau reward, người chơi quay về lobby để tiếp tục quest và các mốc progression.
+    \item Tài nguyên hậu trận được dùng cho upgrade hero/\allowbreak skill/\allowbreak castle.
+    \item Shop là nhánh economy hỗ trợ progression, không phải trục chính của flow battle.
+\end{itemize}
+
+Phần flow và luật gameplay này phản ánh đúng phạm vi implemented-only hiện tại: battle-first, backend-authoritative và đồng bộ hậu trận rõ ràng.
+
+% ===============================================================
 \subsection{Quy tắc nghiệp vụ và ràng buộc hệ thống}
 \label{subsec:analysis_rules}
 

@@ -1,22 +1,22 @@
 \babel@toc {vietnamese}{}\relax 
-\contentsline {table}{\numberline {1}{\ignorespaces Vai trò của 6 thuộc tính nền trong thiết kế build}}{8}{table.caption.37}%
-\contentsline {table}{\numberline {2}{\ignorespaces Ví dụ quan hệ phụ thuộc Secondary Stats từ Primary Attributes}}{9}{table.caption.38}%
-\contentsline {table}{\numberline {3}{\ignorespaces Ví dụ mốc level và phần thưởng mở slot kỹ năng}}{10}{table.caption.41}%
-\contentsline {table}{\numberline {4}{\ignorespaces Mức tương đồng hiện tại giữa nguồn cảm hứng và sản phẩm}}{18}{table.caption.75}%
-\contentsline {table}{\numberline {5}{\ignorespaces Tác nhân và vai trò trong phạm vi triển khai hiện tại}}{25}{table.caption.108}%
-\contentsline {table}{\numberline {6}{\ignorespaces Bản đồ mô-đun backend và dữ liệu liên quan}}{42}{table.caption.190}%
-\contentsline {table}{\numberline {7}{\ignorespaces Tóm tắt Entity--Relation--Constraint theo nhóm ERD}}{46}{table.caption.201}%
-\contentsline {table}{\numberline {8}{\ignorespaces Từ điển dữ liệu -- Collection USER}}{46}{table.8}%
-\contentsline {table}{\numberline {9}{\ignorespaces Từ điển dữ liệu -- Collection GAME\_PROFILE}}{47}{table.9}%
-\contentsline {table}{\numberline {10}{\ignorespaces Từ điển dữ liệu -- Collection SESSION\_RUNTIME}}{48}{table.10}%
-\contentsline {table}{\numberline {11}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER}}{48}{table.11}%
-\contentsline {table}{\numberline {12}{\ignorespaces Từ điển dữ liệu -- Collection INVENTORY}}{49}{table.12}%
-\contentsline {table}{\numberline {13}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER\_EQUIPMENT}}{50}{table.13}%
-\contentsline {table}{\numberline {14}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER\_SKILLS}}{51}{table.14}%
-\contentsline {table}{\numberline {15}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_ITEM}}{51}{table.15}%
-\contentsline {table}{\numberline {16}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_SKILL}}{52}{table.16}%
-\contentsline {table}{\numberline {17}{\ignorespaces Bảng traceability claim kỹ thuật và bằng chứng triển khai}}{68}{table.caption.276}%
-\contentsline {table}{\numberline {18}{\ignorespaces Đối chiếu mức bao phủ FR theo trạng thái triển khai hiện tại}}{69}{table.caption.282}%
-\contentsline {table}{\numberline {19}{\ignorespaces Rủi ro hiện tại và biện pháp giảm thiểu}}{71}{table.caption.288}%
-\contentsline {table}{\numberline {20}{\ignorespaces Phân công nhiệm vụ và đóng góp của các thành viên}}{73}{table.caption.297}%
-\contentsline {table}{\numberline {21}{\ignorespaces Roadmap sau baseline triển khai (mốc thời gian tính từ 05/2026)}}{74}{table.caption.299}%
+\contentsline {table}{\numberline {1}{\ignorespaces Vai trò của 6 thuộc tính nền trong thiết kế build}}{10}{table.caption.51}%
+\contentsline {table}{\numberline {2}{\ignorespaces Ví dụ quan hệ phụ thuộc Secondary Stats từ Primary Attributes}}{10}{table.caption.52}%
+\contentsline {table}{\numberline {3}{\ignorespaces Ví dụ mốc level và phần thưởng mở slot kỹ năng}}{11}{table.caption.55}%
+\contentsline {table}{\numberline {4}{\ignorespaces Mức tương đồng hiện tại giữa nguồn cảm hứng và sản phẩm}}{20}{table.caption.89}%
+\contentsline {table}{\numberline {5}{\ignorespaces Tác nhân và vai trò trong phạm vi triển khai hiện tại}}{27}{table.caption.122}%
+\contentsline {table}{\numberline {6}{\ignorespaces Bản đồ mô-đun backend và dữ liệu liên quan}}{47}{table.caption.226}%
+\contentsline {table}{\numberline {7}{\ignorespaces Tóm tắt Entity--Relation--Constraint theo nhóm ERD}}{51}{table.caption.237}%
+\contentsline {table}{\numberline {8}{\ignorespaces Từ điển dữ liệu -- Collection USER}}{51}{table.8}%
+\contentsline {table}{\numberline {9}{\ignorespaces Từ điển dữ liệu -- Collection GAME\_PROFILE}}{52}{table.9}%
+\contentsline {table}{\numberline {10}{\ignorespaces Từ điển dữ liệu -- Collection SESSION\_RUNTIME}}{53}{table.10}%
+\contentsline {table}{\numberline {11}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER}}{53}{table.11}%
+\contentsline {table}{\numberline {12}{\ignorespaces Từ điển dữ liệu -- Collection INVENTORY}}{54}{table.12}%
+\contentsline {table}{\numberline {13}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER\_EQUIPMENT}}{55}{table.13}%
+\contentsline {table}{\numberline {14}{\ignorespaces Từ điển dữ liệu -- Collection CHARACTER\_SKILLS}}{56}{table.14}%
+\contentsline {table}{\numberline {15}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_ITEM}}{56}{table.15}%
+\contentsline {table}{\numberline {16}{\ignorespaces Từ điển dữ liệu -- Collection CONFIG\_SKILL}}{57}{table.16}%
+\contentsline {table}{\numberline {17}{\ignorespaces Bảng traceability claim kỹ thuật và bằng chứng triển khai}}{73}{table.caption.312}%
+\contentsline {table}{\numberline {18}{\ignorespaces Đối chiếu mức bao phủ FR theo trạng thái triển khai hiện tại}}{74}{table.caption.318}%
+\contentsline {table}{\numberline {19}{\ignorespaces Rủi ro hiện tại và biện pháp giảm thiểu}}{78}{table.caption.333}%
+\contentsline {table}{\numberline {20}{\ignorespaces Phân công nhiệm vụ và đóng góp của các thành viên}}{80}{table.caption.342}%
+\contentsline {table}{\numberline {21}{\ignorespaces Roadmap sau baseline triển khai (mốc thời gian tính từ 05/2026)}}{81}{table.caption.344}%

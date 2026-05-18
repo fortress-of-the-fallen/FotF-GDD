@@ -90,7 +90,7 @@ Mỗi yêu cầu được mô tả theo cùng một format: \textbf{Mục tiêu 
 \begin{itemize}
     \item \textbf{Mục tiêu:} tạo phiên battle hợp lệ trước khi vào trận.
     \item \textbf{Điều kiện vào:} người chơi chọn mode/formation/config version hợp lệ.
-    \item \textbf{Kết quả mong đợi:} backend trả \texttt{battleId}, mode, seed, configVersion, expiresAt (và opponent data với PvP).
+    \item \textbf{Kết quả mong đợi:} backend trả \texttt{battleId}, mode, seed, configVersion, expiresAt (và dữ liệu đối thủ theo mode hiện hành).
     \item \textbf{Bằng chứng triển khai:} \texttt{POST /api/\allowbreak v1/\allowbreak battles/\allowbreak start}.
 \end{itemize}
 

@@ -2,11 +2,11 @@
 \section*{Tóm tắt}
 \addcontentsline{toc}{section}{Tóm tắt}
 
-Đồ án tập trung phát triển một hệ thống game online nhập vai hành động nhiều người chơi có tên \textit{Fortress of the Fallen}. Mục tiêu của đề tài là xây dựng nền tảng client--server có khả năng vận hành ổn định cho các chức năng cốt lõi: xác thực người dùng, quản lý player state, quest, battle session, tutorial progress, nâng cấp hero/\allowbreak skill, nâng cấp castle, leaderboard và shop.
+Đồ án tập trung phát triển hệ thống game \textit{Fortress of the Fallen} theo định hướng \textit{casual strategy}. Mục tiêu của đề tài là xây dựng nền tảng client--server có khả năng vận hành ổn định cho các chức năng cốt lõi: xác thực người dùng, quản lý player state, quest, battle session, tutorial progress, nâng cấp hero/\allowbreak skill, nâng cấp castle, leaderboard và shop. Vòng chơi chính của bản hiện tại bám theo luồng: tìm trận $\rightarrow$ roulette $\rightarrow$ battle $\rightarrow$ chốt thắng/\allowbreak thua $\rightarrow$ trả thưởng và đồng bộ hậu trận.
 
 Hệ thống được tổ chức theo mô hình server-authoritative nhằm đảm bảo tính nhất quán dữ liệu và giảm rủi ro gian lận. Client (Unity) giao tiếp với backend (NestJS) qua REST cho toàn bộ luồng đang vận hành: auth, \texttt{/me}, quest sync/\allowbreak claim, battle start/\allowbreak finish, tutorial sync, inventory upgrade, castle upgrade và shop purchase. Cơ sở dữ liệu MongoDB lưu trữ dữ liệu tiến trình, trong khi dữ liệu cấu hình gameplay được quản trị theo hướng data-driven thông qua quy trình Google Sheets $\rightarrow$ TSV $\rightarrow$ import database $\rightarrow$ nạp Config Manager ở mức áp dụng hiện tại cho các nhóm cấu hình chính.
 
 Kết quả đồ án là một kiến trúc mô-đun rõ ràng, có khả năng mở rộng theo từng phân hệ và có bộ kiểm thử tích hợp ban đầu cho các luồng nghiệp vụ chính.
 
 \vspace{0.3cm}
-\noindent\textbf{Từ khóa:} game online, Action RPG, client--server, server-authoritative, NestJS, MongoDB, REST API, data-driven configuration.
+\noindent\textbf{Từ khóa:} casual strategy, client--server, server-authoritative, NestJS, MongoDB, REST API, data-driven configuration.

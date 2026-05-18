@@ -42,7 +42,7 @@ Các thành phần cốt lõi:
     \item \textbf{API Server (NestJS)}: lớp ứng dụng xử lý REST API cho các phân hệ đang vận hành.
     \item \textbf{Job Worker}: thành phần nền theo lịch, hiện được chuẩn bị để xử lý các tác vụ như mail hệ thống, sự kiện, tổng hợp log và dọn dẹp dữ liệu runtime.
     \item \textbf{MongoDB (Primary DB)}: lưu dữ liệu tiến trình bền vững và các collections cấu hình.
-    \item \textbf{Redis (Cache \& Pub/\allowbreak Sub)}: dùng cho cache; phần phối hợp realtime qua pub-sub được giữ theo nhu cầu mở rộng nhiều instance.
+    \item \textbf{Redis (Cache \& Pub/\allowbreak Sub)}: dùng cho cache; phần phối hợp qua pub-sub được giữ theo nhu cầu mở rộng nhiều instance.
     \item \textbf{MinIO (Object Storage)}: lưu trữ tệp và asset bundle (nếu áp dụng); client tải qua presigned URL.
 \end{itemize}
 
