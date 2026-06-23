@@ -1,6 +1,6 @@
 \babel@toc {vietnamese}{}\relax 
-\contentsline {section}{Lời cảm ơn}{i}{section*.1}%
-\contentsline {section}{Lời cam đoan}{iii}{section*.2}%
+\contentsline {section}{Lời cam đoan}{i}{section*.1}%
+\contentsline {section}{Lời cảm ơn}{ii}{section*.2}%
 \contentsline {section}{Tóm tắt}{iv}{section*.3}%
 \contentsline {section}{Danh mục thuật ngữ}{v}{section*.4}%
 \contentsline {section}{\numberline {1}Giới thiệu}{1}{section.8}%
